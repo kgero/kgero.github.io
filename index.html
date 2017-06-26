@@ -1,48 +1,161 @@
 <html>
 <head>
     <title>Katy Gero</title>
-    <style>
-/*    p {
-      font-size: calc(4vw + 4vh + 2vmin);
-    }*/
 
-    ul {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      /*font-size: 2.5em;*/
-      font-size: calc(4vw + 4vh + 2vmin);
-      }
-    a {
-      color: #4D4D4D;
-      text-decoration: none;
-    }
-    </style>
-
-    <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-90044110-1', 'auto');
-    ga('send', 'pageview');
-
-    </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.1.2/css/bulma.css">
 
 
 </head>
 <body>
 
+<!-- TODO
 
+* Make jellyfish icon? Or other icon?
+* Get jellyfish images in
+* Finalize tile content
+
+-->
+
+
+  <section class="section">
+    <div class="columns">
+    <div class="column"></div>
+    <div class="column is-half">
+      <!-- TOP CONTENT -->
+      <div class="content has-text-centered">
+        <p>
+        <span class="icon is-large is-centered">
+        <i class="fa fa-asterisk"></i>
+        </span>
+        </p>
+        <p>
+          I am a soon-to-be computer science <strong>PhD student</strong> at Columbia University; I received an NSF Fellowship to work on building better models of language using poetry and creative writing. 
+        </p>
+        <p>
+          Which is my second thing: I'm a <strong>writer</strong> and a poet. I regularly blog for <a>SheCanCode</a>. I've most recently been published by <a>Synaesthesia Magazine</a>, <a>the Harvard Bookstore</a>, and <a>Spare Change News</a>.
+        </p>
+        <p>
+          I've always dabbled in the <strong>visual arts</strong>. In the past I've experimented with film photography and  been obsessed with charcoal portraits and figure drawing; I've recently gotten into painting. You can find my work on <a>Flickr</a> and some work I'm most recently proud of below.
+        </p>
+        <p>
+          I did my undergraduate degree in <strong>mechanical engineering</strong> which means I've built physical things for the real world. I've <a>blogged</a> about a variety of projects since my sophomore year on wordpress including some art installations I built on-campus. Some of my favorite projects are also below.
+        </p>
+      </div>
+
+
+      <!-- LINKS TO SOCIAL MEDIA -->
+      <div class="nav">
+      <div class="nav-center">
+        <a class="nav-item">
+          <span class="icon">
+            <i class="fa fa-github"></i>
+          </span>
+        </a>
+        <a class="nav-item">
+          <span class="icon">
+            <i class="fa fa-linkedin"></i>
+          </span>
+        </a>
+        <a class="nav-item">
+          <span class="icon">
+            <i class="fa fa-twitter"></i>
+          </span>
+        </a>
+        <a class="nav-item">
+          <span class="icon">
+            <i class="fa fa-envelope"></i>
+          </span>
+        </a>
+      </div>
+      </div>
+
+    </div>
+    <div class="column"></div>
+    </div>
+  </section>
+
+
+  <!-- SECTION BREAK -->
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <h1 class="title">
+          Some Fun Stuff Below
+        </h1>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- PROJECT TILES -->
+  <section class="section">
+    <div class="tile is-ancestor">
+      <div class="tile is-vertical is-8">
+        <div class="tile">
+          <div class="tile is-parent is-vertical">
+            <article class="tile is-child notification is-primary">
+              <p class="title">Why Siri Sounds Like a Girl</p>
+              <p class="subtitle">But Says She is Beyond Gender</p>
+              <p>Excerpt</p>
+              <small>June 2017</small>
+            </article>
+            <article class="tile is-child notification is-warning">
+              <p class="title">Fitting In</p>
+              <p class="subtitle">The Benefits and Set Backs sf...f</p>
+              <small>June 2016</small>
+            </article>
+          </div>
+          <div class="tile is-parent">
+            <article class="tile is-child notification is-info">
+              <p class="title">Nephew</p>
+              <figure class="image is-1by1">
+                <img src="http://bulma.io/images/placeholders/480x480.png">
+              </figure>
+              <small>March 2017</small>
+            </article>
+          </div>
+        </div>
+        <div class="tile is-parent">
+          <article class="tile is-child notification is-danger">
+            <p class="title">Jellyfish I</p>
+            <div class="content">
+              <figure class="image is-2by1">
+                <img src="http://bulma.io/images/placeholders/640x320.png">
+              </figure>
+              <small>June 2016</small>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div class="tile is-parent">
+        <article class="tile is-child notification is-success">
+          <div class="content">
+            <p class="title">A Poem Here?</p>
+            <p class="subtitle">With even more content</p>
+            <div class="content">
+              <!-- Content -->
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+  </section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
       <p>
-        <ul><li>I work across poetry, <a href="http://www.harvard.com/book/around_the_world_hbs/", target="_blank">nonfiction</a>, visual arts, <a href="https://katygero.wordpress.com/2012/07/15/dichroic-chandelier/", target="_blank">art installations</a> and <a href="https://katygero.wordpress.com/2015/11/20/stereographic-projector-lamp-as-wedding-gift/", target="_blank">beautiful objects</a>. I can't seem to settle on a medium or a topic: I spent the summer painting huge canvases of <a href="https://katygero.files.wordpress.com/2016/10/img_5547.jpg?w=720", target="_blank">jellyfish</a> and the fall making a <a href="https://katygero.wordpress.com/2016/11/02/maze-without-a-minotaur/", target="_blank">maze</a> in my basement. I'm available for <a href="mailto:katy@katygero.com">commission</a>. I'm currently working on a <a href="http://www.poetry-engine.com", target="_blank">poetry engine</a>.
-        </li></ul>
+        Last updated June, 2017
       </p>
-
-
-
-
-
+      <p>
+        Built on <a href="http://bulma.io">Bulma</a>.
+      </p>
+    </div>
+  </div>
+</footer>
 </body>
 </html>
