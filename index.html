@@ -12,8 +12,9 @@
 
 <!-- TODO
 
-* Get links in
-* Finalize tile content
+* Get links in at top
+* Finalize meche content
+* Get show/hide scripting for writing
 * Update flickr w paintings (jellyfish III, jason face?)
 * Update blog!
 
@@ -119,26 +120,62 @@
           <!-- WRITING -->
   <div class="columns">
     <div class="column"></div>
-    <div class="column is-half">
-      <div class="content has-text-centered">
-        <h1>Writing</h1>
+    <div class="column is-three-quarters">
+      <div class="content">
+        <h1 class="has-text-centered">Writing</h1>
 
         <div class="tile is-ancestor">
           <div class="tile is-parent is-vertical">
             <article class="tile is-child notification">
               <p class="subtitle">Why Siri Sounds Like a Girl (But Says She is Beyond Gender)</p>
-              <p>Excerpt</p>
-              <small>June 2017 for <a>SheCanCode</a></small>
+              <p>When I ask Siri "What is your gender?" she tells me that she is beyond my human concept of gender. Whoa. I've never felt insulted for being human before or been reprimanded by a machine for submitting to gender norms. But then she offers me a tip: I can choose a different voice for Siri in the voice settings. There, I am given three accent options, (American, Australian, British) and two gender options: Male, Female. So maybe not so beyond gender after all. 
+              <br />
+              <br />
+              All our digital assistants are women, or at least women sounding. Siri, Google Now, Alexa, Cortana, and a handful of other virtual chatbots here to make our day easier talk to us with the friendly intonation of a young female. With such consistency across the board, there must be some good reasoning behind it. It's an easy grab to suggest that women are easier to understand, but it's not true... <a href="https://shecancode.io/blog/why-siri-sounds-like-a-girl-but-says-she-is-beyond-gender" target="_blank">Read more</a>.</p>
+              <small>May 2017 for <a href="https://shecancode.io" target="_blank">SheCanCode</a></small>
             </article>
             <article class="tile is-child notification">
               <p class="subtitle">The Cloud</p>
-              <p>Excerpt?</p>
-              <small>??? in <a>Blueshift Journal</a></small>
+              <p>They say the filter in our brains
+<br />drains out the infinite beauty into finite pieces,
+<br />a rainbow pinpointed into nameable colors.
+<br />That is why events are so vivid in the cloud.
+<br />When you return to your childhood home
+<br />you pick out every vein of every leaf
+<br />of the fig tree in your front yard.
+<br />The green prongs stretch out like a web,
+<br />the tickling touch of recollection: every node
+<br />and every edge. The puzzle populates you.
+<br />You crack open their tender skulls.
+<br />Inside you find the fruit as brains:
+<br />all synapse and cell, cultivating
+<br />the sickly sweet neurons of beauty
+<br />folded in on itself, piled into bulge.
+<br />You smell the fruit ripening,
+<br />the three-month-span squeezed
+<br />into one rich whiff of maturation.
+<br />This from your years of passing
+<br />a fig tree, waxing and waning
+<br />with sun, sight and season,
+<br />leaving streaks in your mind
+<br />which years later a computer
+<br />uploads to the cloud,
+<br />compresses and confirms,
+<br />allowing you to go back--</p>
+              <small>May 2015 in <a href="https://www.theblueshiftjournal.com/issue-3-copy" target="_blank">Blueshift Journal Issue 3</a></small>
             </article>
             <article class="tile is-child notification">
-              <p class="subtitle">The Gates of Heave</p>
-              <p>Excerpt</p>
-              <small>June 2016 in Harvard Bookstore's <a>Summer Travel Anthology</a></small>
+              <p class="subtitle">The Gates of Heaven</p>
+              <p>In Kathmandu, I watch a stout Nepalese woman collect her cargo from the security x­ray machine. She
+grabs mesh bags of potatoes and garlic while unmarked brown boxes, giant burlap sacks and strangely
+shaped objects wrapped in newspaper topple all around her, exiting the x­ray machine with no obvious
+owners. Nobody is concerned. Cargo far outstrips people in this airport lined with a dozen check­in
+counters, many unmanned and all single­serving size, more like booths at a carnival than an official
+enterprise. Despite the growing number of inanimate objects being shoveled in, the room bustles with
+activity. Porters carry their unwieldy sacks here and there, hardly making a dent in the growing pile, while
+people in various uniforms—­suits, reflector vests, pilot jackets—­walk around the room with no obvious
+concern for checking us in.</p>
+              <small>July 2015 in Harvard Bookstore's <a href="http://www.harvard.com/book/around_the_world_hbs/" target="_blank">Around the World</a></small>
             </article>
 
             <article class="tile is-child notification">
@@ -167,7 +204,7 @@
               <figure class="image is-1by1">
                 <img src="img/jellyfishII.jpg">
               </figure>
-              <small>March 2017</small>
+              <small>September 2016, 3'x3' acrylic on canvas</small>
             </article>
           </div>
           <div class="tile is-parent">
@@ -176,7 +213,7 @@
               <figure class="image is-1by1">
                 <img src="img/nephew.jpg">
               </figure>
-              <small>March 2017</small>
+              <small>March 2017, 1'x1' acrylic on canvas</small>
             </article>
           </div>
         </div>
@@ -187,7 +224,7 @@
               <figure class="image is-2by1">
                 <img src="img/jellyfishI.jpg">
               </figure>
-              <small>June 2016</small>
+              <small>June 2016, 6'x3' acrylic on canvas</small>
             </div>
           </article>
         </div>
@@ -195,17 +232,15 @@
       <div class="tile is-parent">
           <article class="tile is-child notification">
             <p class="subtitle">Nude Mural</p>
-            <small>I painted this mural inside of Senior House, a dormitory at MIT, during my last semester as an undergraduate. It is based on a photograph I took as part of a nude photography class offered at the MIT Student Art Association. The mural is located in a hallway, which means you can only ever see it up close. Up close it is larger than life and somewhat abstract.
-            <br />
-            <br />
-            This photo was taken as part of a mural documentation and preservation project. You can find more murals from the dormitory <a href="https://www.flickr.com/photos/151658333@N05/sets/72157685050910985" target="_blank">here</a>.
+            <small>
+            This mural is painted in Senior House at MIT. The photo was taken as part of a mural documentation and preservation project. You can find more murals from the dormitory <a href="https://www.flickr.com/photos/151658333@N05/sets/72157685050910985" target="_blank">here</a>.
             <br />
             <br /></small>
             <div class="content">
               <figure class="image">
                 <img src="img/nude.jpg">
               </figure>
-              <small>May 2013</small>
+              <small>May 2013, 5'x8' acrylic on drywall</small>
             </div>
           </article>
       </div>
@@ -221,33 +256,36 @@
         <div class="tile is-parent">
           <article class="tile is-child notification">
             <p class="subtitle">Maze Without Minotaur</p>
-            <p>My own guts in a old Zero chassis, for when a bicycle just isn't fast enough</p>
+            <small>A pitch-black maze built for Halloween. <a href="https://katygero.wordpress.com/2016/11/02/maze-without-a-minotaur/" target="_blank">More here</a>.<br /><br /></small>
             <div class="content">
               <figure class="image is-1by1">
-                <img src="images/lloyd-bare.jpg">
+                <img src="img/maze.jpg">
               </figure>
+              <small>October 2016</small>
             </div>
           </article>
         </div>
         <div class="tile is-parent">
           <article class="tile is-child notification">
             <p class="subtitle">Stereographic Projector</p>
-            <p>Fiber reinforced printed arms and propellers makes for a lighter, stronger, and cheaper vehicle</p>
+            <small>A wedding gift designed and constructed to project their profiles. <a href="https://katygero.wordpress.com/2015/11/20/stereographic-projector-lamp-as-wedding-gift/" target="_blank">More here</a>.<br /><br /></small>
             <div class="content">
               <figure class="image is-1by1">
-                <img src="images/IRIS_printed_arms.jpg">
+                <img src="img/projector.jpg">
               </figure>
+              <small>Summer 2016</small>
             </div>
           </article>
         </div>
         <div class="tile is-parent">
           <article class="tile is-child notification">
             <p class="subtitle">Desktop Lathe</p>
-            <p>An enclosed drone chassis 3D printed in one piece</p>
+            <p>Capable of machining better than 10 micrometer precision radially.<br /><br /></p>
             <div class="content">
               <figure class="image is-1by1">
-                <img src="images/markx-drone.jpg">
+                <img src="img/lathe.jpg">
               </figure>
+              <small>Senior year at MIT, 2013</small>
             </div>
           </article>
         </div>
@@ -259,11 +297,12 @@
         <div class="tile is-parent">
           <article class="tile is-child notification">
             <p class="subtitle">Hexapods!</p>
-            <p>A seaworthy drone designed to collect whale blow (snot)</p>
+            <p>Lightweight, origami-style composite hexapods with two degrees of freedom. <a href="https://katygero.wordpress.com/2012/07/17/hexapods/" target="_blank">More here</a>.<br /><br /></p>
             <div class="content">
               <figure class="image is-1by1">
-                <img src="images/snotbot.jpg">
+                <img src="img/hexapods.jpg">
               </figure>
+              <small>Junior year at MIT, 2012</small>
             </div>
           </article>
         </div>
