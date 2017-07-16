@@ -3,7 +3,8 @@
     <title>Katy Gero</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.1.2/css/bulma.css">
+    <link rel="stylesheet" href="bulma.css">
+    <link rel="stylesheet" href="style.css">
 
 
 </head>
@@ -11,9 +12,10 @@
 
 <!-- TODO
 
-* Make jellyfish icon? Or other icon?
-* Get jellyfish images in
+* Get links in
 * Finalize tile content
+* Update flickr w paintings (jellyfish III, jason face?)
+* Update blog!
 
 -->
 
@@ -25,21 +27,19 @@
       <!-- TOP CONTENT -->
       <div class="content has-text-centered">
         <p>
-        <span class="icon is-large is-centered">
-        <i class="fa fa-asterisk"></i>
-        </span>
+        <span class="icon-jellyfish"></span>
         </p>
         <p>
-          I am a soon-to-be computer science <strong>PhD student</strong> at Columbia University; I received an NSF Fellowship to work on building better models of language using poetry and creative writing. 
+          I am a soon-to-be computer science <strong>PhD student</strong> at Columbia University. I have received an NSF Fellowship to work on building better computationl models of language using poetry and creative writing. 
         </p>
         <p>
-          Which is my second thing: I'm a <strong>writer</strong> and a poet. I regularly blog for <a>SheCanCode</a>. I've most recently been published by <a>Synaesthesia Magazine</a>, <a>the Harvard Bookstore</a>, and <a>Spare Change News</a>.
+          Which is my second thing: I'm a <strong>writer</strong> and a poet. I've most recently been published by <a>Synaesthesia Magazine</a>, <a>the Harvard Bookstore</a>, and <a>Spare Change News</a>. I regularly blog about women in tech for <a>SheCanCode</a>. 
         </p>
         <p>
           I've always dabbled in the <strong>visual arts</strong>. In the past I've experimented with film photography and  been obsessed with charcoal portraits and figure drawing; I've recently gotten into painting. You can find my work on <a>Flickr</a> and some work I'm most recently proud of below.
         </p>
         <p>
-          I did my undergraduate degree in <strong>mechanical engineering</strong> which means I've built physical things for the real world. I've <a>blogged</a> about a variety of projects since my sophomore year on wordpress including some art installations I built on-campus. Some of my favorite projects are also below.
+          I did my undergraduate degree in <strong>mechanical engineering</strong> which means I've built physical things for the real world. I've <a>blogged</a> about a variety of projects since my sophomore year, including some art installations I built on campus and for some reason many lamps.
         </p>
       </div>
 
@@ -81,47 +81,111 @@
     <div class="hero-body">
       <div class="container has-text-centered">
         <h1 class="title">
-          Some Fun Stuff Below
+          Selected Work Below
         </h1>
       </div>
     </div>
   </section>
 
 
+<section class="section">
+  <nav class="breadcrumb is-centered">
+    <ul>
+      <li><a href="#Research">Research</a></li>
+      <li><a href="#Writing">Writing</a></li>
+      <li><a href="#Visual">Visual</a></li>
+      <li class="is-active"><a>Mechanical</a></li>
+    </ul>
+  </nav>
+</section>
+
+<section class="section" id="Research">
+      <!-- RESEARCH -->
+  <div class="columns">
+    <div class="column"></div>
+    <div class="column is-half">
+      <div class="content has-text-centered">
+        <h1>Research</h1>
+        <p>
+        Nothing here yet.
+        </p>
+      </div>
+    </div>
+    <div class="column"></div>
+  </div>
+</section>
+
+<section class="section" id="Writing">
+          <!-- WRITING -->
+  <div class="columns">
+    <div class="column"></div>
+    <div class="column is-half">
+      <div class="content has-text-centered">
+        <h1>Writing</h1>
+
+        <div class="tile is-ancestor">
+          <div class="tile is-parent is-vertical">
+            <article class="tile is-child notification">
+              <p class="subtitle">Why Siri Sounds Like a Girl (But Says She is Beyond Gender)</p>
+              <p>Excerpt</p>
+              <small>June 2017 for <a>SheCanCode</a></small>
+            </article>
+            <article class="tile is-child notification">
+              <p class="subtitle">The Cloud</p>
+              <p>Excerpt?</p>
+              <small>??? in <a>Blueshift Journal</a></small>
+            </article>
+            <article class="tile is-child notification">
+              <p class="subtitle">The Gates of Heave</p>
+              <p>Excerpt</p>
+              <small>June 2016 in Harvard Bookstore's <a>Summer Travel Anthology</a></small>
+            </article>
+
+            <article class="tile is-child notification">
+              <p class="subtitle">Bike Poem</p>
+              <p>Excerpt to open to full</p>
+              <small>??? in <a>Spare Change News</a></small>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="column"></div>
+  </div>
+</section>
+
+
   <!-- PROJECT TILES -->
   <section class="section">
+  <div class="content has-text-centered"><h1>Visual</h1><p>More on my Flickr <a href="https://www.flickr.com/photos/27532689@N04/" target="_blank">photostream</a>.</div>
     <div class="tile is-ancestor">
       <div class="tile is-vertical is-8">
         <div class="tile">
-          <div class="tile is-parent is-vertical">
-            <article class="tile is-child notification is-primary">
-              <p class="title">Why Siri Sounds Like a Girl</p>
-              <p class="subtitle">But Says She is Beyond Gender</p>
-              <p>Excerpt</p>
-              <small>June 2017</small>
-            </article>
-            <article class="tile is-child notification is-warning">
-              <p class="title">Fitting In</p>
-              <p class="subtitle">The Benefits and Set Backs sf...f</p>
-              <small>June 2016</small>
+          <div class="tile is-parent">
+            <article class="tile is-child notification">
+              <p class="subtitle">Jellyfish II</p>
+              <figure class="image is-1by1">
+                <img src="img/jellyfishII.jpg">
+              </figure>
+              <small>March 2017</small>
             </article>
           </div>
           <div class="tile is-parent">
-            <article class="tile is-child notification is-info">
-              <p class="title">Nephew</p>
+            <article class="tile is-child notification">
+              <p class="subtitle">Nephew</p>
               <figure class="image is-1by1">
-                <img src="http://bulma.io/images/placeholders/480x480.png">
+                <img src="img/nephew.jpg">
               </figure>
               <small>March 2017</small>
             </article>
           </div>
         </div>
         <div class="tile is-parent">
-          <article class="tile is-child notification is-danger">
-            <p class="title">Jellyfish I</p>
+          <article class="tile is-child notification">
+            <p class="subtitle">Jellyfish I</p>
             <div class="content">
               <figure class="image is-2by1">
-                <img src="http://bulma.io/images/placeholders/640x320.png">
+                <img src="img/jellyfishI.jpg">
               </figure>
               <small>June 2016</small>
             </div>
@@ -129,17 +193,107 @@
         </div>
       </div>
       <div class="tile is-parent">
-        <article class="tile is-child notification is-success">
-          <div class="content">
-            <p class="title">A Poem Here?</p>
-            <p class="subtitle">With even more content</p>
+          <article class="tile is-child notification">
+            <p class="subtitle">Nude Mural</p>
+            <small>I painted this mural inside of Senior House, a dormitory at MIT, during my last semester as an undergraduate. It is based on a photograph I took as part of a nude photography class offered at the MIT Student Art Association. The mural is located in a hallway, which means you can only ever see it up close. Up close it is larger than life and somewhat abstract.
+            <br />
+            <br />
+            This photo was taken as part of a mural documentation and preservation project. You can find more murals from the dormitory <a href="https://www.flickr.com/photos/151658333@N05/sets/72157685050910985" target="_blank">here</a>.
+            <br />
+            <br /></small>
             <div class="content">
-              <!-- Content -->
+              <figure class="image">
+                <img src="img/nude.jpg">
+              </figure>
+              <small>May 2013</small>
             </div>
-          </div>
-        </article>
+          </article>
       </div>
     </div>
+
+  </section>
+
+  <section class="section">
+    <div class="content has-text-centered"><h1>Mechanical</h1><p>More on my wordpress <a href="http://katygero.wordpress.com" target="_blank">blog</a>.</div>
+
+  <div class="tile is-ancestor">
+      <div class="tile">
+        <div class="tile is-parent">
+          <article class="tile is-child notification">
+            <p class="subtitle">Maze Without Minotaur</p>
+            <p>My own guts in a old Zero chassis, for when a bicycle just isn't fast enough</p>
+            <div class="content">
+              <figure class="image is-1by1">
+                <img src="images/lloyd-bare.jpg">
+              </figure>
+            </div>
+          </article>
+        </div>
+        <div class="tile is-parent">
+          <article class="tile is-child notification">
+            <p class="subtitle">Stereographic Projector</p>
+            <p>Fiber reinforced printed arms and propellers makes for a lighter, stronger, and cheaper vehicle</p>
+            <div class="content">
+              <figure class="image is-1by1">
+                <img src="images/IRIS_printed_arms.jpg">
+              </figure>
+            </div>
+          </article>
+        </div>
+        <div class="tile is-parent">
+          <article class="tile is-child notification">
+            <p class="subtitle">Desktop Lathe</p>
+            <p>An enclosed drone chassis 3D printed in one piece</p>
+            <div class="content">
+              <figure class="image is-1by1">
+                <img src="images/markx-drone.jpg">
+              </figure>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="tile is-ancestor">
+      <div class="tile">
+        <div class="tile is-parent">
+          <article class="tile is-child notification">
+            <p class="subtitle">Hexapods!</p>
+            <p>A seaworthy drone designed to collect whale blow (snot)</p>
+            <div class="content">
+              <figure class="image is-1by1">
+                <img src="images/snotbot.jpg">
+              </figure>
+            </div>
+          </article>
+        </div>
+        <div class="tile is-parent">
+          <article class="tile is-child notification">
+            <p class="subtitle">Lumen</p>
+            <p>A surrogate whale capable of blowing fake whale snot on queue</p>
+            <div class="content">
+              <figure class="image is-1by1">
+                <img src="images/snotshot.jpg">
+              </figure>
+            </div>
+          </article>
+        </div>
+        <div class="tile is-parent">
+          <article class="tile is-child notification">
+            <p class="subtitle">Electronic Mural</p>
+            <p>A washing machine from the 50's turned into a textile stress tester</p>
+            <div class="content">
+              <figure class="image is-1by1">
+                <img src="images/auto-wash.jpg">
+              </figure>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+
+
 
   </section>
 
