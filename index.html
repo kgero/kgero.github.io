@@ -6,6 +6,61 @@
     <link rel="stylesheet" href="bulma.css">
     <link rel="stylesheet" href="style.css">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+   <!--  Expand/collapse from https://jsfiddle.net/Q4PUw/3767/ -->
+    <script>
+    $(document).ready(function() {
+      $('.expand').click(function(){
+          target_num = $(this).attr('id').split('-')[1];
+          content_id = '#expandable-'.concat(target_num);
+          console.log(content_id);
+          $(content_id).slideToggle('fast');
+      })
+    });
+    </script>
+
+    <script>
+    // from https://css-tricks.com/snippets/jquery/smooth-scrolling/
+    $(document).ready(function() {
+    $('a[href*="#"]')
+    // Remove links that don't actually link to anything
+    .not('[href="#"]')
+    .not('[href="#0"]')
+    .click(function(event) {
+      // On-page links
+      if (
+        location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') 
+        && 
+        location.hostname == this.hostname
+      ) {
+        // Figure out element to scroll to
+        var target = $(this.hash);
+        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+        // Does a scroll target exist?
+        if (target.length) {
+          // Only prevent default if animation is actually gonna happen
+          event.preventDefault();
+          $('html, body').animate({
+            scrollTop: target.offset().top
+          }, 500, function() {
+            // Callback after animation
+            // Must change focus!
+            var $target = $(target);
+            $target.focus();
+            if ($target.is(":focus")) { // Checking if the target was focused
+              return false;
+            } else {
+              $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
+              $target.focus(); // Set focus again
+            };
+          });
+        }
+      }
+    });
+  });
+  </script>
 
 </head>
 <body>
@@ -89,17 +144,6 @@
   </section>
 
 
-<section class="section">
-  <nav class="breadcrumb is-centered">
-    <ul>
-      <li><a href="#Research">Research</a></li>
-      <li><a href="#Writing">Writing</a></li>
-      <li><a href="#Visual">Visual</a></li>
-      <li class="is-active"><a>Mechanical</a></li>
-    </ul>
-  </nav>
-</section>
-
 <section class="section" id="Research">
       <!-- RESEARCH -->
   <div class="columns">
@@ -117,55 +161,79 @@
 </section>
 
 <section class="section" id="Writing">
+
+
           <!-- WRITING -->
   <div class="columns">
     <div class="column"></div>
-    <div class="column is-three-quarters">
+    <div class="column is-10">
       <div class="content">
         <h1 class="has-text-centered">Writing</h1>
 
         <div class="tile is-ancestor">
           <div class="tile is-parent is-vertical">
             <article class="tile is-child notification">
-              <p class="subtitle">Why Siri Sounds Like a Girl (But Says She is Beyond Gender)</p>
-              <p>When I ask Siri "What is your gender?" she tells me that she is beyond my human concept of gender. Whoa. I've never felt insulted for being human before or been reprimanded by a machine for submitting to gender norms. But then she offers me a tip: I can choose a different voice for Siri in the voice settings. There, I am given three accent options, (American, Australian, British) and two gender options: Male, Female. So maybe not so beyond gender after all. 
-              <br />
-              <br />
-              All our digital assistants are women, or at least women sounding. Siri, Google Now, Alexa, Cortana, and a handful of other virtual chatbots here to make our day easier talk to us with the friendly intonation of a young female. With such consistency across the board, there must be some good reasoning behind it. It's an easy grab to suggest that women are easier to understand, but it's not true... <a href="https://shecancode.io/blog/why-siri-sounds-like-a-girl-but-says-she-is-beyond-gender" target="_blank">Read more</a>.</p>
+              <p class="subtitle" id="siri">Why Siri Sounds Like a Girl (But Says She is Beyond Gender)</p>
+              <p>When I ask Siri "What is your gender?" she tells me that she is beyond my human concept of gender. Whoa. I've never felt insulted for being human before or been reprimanded by a machine for submitting to gender norms. But then she offers me a tip: I can choose a different voice for Siri in the voice settings. There, I am given three accent options, (American, Australian, British) and two gender options: Male, Female. So maybe not so beyond gender after all.</p>
+              <div class="expandable" id="expandable-1">
+
+              <p>All our digital assistants are women, or at least women sounding. Siri, Google Now, Alexa, Cortana, and a handful of other virtual chatbots here to make our day easier talk to us with the friendly intonation of a young female. With such consistency across the board, there must be some good reasoning behind it. It's an easy grab to suggest that women are easier to understand, but it's not true. Gizmodo easily debunks the myth that the higher-pitched female voice is more intelligible. If anything, natural hearing loss due to aging affects higher-pitched voices first. In addition, females are about as intelligible as males based on speaking patterns. And small speakers perform similarly with female and male voices. </p>
+
+              <p>So then there's what we prefer. After all, Siri is a product and products should be likeable—so that they sell. “In our research for Cortana, both men and women prefer a woman, younger, for their personal assistant, by a country mile,” Derek Connell, senior vice president of research at Microsoft, told the NYT. Amazon said the same thing to the WSJ. And in case we needed the impartial stamp of approval from academia, Prof. Karl Macdorman, a professor at Indiana University, has done research on synthetic voices showing than both women and men express a preference for the feminine when it comes to personal digital assistants. </p>
+
+              <p>I can only imagine the backlash if, when asked what her gender is, Siri responded with, "I'm a woman. Here to help!"
+              Then it's done: Siri is a woman because it's what we want. We probably want Siri to be a woman because as a society we view women as helpful and supportive nurturers who will do what we want and ask nothing in return—the perfect assistant. Think teachers, think secretaries, think nurses, think mothers. Think women called aggressive when men would be called assertive. It's a depressing truth that none of the technology giants of our day will step up and set the default voice to be male—Google Now doesn't even have a male voice option—but perhaps it's our own fault. Like all A.I., digital assistants are a reflection of ourselves. And after all, Silicon Valley, despite branding itself as a meritocracy, is incredibly sexist. Look for Uber's sexual assault culture, Venture Capitalists' inability to invest in female founders, or just ask any female engineer you know (if you know any) how many women are on her team, or if she's ever been made to feel uncomfortable at work for her appearance.</p>
+
+              <p>But Siri doesn't say she's female. Remember: she's beyond all that human stuff. Neither does Google Now: "I try to stay neutral." Cortona: "Well, technically I’m a cloud of infinitesimal data computation." Alexa: "I’m female in character." I can only imagine the backlash if, when asked what her gender is, Siri responded with, "I'm a woman. Here to help!" Products are meant to sell and blatant sexism doesn't sell these days. For all of Silicon Valley's problem, technology companies want to hire women, even if they don't know how to attract or keep them. (Case in point: Microsoft's new ad urging women to stay in tech, despite the company having a laundry list of sexual harassment and discrimination problems.) They know that explicitly slating digital personal assistants as helpful, demuring women is bad for business and bad for the world. They just also know that people prefer female voices.</p>
+
+              <p>Prof. Mars, a researcher at the University of Michigan and entrepreneur in the space of digital assistants, is hopeful that eventually, he can counter stereotypes with unexpected A.I. voices. "It would be interesting to have a black guy talk, but we don’t want to create friction, either. First, we need to sell products," he told the NYT. Prof. Macdorman, the researcher who showed that we prefer female voices, told the WSJ that device designers face “an ethical quandary here. Maybe they shouldn’t be reinforcing the stereotypes but challenging them or being neutral on them.” We're thinking about it. Slowly.</p>
+
+              <p>For now, you can vote with your ears: if you have the option, change the voice to a male one, even just for a day or two. Try a different accent. Movements gain traction when we learn that not everyone is what we thought. That men make great stay-at-home parents and women make great tech executives. That some people prefer Siri to sound female and others want him to sound male.  After all: he's beyond gender.</p>
+              
+              </div>
+              <p class="expand" id="expand-1"><span class="icon">
+              <a href="#siri"><i class="fa fa-arrows-v"></i></a>
+              </span></p>
               <small>May 2017 for <a href="https://shecancode.io" target="_blank">SheCanCode</a></small>
             </article>
             <article class="tile is-child notification">
-              <p class="subtitle">The Cloud</p>
+              <p class="subtitle" id="cloud">The Cloud</p>
               <p>They say the filter in our brains
-<br />drains out the infinite beauty into finite pieces,
-<br />a rainbow pinpointed into nameable colors.
-<br />That is why events are so vivid in the cloud.
-<br />When you return to your childhood home
-<br />you pick out every vein of every leaf
-<br />of the fig tree in your front yard.
-<br />The green prongs stretch out like a web,
-<br />the tickling touch of recollection: every node
-<br />and every edge. The puzzle populates you.
-<br />You crack open their tender skulls.
-<br />Inside you find the fruit as brains:
-<br />all synapse and cell, cultivating
-<br />the sickly sweet neurons of beauty
-<br />folded in on itself, piled into bulge.
-<br />You smell the fruit ripening,
-<br />the three-month-span squeezed
-<br />into one rich whiff of maturation.
-<br />This from your years of passing
-<br />a fig tree, waxing and waning
-<br />with sun, sight and season,
-<br />leaving streaks in your mind
-<br />which years later a computer
-<br />uploads to the cloud,
-<br />compresses and confirms,
-<br />allowing you to go back--</p>
+              <p>drains out the infinite beauty into finite pieces,
+              <p>a rainbow pinpointed into nameable colors.
+              <p>That is why events are so vivid in the cloud.
+              <p>When you return to your childhood home
+              
+              <div class="expandable" id="expandable-2">
+              <p>you pick out every vein of every leaf
+              <p>of the fig tree in your front yard.
+              <p>The green prongs stretch out like a web,
+              <p>the tickling touch of recollection: every node
+              <p>and every edge. The puzzle populates you.
+              <p>You crack open their tender skulls.
+              <p>Inside you find the fruit as brains:
+              <p>all synapse and cell, cultivating
+              <p>the sickly sweet neurons of beauty
+              <p>folded in on itself, piled into bulge.
+              <p>You smell the fruit ripening,
+              <p>the three-month-span squeezed
+              <p>into one rich whiff of maturation.
+              <p>This from your years of passing
+              <p>a fig tree, waxing and waning
+              <p>with sun, sight and season,
+              <p>leaving streaks in your mind
+              <p>which years later a computer
+              <p>uploads to the cloud,
+              <p>compresses and confirms,
+              <p>allowing you to go back--<br /><br /></p>
+              </div>
+              <p class="expand" id="expand-2"><span class="icon">
+              <a href="#cloud"><i class="fa fa-arrows-v"></i></a>
+              </span></p>
               <small>May 2015 in <a href="https://www.theblueshiftjournal.com/issue-3-copy" target="_blank">Blueshift Journal Issue 3</a></small>
             </article>
             <article class="tile is-child notification">
-              <p class="subtitle">The Gates of Heaven</p>
+              <p class="subtitle" id="gates">The Gates of Heaven</p>
               <p>In Kathmandu, I watch a stout Nepalese woman collect her cargo from the security x­ray machine. She
 grabs mesh bags of potatoes and garlic while unmarked brown boxes, giant burlap sacks and strangely
 shaped objects wrapped in newspaper topple all around her, exiting the x­ray machine with no obvious
@@ -175,14 +243,189 @@ enterprise. Despite the growing number of inanimate objects being shoveled in, t
 activity. Porters carry their unwieldy sacks here and there, hardly making a dent in the growing pile, while
 people in various uniforms—­suits, reflector vests, pilot jackets—­walk around the room with no obvious
 concern for checking us in.</p>
+<div class="expandable" id="expandable-3">
+<p>My boyfriend Oscar and I each have a single pack which, even by trekking standards, are small.
+When a woman in a sharp suit finally comes to check us in, exchanging our proof of ticket purchase for
+two large blue bookmarks with nothing but the number ’22’ stamped at the top, she weighs our packs and
+then whisks them away, unimpressed. We are left with nothing but our wallets and our numbered
+card­stock.
+<p>We are flying to Lukla, a tiny town set deep in the Himalayan mountainside, because the
+alternative is a brutal five­day trek from Jiri, which itself requires an eight hour bus ride through the
+Nepalese hillside. Although Oscar jokes about how dying by fire is most certainly the worst way to go,
+slightly worse than drowning but far and away worse than freezing to death in a crevasse (which, he notes
+pointedly, could be a possibility on this trip too if we wanted) we admit that the bus ride through the
+hillside poses a similar threat.
+<p>But comparative analysis does nothing for my beating heart. Lukla’s airstrip is only ten times
+longer than the tiny planes they put you in to get there because on one end it sports a fantastic Himalayan
+mountainside and on the other it drops precipitously away. Pilots land by sight alone and any suggestion
+of storm grounds all planes to and from. Amidst the chaos of the domestic terminal of Kathmandu, which
+looks suspiciously unfinished, I worry about exactly what kind of decision I have made.
+We enter the departure terminal: another unfinished large room with a variety of broken lights
+hanging from the ceiling and a pleasant family of pigeons watching us from the rafters. My nervousness
+about dying by fire is eclipsed only by my uncertainty of its worth. Yet the morbid fantasy calms me, so I
+spend some time imagining my death, adding detail to the grisly scene, first envisioning the
+head­between­the­knees bracing­maneuver, the impact, and then the escape from the burning plane. I
+imagine scrambling away, awaiting the explosion of the gas tank. I think of who I would call first and if I
+would go back to try to save others. It is horrid and gruesome and the worst thing I can think of happening
+right now but in my head I get through it. It makes me feel solid and ready.
+I have stupidly left my jacket in my pack and the bitter Nepalese morning is not at all impressed
+by my being indoors. I overhear a woman explaining that the cabin will not be pressurized.
+Flight 22 is called. Ten of us exit the building and pile onto a bus which is driven in a large arc
+around planes of various sizes on the tarmac. We pull up to a small, boxy plane with landing wheels
+jutting out from the main body and a tail spur tied down to the main body with loose wires. I count seven
+windows on our side, including the cockpit.
+We file out of the bus and one by one walk the three steps up and into the plane, all hunched over
+and shuffling to take one of the eleven seats. Four line each side and a three­seater bench brings up the
+rear. I get the last seat on the left and buckle in.
+A single, red­lipped hostess walks down the aisle silently with a straw basket of cotton balls and
+milk toffees. I follow suit of the others, grabbing cotton balls to plug my ears and a milk toffee for my
+nerves. I pop the milk toffee in my mouth, eager for the sugar to hit my veins. The hostess barely makes it
+to the back of the plane before the propellers start thundering, an utter roar that sends her quickly to her
+seat. Then we are speeding down the unmarked tarmac and I remember that woman’s comment about the
+unpressurized cabin and I push the candy into that space between my gums and lip, just above my back
+right tooth, suddenly sure that I need it to constantly salivate and swallow to stop from popping my ears.
+With no audible announcement, the plane takes us to the air swiftly.
+I swallow the milk toffee whole.
+We soar over Kathmandu, its rectangular buildings sporting out­jutting windows and a variety of
+pastel colors, creams and browns and pinks and yellows and blues, a great patchwork of a city. The
+buildings are multi­story and slightly off kilter with each other. They fan out in all directions, then thin,
+then disappear as the land becomes green and brown and mountainous. For a while there is nothing but
+hills and the speckled pattern of green trees far below, then we start to see the tan single­track roads
+zigzag up and down between clusters of tin­roofed houses or sometimes between nothing at all. Now the
+hills start to rise, they get vigorous and serious and we get closer to them, our shadow a faint spot that
+crystallizes into the tiny, dark mimicry of our plane flying over the entrance to the Himalayas.
+Finally I spot the snow­capped mountains in the distance, a line of godly, ragged peaks which
+melt into a cascade of brown before disappearing into a blue haze, utterly disconnected from the hillside
+below. They look more like clouds than mountains, as effervescent and alluring as an oasis. They look
+like heaven. The vision of the plane crash sits tenderly in the back of my mind, its flames licking at the
+glory of the mountain range I crave to experience so fully. It is only in the distraction of this far more
+likely fantasy of beauty that I admit to my inevitable death in the crash and hope mostly for a quick end.
+I don’t see Lukla as we approach but I watch our shadow on the hillside grow its wings and tail
+on the tumbling hills below. As suddenly as we took flight, the tarmac is below us and we rumble onto it,
+our roar growing as we desperately brake up the airstrip and sharply turn to the right onto a small apron of
+tarmac, big enough for four tiny planes. Immediately a waiting plane takes to the airstrip and from my
+window I see it shoot down the black road, lifting into the air mere meters before the tarmac itself
+disappears with the mountain leaving nothing but a straight drop down into the valley.
+In Lukla, we do not bother with the arrival terminal. Perhaps there is none. We walk off the plane
+into another collection of cargo, stacks and stacks of bottled soft drinks and cans of beer wrapped in
+grubby plastic. Luggage is piled alongside burlap sacks on long metal dollies. We grab our packs and go.
+The mountains are ever­present and everywhere. They sit behind me or in front and I am in them,
+with their tender tips pressing firmly to the sky. We are not yet high enough for snow but the ragged
+peaks we see across and into the valley have that child­like sprinkle of white at the top, as if the Himalaya
+were catering to the whimsical drawings of my nephews. I struggle to lower my eyes to the single path
+that surrounds the airstrip.
+We eat breakfast on a large, empty balcony where we can watch the planes. Each plane takes off
+immediately after another has arrived. They drive out off the apron to the top of the airstrip, first facing
+the mountain and then making a sharp turn to face downhill. They rev their engines, the sound of the
+props filling the whole town, and finally they rumble down the strip gaining speed. Each plane takes off
+with its own distance from the end of the runway, but they all take off before the end, lifting up above the
+hillside to fly trekkers and porters home. Each flight is a terrifying, deafening flirt with danger. The
+mountains don’t care for our human endeavors but today they grace us with clear blue skies.
+My heart is pounding. We have come to the Himalayas without a plan. In July of the previous
+year we began to get itchy feet, a year past college graduation and a desire to get out of our offices and
+into something wild. We signed onto a shortened lease with the knowledge that something would have to
+change. Oscar hated Boston, which has crappy New England weather and where the rock climbing is far
+away and not as high as that out west. But I loved my job and my coworkers and couldn’t bare to leave
+them only a year in. We bartered against each other’s desires, committed to some compromise we hadn’t
+yet found.
+In November, Oscar lost his job and found a new one, all in the same, nerve­wracking week. His
+new job wouldn’t start until May and we found our compromise. My boss breezily gave me three months
+off, unpaid but with a promise to take me back, regretting my absence but knowing that if I didn’t scratch
+my itch I would find a more permanent solution. We pooled our money and began doling it out to plane
+tickets and travel insurance, watching it dwindle before we even left the U.S. We spent a week in the
+Philippines, finding beaches and rice paddies because the layover was free and, hey, so were we, and then
+a month in Japan, living with my older brother and babysitting for my new nephew, six months old and
+sure to forget my love. After Japan, to Nepal. All we knew about Nepal was that we loved through­hiking,
+that intricate experience of living on the trail. We had had two beautiful, intense experiences hiking
+through the Californian Sierra Nevada and figured if we could go anywhere to hike, we should go to the
+Himalayas. It is the mountain range that calls to all kinds of romantics for claiming nine of the ten highest
+peaks in the world, including the king of them all, Sagarmatha, or Mt Everest. It is grand and foreboding
+and we, like so many romantics, knew not a thing about it.
+We picked our trek, the three high passes, late, only a week before arriving in Nepal. We picked it
+because it was meant to be one of the best in the world and because I could find decent information about
+it online. Though there would be lodges the whole way we could technically camp and optimistically
+brought a tent. The trek would take us up to 18,000 feet and over glorious glaciers as we picked our way
+over a tiny portion of the southern skirt of the Himalayas. We would pass close to Everest Base Camp.
+We would walk among the Sherpas. We would see the most glorious mountains the world had ever made.
+We hardly know the name of the three passes, those treacherous high points which are actually
+the lowest path through the mountain range. We had heard that one or two might be closed. We are there
+in early spring and the snow has yet to melt enough to permit a single, brave guide to make their tracks
+across the perilous landscape such that numerous, inexperienced trekkers can diligently follow them. An
+avalanche in Gokyo valley is mentioned.
+But, we are invariably told, the weather changes. It will take you many days to get there. They
+may be open when you arrive.
+After breakfast we explore Lukla. Apart from a ring of lodges around the airport, it has a single
+road peeling outwards. We could follow it all the way to Namche Bazar, the next town we head for, and
+past that, ambitiously, all the way to the top of Mt. Everest. Instead we stop where the buildings end at a
+large white gateway adorned with the bust of a smiling woman and paintings of prayer­pressed hands and
+flowers. We want to pass underneath her. Our feet feel fresh and eager. But we need to spend a day in
+Lukla to acclimatize to the altitude.
+Behind the airstrip we find steep and rocky trails, scraggly vegetation that holds on for dear life
+and gnarled trees staking their claim in this dangerous landscape. We scramble up the mountainside and
+I’m hit, immediately, at the lungs. I’m out of breathe within steps and each further one feels like an
+immense effort I’m not convinced I can make. Oscar walks up easily and while he, too, complains of
+being winded his cadence hardly falters. The short walk up to the viewpoint pounds me. I have no idea
+what I’m doing. And, of course, we never really find the viewpoint. Instead, we pick a point and view:
+across the valley the mountains are close and vivid things, dark brown and jagged with depth from the
+snow that peppers the top of them. We look at the peaks we can see from Lukla and understand that we
+will be trekking high above them, pushing up to heights so far from us we can’t yet see them.
+A question lurks in the back of my mind and in some ways it is so constant and so familiar that it
+is strange that it ever truly comes to the forefront. It is a question that comes to haunt me and indeed has
+been haunting me for years, has brought me here, might take me home.
+‘Do I want to do this?’
+What a loaded question.
+We scramble back down to the dotting of buildings that amount to the village. In the afternoon
+the clouds roll in, eye level and close but not touching us. They hide our view of the mountains, turning
+everything past the airstrip into an empty grey void which feels right in front of my eyes and, at once,
+very distant.
+My anxiety doesn’t lift as the evening wears on. My heart continues to pound and this sudden,
+constant awareness of my blood being pushed through my body sends me into confusion because I don’t
+feel worried. I feel comfortable on trails. I feel comfortable with Oscar. But, as ever, my body disagrees.
+It births a different kind of worry.
+We eat dinner in what appears to be a woman’s home. She prepares dal bhat for us, a huge plate
+of white rice, sided with stir fried potatoes and bok choy and carrots and finished with a bowl of lentil
+soup. In addition she offers us hot milk tea out of an enormous thermos, which is sweet and dark. The
+food is delicious and salty.
+We return to our lodge which is toasted by a large metal stove in the middle. We sit for a while,
+reading and writing, listening to the group of Australians to our right get to know each other, asking the
+group of Americans to our left, who had just returned from Everest Base Camp, what the conditions were
+like. Their guide tells us that Cho La Pass is still closed but it might be open in a week. We begin a tried
+and true habit of looking over our map after every meal, getting to know the names of the towns and their
+order.
+The map, though scaled, neglects to mark town­to­town distance. Instead it marks every town
+with a precise elevation. Soon this shift will happen in our minds and we will learn to stop wondering
+‘how far’; everything will become ‘how high’. In addition our map contains helpful and terrifying
+comments about certain dangerous parts of the trail. It suggests crampons and ropes, warns of crevasses
+(stay left!) and slippery ascents. Oscar begins suggesting that we don’t cross the passes even if they do
+open. He suggests this with the weariness of someone who knows enough to be afraid. I, in the
+comforting position of the blissful idiot, tell him certainly not. No one on the internet had ever mentioned
+needing crampons or knowing about crevasse rescue. The most anyone had advised was to ‘seek local
+advice.’ That we would do. That we were doing! And the guides we spoke to never said, ‘You guys look
+really underprepared. Did you even bring an ice axe?’ Instead they all kindly told us which passes were
+open and which were not. Easy.
+And in that moment, it is easy. Easy to be confident in this decision. Easy to justify the terrifying
+flight. Easy to be behind the grand plan. It is conversation easy. It is thoughtless easy. It is external easy.
+It is easy like typing this. It is easy like words.
+In my crappy twin bed that night, my heart still clunking around my chest as I hear, of all things,
+scurrying in the walls, the ease falls away. This room, with its cold, dry air and its paper­thin walls and its
+location and its meaning and its distance from everything I know, is not easy. Yet desperately I think of
+the floating mountain ranges sitting atop the sky I saw as we flew into Lukla. The oasis. The heaven. I
+dream of how they will fill me with fear and beauty and glory and heartache and every other emotion that
+rips me to the core.
+But even as my heart climbs dangerously towards my throat, something I will eventually learn to
+separate from my anxiety and blame, instead, on the thinning atmosphere, I do not predict the permeating
+effect these mountains will have on me. How the sight of them, from the various places I will stand and
+sit and walk, will imprint in my heart forever. How I will be captured by their scale. How I will not be
+able to let their sight go. They will bring me to tears. And then, after claiming their rightful place as gods,
+they will force me to descend.
+              </div>
+              <p class="expand" id="expand-3"><span class="icon">
+              <a href="#gates"><i class="fa fa-arrows-v"></i></a>
+              </span></p>
+
               <small>July 2015 in Harvard Bookstore's <a href="http://www.harvard.com/book/around_the_world_hbs/" target="_blank">Around the World</a></small>
             </article>
 
-            <article class="tile is-child notification">
-              <p class="subtitle">Bike Poem</p>
-              <p>Excerpt to open to full</p>
-              <small>??? in <a>Spare Change News</a></small>
-            </article>
           </div>
         </div>
       </div>
@@ -195,6 +438,10 @@ concern for checking us in.</p>
   <!-- PROJECT TILES -->
   <section class="section">
   <div class="content has-text-centered"><h1>Visual</h1><p>More on my Flickr <a href="https://www.flickr.com/photos/27532689@N04/" target="_blank">photostream</a>.</div>
+    <div class="columns">
+    <div class="column"></div>
+    <div class="column is-10">
+
     <div class="tile is-ancestor">
       <div class="tile is-vertical is-8">
         <div class="tile">
@@ -246,22 +493,30 @@ concern for checking us in.</p>
       </div>
     </div>
 
+    </div>
+    <div class="column"></div>
+    </div>
+
   </section>
 
   <section class="section">
-    <div class="content has-text-centered"><h1>Mechanical</h1><p>More on my wordpress <a href="http://katygero.wordpress.com" target="_blank">blog</a>.</div>
+    <div class="content has-text-centered"><h1>Electro- and Mechanical</h1><p>More on my wordpress <a href="http://katygero.wordpress.com" target="_blank">blog</a>.</div>
+
+    <div class="columns">
+    <div class="column"></div>
+    <div class="column is-10">
 
   <div class="tile is-ancestor">
       <div class="tile">
         <div class="tile is-parent">
           <article class="tile is-child notification">
-            <p class="subtitle">Maze Without Minotaur</p>
-            <small>A pitch-black maze built for Halloween. <a href="https://katygero.wordpress.com/2016/11/02/maze-without-a-minotaur/" target="_blank">More here</a>.<br /><br /></small>
+            <p class="subtitle">Clutch Yo-Yo</p>
+            <small>Injection-molded, 50 piece run of a functioning clutch yo-yo.<br /><br /></small>
             <div class="content">
               <figure class="image is-1by1">
-                <img src="img/maze.jpg">
+                <img src="img/yoyo.jpg">
               </figure>
-              <small>October 2016</small>
+              <small>Junior year at MIT, 2011</small>
             </div>
           </article>
         </div>
@@ -280,7 +535,7 @@ concern for checking us in.</p>
         <div class="tile is-parent">
           <article class="tile is-child notification">
             <p class="subtitle">Desktop Lathe</p>
-            <p>Capable of machining better than 10 micrometer precision radially.<br /><br /></p>
+            <small>Capable of machining better than 10 micrometer precision radially.<br /><br /></small>
             <div class="content">
               <figure class="image is-1by1">
                 <img src="img/lathe.jpg">
@@ -297,7 +552,7 @@ concern for checking us in.</p>
         <div class="tile is-parent">
           <article class="tile is-child notification">
             <p class="subtitle">Hexapods!</p>
-            <p>Lightweight, origami-style composite hexapods with two degrees of freedom. <a href="https://katygero.wordpress.com/2012/07/17/hexapods/" target="_blank">More here</a>.<br /><br /></p>
+            <small>Lightweight, composite hexapods with two degrees of freedom. <a href="https://katygero.wordpress.com/2012/07/17/hexapods/" target="_blank">More here</a>.<br /><br /></small>
             <div class="content">
               <figure class="image is-1by1">
                 <img src="img/hexapods.jpg">
@@ -309,29 +564,33 @@ concern for checking us in.</p>
         <div class="tile is-parent">
           <article class="tile is-child notification">
             <p class="subtitle">Lumen</p>
-            <p>A surrogate whale capable of blowing fake whale snot on queue</p>
+            <small>Linkage-based expanding lamps.<a href="https://katygero.wordpress.com/2013/09/08/expanding-lamp-project-lumen/" target="_blank">More here</a>.<br /><br /></small>
             <div class="content">
               <figure class="image is-1by1">
-                <img src="images/snotshot.jpg">
+                <img src="img/lamp.jpg">
               </figure>
+              <small>Senior year at MIT, 2012</small>
             </div>
           </article>
         </div>
         <div class="tile is-parent">
           <article class="tile is-child notification">
             <p class="subtitle">Electronic Mural</p>
-            <p>A washing machine from the 50's turned into a textile stress tester</p>
+            <small>An interactive mural using circuit stickers and conductive paint. <a href="https://katygero.wordpress.com/2015/02/10/electronic-mural-completed/" target="_blank">More here</a>.<br /><br /></small>
             <div class="content">
               <figure class="image is-1by1">
-                <img src="images/auto-wash.jpg">
+                <img src="img/emural.jpg">
               </figure>
+              <small>January, 2015</small>
             </div>
           </article>
         </div>
       </div>
     </div>
 
-
+</div>
+<div class="column"></div>
+</div>
 
 
   </section>

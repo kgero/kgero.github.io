@@ -28,3 +28,13 @@
 .icon-jellyfish:before {
   content: "\e900";
 }
+
+.expand {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 12px;
+    cursor: pointer;
+}
+.expandable {
+    display: none;
+}
