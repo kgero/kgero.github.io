@@ -18,7 +18,7 @@
   font-variant: normal;
   text-transform: none;
   line-height: w;
-  font-size: 6em;
+  font-size: 5em;
 
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
@@ -37,4 +37,17 @@
 }
 .expandable {
     display: none;
+}
+
+img {
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+
+.myname {
+  font-weight: bold;
+}
+
+.papertitle {
+  font-style: italic;
 }
