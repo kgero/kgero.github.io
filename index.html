@@ -8,20 +8,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <script>
-      $(document).ready( function() {
-        $('.modal').hide();
-
-        // $('.imageclick').click( function() {
-        //   var id = $(this).attr('id');
-        //   $('.' + id).show();
-        // });
-
-        $('.modal-close').click( function() {
-          $('.modal').hide();
-        });
-      });
-    </script>
+    <script src="main.js"></script>
 
 
 </head>
@@ -60,7 +47,7 @@
               I used to build machines and sensors. I hold a bachelors in mechanical engineering from MIT, where I recieved the Carl G. Sontheimer Prize for Excellence in Innovation and Creativity for my work on soft robotics.
             </p>
             <p>
-              I'm also an essayist and poet<!-- ; my writer website is <a href="ilonka/index.html">here</a> -->. You can find my most recent essay, 'Is It Possible for Machines to Translate Poetry, When Humans Can Barely Do It?' <a href='https://electricliterature.com/machine-translation-poetry-hofstadter-artificial-intelligence-29245f7fad40' target="_blank">here</a>. I have a book of poetry, 'The Woman Invention', forthcoming October 2018 from Finishing Line Press.
+              I'm also an essayist and poet; my writer website is <a href="ilonka/index.html">here</a>. You can find my most recent essay, 'Is It Possible for Machines to Translate Poetry, When Humans Can Barely Do It?' <a href='https://electricliterature.com/machine-translation-poetry-hofstadter-artificial-intelligence-29245f7fad40' target="_blank">here</a>. I have a book of poetry, 'The Woman Invention', forthcoming October 2018 from Finishing Line Press.
             </p>
             <p>
               You can email me at my first name @cs.columbia.edu :)
@@ -98,37 +85,7 @@
             </p>
             
             <h4>My more mechanical days > </h4>
-            <div class='columns'>
-              <div class='column'>
-                <figure class="image is-1by1">
-                  <img src="img/yoyo.jpg">
-                </figure>
-              </div>
-              <div class='column'>
-                <figure class="image is-1by1">
-                  <img src="img/projector.jpg">
-                </figure>
-              </div>
-              <div class='column'>
-                <figure class="image is-1by1">
-                  <img src="img/lathe.jpg">
-                </figure>
-              </div>
-              <div class='column'>
-                <figure class="image is-1by1">
-                  <img src="img/hexapods.jpg">
-                </figure>
-              </div>
-              <div class='column'>
-                <figure class="image is-1by1">
-                  <img src="img/lamp.jpg">
-                </figure>
-              </div>
-              <div class='column'>
-                <figure class="image is-1by1">
-                  <img src="img/emural.jpg">
-                </figure>
-              </div>
+            <div class='columns meche'>
             </div>
           </div>
 
@@ -138,27 +95,7 @@
               &nbsp;
             </p>
             <h4>I love to paint > </h4>
-            <div class='columns is-vcentered'>
-              <div class='column is-2'>
-                <figure class="image is-1by1">
-                  <img src="img/jellyfishII.jpg">
-                </figure>
-              </div>
-              <div class='column is-4'>
-                <figure class="image is-2by1">
-                  <img src="img/jellyfishI.jpg">
-                </figure>
-              </div>
-              <div class='column is-2'>
-                <figure class="image is-1by1">
-                  <img src="img/nephew.jpg">
-                </figure>
-              </div>
-              <div class='column is-2'>
-                <figure class="image imageclick" id="nude">
-                  <img src="img/nude.jpg">
-                </figure>
-              </div>
+            <div class='columns is-vcentered paintings'>
             </div>
           </div>
 
@@ -166,191 +103,10 @@
         </div>
       </div>
     </div>
-
-
   </section>
-
-
-
-<div class="modal nude">
-  <div class="modal-background"></div>
-    <div class="modal-content">
-      <div clas="tile">
-        <p class="image">
-          <img src="img/nude.jpg" alt="">
-        </p>
-        <p>This mural is painted in Senior House at MIT. The photo was taken as part of a mural documentation and preservation project. You can find more murals from the dormitory <a href="https://www.flickr.com/photos/151658333@N05/sets/72157685050910985" target="_blank">here</a>. It was selected to be part of an exhibit about Senior House. There is a video of the exhibit <a href='https://youtu.be/D5GK7L9e5QI' target="_blank">here</a> and a write up <a href='https://thetech.com/2018/04/19/senior-house-mural-exhibit' target='_blank'>here</a>.
-        </p>
-      </div>
-    </div>
-  </div>
-  <button class="modal-close is-large" aria-label="close"></button>
-</div>
-
-<!--   
-  <section class="section">
-  <div class="content has-text-centered"><h1>Visual</h1><p>More on my Flickr <a href="https://www.flickr.com/photos/27532689@N04/" target="_blank">photostream</a>.</div>
-    <div class="columns">
-    <div class="column"></div>
-    <div class="column is-10">
-
-    <div class="tile is-ancestor">
-      <div class="tile is-vertical is-8">
-        <div class="tile">
-          <div class="tile is-parent">
-            <article class="tile is-child notification">
-              <p class="subtitle">Jellyfish II</p>
-              <figure class="image is-1by1">
-                <img src="img/jellyfishII.jpg">
-              </figure>
-              <small>September 2016, 3'x3' acrylic on canvas</small>
-            </article>
-          </div>
-          <div class="tile is-parent">
-            <article class="tile is-child notification">
-              <p class="subtitle">Nephew</p>
-              <figure class="image is-1by1">
-                <img src="img/nephew.jpg">
-              </figure>
-              <small>March 2017, 1'x1' acrylic on canvas</small>
-            </article>
-          </div>
-        </div>
-        <div class="tile is-parent">
-          <article class="tile is-child notification">
-            <p class="subtitle">Jellyfish I</p>
-            <div class="content">
-              <figure class="image is-2by1">
-                <img src="img/jellyfishI.jpg">
-              </figure>
-              <small>June 2016, 6'x3' acrylic on canvas</small>
-            </div>
-          </article>
-        </div>
-      </div>
-      <div class="tile is-parent">
-          <article class="tile is-child notification">
-            <p class="subtitle">Nude Mural</p>
-            <small>
-            This mural is painted in Senior House at MIT. The photo was taken as part of a mural documentation and preservation project. You can find more murals from the dormitory <a href="https://www.flickr.com/photos/151658333@N05/sets/72157685050910985" target="_blank">here</a>.
-            <br />
-            <br /></small>
-            <div class="content">
-              <figure class="image">
-                <img src="img/nude.jpg">
-              </figure>
-              <small>May 2013, 5'x8' acrylic on drywall</small>
-            </div>
-          </article>
-      </div>
-    </div>
-
-    </div>
-    <div class="column"></div>
-    </div>
-
-  </section>
- -->
-
-<!-- 
-  <section class="section">
-    <div class="content has-text-centered"><h1>Electro- and Mechanical</h1><p>More on my wordpress <a href="http://katygero.wordpress.com" target="_blank">blog</a>.</div>
-
-    <div class="columns">
-    <div class="column"></div>
-    <div class="column is-10">
-
-  <div class="tile is-ancestor">
-      <div class="tile">
-        <div class="tile is-parent">
-          <article class="tile is-child notification">
-            <p class="subtitle">Clutch Yo-Yo</p>
-            <small>Injection-molded, 50 piece run of a functioning clutch yo-yo.<br /><br /></small>
-            <div class="content">
-              <figure class="image is-1by1">
-                <img src="img/yoyo.jpg">
-              </figure>
-              <small>Junior year at MIT, 2011</small>
-            </div>
-          </article>
-        </div>
-        <div class="tile is-parent">
-          <article class="tile is-child notification">
-            <p class="subtitle">Stereographic Projector</p>
-            <small>A wedding gift designed and constructed to project their profiles. <a href="https://katygero.wordpress.com/2015/11/20/stereographic-projector-lamp-as-wedding-gift/" target="_blank">More here</a>.<br /><br /></small>
-            <div class="content">
-              <figure class="image is-1by1">
-                <img src="img/projector.jpg">
-              </figure>
-              <small>Summer 2016</small>
-            </div>
-          </article>
-        </div>
-        <div class="tile is-parent">
-          <article class="tile is-child notification">
-            <p class="subtitle">Desktop Lathe</p>
-            <small>Capable of machining better than 10 micrometer precision radially.<br /><br /></small>
-            <div class="content">
-              <figure class="image is-1by1">
-                <img src="img/lathe.jpg">
-              </figure>
-              <small>Senior year at MIT, 2013</small>
-            </div>
-          </article>
-        </div>
-      </div>
-    </div>
-
-    <div class="tile is-ancestor">
-      <div class="tile">
-        <div class="tile is-parent">
-          <article class="tile is-child notification">
-            <p class="subtitle">Hexapods!</p>
-            <small>Lightweight, composite hexapods with two degrees of freedom. <a href="https://katygero.wordpress.com/2012/07/17/hexapods/" target="_blank">More here</a>.<br /><br /></small>
-            <div class="content">
-              <figure class="image is-1by1">
-                <img src="img/hexapods.jpg">
-              </figure>
-              <small>Junior year at MIT, 2012</small>
-            </div>
-          </article>
-        </div>
-        <div class="tile is-parent">
-          <article class="tile is-child notification">
-            <p class="subtitle">Lumen</p>
-            <small>Linkage-based expanding lamps.<a href="https://katygero.wordpress.com/2013/09/08/expanding-lamp-project-lumen/" target="_blank">More here</a>.<br /><br /></small>
-            <div class="content">
-              <figure class="image is-1by1">
-                <img src="img/lamp.jpg">
-              </figure>
-              <small>Senior year at MIT, 2012</small>
-            </div>
-          </article>
-        </div>
-        <div class="tile is-parent">
-          <article class="tile is-child notification">
-            <p class="subtitle">Electronic Mural</p>
-            <small>An interactive mural using circuit stickers and conductive paint. <a href="https://katygero.wordpress.com/2015/02/10/electronic-mural-completed/" target="_blank">More here</a>.<br /><br /></small>
-            <div class="content">
-              <figure class="image is-1by1">
-                <img src="img/emural.jpg">
-              </figure>
-              <small>January, 2015</small>
-            </div>
-          </article>
-        </div>
-      </div>
-    </div>
-
-</div>
-<div class="column"></div>
-
-</div>
-</section> -->
 
 
 <!-- FOOTER -->
-<!-- <footer class="footer"> -->
   <div class="container">
     <div class="content has-text-centered">
       <p>
@@ -365,6 +121,5 @@
       </p>
     </div>
   </div>
-<!-- </footer> -->
 </body>
 </html>
