@@ -46,7 +46,76 @@ var meche = [
     'text': "An interactive mural using circuit stickers and conductive paint. <a href='https://katygero.wordpress.com/2015/02/10/electronic-mural-completed/' target='_blank'>More here</a>. 2015."
   }]
 
+var papers_cs = [
+  {
+    'title': 'Challenges in finding metaphorical connections',
+    'author': "<span class='myname'>Katy Gero</span> and Lydia Chilton",
+    'source': "NAACL Workshop on Figurative Language Processsing (forthcoming)",
+    'year': "2018",
+    'pdf': 'papers/revised-challenges-finding.pdf',
+    'data': 'https://github.com/kgero/metaphorical-connections'
+  }];
+
+var papers_other = [
+  {
+    'title': "Biometeorological indices explain outside dwelling patterns based on Wi-Fi data",
+    'author': "Christoph Reinhart, Jay Dhariwal, and <span class='myname'>Katy Gero</span>",
+    'journal': "Building and Environment",
+    'source': "Building and Environment",
+    'volume': "126",
+    'pages': "422--430",
+    'year': "2017",
+    'publisher': "Elsevier",
+    'pdf': 'https://www.sciencedirect.com/science/article/pii/S0360132317304845'
+  },
+  {
+    'title': "Design and analysis of a robust, low-cost, highly articulated manipulator enabled by jamming of granular media",
+    'author': "Nadia Cheng, Maxim Lobovsky, Steven Keating, Adam Setapen, <span class='myname'>Katy Gero</span>, and Anette Hosoi, and Karl Iagnemma",
+    'booktitle': "Robotics and Automation (ICRA), 2012 IEEE International Conference on",
+    'source': "IEEE International Conference on Robotics and Automation",
+    'pages': "4328--4333",
+    'year': "2012",
+    'organization': "IEEE",
+    'pdf': 'papers/Jamming_Cheng.pdf'
+  },
+  {
+    'title': "Experimental analysis on granular materials for robotic applications",
+    'author': "<span class='myname'>Katy Gero</span>, Nadia Cheng, Karl Iagnemma, and Anette Hosoi",
+    'year': "2012",
+    'source': "Presented at American Physical Society Meeting",
+    'slides': 'papers/aps_presentation_reduced.pdf'
+  }]
+
 $(document).ready( function() {
+  // add papers
+  $.each(papers_cs, function(i, val) {
+    var tag = $("<p class='is-small'>");
+    tag.append("<strong>" + val['title'])
+    tag.append("<br />" + val['author'])
+    tag.append("<br />" + val['source'] + "; " + val['year'])
+    tag.append("<br />")
+    if (val.hasOwnProperty('pdf')) {
+      tag.append("| <a target='_blank' href='" + val['pdf'] + "'>pdf</a>")
+    }
+    if (val.hasOwnProperty('data')) {
+      tag.append(" | <a target='_blank' href='" + val['data'] + "'>dataset</a>")
+    }
+    $('.papers_cs').append(tag);
+  });
+  $.each(papers_other, function(i, val) {
+    var tag = $("<p class='is-small'>");
+    tag.append("<strong>" + val['title'])
+    tag.append("<br />" + val['author'])
+    tag.append("<br />" + val['source'] + "; " + val['year'])
+    if (val.hasOwnProperty('pdf')) {
+      tag.append("<br />| <a target='_blank' href='" + val['pdf'] + "'>pdf</a>")
+    }
+    if (val.hasOwnProperty('slides')) {
+      tag.append("<br />| <a target='_blank' href='" + val['slides'] + "'>slides</a>")
+    }
+    $('.papers_other').append(tag);
+  });
+
   // add painting images
   $.each(paintings, function(i, val) {
     // make thumbnails

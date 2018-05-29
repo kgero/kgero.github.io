@@ -45,7 +45,7 @@ img {
 }
 
 .myname {
-  font-weight: bold;
+  text-decoration: underline;
 }
 
 .papertitle {
