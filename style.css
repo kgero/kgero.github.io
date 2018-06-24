@@ -39,6 +39,10 @@
     display: none;
 }
 
+.mark {
+  color: #0011d1;
+}
+
 img {
   border: 1px solid grey;
   border-radius: 5px;

@@ -154,7 +154,7 @@ body {
 a {
   color: #0011d1;
   cursor: pointer;
-  text-decoration: none;
+  text-decoration: underline;
   -webkit-transition: none 86ms ease-out;
   transition: none 86ms ease-out;
 }

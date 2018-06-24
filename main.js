@@ -50,10 +50,11 @@ var papers_cs = [
   {
     'title': 'Challenges in finding metaphorical connections',
     'author': "<span class='myname'>Katy Gero</span> and Lydia Chilton",
-    'source': "NAACL Workshop on Figurative Language Processsing (forthcoming)",
+    'source': "NAACL Workshop on Figurative Language Processsing",
     'year': "2018",
     'pdf': 'papers/revised-challenges-finding.pdf',
-    'data': 'https://github.com/kgero/metaphorical-connections'
+    'data': 'https://github.com/kgero/metaphorical-connections',
+    'slides': 'papers/metaphorical-connections-presentation.pdf'
   }];
 
 var papers_other = [
@@ -95,10 +96,13 @@ $(document).ready( function() {
     tag.append("<br />" + val['source'] + "; " + val['year'])
     tag.append("<br />")
     if (val.hasOwnProperty('pdf')) {
-      tag.append("| <a target='_blank' href='" + val['pdf'] + "'>pdf</a>")
+      tag.append("| <a target='_blank' href='" + val['pdf'] + "'>pdf</a> ")
     }
     if (val.hasOwnProperty('data')) {
-      tag.append(" | <a target='_blank' href='" + val['data'] + "'>dataset</a>")
+      tag.append("| <a target='_blank' href='" + val['data'] + "'>dataset</a> ")
+    }
+    if (val.hasOwnProperty('slides')) {
+      tag.append("| <a target='_blank' href='" + val['slides'] + "'>slides</a> ")
     }
     $('.papers_cs').append(tag);
   });
@@ -107,11 +111,12 @@ $(document).ready( function() {
     tag.append("<strong>" + val['title'])
     tag.append("<br />" + val['author'])
     tag.append("<br />" + val['source'] + "; " + val['year'])
+    tag.append("<br />")
     if (val.hasOwnProperty('pdf')) {
-      tag.append("<br />| <a target='_blank' href='" + val['pdf'] + "'>pdf</a>")
+      tag.append("| <a target='_blank' href='" + val['pdf'] + "'>pdf</a> ")
     }
     if (val.hasOwnProperty('slides')) {
-      tag.append("<br />| <a target='_blank' href='" + val['slides'] + "'>slides</a>")
+      tag.append("| <a target='_blank' href='" + val['slides'] + "'>slides</a> ")
     }
     $('.papers_other').append(tag);
   });
