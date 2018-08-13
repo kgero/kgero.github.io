@@ -45,7 +45,7 @@
 
 img {
   border: 1px solid grey;
-  border-radius: 5px;
+  /*border-radius: 5px;*/
 }
 
 .myname {
@@ -58,7 +58,7 @@ img {
 
 .imagemodal img {
   max-height: 75%;
-  height: auto;
+  /*height: 75%;*/
   width: auto;
   margin-left: auto;
   margin-right: auto;
@@ -74,4 +74,23 @@ img {
 
 .modal-content a {
   color: lightgrey;
+}
+
+.date {
+  color: grey;
+}
+
+.wtitle {
+  /*font-style: italic;*/
+  /*font-size: 18px;*/
+  color: #0011d1;
+}
+
+.wdescrip {
+  color: grey;
+  white-space: pre;
+}
+
+.publication {
+  color: grey;
 }
