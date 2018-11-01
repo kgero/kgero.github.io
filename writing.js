@@ -31,6 +31,14 @@ var poems = [
 
 var essays = [
 	{
+		'fulltitle': 'Language and the Algorithm',
+		'title': 'Language and the Algorithm', 
+		'publication': 'Ploughshares blog',
+		'date': 'October 2018',
+		'link': 'http://blog.pshares.org/index.php/language-and-the-algorithm/',
+		'description': 'is writing really anything more than rearranging words?'
+	},
+	{
 		'fulltitle': 'Is It Possible for Machines to Translate Poetry, When Humans Can Barely Do It?',
 		'title': 'Is It Possible for Machines to Translate Poetry?', 
 		'publication': 'Electric Literature',

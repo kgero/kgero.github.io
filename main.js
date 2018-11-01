@@ -44,17 +44,25 @@ var arttech = [
   {
     'src': 'img/slowtwitter.gif',
     'colsize': 'is-3',
-    'text': '<u>Slow Twitter</u> is a prototype alternate Twitter interface that forces you to read twitter calmly and with intention. I am currently working a Chrome Extension version. It was originally developed during Code Societies at the School for Poetic Computation.'
+    // 'link': 'https://chrome.google.com/webstore/detail/slow-twitter/illfaodgeliggpdapdmbdjnlolbbhaao',
+    // 'linktext': 'Slow Twitter',
+    'text': "<u><a href='https://chrome.google.com/webstore/detail/slow-twitter/illfaodgeliggpdapdmbdjnlolbbhaao'>Slow Twitter</a></u> \
+    is a Chrome Extension that forces you to read twitter calmly and with intention. \
+    It was originally developed during Code Societies at the School for Poetic Computation."
   },
   {
     'src': 'img/poetryengine.png',
     'colsize': 'is-2',
+    // 'link': 'https://poetry-engine.com',
+    // 'linktext': 'Poetry Engine',
     'text': "<p><a href='poetry-engine.com' target='_blank'>Poetry Engine</a> comes from a very human desire: to share something I find meaningful. Poems are hard to love, but when one makes it into your soul it can be the most powerful thing. How do we find poems to love?</p>\
     <p><br />This is my idea: you might have one or two poems you really love. You found them at some point in your life and they just clicked. If I could give you one more poem you love, you can sit with it and take it into your heart and love it. One more poem! Amazing. And then, maybe, one more poem you love. Slowly you build a larger library of poems. Eventually it becomes easier to love new ones.\
     <p><br />The Poetry Recommendation Engine takes one poem and tries to give you one other poem that can touch you. You can take it from there."
   },
   {
     'src': 'img/code-societies.jpg',
+    // 'link': 'https://github.com/SFPC/codesocieties',
+    // 'linktext': 'Code Societies',
     'colsize': 'is-2',
     'text': "<p><a href='https://github.com/SFPC/codesocieties' target='_blank'>Code Societies</a> was a three week long summer session at <a href='sfpc.io' target='_blank'>the School for Poetic Computation</a> I attended in July 2018. You can find the work I did <a href='dat-portfolio/index.html'>here</a>."
   }];
@@ -97,17 +105,17 @@ var papers_cs = [
   }];
 
 var papers_other = [
-  // {
-  //   'title': "Biometeorological indices explain outside dwelling patterns based on Wi-Fi data",
-  //   'author': "Christoph Reinhart, Jay Dhariwal, and <span class='myname'>Katy Gero</span>",
-  //   'journal': "Building and Environment",
-  //   'source': "Building and Environment",
-  //   'volume': "126",
-  //   'pages': "422--430",
-  //   'year': "2017",
-  //   'publisher': "Elsevier",
-  //   'pdf': 'https://www.sciencedirect.com/science/article/pii/S0360132317304845'
-  // },
+  {
+    'title': "Biometeorological indices explain outside dwelling patterns based on Wi-Fi data",
+    'author': "Christoph Reinhart, Jay Dhariwal, and <span class='myname'>Katy Gero</span>",
+    'journal': "Building and Environment",
+    'source': "Building and Environment",
+    'volume': "126",
+    'pages': "422--430",
+    'year': "2017",
+    'publisher': "Elsevier",
+    'pdf': 'papers/soofa-paper.pdf'
+  },
   {
     'title': "Design and analysis of a robust, low-cost, highly articulated manipulator enabled by jamming of granular media",
     'author': "Nadia Cheng, Maxim Lobovsky, Steven Keating, Adam Setapen, <span class='myname'>Katy Gero</span>, and Anette Hosoi, and Karl Iagnemma",
@@ -187,10 +195,19 @@ $(document).ready( function() {
     // make thumbnails
     var imgimg = $("<img>").attr('src', val['src']);
     var imgfig = $("<figure class='image imageclick'>").attr('id', 'arttech' + i);
+    var imgtext = $("<p class='has-text-centered'>");
+    if ('linktext' in val) {
+      imgtext.append( 
+        $("<a>").attr("href", val['link'])
+        .attr("target", "_blank")
+        .text(val['linktext'])
+      );
+    }
+    
     var imgdiv = $("<div class='column'>");
     imgfig.append(imgimg);
     imgdiv.addClass(val['colsize']);
-    imgdiv.append(imgfig);
+    imgdiv.append(imgfig).append(imgtext);
     $('.arttech').append(imgdiv);
 
     // make modal overlays
