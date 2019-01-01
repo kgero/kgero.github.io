@@ -1,0 +1,185 @@
+<html>
+<head>
+    <title>Metaphoria</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="main.js"></script>
+    <script src="writing.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700" rel="stylesheet">
+
+    <style>
+      h1 {
+        /*font-family: 'Dancing Script', cursive;*/
+      }
+      .title {
+        font-size: 60px;
+      }
+      .sub {
+        font-size: 30px;
+      }
+    </style>
+
+</head>
+<body>
+
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-7">
+        <!-- <h1 class="text-center"> -->
+          <!-- <span class="title">
+            <span style="color:#FB6542">M</span><span style="color:#E86E56">e</span><span style="color:#D4776A">t</span><span style="color:#C1807E">a</span><span style="color:#AD8992">p</span><span style="color:#9A91A5">h</span><span style="color:#869AB9">o</span><span style="color:#73A3CD">r</span><span style="color:#5FACE1">i</span><span style="color:#4CB5F5">a</span>
+          </span>
+          <br />
+          <span class="sub text-muted">
+            get inspired by an algorithmic companion
+          </span>
+        </h1> -->
+        <br />
+        <h1>
+          Metaphoria
+        
+        <small>
+          An Algorithmic Companion for Metaphor Creation
+        </small>
+        </h1>
+        <br />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-3">
+        <img src="header.png" class="img-responsive img-thumbnail" alt="Responsive image" border="1px">
+
+        <h3>Publication</h3>
+
+        <p>
+          Katy Ilonka Gero and Lydia B. Chilton. 2019. <br />
+          Metaphoria: An Algorithmic Companion for Metaphor Creation. <br />
+          In CHI Conference on Human Factors in Computing Systems Proceedings <br />
+          (CHI 2019). <br />
+          <em>(to appear)</em>
+        </p>
+
+        <h3>Bibtex</h3>
+        <p>
+          Coming!
+        </p>
+
+        <h3>Contact</h3>
+        <p>
+          <a href="http://katygero.com" target="_blank">Katy Ilonka Gero</a> <br />
+          katy@cs.columbia.edu
+        </p>
+
+        
+      </div>
+      <div class="col-md-7">
+        
+        <p>
+          <em>This is a high-level overview of the design and evaluation of Metaphoria. More details can be found in the paper.</em>
+        </p>
+
+        <p>
+          <strong>
+            <a href="https://metaphor.ga" target="_blank">Click here to use Metaphoria yourself!</a>
+          </strong>
+        </p>
+        <h4>Summary</h4>
+        <p>
+          Metaphoria is an online tool that generates multiple metaphorical connections between two words.
+          It's designed to give you ideas for poetry, essays, or stories.
+          It's a tool that augments your abilities, rather than replacing them.
+        </p>
+
+        <!-- <img src="expand.png" class="img-responsive img-thumbnail" alt="Responsive image" border="1px" width="75%"> -->
+        <h4>Motivation</h4>
+        <p>
+          While computation has opened a floodgate of creative tools for music and the visual arts, like synthesizers, Photoshop, domain-specific programming languages like Processing, SnapChat filters, and generative algorithms like GANs, little of that fervor has transferred to the medium of text. Word processors that detect spelling and grammatical errors are useful, but do not support the creative elements of writing.
+        </p>
+        <p>
+          In this work, we build a metaphor generation tool for providing ideas of how to describe abstract concepts like 'love' or 'consciousness'. Metaphors famously convey abstract ideas by comparing them to more concrete or familiar concepts, and are used in all forms of writing from poetry to journalism.
+        </p>
+        <h4>Related work</h4>
+        <p>
+          People have built tools for writing before. Dictionaries and thesauri are kinds of writing tools, as are spell- and grammar-checkers. More recently people have built scaffolding tools, that help you plan or structure a specific kind of writing, like writing an email to ask for help, or writing an essay. 
+        </p>
+        <p>
+          Fewer people have built tools for creative writing. People have made tools that will give you the next sentence in your story, but these sentences tend to be a bit a random. This is not necessarily a bad thing, sometimes it can help you get out of your head or spark a new idea, but in this work we wanted to look at creative writing tools that produce suggestions that make sense given what you are trying to write.
+        </p>
+        <p>
+          Other people have built tools that generate a whole poem based on input from a user. These are cool too, but they don't fit into the normal practice of writing. In this work, we build tools that "traditional" writers could use in their practice.
+        </p>
+        <h4>Goals</h4>
+        <p>
+          We have two main goals:
+        </p>
+        <p>
+          1. Generate suggestions that make sense to the writer, given what the writer is looking to do. <br />
+          (We call this coherence to context.)
+        </p>
+        <p>
+          2. Generate suggestions that inspire writers to come up with new and different ideas. <br />
+          (We call this divergent outcomes.) 
+        </p>
+        <h4>Design</h4>
+        <p>
+          To generate the metaphorical connections, we use an open-source knowledge graph called ConceptNet and something called word embeddings.
+        </p>
+        <p>
+          We start with a "seed metaphor", which is a metaphor of the form A is B, where A is the source and B is the vehicle. For example, <em>envy is a bell</em>. We're going to generate potential ways that <em>envy</em> is connected to <em>bell</em>.
+        </p>
+        <p>
+          We first generate a large set of features of bell using ConceptNet, an open-source knowledge graph. Some features of bell you can find in ConceptNet are that bells <em>make noise</em> and that bells <em>have clappers</em>.
+        </p>
+        <p>
+          We then rank these features by how related they are to <em>envy</em>. For examples, <em>making noise</em> is more related to envy than <em>having clappers</em>. This ranking is done using word embeddings, in which every word is placed in a high-dimensional space (i.e. is represented by a vector) and similar words are located near each other. We use the Word Mover's Distance algorithm to measure how close a feature (like making noise) is to the source (envy). We can then rank each feature by their distance to the source.
+        </p>
+        <p>
+          Then we select the top 10 features, throwing out any features that are too similar to each other.
+        </p>
+        <p>
+          There are a few more details about how the suggestions are presented, including re-ranking the top 10 by their valence, and adding the ability to 'expand' the suggestions. These details can be found in the paper.
+        </p>
+        <h4>Evaluation</h4>
+        <p>
+          To evaluate Metaphoria, we compared its output to two other metaphor generation algorithms.
+          We also had undergraduates and professional poets use Metaphoria.
+          We found that Metaphoria produces connections that are as good or better than other algorithms. In usage, we found that Metaphoria almost always produces some connections that make sense, though it's pretty dependent on the writer as to which connections make sense. We also found that Metaphoria rarely resulted in people writing very similar things--instead, Metaphoria inspires people to write things they might never have thought of.
+
+        </p>
+
+        <img src="table.png" class="img-responsive img-thumbnail" alt="Responsive image" border="1px">
+
+     
+
+      </div>
+    </div>
+  </div>
+
+
+<!-- FOOTER -->
+  <div class="container">
+    <div class="content text-center">
+      <p>
+        <span class='icon'><i class='fa fa-paper-plane'></i></span>
+      </p>
+      
+      
+      <p>
+        &nbsp;
+      </p>
+    </div>
+  </div>
+</body>
+</html>
