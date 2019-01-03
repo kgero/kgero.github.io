@@ -59,58 +59,82 @@
       <div class="col-md-1">
       </div>
       <div class="col-md-3">
+        
         <img src="header.png" class="img-responsive img-thumbnail" alt="Responsive image" border="1px">
 
-        <h3>Publication</h3>
+        <h5>Link to paper coming soon.</h5>
+
+        <h5>Publication citation</h5>
 
         <p>
-          Katy Ilonka Gero and Lydia B. Chilton. 2019. <br />
-          Metaphoria: An Algorithmic Companion for Metaphor Creation. <br />
-          In CHI Conference on Human Factors in Computing Systems Proceedings <br />
-          (CHI 2019). <br />
+          Katy Ilonka Gero and Lydia B. Chilton. 2019.
+          Metaphoria: An Algorithmic Companion for Metaphor Creation. 
+          In CHI Conference on Human Factors in Computing Systems Proceedings 
+          (CHI 2019).
           <em>(to appear)</em>
         </p>
 
-        <h3>Bibtex</h3>
+        <h5>Bibtex</h5>
         <p>
           Coming!
         </p>
 
-        <h3>Contact</h3>
+        <h5>Authors</h5>
         <p>
           <a href="http://katygero.com" target="_blank">Katy Ilonka Gero</a> <br />
+          <a href="http://www.cs.columbia.edu/~chilton/" target="_blank">Lydia B. Chilton</a>
+        </p> 
+        <h5>Contact</h5>
+        <p>
           katy@cs.columbia.edu
         </p>
 
+        <h5>Affliation</h5>
+        <a href="https://www.cs.columbia.edu/" target="_blank"><img src="https://www.cs.columbia.edu/wp-content/themes/columbia-cs/assets/img/main-logo.png" class="img-responsive img-rounded" alt="Responsive image" width="75%"></a>
+        
         
       </div>
-      <div class="col-md-7">
+      <div class="col-md-6">
         
-        <p>
-          <em>This is a high-level overview of the design and evaluation of Metaphoria. More details can be found in the paper.</em>
-        </p>
+        <blockquote>
+          <p>
+            Metaphoria is an online tool that generates multiple metaphorical connections between two words.
+            It's designed to give you ideas for poetry, essays, or stories.
+            It's a tool that augments your abilities, rather than replacing them.
+          </p>
+        </blockquote>
 
         <p>
           <strong>
             <a href="https://metaphor.ga" target="_blank">Click here to use Metaphoria yourself!</a>
           </strong>
         </p>
-        <h4>Summary</h4>
-        <p>
-          Metaphoria is an online tool that generates multiple metaphorical connections between two words.
-          It's designed to give you ideas for poetry, essays, or stories.
-          It's a tool that augments your abilities, rather than replacing them.
-        </p>
+        
 
-        <!-- <img src="expand.png" class="img-responsive img-thumbnail" alt="Responsive image" border="1px" width="75%"> -->
+        <!-- <ul class="list-inline">
+          <li>
+            <strong>
+              <a href="https://metaphor.ga" target="_blank">Click here to use Metaphoria yourself!</a>
+            </strong>
+          </li>
+          <li>
+            <strong>
+              Link to academic paper coming soon.
+            </strong>
+          </li>
+        </ul> -->
+        
+
+
         <h4>Motivation</h4>
         <p>
-          While computation has opened a floodgate of creative tools for music and the visual arts, like synthesizers, Photoshop, domain-specific programming languages like Processing, SnapChat filters, and generative algorithms like GANs, little of that fervor has transferred to the medium of text. Word processors that detect spelling and grammatical errors are useful, but do not support the creative elements of writing.
+          <!-- <strong>Motivation.</strong> -->
+          While computation has opened a floodgate of creative tools for music and the visual arts (like synthesizers, Photoshop, ChucK, SnapChat filters, and GANS,) little of that fervor has transferred to the medium of text. Word processors that detect spelling and grammatical errors are useful, but do not support the creative elements of writing.
         </p>
         <p>
           In this work, we build a metaphor generation tool for providing ideas of how to describe abstract concepts like 'love' or 'consciousness'. Metaphors famously convey abstract ideas by comparing them to more concrete or familiar concepts, and are used in all forms of writing from poetry to journalism.
         </p>
-        <h4>Related work</h4>
+<!--         <h4>Related work</h4>
         <p>
           People have built tools for writing before. Dictionaries and thesauri are kinds of writing tools, as are spell- and grammar-checkers. More recently people have built scaffolding tools, that help you plan or structure a specific kind of writing, like writing an email to ask for help, or writing an essay. 
         </p>
@@ -119,20 +143,22 @@
         </p>
         <p>
           Other people have built tools that generate a whole poem based on input from a user. These are cool too, but they don't fit into the normal practice of writing. In this work, we build tools that "traditional" writers could use in their practice.
-        </p>
+        </p> -->
         <h4>Goals</h4>
         <p>
-          We have two main goals:
+          <!-- <strong>We have two main goals:</strong> -->
+          <ol>
+            <li>
+              Generate suggestions that make sense to the writer, given what the writer is looking to do.
+              <br />(We call this <em>coherence to context</em>.)
+            </li>
+            <li>
+              Generate suggestions that inspire writers to come up with new and different ideas. 
+              <br />(We call this <em>divergent outcomes</em>.) 
+            </li>
+          </ol>
         </p>
-        <p>
-          1. Generate suggestions that make sense to the writer, given what the writer is looking to do. <br />
-          (We call this coherence to context.)
-        </p>
-        <p>
-          2. Generate suggestions that inspire writers to come up with new and different ideas. <br />
-          (We call this divergent outcomes.) 
-        </p>
-        <h4>Design</h4>
+        <!-- <h4>Design</h4>
         <p>
           To generate the metaphorical connections, we use an open-source knowledge graph called ConceptNet and something called word embeddings.
         </p>
@@ -150,17 +176,29 @@
         </p>
         <p>
           There are a few more details about how the suggestions are presented, including re-ranking the top 10 by their valence, and adding the ability to 'expand' the suggestions. These details can be found in the paper.
-        </p>
-        <h4>Evaluation</h4>
+        </p> -->
+        <h4>Studies</h4>
         <p>
-          To evaluate Metaphoria, we compared its output to two other metaphor generation algorithms.
-          We also had undergraduates and professional poets use Metaphoria.
-          We found that Metaphoria produces connections that are as good or better than other algorithms. In usage, we found that Metaphoria almost always produces some connections that make sense, though it's pretty dependent on the writer as to which connections make sense. We also found that Metaphoria rarely resulted in people writing very similar things--instead, Metaphoria inspires people to write things they might never have thought of.
+          <!-- <strong>Studies.</strong> -->
+          Through expert evaluations, we found that Metaphoria produces connections that are as good or better than other metaphor generation algorithms. Through user studies, we found that Metaphoria almost always produces some connections that make sense, though it's pretty dependent on the writer as to which connections make sense. We also found that Metaphoria rarely resulted in people writing very similar things; instead, Metaphoria inspires people to write things they might never have thought of.
 
         </p>
+        <h4>Some Results</h4>
+        <p>
+          <!-- <strong> Some results.</strong> -->
+          Find more in the paper.
+        </p>
 
-        <img src="table.png" class="img-responsive img-thumbnail" alt="Responsive image" border="1px">
 
+        <p class="text-center">
+          <img src="table.png" class="img-responsive img-thumbnail" alt="Responsive image" border="1px">
+        </p>
+<!--         <p class="text-center">
+          <img src="expand.png" class="img-responsive img-thumbnail" alt="Responsive image" border="1px" width="65%" align="center">
+        </p>
+        <p class="text-center">
+          <img src="study2b.png" class="img-responsive img-thumbnail" alt="Responsive image" border="1px" width="65%" align="center">
+        </p> -->
      
 
       </div>
