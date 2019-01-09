@@ -6,11 +6,6 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <script src="main.js"></script>
-    <script src="writing.js"></script>
-
-    <link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700" rel="stylesheet">
-
     <style>
       h1 {
         /*font-family: 'Dancing Script', cursive;*/
@@ -66,7 +61,7 @@
 
         <h5>Publication citation</h5>
 
-        <p>
+        <p class="text-muted">
           Katy Ilonka Gero and Lydia B. Chilton. 2019.
           Metaphoria: An Algorithmic Companion for Metaphor Creation. 
           In CHI Conference on Human Factors in Computing Systems Proceedings 
@@ -98,17 +93,21 @@
         
         <blockquote>
           <p>
-            Metaphoria is an online tool that generates multiple metaphorical connections between two words.
+            Metaphoria is an online tool that generates metaphorical connections between two words.
             It's designed to give you ideas for poetry, essays, or stories.
-            It's a tool that augments your abilities, rather than replacing them.
+            It augments your abilities, rather than replacing them.
           </p>
         </blockquote>
 
-        <p>
-          <strong>
-            <a href="https://metaphor.ga" target="_blank">Click here to use Metaphoria yourself!</a>
-          </strong>
+        <!-- <br /> -->
+
+        <p class="text-center" style="font-size: 16px">
+          <!-- <strong> -->
+            > <a href="https://metaphor.ga" target="_blank">Play with Metaphoria</a> <
+          <!-- </strong> -->
         </p>
+
+        <!-- <br /> -->
         
 
         <!-- <ul class="list-inline">
@@ -129,7 +128,7 @@
         <h4>Motivation</h4>
         <p>
           <!-- <strong>Motivation.</strong> -->
-          While computation has opened a floodgate of creative tools for music and the visual arts (like synthesizers, Photoshop, ChucK, SnapChat filters, and GANS,) little of that fervor has transferred to the medium of text. Word processors that detect spelling and grammatical errors are useful, but do not support the creative elements of writing.
+          While computation has opened a floodgate of creative tools for music and the visual arts (like synthesizers, Photoshop, ChucK, SnapChat filters, and GANS) little of that fervor has transferred to the medium of text. Word processors that detect spelling and grammatical errors are useful, but do not support the creative elements of writing.
         </p>
         <p>
           In this work, we build a metaphor generation tool to help describe abstract concepts like 'love' or 'consciousness'. Metaphors famously convey abstract ideas by comparing them to more concrete or familiar concepts, and are used in all forms of writing from poetry to journalism.
@@ -150,11 +149,11 @@
           <ol>
             <li>
               Generate suggestions that make sense to the writer, given what the writer is looking to do.
-              <br />(We call this <em>coherence to context</em>.)
+              <br />We call this <em>coherence to context</em>.
             </li>
             <li>
               Generate suggestions that inspire writers to come up with new and different ideas. 
-              <br />(We call this <em>divergent outcomes</em>.) 
+              <br />We call this <em>divergent outcomes</em>.
             </li>
           </ol>
         </p>
@@ -179,35 +178,32 @@
         </p> -->
         <h4>Examples</h4>
           <p>
-            <u>seed metaphor</u> <br />friendship is a window
-          </p>
-          <p>
-            <u>suggestions</u> <br />
-            friendship is for letting in sunshine like a window<br />
-            friendship is for looking inside like a window <br />
-            friendship is for protecting from the elements like a window <br />
+            <span style="font-size: 16px">
+              <span class="text-danger">friendship</span> is a <span class="text-primary">window</span>
+            </span> 
+            <span class="text-muted">(seed metaphor)</span>
+            <br />
+            <!-- <u>suggestions</u> <br /> -->
+            > friendship is for letting in sunshine like a window<br />
+            > friendship is for looking inside like a window <br />
+            > friendship is for protecting from the elements like a window <br />
            </p>
-           <br />
+           <!-- <br /> -->
 
            <p>
-            <u> seed metaphor</u> <br /> heartache is a bell
-          </p>
-          <p>
-            <u>suggestions</u> <br />
-              heartache is for making noise like a bell <br />
-              heartache is for ringing to warn of danger like a bell<br />
-              heartache is for summoning servants like a bell<br />
+            <span style="font-size: 16px">
+              <span class="text-danger">heartache</span> is a <span class="text-primary">bell</span> 
+            </span>
+            <span class="text-muted">(seed metaphor)</span>
+            <br />
+              > heartache is for making noise like a bell <br />
+              > heartache is for ringing to warn of danger like a bell<br />
+              > heartache is for summoning servants like a bell<br />
            </p> 
-        <h4>Studies</h4>
+        <h4>Results</h4>
         <p>
           <!-- <strong>Studies.</strong> -->
-          Through expert evaluations, we found that Metaphoria produces connections that are as good or better than other metaphor generation algorithms. Through user studies, we found that Metaphoria almost always produces some connections that make sense, though it's pretty dependent on the writer as to which connections make sense. We also found that Metaphoria rarely resulted in people writing very similar things; instead, Metaphoria inspires people to write things they might never have thought of.
-
-        </p>
-        <h4>Some Results</h4>
-        <p>
-          <!-- <strong> Some results.</strong> -->
-          Find more in the paper.
+          We found that Metaphoria almost always produces some connections that make sense, though it's pretty dependent on the writer as to which connections make sense. We also found that Metaphoria rarely resulted in people writing very similar things; instead, Metaphoria inspires people to write things they might never have thought of.
         </p>
 
 
