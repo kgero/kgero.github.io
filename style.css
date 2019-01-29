@@ -94,3 +94,9 @@ img {
 .publication {
   color: grey;
 }
+
+p, li {
+  font-size: 15px;
+}
+
+

@@ -20,10 +20,11 @@ var paintings = [
     'text': "This mural is painted in Senior House at MIT. The photo was taken as part of a mural documentation and preservation project. You can find more murals from the dormitory <a href='https://www.flickr.com/photos/151658333@N05/sets/72157685050910985' target='_blank'>here</a>. It was selected to be part of an exhibit about Senior House. There is a video of the exhibit <a href='https://youtu.be/D5GK7L9e5QI' target='_blank'>here</a> and a write up <a href='https://thetech.com/2018/04/19/senior-house-mural-exhibit' target='_blank'>here</a>"
   },
   {
-    'src': 'img/aspect.jpg',
-    'colsize': 'is-3',
-    'text': 'Set of three paintings for a book cover. More information forthcoming!'
-  },];
+    'src': 'img/aspect-cover.jpg',
+    'colsize': 'is-2',
+    'text': "I did the cover art for my brother's philosophy book, <a href='https://web.mit.edu/bskow/www/aspect.html' target='_blank'>Causation, Explanation, and the Metaphysics of Aspect</a>"
+  },
+  ];
 
 var books = [
   {
@@ -51,7 +52,7 @@ var arttech = [
     It was originally developed during Code Societies at the School for Poetic Computation."
   },
   {
-    'src': 'img/poetryengine.png',
+    'src': 'img/poetryengine-crop.png',
     'colsize': 'is-2',
     // 'link': 'https://poetry-engine.com',
     // 'linktext': 'Poetry Engine',
@@ -95,13 +96,30 @@ var meche = [
 
 var papers_cs = [
   {
-    'title': 'Challenges in finding metaphorical connections',
+    'title': 'Metaphoria: An Algorithmic Companion for Metaphor Creation',
+    'author': "<span class='myname'>Katy Gero</span> and Lydia Chilton",
+    'source': "CHI",
+    'year': "2019",
+    'pdf': 'papers/Metaphoria-Revision.pdf',
+    'project page': 'https://katygero.com/research/metaphoria'
+  },
+  {
+    'title': 'Challenges in Finding Metaphorical Connections',
     'author': "<span class='myname'>Katy Gero</span> and Lydia Chilton",
     'source': "NAACL Workshop on Figurative Language Processsing",
     'year': "2018",
     'pdf': 'papers/revised-challenges-finding.pdf',
     'data': 'https://github.com/kgero/metaphorical-connections',
     'slides': 'papers/metaphorical-connections-presentation.pdf'
+  },
+  {
+    'title': 'Transfer Learning for Style-Specific Text Generation',
+    'author': "<span class='myname'>Katy Gero</span>, Giannis Karamanolakis and Lydia Chilton",
+    'source': "NeurIPS Workshop on Machine Learning for Creativity and Design",
+    'year': "2018",
+    'pdf': 'papers/neurips-transfer-paper.pdf',
+    'code': 'https://github.com/kgero/style-gen',
+    'poster': 'papers/neurips-transfer-poster.pdf'
   }];
 
 var papers_other = [
@@ -142,15 +160,23 @@ $(document).ready( function() {
     tag.append("<br />" + val['author'])
     tag.append("<br />" + val['source'] + "; " + val['year'])
     tag.append("<br />")
-    if (val.hasOwnProperty('pdf')) {
-      tag.append("| <a target='_blank' href='" + val['pdf'] + "'>pdf</a> ")
-    }
-    if (val.hasOwnProperty('data')) {
-      tag.append("| <a target='_blank' href='" + val['data'] + "'>dataset</a> ")
-    }
-    if (val.hasOwnProperty('slides')) {
-      tag.append("| <a target='_blank' href='" + val['slides'] + "'>slides</a> ")
-    }
+    for(key in val) {
+      if (key !== 'title' && key !== 'author' && key !== 'source' && key !== 'year') {
+        tag.append("| <a target='_blank' href='" + val[key] + "'>"+key+"</a> ")
+        console.log(key, val[key]);
+      }
+      
+    };
+
+    // if (val.hasOwnProperty('pdf')) {
+    //   tag.append("| <a target='_blank' href='" + val['pdf'] + "'>pdf</a> ")
+    // }
+    // if (val.hasOwnProperty('data')) {
+    //   tag.append("| <a target='_blank' href='" + val['data'] + "'>dataset</a> ")
+    // }
+    // if (val.hasOwnProperty('slides')) {
+    //   tag.append("| <a target='_blank' href='" + val['slides'] + "'>slides</a> ")
+    // }
     $('.papers_cs').append(tag);
   });
   $.each(papers_other, function(i, val) {
@@ -169,26 +195,26 @@ $(document).ready( function() {
   });
 
   // add writing images
-  $.each(books, function(i, val) {
-    // make thumbnails
-    var imgimg = $("<img>").attr('src', val['src']);
-    var imgfig = $("<figure class='image imageclick'>").attr('id', 'books' + i);
-    var imgdiv = $("<div class='column'>");
-    imgfig.append(imgimg);
-    imgdiv.addClass(val['colsize']);
-    imgdiv.append(imgfig);
-    $('.books').append(imgdiv);
+  // $.each(books, function(i, val) {
+  //   // make thumbnails
+  //   var imgimg = $("<img>").attr('src', val['src']);
+  //   var imgfig = $("<figure class='image imageclick'>").attr('id', 'books' + i);
+  //   var imgdiv = $("<div class='column'>");
+  //   imgfig.append(imgimg);
+  //   imgdiv.addClass(val['colsize']);
+  //   imgdiv.append(imgfig);
+  //   $('.books').append(imgdiv);
 
-    // make modal overlays
-    var modal = $('<div>').addClass('modal').addClass('books' + i);
-    var bckgrnd = $('<div>').addClass('modal-background');
-    var newfig = imgfig.clone().removeClass('imageclick').addClass('imagemodal');
-    var text = $('<p>').addClass('textmodal').append(val['text']);
-    var content = $('<div>').addClass('modal-content').append(newfig).append(text);
-    var button = $('<button>').addClass('modal-close').addClass('is-large');
-    modal.append(bckgrnd).append(content).append(button);
-    $('body').append(modal);
-  });
+  //   // make modal overlays
+  //   var modal = $('<div>').addClass('modal').addClass('books' + i);
+  //   var bckgrnd = $('<div>').addClass('modal-background');
+  //   var newfig = imgfig.clone().removeClass('imageclick').addClass('imagemodal');
+  //   var text = $('<p>').addClass('textmodal').append(val['text']);
+  //   var content = $('<div>').addClass('modal-content').append(newfig).append(text);
+  //   var button = $('<button>').addClass('modal-close').addClass('is-large');
+  //   modal.append(bckgrnd).append(content).append(button);
+  //   $('body').append(modal);
+  // });
 
   // add art and tech images
   $.each(arttech, function(i, val) {

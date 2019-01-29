@@ -72,7 +72,7 @@ var essays = [
 
 $(document).ready( function() {
 	$.each(poems, function(i, val) {
-		var item = $('<li>')
+		var item = $('<li>');
 		var title = $("<span class='wtitle'>")
 		if (val['link'] != '') {
 			title.append("<a target='_blank' href='" + val['link'] + "'>" + val['title']);
