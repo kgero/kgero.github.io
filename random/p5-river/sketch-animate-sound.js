@@ -196,6 +196,7 @@ var amplitude;
 
 function mousePressed() {
   console.log('mousePressed');
+  background(51);
   go = true;
   song.setVolume(0);
   song.play()
@@ -214,6 +215,8 @@ function setup() {
   createCanvas(3000, 700);
   background(51);
   fill('white');
+
+  text('click to start', 100, 100);
 
   list_o_words = [
     "Long before the economic crisis of 2007-2008, this far-reaching multi-disciplinary effort integrated history, sociology, management, and economics to explain why today's business models have reached the limits of their adaptive range",
