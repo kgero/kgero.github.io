@@ -36,12 +36,34 @@ var books = [
     <p><br />You can download a pdf version of the book <a href='files/PoemsForMITStudents.pdf'>here</a>."
   },
   {
+    'src': 'img/poems/expansion.jpg',
+    'colsize': 'is-2',
+    'text': 'Expansion is a set of 6 broadsides.'
+  },
+  {
     'src': 'img/bluepill.jpg',
     'colsize': 'is-3',
     'text': '<u>blue pill dissolving</u> is a poem-zine written for and during Code Societies while at the School for Poetic Computation. 50 copies were made and distributed.'
-  }];
+  },
+  {
+    'src': 'img/poems/hystericallight-small.jpg',
+    'colsize': 'is-2',
+    'text': "<p>Hysterical Light is a chapbook of poems about computation, compiled for the first NYC Tech Zine Fair in December 2018. 40 copies were created and sold for $5 each."
+  }
+  ];
 
 var arttech = [
+  {
+    'src': 'img/hackarthon.png',
+    'colsize': 'is-3',
+    // 'link': 'https://chrome.google.com/webstore/detail/slow-twitter/illfaodgeliggpdapdmbdjnlolbbhaao',
+    // 'linktext': 'Slow Twitter',
+    'text': "<u><a href='http://www.katygero.com/random/p5-river/'>Wild River</a></u> \
+    is a prototype of an interactive art exhibit that shows how people's stories about \
+    mental illness connect. \
+    This was a collaboration with Anatasia Voron and the result of the Hack-Art-Thon \
+    put on by NYC Live Arts."
+  },
   {
     'src': 'img/slowtwitter.gif',
     'colsize': 'is-3',
@@ -96,12 +118,21 @@ var meche = [
 
 var papers_cs = [
   {
+    'title': "How a Stylistic, Machine-Generated Thesaurus Impacts a Writer's Process",
+    'author': "<span class='myname'>Katy Gero</span> and Lydia Chilton",
+    'source': "Creativity and Cognition",
+    'year': "2019",
+    'pdf': 'papers/thesaurus_cc.pdf',
+    'demo': 'https://thesaurus.ml'
+  },
+  {
     'title': 'Metaphoria: An Algorithmic Companion for Metaphor Creation',
     'author': "<span class='myname'>Katy Gero</span> and Lydia Chilton",
     'source': "CHI",
     'year': "2019",
-    'pdf': 'papers/Metaphoria-Revision.pdf',
-    'project page': 'https://katygero.com/research/metaphoria'
+    'pdf': 'papers/Metaphoria_Revision.pdf',
+    'project page': 'https://katygero.com/research/metaphoria',
+    'demo': 'https://metaphor.ga'
   },
   {
     'title': 'Challenges in Finding Metaphorical Connections',
@@ -195,26 +226,26 @@ $(document).ready( function() {
   });
 
   // add writing images
-  // $.each(books, function(i, val) {
-  //   // make thumbnails
-  //   var imgimg = $("<img>").attr('src', val['src']);
-  //   var imgfig = $("<figure class='image imageclick'>").attr('id', 'books' + i);
-  //   var imgdiv = $("<div class='column'>");
-  //   imgfig.append(imgimg);
-  //   imgdiv.addClass(val['colsize']);
-  //   imgdiv.append(imgfig);
-  //   $('.books').append(imgdiv);
+  $.each(books, function(i, val) {
+    // make thumbnails
+    var imgimg = $("<img>").attr('src', val['src']);
+    var imgfig = $("<figure class='image imageclick'>").attr('id', 'books' + i);
+    var imgdiv = $("<div class='column'>");
+    imgfig.append(imgimg);
+    imgdiv.addClass(val['colsize']);
+    imgdiv.append(imgfig);
+    $('.books').append(imgdiv);
 
-  //   // make modal overlays
-  //   var modal = $('<div>').addClass('modal').addClass('books' + i);
-  //   var bckgrnd = $('<div>').addClass('modal-background');
-  //   var newfig = imgfig.clone().removeClass('imageclick').addClass('imagemodal');
-  //   var text = $('<p>').addClass('textmodal').append(val['text']);
-  //   var content = $('<div>').addClass('modal-content').append(newfig).append(text);
-  //   var button = $('<button>').addClass('modal-close').addClass('is-large');
-  //   modal.append(bckgrnd).append(content).append(button);
-  //   $('body').append(modal);
-  // });
+    // make modal overlays
+    var modal = $('<div>').addClass('modal').addClass('books' + i);
+    var bckgrnd = $('<div>').addClass('modal-background');
+    var newfig = imgfig.clone().removeClass('imageclick').addClass('imagemodal');
+    var text = $('<p>').addClass('textmodal').append(val['text']);
+    var content = $('<div>').addClass('modal-content').append(newfig).append(text);
+    var button = $('<button>').addClass('modal-close').addClass('is-large');
+    modal.append(bckgrnd).append(content).append(button);
+    $('body').append(modal);
+  });
 
   // add art and tech images
   $.each(arttech, function(i, val) {
