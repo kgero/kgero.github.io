@@ -118,6 +118,20 @@ var meche = [
 
 var papers_cs = [
   {
+    'title': "Mental Models of AI Agents in a Cooperative Game Setting",
+    'author': "<span class='myname'>Katy Gero</span>, Zahra Ashktorab, Casey Dugan, Qian Pan, James Johnson, Maria Ruiz, Sarah Miller, David Millen and Werner Geyer",
+    'source': "CHI",
+    'year': "2020 (in submission)"
+  },
+  {
+    'title': "Low-Level Linguistic Controls for Style Transfer and Content Preservation",
+    'author': "<span class='myname'>Katy Gero</span>, Chris Kedzie, Jonathan Reeve, and Lydia Chilton",
+    'source': "INLG",
+    'year': "2019",
+    'pdf': 'papers/Style_Transfer.pdf',
+    'code': 'https://github.com/kedz/styleeq'
+  },
+  {
     'title': "How a Stylistic, Machine-Generated Thesaurus Impacts a Writer's Process",
     'author': "<span class='myname'>Katy Gero</span> and Lydia Chilton",
     'source': "Creativity and Cognition",
@@ -212,7 +226,7 @@ $(document).ready( function() {
   });
   $.each(papers_other, function(i, val) {
     var tag = $("<p class='is-small'>");
-    tag.append("<strong>" + val['title'])
+    tag.append("<strong'>" + val['title'])
     tag.append("<br />" + val['author'])
     tag.append("<br />" + val['source'] + "; " + val['year'])
     tag.append("<br />")

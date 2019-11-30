@@ -1,5 +1,13 @@
 var poems = [
 	{
+		'title': 'Three Ocean Poems',
+		'publication': 'Dear Ocean Reading Series',
+		'month': 'Nov',
+		'date': '2019',
+		'link': '',
+		'description': ''
+	},
+	{
 		'title': 'Self Portrait as a Decision Tree',
 		'publication': 'Bookstore Poets, Vol 1',
 		'month': 'June',
