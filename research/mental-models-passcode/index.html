@@ -1,0 +1,173 @@
+<html>
+<head>
+    <title>Mental Models of AI Agents</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <style>
+      h1 {
+        /*font-family: 'Dancing Script', cursive;*/
+      }
+      .title {
+        font-size: 60px;
+      }
+      .sub {
+        font-size: 30px;
+      }
+    </style>
+
+</head>
+<body>
+
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-7">
+        <br />
+        <h1>
+          Mental Models of AI Agents
+        
+        <small>
+          in a Cooperative Game Setting
+        </small>
+        </h1>
+        <br />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-3">
+        
+        <p>
+        <img src="header.png" class="img-responsive img-thumbnail" alt="Responsive image" border="1px">
+</p>
+        <p>
+          <a href="../../papers/Mental_Models_and_Word_Game_CHI_Final_Revised.pdf" target="_blank">
+            <button class="btn btn-default btn-xs">PDF</button>
+          </a>
+        </p>
+        <p><span class="label label-success">Best Paper Award</span></p>
+
+        <h5>Publication citation</h5>
+
+        <p class="text-muted">
+          Katy Ilonka Gero, Zahra Ashktorab, Casey Dugan, Qian Pan, James Johnson, Werner Geyer, Maria Ruiz, Sarah Miller, David R. Millen, Murray Campbell, Sadhana Kumaravel, and Wei Zhang. 2020.
+          Mental Models of AI Agents in a Cooperative Game Setting.
+          In CHI Conference on Human Factors in Computing Systems Proceedings 
+          (CHI 2020).
+          <em>(to appear)</em>
+        </p>
+
+        <h5>Authors</h5>
+        <p>
+          <a href="http://katygero.com" target="_blank">Katy Ilonka Gero</a>, Zahra Ashktorab, Casey Dugan, Qian Pan, James Johnson, Werner Geyer, Maria Ruiz, Sarah Miller, David R. Millen, Murray Campbell, Sadhana Kumaravel, and Wei Zhang.
+        </p> 
+        <h5>Contact</h5>
+        <p>
+          katy@cs.columbia.edu
+        </p>
+
+        <h5>Affliation</h5>
+        <p>
+          <a href="https://www.cs.columbia.edu/" target="_blank"><img src="https://www.cs.columbia.edu/wp-content/themes/columbia-cs/assets/img/main-logo.png" class="img-responsive img-rounded" alt="Responsive image" width="75%"></a>
+        </p>
+        <p>
+          <a href="http://www.research.ibm.com/index.shtml" target="_blank"><img src="ibm.png" class="img-responsive img-rounded" alt="Responsive image" width="25%"></a>
+        </p>
+        
+        
+      </div>
+      <div class="col-md-6">
+        
+        <blockquote>
+          <p>
+            We studied how people <em>thought</em> an AI agent worked when they played a cooperative word guessing game.
+            (This is their mental model of the AI agent.)
+            We found three categories of beliefs people have about AI agents: global behavior, local behavior, and knowledge distribution.
+          </p>
+        </blockquote>
+
+        <!-- <br /> -->
+
+        <p class="text-center" style="font-size: 16px">
+            Play the game participants played: <a href="http://ibm.biz/wordbot" target="_blank">Passcode</a>
+        </p>
+
+
+
+        <h4>Motivation</h4>
+        <p>
+          Mental models define how we interact with the world. When we sit down to drive a car, or explain how lights work to a child, or look for a file on our computer, we use our mental models to make sense of the world and act on it.
+        </p>
+        <p>
+          As AI systems appear in high-stakes environments, such as decisions about who to hire or disease diagnosis, understanding people’s mental models of these systems becomes increasingly important. In this work, we had people play a cooperative word guessing game with an AI agent, and through two studies (a think-aloud study and an online, large-scale study) investigated how people develop mental models of AI agents.
+        </p>
+
+        <h4>Research Questions</h4>
+        <p>
+          <ol>
+            <li>
+              What should conceptual models of AI systems include?
+            </li>
+            <li>
+              How do users develop mental models of AI systems?
+            </li>
+            <li>
+              What encourages accurate mental models of AI systems?
+            </li>
+          </ol>
+        </p>
+
+        <h4>Passcode: A Word Guessing Game</h4>
+        <p>
+          Participants played a word guessing game with a sophisticated, reinforcement-learning-based AI agent. In this game, one person has a secret word they try to get the other person to guess by giving related, single word hints. See the example gameplay below:
+        </p>
+        <p class="text-center">
+          <img src="gameplay.png" class="img-responsive img-rounded" alt="Responsive image" width="60%">
+        </p>
+        <p>
+          One important finding of our research was that understanding the details of how the AI agent was designed and trained <em>did not</em> give us a full understanding of its behavior. For example, although the AI agent had access to good information about the word 'Paris', it gave very poor hints. Characterizing the AI agent (developing a conceptual model) required both understanding how it was trained as well as running a series of analysis based purely on its behavior during gameplay.
+        </p>
+
+
+        <h4>Results</h4>
+        <p>
+          In our first study we used thematic analysis to develop a set of codes. These codes describe the types of concerns participants had when playing with the AI agent. The most prevalent codes show what people think about most when playing with the AI agent: they worry about why it did something unexpected, they try to find patterns in its behavior, and they wonder what kinds of knowledge it has.
+        </p>
+        <p>
+          In our second study, we found that people who had the best understanding of how the AI agent behaved were able to play the game the best. However, as is expected with complex systems, no one had a perfect understanding of how the AI agent worked.
+        </p>
+
+
+        <p class="text-center">
+          <img src="table.png" class="img-responsive img-thumbnail" alt="Responsive image" border="0px">
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+
+<!-- FOOTER -->
+  <div class="container">
+    <div class="content text-center">
+      <p>
+        <span class='icon'><i class='fa fa-paper-plane'></i></span>
+      </p>
+      
+      
+      <p>
+        &nbsp;
+      </p>
+    </div>
+  </div>
+</body>
+</html>
