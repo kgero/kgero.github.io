@@ -1,5 +1,13 @@
 var poems = [
 	{
+		'title': 'Our Ocean',
+		'publication': 'Brooklyn Poets Poet-of-the-Week',
+		'month': 'Apr',
+		'date': '2020',
+		'link': 'https://brooklynpoets.org/poet/katy-ilonka-gero/',
+		'description': ''
+	},
+	{
 		'title': 'Three Ocean Poems',
 		'publication': 'Dear Ocean Reading Series',
 		'month': 'Nov',

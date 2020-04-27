@@ -99,4 +99,8 @@ p, li {
   font-size: 15px;
 }
 
-
+.tagged {
+  padding-left: 0.5em !important;
+  padding-right: 0.5em !important;
+  height: 1.5em !important;
+}

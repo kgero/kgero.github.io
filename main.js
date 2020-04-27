@@ -88,6 +88,11 @@ var arttech = [
     // 'linktext': 'Code Societies',
     'colsize': 'is-2',
     'text': "<p><a href='https://github.com/SFPC/codesocieties' target='_blank'>Code Societies</a> was a three week long summer session at <a href='sfpc.io' target='_blank'>the School for Poetic Computation</a> I attended in July 2018. You can find the work I did <a href='dat-portfolio/index.html'>here</a>."
+  },
+  {
+    'src': 'img/blackbox.png',
+    'colsize': 'is-3',
+    'text': '<p>Along with Eamonn Bell, I ran a semester long seminar on <a href="http://blackbox.cs.columbia.edu/" target="_blank">Art in the Age of Algorithms</a> that culminated in a half day symposium.'
   }];
 
 var meche = [
@@ -119,34 +124,36 @@ var meche = [
 var papers_cs = [
   {
     'title': "Mental Models of AI Agents in a Cooperative Game Setting",
-    'author': "<span class='myname'>Katy Gero</span>, Zahra Ashktorab, Casey Dugan, Qian Pan, James Johnson, Maria Ruiz, Sarah Miller, David Millen and Werner Geyer",
+    'author': "<span class='myname'>Katy Gero</span>, Zahra Ashktorab, Casey Dugan, Qian Pan, James Johnson, Werner Geyer, Maria Ruiz, Sarah Miller, David R. Millen, Murray Campbell, Sadhana Kumaravel, and Wei Zhang",
     'source': "CHI",
-    'year': "2020 (in submission)"
+    'year': "2020 <span class='tag tagged is-info'>Best Paper Award</span>",
+    'pdf': "papers/2020_MentalModelsofAIAgents.pdf",
+    'project page': 'research/mental-models-passcode/index.html'
   },
   {
     'title': "Low-Level Linguistic Controls for Style Transfer and Content Preservation",
     'author': "<span class='myname'>Katy Gero</span>, Chris Kedzie, Jonathan Reeve, and Lydia Chilton",
     'source': "INLG",
     'year': "2019",
-    'pdf': 'papers/Style_Transfer.pdf',
+    'pdf': 'papers/2019_StyleTransfer.pdf',
     'code': 'https://github.com/kedz/styleeq'
-  },
-  {
-    'title': "How a Stylistic, Machine-Generated Thesaurus Impacts a Writer's Process",
-    'author': "<span class='myname'>Katy Gero</span> and Lydia Chilton",
-    'source': "Creativity and Cognition",
-    'year': "2019",
-    'pdf': 'papers/thesaurus_cc.pdf',
-    'demo': 'https://thesaurus.ml'
   },
   {
     'title': 'Metaphoria: An Algorithmic Companion for Metaphor Creation',
     'author': "<span class='myname'>Katy Gero</span> and Lydia Chilton",
     'source': "CHI",
     'year': "2019",
-    'pdf': 'papers/Metaphoria_Revision.pdf',
-    'project page': 'https://katygero.com/research/metaphoria',
-    'demo': 'https://metaphor.ga'
+    'pdf': 'papers/2019_Metaphoria.pdf',
+    'project page': 'research/metaphoria/index.html',
+    'demo': 'http://language-play.com/metaphoria'
+  },
+  {
+    'title': "How a Stylistic, Machine-Generated Thesaurus Impacts a Writer's Process",
+    'author': "<span class='myname'>Katy Gero</span> and Lydia Chilton",
+    'source': "Creativity and Cognition",
+    'year': "2019",
+    'pdf': 'papers/2019_StylisticThesaurus.pdf',
+    'demo': 'http://language-play.com/thesaurusx'
   },
   {
     'title': 'Challenges in Finding Metaphorical Connections',
@@ -155,16 +162,18 @@ var papers_cs = [
     'year': "2018",
     'pdf': 'papers/revised-challenges-finding.pdf',
     'data': 'https://github.com/kgero/metaphorical-connections',
-    'slides': 'papers/metaphorical-connections-presentation.pdf'
+    'slides': 'papers/metaphorical-connections-presentation.pdf',
+    'hide': true
   },
   {
     'title': 'Transfer Learning for Style-Specific Text Generation',
     'author': "<span class='myname'>Katy Gero</span>, Giannis Karamanolakis and Lydia Chilton",
     'source': "NeurIPS Workshop on Machine Learning for Creativity and Design",
     'year': "2018",
-    'pdf': 'papers/neurips-transfer-paper.pdf',
+    'pdf': 'papers/2019_TransferLearningforStyle.pdf',
     'code': 'https://github.com/kgero/style-gen',
-    'poster': 'papers/neurips-transfer-poster.pdf'
+    'poster': 'papers/neurips-transfer-poster.pdf',
+    'hide': true
   }];
 
 var papers_other = [
@@ -200,11 +209,12 @@ var papers_other = [
 $(document).ready( function() {
   // add papers
   $.each(papers_cs, function(i, val) {
+    if ('hide' in val) { return true; }
     var tag = $("<p class='is-small'>");
-    tag.append("<strong>" + val['title'])
-    tag.append("<br />" + val['author'])
-    tag.append("<br />" + val['source'] + "; " + val['year'])
-    tag.append("<br />")
+    tag.append("<strong>" + val['title']);
+    tag.append("<br />" + val['author']);
+    tag.append("<br />" + val['source'] + "; " + val['year']);
+    tag.append("<br />");
     for(key in val) {
       if (key !== 'title' && key !== 'author' && key !== 'source' && key !== 'year') {
         tag.append("| <a target='_blank' href='" + val[key] + "'>"+key+"</a> ")
