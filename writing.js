@@ -1,5 +1,13 @@
 var poems = [
 	{
+		'title': 'WHALEFALL',
+		'publication': 'taper',
+		'month': 'Oct',
+		'date': '2020',
+		'link': 'https://taper.badquar.to/5/whalefall.html',
+		'description': ''
+	},
+	{
 		'title': 'Our Ocean',
 		'publication': 'Brooklyn Poets Poet-of-the-Week',
 		'month': 'Apr',
@@ -58,6 +66,15 @@ var poems = [
 ]
 
 var essays = [
+	{
+		'fulltitle': 'What Kind of Sonnets Will Computers Write?',
+		'title': 'What Kind of Sonnets Will Computers Write?', 
+		'publication': 'Catapult',
+		'month': 'October',
+		'date': '2020',
+		'link': 'https://catapult.co/stories/katy-gero-language-art-science-computer-generated-poetry',
+		'description': 'even a computational poem has to uncover something new'
+	},
 	{
 		'fulltitle': 'Language and the Algorithm',
 		'title': 'Language and the Algorithm', 
