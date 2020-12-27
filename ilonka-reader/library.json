@@ -1,0 +1,49 @@
+{
+    "name": "Tom's Library",
+    "url": "https://tomcritchlow.com/",
+    "bio": "A running list of books I've read...",
+    "lists":[
+        {
+            "name": "Books Read",
+            "url": "https://tomcritchlow.com/wiki/books/books-read/",
+            "books":
+                [{
+                "title": "The Memory Police",
+                "id": null,
+                "author": "Yoko Ogawa",
+                "link": "https://www.amazon.com/Memory-Police-Novel-Yoko-Ogawa/dp/1101870605",
+                "image": null,
+                "date_added": "In Progress",
+                "notes": "In progress.",
+                "tags": ["fiction"]
+              },
+                 {
+                "title": "An Introduction to Haiku",
+                "id": null,
+                "author": "Harold Gould Henderson",
+                "link": "https://www.amazon.com/Introduction-Haiku-Anthology-Poems-Poets/dp/0385093764",
+                "image": null,
+                "date_added": "03/12/20",
+                "tags": ["nonfiction", "poetry"],
+                "notes": "Brian suggested I get into Haiku and pick up this book and I'm glad I did! Beautiful, easy to read intro to Haiku. The author gives great context for what Haiku is, the main poets and how to read Haiku poetry. Recommended!"
+              },
+              {
+                "title": "Pattern Recognition",
+                "id": null,
+                "author": "William Gibson",
+                "link": "https://www.amazon.com/dp/B000OCXGVY/",
+                "tags": ["fiction"],
+                "date_added": "03/12/20",
+                "notes": "The consultant allergic to brands. Marketing agencies that wield global influence over culture."
+              },
+                 {
+                "title": "Satin Island",
+                "id": null,
+                "author": "Tom McCarthy",
+                "tags": ["fiction"],
+                "date_added": "03/12/20",
+                "link": "https://www.amazon.com/dp/B00MZWA678/",
+                "notes": "Then the Great Report would not be something that was either to-come or completed"
+              }]
+        }]
+}    
