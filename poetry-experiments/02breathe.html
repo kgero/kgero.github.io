@@ -1,0 +1,107 @@
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <title>Exp. 2: Let It Breathe</title>
+
+    <style>
+      .flex-container {
+        display: flex;
+      }
+      .flex-child {
+        flex: 1;
+      }
+      textarea {
+        white-space: pre;
+      }
+    </style>
+    <script>
+      /**
+       * Shuffles array in place. Uses Fisher-Yates algo
+       * @param {Array} a items An array containing the items.
+       */
+      function shuffle(a) {
+          var j, x, i;
+          for (i = a.length - 1; i > 0; i--) {
+              j = Math.floor(Math.random() * (i + 1));
+              x = a[i];
+              a[i] = a[j];
+              a[j] = x;
+          }
+          return a;
+      }
+
+      function breathe(lineratio, wordratio) {
+        console.log('breathe');
+        var text = document.getElementById('raw').value;
+        lines = text.split('\n');
+        var newtext = '';
+        for (var l=0; l<lines.length; l++) {
+          if (Math.random() < lineratio) {
+            words = lines[l].split(' ');
+            var ceasuracount = Math.floor(words.length*wordratio);
+            for (i=0; i<ceasuracount; i++) {
+              var index = Math.floor(Math.random() * words.length);
+              words.splice(index, 0, Array(5).join('&nbsp;'));
+            }
+            newtext = newtext + words.join(' ') + '<br>';
+          } else {
+            newtext = newtext + lines[l] + '<br>';
+          }
+        }
+        document.getElementById("output").innerHTML = newtext;
+      }
+
+      function reprocess() {
+        var text = document.getElementById('output').innerHTML;
+        text = text.replaceAll('<br>', '\n');
+        text = text.replaceAll('&nbsp;', ' ');
+        console.log(text);
+        document.getElementById('raw').value = text;
+      }
+    </script>
+
+  </head>
+  <body>
+
+  <div class='flex-container'>
+    <div class='flex-child'>
+      <p><u>Enter your poem here:</u></p>
+      <textarea id="raw" rows="25" cols="50">Two roads diverged in a yellow wood,
+And sorry I could not travel both
+And be one traveler, long I stood
+And looked down one as far as I could
+To where it bent in the undergrowth;
+
+Then took the other, as just as fair,
+And having perhaps the better claim,
+Because it was grassy and wanted wear;
+Though as for that the passing there
+Had worn them really about the same,
+
+And both that morning equally lay
+In leaves no step had trodden black.
+Oh, I kept the first for another day!
+Yet knowing how way leads on to way,
+I doubted if I should ever come back.
+
+I shall be telling this with a sigh
+Somewhere ages and ages hence:
+Two roads diverged in a wood, and I—
+I took the one less traveled by,
+And that has made all the difference.</textarea><br>
+      <button onClick="breathe(.5,.1)">let it breathe a little</button><br>
+      <button onClick="breathe(.75,.5)">let it breathe some</button><br>
+      <button onClick="breathe(1,1)">let it breathe a lot</button><br>
+    </div>
+    <div class='flex-child'>
+      <p><u>Your expanded poem:</u></p>
+      <div id="output"></div>
+      <br>
+      <button onClick="reprocess()">paste this output into the entry box</button>
+    </div>
+  </div>
+
+  </body>
+</html>
