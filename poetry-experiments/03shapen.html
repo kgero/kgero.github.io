@@ -1,0 +1,131 @@
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <title>Exp. 3: Shapes</title>
+
+    <style>
+      .flex-container {
+        display: flex;
+      }
+      .flex-child {
+        flex: 1;
+      }
+      textarea {
+        white-space: pre;
+      }
+    </style>
+    <script>
+      function shapen() {
+        console.log('shape');
+        var text = document.getElementById('raw').value;
+        var newtext = drift(text);
+        document.getElementById("output").innerHTML = newtext;
+      }
+
+      function drift() {
+        var text = document.getElementById('raw').value;
+        var lines = text.split('\n');
+        var newtext = '';
+        for (var l=0; l<lines.length; l++) {
+          var newline = Array(l+1).join('&nbsp;') + lines[l] + '<br>';
+          newtext = newtext + newline;
+        }
+        document.getElementById("output").innerHTML = newtext;
+      }
+
+      function slim() {
+        var text = document.getElementById('raw').value;
+        text = text.replaceAll('\n', ' ');
+        var words = text.split(' ');
+        var maxwidth = 12;
+        var curwidth = 0;
+        var newtext = '';
+        for (var i=0; i<words.length; i++) {
+          if (curwidth < maxwidth) {
+            newtext = newtext + ' ' + words[i];
+            curwidth = curwidth + words[i].length;
+          } else {
+            newtext = newtext + '<br>' + words[i];
+            curwidth = words[i].length;
+          }
+        }
+        document.getElementById("output").innerHTML = newtext;
+      }
+
+      function curve() {
+        var text = document.getElementById('raw').value;
+        text = text.replaceAll('\n', ' ');
+        var words = text.split(' ');
+        var maxwidth = 40;
+        var l = -1.0;
+        var space = Math.floor(10*(Math.sin(l) + 1));
+        var newtext = Array(space).join('&nbsp;');
+        var curwidth = space;
+        l = l + 0.2;
+        for (var i=0; i<words.length; i++) {
+          if (curwidth < maxwidth) {
+            newtext = newtext + ' ' + words[i];
+            curwidth = curwidth + words[i].length;
+          } else {
+            space = Math.floor(10*(Math.sin(l) + 1));
+            newtext = newtext + '<br>' + Array(space).join('&nbsp;') + words[i];
+            curwidth = space + words[i].length;
+            l = l + 0.2;
+          }
+        }
+        document.getElementById("output").innerHTML = newtext;
+      }
+
+      function prose() {
+        var text = document.getElementById('raw').value;
+        var newtext = text.replaceAll('\n', ' ');
+        document.getElementById("output").innerHTML = newtext;
+      }
+
+
+    </script>
+
+  </head>
+  <body>
+
+  <div class='flex-container'>
+    <div class='flex-child'>
+      <p><u>Enter your poem here:</u></p>
+      <textarea id="raw" rows="25" cols="50">Two roads diverged in a yellow wood,
+And sorry I could not travel both
+And be one traveler, long I stood
+And looked down one as far as I could
+To where it bent in the undergrowth;
+
+Then took the other, as just as fair,
+And having perhaps the better claim,
+Because it was grassy and wanted wear;
+Though as for that the passing there
+Had worn them really about the same,
+
+And both that morning equally lay
+In leaves no step had trodden black.
+Oh, I kept the first for another day!
+Yet knowing how way leads on to way,
+I doubted if I should ever come back.
+
+I shall be telling this with a sigh
+Somewhere ages and ages hence:
+Two roads diverged in a wood, and I—
+I took the one less traveled by,
+And that has made all the difference.</textarea><br>
+      <button onClick="drift()">drift</button><br>
+      <button onClick="slim()">slim</button><br>
+      <button onClick="prose()">prose</button><br>
+      <button onClick="curve()">curve</button><br>
+    </div>
+    <div class='flex-child'>
+      <p><u>Your shaped poem:</u></p>
+      <div id="output"></div>
+    </div>
+  </div>
+
+  </body>
+</html>
