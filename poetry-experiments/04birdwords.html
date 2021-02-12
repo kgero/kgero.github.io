@@ -1,0 +1,76 @@
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <title>Exp. 4: Bird Words</title>
+
+    <style>
+      .flex-container {
+        display: flex;
+      }
+      .flex-child {
+        flex: 1;
+      }
+      textarea {
+        white-space: pre;
+      }
+    </style>
+    <script src="https://unpkg.com/compromise@latest/builds/compromise.min.js"></script>
+    <script>
+      // from https://www.enchantedlearning.com/wordlist/birds.shtml (to the letter 'n')
+      var birdwords = ["African gray parrot", "African penguin","albatross","American flamingo","American golden plover","American Robin","American tree sparrow","Archaeopteryx","Arctic tern","auk","Aves","aviary","avifauna","avocet",
+      "bald eagle","barn owl","beak","bill","bird","bird of paradise","bird watching","birdcage","birder","birdhouse","birding","bittern","black swan","blackbird","blue jay","bluebird","bobolink","bobwhite","bowerbird","brood","brown pelican","budgerigar","budgie","bullfinch","bunting",
+      "Canada goose","canary","cardinal","cassowary","catbird","chick","chickadee","chicken","clutch","cockatiel","cockatoo","common rhea","congregation","coot","cormorant","covey","cowbird","crake","crane","creeper","crest","crossbill","crow","cuckoo","curlew",
+      "darter","Dinornis","dove","downy woodpecker","duck","eagle","eastern bluebird","egg","egret","eider","emperor penguin","emu",
+      "falcon","feather","finch","flamingo","fledgling","flicker","flight","flight feathers","flightless","flock","fowl","frigatebird","gander","gizzard","gnatcatcher","golden eagle","goldfinch","goose","grackle","great egret","great horned owl","grebe","grosbeak","grouse","gull","gyrfalcon",
+      "harpy eagle","Hawaiian goose","hawk","hen","heron","hoatzin","hummingbird","ibis","Ichthyornis","jackdaw","jay","junco","kakapo","kestrel","kildeer","kingbird","kingfisher","kite","kiwi","kookaburra",
+      "lark","leghorn","longspur","loon","lorikeet","macaw","magpie","mallard duck","marbled murrelet","martin","meadowlark","merganser","migration","moa","mockingbird","nandu","nene","nest","nestling","nighthawk","nightingale","nightjar","nutcracker","nuthatch"];
+      function getRandBird() {
+        return birdwords[Math.floor(Math.random() * birdwords.length)];
+      }
+      function birdify() {
+        var text = document.getElementById('raw').value;
+        var lines = text.split('\n');
+        var newtext = '';
+        for (var i = 0; i<lines.length; i++) {
+          var doc = window.nlp(lines[i]);
+          var singular = doc.match('#Singular').not('#Pronoun');
+          singular.forEach(d => {
+            d.replaceWith(getRandBird())
+          })
+          var plural = doc.match('#Plural').not('#Pronoun');
+          plural.forEach(d => {
+            d.replaceWith(getRandBird() + 's')
+          })
+          newtext = newtext + doc.text() + '<br>';
+        }
+        document.getElementById("output").innerHTML = newtext;
+      }
+    </script>
+
+  </head>
+  <body>
+
+  <div class='flex-container'>
+    <div class='flex-child'>
+      <p><u>Enter your poem here:</u></p>
+      <textarea id="raw" rows="25" cols="50">Because I could not stop for Death –
+He kindly stopped for me –
+The Carriage held but just Ourselves –
+And Immortality.
+
+We slowly drove – He knew no haste
+And I had put away
+My labor and my leisure too,
+For His Civility –</textarea><br>
+      <button onClick="birdify()">birdify</button>
+    </div>
+    <div class='flex-child'>
+      <p><u>Your bird poem:</u></p>
+      <div id="output"></div>
+    </div>
+  </div>
+
+  </body>
+</html>
