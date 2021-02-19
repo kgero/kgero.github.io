@@ -1,0 +1,112 @@
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <title>Exp. 5: Part-of-Speech Colors</title>
+
+    <style>
+      .flex-container {
+        display: flex;
+      }
+      .flex-child {
+        flex: 1;
+      }
+      .noun {
+        color: #0077B6;
+      }
+      .verb {
+        color: #03045E;
+      }
+      .adj {
+        color: #00B4D8;
+      }
+      .adv {
+        color: #00B4D8;
+      }
+      .det {
+        color: #90E0EF;
+      }
+      .default {
+        color: #CAF0F8;
+      }
+      textarea {
+        white-space: pre;
+      }
+    </style>
+    <script src="https://unpkg.com/compromise@latest/builds/compromise.min.js"></script>
+    <script>
+      function colorme() {
+        var mapping = {
+          'Verb': 'verb',
+          'Noun': 'noun',
+          'Adjective': 'adj',
+          'Determiner': 'det',
+          'Adverb': 'adv'
+        }
+        var text = document.getElementById('raw').value;
+        var newtext = '';
+        var doc = window.nlp(text);
+        var jsonlines = doc.json();
+        for (var i = 0; i<jsonlines.length; i++) {
+          var terms = jsonlines[i]['terms'];
+          for (var j = 0; j<terms.length; j++) {
+            var word = terms[j];
+            var color = false;
+            for (key in mapping) {
+              if (word.tags.includes(key)) {
+                newtext = newtext + ' <span class="' + mapping[key] + '">' + word.text + '</span>';
+                color = true;
+              }
+            }
+            if (!color) {
+              newtext = newtext + ' <span class="default">' + word.text + '</span>';
+            }
+            newtext = newtext + word.post;
+          }
+          if (word.post.includes('\n')) { newtext = newtext + '<br>' }
+          if (word.post.includes('\n\n')) { newtext = newtext + '<br>' }
+        }
+        document.getElementById("output").innerHTML = newtext;
+      }
+    </script>
+
+  </head>
+  <body>
+
+  <div class='flex-container'>
+    <div class='flex-child'>
+      <p><u>Enter your poem here:</u></p>
+      <textarea id="raw" rows="25" cols="50">Two roads diverged in a yellow wood,
+And sorry I could not travel both
+And be one traveler, long I stood
+And looked down one as far as I could
+To where it bent in the undergrowth;
+
+Then took the other, as just as fair,
+And having perhaps the better claim,
+Because it was grassy and wanted wear;
+Though as for that the passing there
+Had worn them really about the same,
+
+And both that morning equally lay
+In leaves no step had trodden black.
+Oh, I kept the first for another day!
+Yet knowing how way leads on to way,
+I doubted if I should ever come back.
+
+I shall be telling this with a sigh
+Somewhere ages and ages hence:
+Two roads diverged in a wood, and I—
+I took the one less traveled by,
+And that has made all the difference.</textarea><br>
+      <button onClick="colorme()">color me</button>
+    </div>
+    <div class='flex-child'>
+      <p><u>Your poem with part-of-speech colors:</u></p>
+      <div id="output"></div>
+    </div>
+  </div>
+
+  </body>
+</html>
