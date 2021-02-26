@@ -1,0 +1,103 @@
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <title>Exp. 6: Forgetting</title>
+
+    <style>
+      .flex-container {
+        display: flex;
+      }
+      .flex-child {
+        flex: 1;
+      }
+      @keyframes bt {
+        0% {opacity: 1;}
+        50% {opacity: .5;}
+        100% {opacity: 0;}
+      }
+      .forget {
+        animation: bt 5s infinite;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+      }
+      textarea {
+        white-space: pre;
+      }
+    </style>
+    <script src="https://unpkg.com/compromise@latest/builds/compromise.min.js"></script>
+    <script>
+      var forgetter;
+
+      
+
+      function aboutToForget() {
+        var text = document.getElementById('raw').value;
+        var lines = text.split('\n');
+        var count = 0;
+        var newtext = '';
+        for(var i = 0; i < lines.length ; i++){
+          var words = lines[i].split(' ');
+          for(var j=0, sizej = words.length; j<sizej; j++){
+            count++;
+            newtext += ' <span id="' + count + '">' + words[j] + '</span>';
+          }
+          newtext += '<br>';
+        }
+        document.getElementById("output").innerHTML = newtext;
+        forgetter = setInterval(myMethod, 500);
+        function myMethod(){
+          var rand = Math.floor((Math.random() * count) + 1);
+          var span = document.getElementById(rand);
+          span.className = 'forget';
+          var word = span.innerHTML;
+          console.log(word);
+        }
+      }
+
+      function pause() {
+        clearInterval(forgetter);
+      }
+    </script>
+
+  </head>
+  <body>
+
+  <div class='flex-container'>
+    <div class='flex-child'>
+      <p><u>Enter your poem here:</u></p>
+      <textarea id="raw" rows="25" cols="50">Two roads diverged in a yellow wood,
+And sorry I could not travel both
+And be one traveler, long I stood
+And looked down one as far as I could
+To where it bent in the undergrowth;
+
+Then took the other, as just as fair,
+And having perhaps the better claim,
+Because it was grassy and wanted wear;
+Though as for that the passing there
+Had worn them really about the same,
+
+And both that morning equally lay
+In leaves no step had trodden black.
+Oh, I kept the first for another day!
+Yet knowing how way leads on to way,
+I doubted if I should ever come back.
+
+I shall be telling this with a sigh
+Somewhere ages and ages hence:
+Two roads diverged in a wood, and I—
+I took the one less traveled by,
+And that has made all the difference.</textarea><br>
+      <button onClick="aboutToForget()">forget</button>
+    </div>
+    <div class='flex-child'>
+      <p><u>Your poem will start forgetting:</u></p>
+      <div id="output"></div>
+      <button onClick="pause()">pause</button>
+    </div>
+  </div>
+
+  </body>
+</html>
