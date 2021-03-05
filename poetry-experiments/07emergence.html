@@ -1,0 +1,114 @@
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <title>Exp. 7: Emergence</title>
+
+    <style>
+      .flex-container {
+        display: flex;
+      }
+      .flex-child {
+        flex: 1;
+      }
+      @keyframes bt {
+        0% {opacity: 0;}
+        50% {opacity: .5;}
+        100% {opacity: 1;}
+      }
+      .remember {
+        animation: bt 1s infinite;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+      }
+      textarea {
+        white-space: pre;
+      }
+      .word {
+        opacity: 0;
+      }
+    </style>
+    <script src="https://unpkg.com/compromise@latest/builds/compromise.min.js"></script>
+    <script>
+      var emerger, count;
+      
+
+      function emerge() {
+        var text = document.getElementById('raw').value;
+        var lines = text.split('\n');
+        count = 0;
+        var newtext = '';
+        for(var i = 0; i < lines.length ; i++){
+          var words = lines[i].split(' ');
+          for(var j=0, sizej = words.length; j<sizej; j++){
+            count++;
+            newtext += ' <span class="word" id="' + count + '">' + words[j] + '</span>';
+          }
+          newtext += '<br>';
+        }
+        document.getElementById("output").innerHTML = newtext;
+        emerger = setInterval(myMethod, 2000);
+        
+      }
+
+      function pause() {
+        clearInterval(emerger);
+        emerger = 0;
+        console.log('pause', emerger);
+      }
+      function resume() {
+        if (emerger === 0) {
+          emerger = setInterval(myMethod, 2000);
+        }
+        console.log('resume', emerger);
+      }
+      function myMethod(){
+          var rand = Math.floor((Math.random() * count) + 1);
+          var span = document.getElementById(rand);
+          span.className = 'remember';
+          var word = span.innerHTML;
+        }
+    </script>
+
+  </head>
+  <body>
+
+  <div class='flex-container'>
+    <div class='flex-child'>
+      <p><u>Enter your poem here:</u></p>
+      <textarea id="raw" rows="25" cols="50">Two roads diverged in a yellow wood,
+And sorry I could not travel both
+And be one traveler, long I stood
+And looked down one as far as I could
+To where it bent in the undergrowth;
+
+Then took the other, as just as fair,
+And having perhaps the better claim,
+Because it was grassy and wanted wear;
+Though as for that the passing there
+Had worn them really about the same,
+
+And both that morning equally lay
+In leaves no step had trodden black.
+Oh, I kept the first for another day!
+Yet knowing how way leads on to way,
+I doubted if I should ever come back.
+
+I shall be telling this with a sigh
+Somewhere ages and ages hence:
+Two roads diverged in a wood, and I—
+I took the one less traveled by,
+And that has made all the difference.</textarea><br>
+      <button onClick="emerge()">emerge</button>
+    </div>
+    <div class='flex-child'>
+      <p><u>Your poem will start emerging:</u></p>
+      <div id="output"></div>
+      <button onClick="pause()">pause</button>
+      <button onClick="resume()">resume</button>
+    </div>
+  </div>
+
+  </body>
+</html>
