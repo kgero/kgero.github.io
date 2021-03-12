@@ -67,6 +67,15 @@ var poems = [
 
 var essays = [
 	{
+		'fulltitle': 'An Introduction to Feedback',
+		'title': 'An Introduction to Feedback', 
+		'publication': 'CultureHub',
+		'month': 'February',
+		'date': '2021',
+		'link': 'https://www.culturehub.org/read/katy-ilonka-gero-an-introduction-to-feedback',
+		'description': 'feedback is how we nourish the creative soul'
+	},
+	{
 		'fulltitle': 'What Kind of Sonnets Will Computers Write?',
 		'title': 'What Kind of Sonnets Will Computers Write?', 
 		'publication': 'Catapult',

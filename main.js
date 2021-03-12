@@ -123,57 +123,76 @@ var meche = [
 
 var papers_cs = [
   {
+    'title': "What Makes Tweetorials Tick: How Experts Communicate Complex Topics on Twitter",
+    'author': "Katy Gero, Vivian Liu, Sarah Huang, Jennifer Lee, Tim Requarth, and Lydia Chiltons",
+    'source': "CSCW",
+    'year': "2021 (<em>in submission</em>)",
+    'type': 'conference'
+  },
+  {
+    'title': 'How Novelists Use Generative Language Models: An Exploratory User Study',
+    'author': 'Alex Calderwood, Vivian Qiu, Katy Gero, Lydia Chilton',
+    'source': 'HAI-GEN at IUI',
+    'year': '2020',
+    'pdf': 'papers/2020_HowNovelistsUseGenerative.pdf',
+    'type': 'workshop'
+  },
+  {
     'title': "Mental Models of AI Agents in a Cooperative Game Setting",
-    'author': "<span class='myname'>Katy Gero</span>, Zahra Ashktorab, Casey Dugan, Qian Pan, James Johnson, Werner Geyer, Maria Ruiz, Sarah Miller, David R. Millen, Murray Campbell, Sadhana Kumaravel, and Wei Zhang",
+    'author': "Katy Gero, Zahra Ashktorab, Casey Dugan, Qian Pan, James Johnson, Werner Geyer, Maria Ruiz, Sarah Miller, David R. Millen, Murray Campbell, Sadhana Kumaravel, and Wei Zhang",
     'source': "CHI",
-    'year': "2020 <span class='tag tagged is-info'>Best Paper Award</span>",
+    'year': "2020 <span class='tag tagged is-info'>⭐ Best Paper Award ⭐</span>",
     'pdf': "papers/2020_MentalModelsofAIAgents.pdf",
-    'project page': 'research/mental-models-passcode/index.html'
+    'project page': 'research/mental-models-passcode/index.html',
+    'type': 'conference'
   },
   {
     'title': "Low-Level Linguistic Controls for Style Transfer and Content Preservation",
-    'author': "<span class='myname'>Katy Gero</span>, Chris Kedzie, Jonathan Reeve, and Lydia Chilton",
+    'author': "Katy Gero, Chris Kedzie, Jonathan Reeve, and Lydia Chilton",
     'source': "INLG",
     'year': "2019",
     'pdf': 'papers/2019_StyleTransfer.pdf',
-    'code': 'https://github.com/kedz/styleeq'
+    'code': 'https://github.com/kedz/styleeq',
+    'type': 'conference'
   },
   {
     'title': 'Metaphoria: An Algorithmic Companion for Metaphor Creation',
-    'author': "<span class='myname'>Katy Gero</span> and Lydia Chilton",
+    'author': "Katy Gero and Lydia Chilton",
     'source': "CHI",
     'year': "2019",
     'pdf': 'papers/2019_Metaphoria.pdf',
     'project page': 'research/metaphoria/index.html',
-    'demo': 'http://language-play.com/metaphoria'
+    'demo': 'http://language-play.com/metaphoria',
+    'type': 'conference'
   },
   {
     'title': "How a Stylistic, Machine-Generated Thesaurus Impacts a Writer's Process",
-    'author': "<span class='myname'>Katy Gero</span> and Lydia Chilton",
+    'author': "Katy Gero and Lydia Chilton",
     'source': "Creativity and Cognition",
     'year': "2019",
     'pdf': 'papers/2019_StylisticThesaurus.pdf',
-    'demo': 'http://language-play.com/thesaurusx'
+    'demo': 'http://language-play.com/thesaurusx',
+    'type': 'poster'
   },
   {
     'title': 'Challenges in Finding Metaphorical Connections',
-    'author': "<span class='myname'>Katy Gero</span> and Lydia Chilton",
+    'author': "Katy Gero and Lydia Chilton",
     'source': "NAACL Workshop on Figurative Language Processsing",
     'year': "2018",
-    'pdf': 'papers/revised-challenges-finding.pdf',
+    'pdf': 'papers/2018_ChallengesinFinding.pdf',
     'data': 'https://github.com/kgero/metaphorical-connections',
     'slides': 'papers/metaphorical-connections-presentation.pdf',
-    'hide': true
+    'type': 'workshop'
   },
   {
     'title': 'Transfer Learning for Style-Specific Text Generation',
-    'author': "<span class='myname'>Katy Gero</span>, Giannis Karamanolakis and Lydia Chilton",
+    'author': "Katy Gero, Giannis Karamanolakis and Lydia Chilton",
     'source': "NeurIPS Workshop on Machine Learning for Creativity and Design",
     'year': "2018",
-    'pdf': 'papers/2019_TransferLearningforStyle.pdf',
+    'pdf': 'papers/2018_TransferLearningforStyle.pdf',
     'code': 'https://github.com/kgero/style-gen',
-    'poster': 'papers/neurips-transfer-poster.pdf',
-    'hide': true
+    'poster': 'papers/2018_TransferLearningforStylePoster.pdf',
+    'type': 'poster'
   }];
 
 var papers_other = [
@@ -211,16 +230,17 @@ $(document).ready( function() {
   $.each(papers_cs, function(i, val) {
     if ('hide' in val) { return true; }
     var tag = $("<p class='is-small'>");
-    tag.append("<strong>" + val['title']);
-    tag.append("<br />" + val['author']);
-    tag.append("<br />" + val['source'] + "; " + val['year']);
-    tag.append("<br />");
+    tag.append(val['author'] + '. <span class="cspapertitle">"' + val['title'] + '."</span> in ');
+    tag.append(val['source'] + " " + val['year'] + '.');
+    // tag.append("<strong>" + val['title']);
+    // tag.append("<br />" + val['author']);
+    // tag.append("<br />" + val['source'] + "; " + val['year']);
+    // tag.append("<br />");
     for(key in val) {
-      if (key !== 'title' && key !== 'author' && key !== 'source' && key !== 'year') {
-        tag.append("| <a target='_blank' href='" + val[key] + "'>"+key+"</a> ")
+      if (key !== 'title' && key !== 'author' && key !== 'source' && key !== 'year' && key != 'type') {
+        tag.append(" [<a target='_blank' href='" + val[key] + "'>"+key+"</a>]");
         console.log(key, val[key]);
       }
-      
     };
 
     // if (val.hasOwnProperty('pdf')) {
@@ -232,7 +252,12 @@ $(document).ready( function() {
     // if (val.hasOwnProperty('slides')) {
     //   tag.append("| <a target='_blank' href='" + val['slides'] + "'>slides</a> ")
     // }
-    $('.papers_cs').append(tag);
+    if (val['type'] === 'conference') {
+      $('.papers_cs').append(tag);
+    } else {
+      $('.papers_cs_other').append(tag);
+    }
+    
   });
   $.each(papers_other, function(i, val) {
     var tag = $("<p class='is-small'>");
