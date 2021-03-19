@@ -1,0 +1,128 @@
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <title>Exp. 8: The Naming</title>
+
+    <style>
+      .flex-container {
+        display: flex;
+      }
+      .flex-child {
+        flex: 1;
+      }
+      @keyframes bt {
+        0% {opacity: 0;}
+        50% {opacity: .5;}
+        100% {opacity: 1;}
+      }
+      .remember {
+        animation: bt 1s infinite;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+      }
+      textarea {
+        white-space: pre;
+      }
+      .word {
+        opacity: 0;
+      }
+    </style>
+    <script src="https://unpkg.com/compromise@latest/builds/compromise.min.js"></script>
+    <script>
+      // using compromise.cool matching syntax:
+      // https://observablehq.com/@spencermountain/compromise-match-syntax
+
+      function theName(doc) {
+        var the = doc.match('#Noun').match('(#Plural|#Singular)').match('!#Person').match('!#Pronoun').out('array');
+        var thee = the.map(function(a) {return 'the ' + a;});
+        console.log(thee);
+        return(thee);
+      }
+      function nameName(doc) {
+        var the = doc.match('(#Person|#Place|#Organization)').out('array');
+        console.log(the);
+        return(the);
+      }
+      function adjNoun(doc) {
+        var the = doc.match('#Adjective+ #Noun').match('#Adjective+ !#Pronoun').out('array');
+        console.log(the);
+        return(the);
+      }
+      function nounVerb(doc) {
+        var the = doc.match('#Noun #Verb').out('array');
+        console.log(the);
+        return(the);
+      }
+      function gerund(doc) {
+        var the = doc.match('#Gerund').out('array');
+        console.log(the);
+        return(the);
+      }
+      function uncountable(doc) {
+        var unc = doc.match('#Uncountable').normalize().out('array');
+        var ger = doc.match('#Gerund').normalize().out('array');
+        console.log(unc, ger);
+        var titles = [];
+        for (var i=0; i<unc.length; i++) {
+          for (var j=0; j<ger.length; j++) {
+            titles.push(unc[i] + ' ' + ger[j]);
+          }
+        }
+        return(titles);
+      }
+      function theNaming() {
+        var text = document.getElementById('raw').value;
+        var htmltext = text.replaceAll('\n', '<br>');
+        var longtext = text.replaceAll("\n", ' ');
+        var doc = window.nlp(longtext);
+        var t = [];
+        t = t.concat(uncountable(doc)).concat(gerund(doc)).concat(adjNoun(doc));
+        t = t.concat(nameName(doc)).concat(theName(doc));
+        var cleant = []
+        for (var i=0; i<t.length; i++) {
+          cleant.push(t[i].replace(/[.,\/#!?$%\^&\*;:{}=\-_`~()]/g,""));
+        }
+        console.log(cleant);
+        var rand = Math.floor((Math.random() * (cleant.length)));
+        console.log(rand);
+        var title = '<p><strong>' + cleant[rand] + "</strong></p>";
+        document.getElementById("output").innerHTML = title + htmltext;
+      }
+    </script>
+
+  </head>
+  <body>
+
+  <div class='flex-container'>
+    <div class='flex-child'>
+      <p><u>Enter your poem here:</u></p>
+      <textarea id="raw" rows="25" cols="50">my head foaming clouds, sea inside me and out
+I am a walnut tree in Gulhane Park
+an old walnut, knot by knot, shred by shred
+Neither you are aware of this, nor the police
+
+I am a walnut tree in Gulhane Park
+My leaves are nimble, nimble like fish in water
+My leaves are sheer, sheer like a silk handkerchief
+pick, wipe, my rose, the tear from your eyes
+My leaves are my hands, I have one hundred thousand
+I touch you with one hundred thousand hands, I touch Istanbul
+My leaves are my eyes, I look in amazement
+I watch you with one hundred thousand eyes, I watch Istanbul
+Like one hundred thousand hearts, beat, beat my leaves
+
+I am a walnut tree in Gulhane Park
+neither you are aware of this, nor the police </textarea><br>
+      <button onClick="theNaming()">uncover a name</button><br>
+      <p style="font-size: .8em;"><em>Example poem is by Nazim Hikmet, a Turkish poet from the early 1900s.</em></p>
+    </div>
+    <div class='flex-child'>
+      <p><u>Your poem with name:</u></p>
+      <div id="output"></div>
+    </div>
+  </div>
+
+  </body>
+</html>
