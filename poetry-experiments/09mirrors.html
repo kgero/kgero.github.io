@@ -1,0 +1,114 @@
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <title>Exp. 9: Mirrors</title>
+
+    <style>
+      .flex-container {
+        display: flex;
+      }
+      .flex-child {
+        flex: 1;
+      }
+      textarea {
+        white-space: pre;
+      }
+      .mirror {
+        /*-moz-transform: scale(-1, 1);
+        -webkit-transform: scale(-1, 1);
+        -o-transform: scale(-1, 1);
+        -ms-transform: scale(-1, 1);
+        transform: scale(-1, 1);
+        padding-left: 50px;
+        text-align: right;*/
+        transform: scale(-1, 1);
+        /*color: #1c87c9;*/
+        -moz-transform: scale(-1, 1);
+        -webkit-transform: scale(-1, 1);
+        -o-transform: scale(-1, 1);
+        -ms-transform: scale(-1, 1);
+        transform: scale(-1, 1);
+        display: inline-block;
+      }
+      @keyframes bt {
+        0% {opacity: 0;}
+        50% {opacity: .5;}
+        100% {opacity: 1;}
+      }
+      .remember {
+        animation: bt 1s infinite;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+      }
+      .word {
+        opacity: 0;
+      }
+      .here {
+        opacity: 100%;
+      }
+    </style>
+    <script>
+      var totalcount, anicount=0, animate;
+      function theMirroring() {
+        var text = document.getElementById('raw').value;
+        var lines = text.split('\n');
+        var html; var words; totalcount=0;
+        for (var i = 0; i < lines.length; i++) {
+          words = lines[i].split(' ');
+          html = "";
+          for (var j = 0; j < words.length; j++) {
+            if (words[j] === '') { continue; }
+            if (j===words.length-1){
+              html += '<span class="word mirror end" id="' + totalcount.toString() + '">' + words[j] + '</span> ';
+              totalcount += 3; // makes a delay
+            } else {
+              html += '<span class="word mirror" id="' + totalcount.toString() + '">' + words[j] + '</span> ';
+            }
+            totalcount++;
+          }
+          document.getElementById("output").innerHTML += html + '<br>';
+        }
+        anicount = 0;
+        animate = setInterval(myMethod, 600);
+        // animate = setInterval(myMethod, 50);
+      }
+      function myMethod(){
+        if (totalcount <= anicount) { console.log('end'); clearInterval(animate); }
+        var span = document.getElementById(anicount);
+        if (span !== null) {
+          // if (span.classList.contains('end')) {
+          //   console.log(span);
+          // }
+          span.className += ' remember';
+        }
+        anicount++;
+        }
+    </script>
+
+  </head>
+  <body>
+
+  <div class='flex-container'>
+    <div class='flex-child'>
+      <p><u>Enter your poem here:</u></p>
+      <textarea id="raw" rows="25" cols="50">Because I could not stop for Death –
+He kindly stopped for me –
+The Carriage held but just Ourselves –
+And Immortality.
+
+We slowly drove – He knew no haste
+And I had put away
+My labor and my leisure too,
+For His Civility –</textarea><br>
+      <button onClick="theMirroring()">mirror mirror</button><br>
+    </div>
+    <div class='flex-child'>
+      <p><u>Your mirrored poem:</u></p>
+      <div id="output"></div>
+    </div>
+  </div>
+
+  </body>
+</html>
