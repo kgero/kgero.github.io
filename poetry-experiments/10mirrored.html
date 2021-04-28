@@ -1,0 +1,64 @@
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <title>Exp. 10: Mirroring</title>
+
+    <style>
+      .flex-container {
+        display: flex;
+      }
+      .flex-child {
+        flex: 1;
+      }
+      textarea {
+        white-space: pre;
+      }
+    </style>
+    <script>
+      function theMirroring(side) {
+        var other_side = side == 'left' ? 'right' : 'left';
+        console.log('side', side, '; other side', other_side);
+        var text = document.getElementById(side).value;
+        var lines = text.split('\n');
+        var html=""; var words;
+        for (var i = 0; i < lines.length; i++) {
+          words = lines[i].split(' ');
+          for (var j = words.length-1; j >= 0; j--) {
+            html += words[j] + ' '
+          }
+          html += '\n'
+        }
+        console.log('html', html);
+        document.getElementById(other_side).value = html;
+      }
+      document.addEventListener("DOMContentLoaded", function(event) 
+      {
+        //document is fully loaded
+
+      })
+    </script>
+
+  </head>
+  <body>
+
+  <div class='flex-container'>
+    <div class='flex-child' style="text-align:right; padding-right: 10px;">
+      <textarea onkeyup="theMirroring('left')" id="left" style="text-align:right;" rows="25" cols="50">Because I could not stop for Death –
+He kindly stopped for me –
+The Carriage held but just Ourselves –
+And Immortality.
+
+We slowly drove – He knew no haste
+And I had put away
+My labor and my leisure too,
+For His Civility –</textarea>
+    </div>
+    <div class='flex-child'>
+      <textarea onkeyup="theMirroring('right')" id="right" rows="25" cols="50"></textarea>
+    </div>
+  </div>
+
+  </body>
+</html>
