@@ -2036,6 +2036,36 @@
                     "date_added": "Wed, 28 Apr 2021",
                     "tags": ["fiction"],
                     "notes": ""
+                },
+                {
+                    "title": "Big Little Lies",
+                    "author": "Liane Moriarty",
+                    "date_added": "Mon, 05 Jul 2021",
+                    "tags": ["fiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "Eucalyptus",
+                    "author": "Murray Bail",
+                    "date_added": "Mon, 05 Jul 2021",
+                    "tags": ["fiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "Station Eleven",
+                    "author": "Emily St John Mandel",
+                    "date_added": "Mon, 05 Jul 2021",
+                    "date_finished": "Mon, 05 Jul 2021",
+                    "tags": ["fiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "Sorry and Beyond",
+                    "author": "",
+                    "date_added": "Sat, 10 Jul 2021",
+                    "date_finished": "Sat, 10 Jul 2021",
+                    "tags": ["nonfiction"],
+                    "notes": ""
                 }
             ]
         }
