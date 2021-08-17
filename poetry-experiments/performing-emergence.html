@@ -1,0 +1,94 @@
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <title>Performing Emergence</title>
+
+    <style>
+      body {
+        background-color: #000;
+      }
+      .main {
+        margin-left: 100px;
+        width: 1100px;
+        color: #fff;
+        font-size: 3em;
+      }
+      @keyframes bt {
+        0% {opacity: 0;}
+        50% {opacity: .5;}
+        100% {opacity: 1;}
+      }
+      .remember {
+        animation: bt 1s infinite;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+      }
+      textarea {
+        white-space: pre;
+      }
+      .word {
+        opacity: 0;
+      }
+    </style>
+    <script>
+      var emerger, count;
+
+      function emerge() {
+        var text = 'Every day the sun rose\n\
+the same way: atop the water\n\
+and bending into us. The depths were\n\
+shallow but we swam out beyond the ocean\'s white crash\n\
+where it yawned into us and turned sand\n\
+to turmoil before letting it settle back\n\
+to crystalline dunes. We saw the world\n\
+shafted by light roiling with every pull\n\
+from the moon. We swam looking down, and every day\n\
+the ocean changed beneath us.';
+        var lines = text.split('\n');
+        count = 0;
+        var newtext = '';
+        for(var i = 0; i < lines.length ; i++){
+          var words = lines[i].split(' ');
+          for(var j=0, sizej = words.length; j<sizej; j++){
+            count++;
+            newtext += ' <span class="word" id="' + count + '">' + words[j] + '</span>';
+          }
+          newtext += '<br>';
+        }
+        document.getElementById("output").innerHTML = newtext;
+        emerger = setInterval(myMethod, 2000);
+      }
+
+      function pause() {
+        clearInterval(emerger);
+        emerger = 0;
+        console.log('pause', emerger);
+      }
+      function resume() {
+        if (emerger === 0) {
+          emerger = setInterval(myMethod, 2000);
+        }
+        console.log('resume', emerger);
+      }
+      function myMethod(){
+          var rand = Math.floor((Math.random() * count) + 1);
+          var span = document.getElementById(rand);
+          span.className = 'remember';
+          var word = span.innerHTML;
+        }
+    </script>
+
+  </head>
+  <body>
+
+  <div class='main'>
+      <div id="output"></div>
+      <button onClick="emerge()">emerge</button>
+      <button onClick="pause()">pause</button>
+      <button onClick="resume()">resume</button>
+  </div>
+
+  </body>
+</html>
