@@ -58,20 +58,9 @@ the ocean changed beneath us.';
           newtext += '<br>';
         }
         document.getElementById("output").innerHTML = newtext;
-        emerger = setInterval(myMethod, 2000);
+        emerger = setInterval(myMethod, 3000);
       }
 
-      function pause() {
-        clearInterval(emerger);
-        emerger = 0;
-        console.log('pause', emerger);
-      }
-      function resume() {
-        if (emerger === 0) {
-          emerger = setInterval(myMethod, 3000);
-        }
-        console.log('resume', emerger);
-      }
       function myMethod(){
           var rand = Math.floor((Math.random() * count) + 1);
           var span = document.getElementById(rand);
@@ -86,8 +75,6 @@ the ocean changed beneath us.';
   <div class='main'>
       <div id="output"></div>
       <button onClick="emerge()">emerge</button>
-      <button onClick="pause()">pause</button>
-      <button onClick="resume()">resume</button>
   </div>
 
   </body>
