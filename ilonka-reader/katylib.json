@@ -2066,6 +2066,56 @@
                     "date_finished": "Sat, 10 Jul 2021",
                     "tags": ["nonfiction"],
                     "notes": ""
+                },
+                {
+                    "title": "Your House Will Pay",
+                    "author": "Steph Cha",
+                    "date_added": "Wed, 29 Sep 2021",
+                    "tags": ["fiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "Mind in Motion",
+                    "author": "Barbara Tversky",
+                    "date_added": "Wed, 29 Sep 2021",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "Fishwork",
+                    "author": "Caitlin Maling",
+                    "date_added": "Wed, 29 Sep 2021",
+                    "tags": ["poetry"],
+                    "notes": ""
+                },
+                {
+                    "title": "Lemons in the Chicken Wire",
+                    "author": "Alison Whittaker",
+                    "date_added": "Wed, 29 Sep 2021",
+                    "tags": ["poetry"],
+                    "notes": ""
+                },
+                {
+                    "title": "A Year Without a Name",
+                    "author": "Cyrus Dunham",
+                    "date_added": "Wed, 29 Sep 2021",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "Eunoia",
+                    "author": "Christian Bök",
+                    "date_added": "Wed, 29 Sep 2021",
+                    "tags": ["poetry"],
+                    "notes": ""
+                },
+                {
+                    "title": "The Reef",
+                    "author": "Iain McCalman",
+                    "date_added": "Wed, 29 Sep 2021",
+                    "date_finished": "Wed, 29 Sep 2021",
+                    "tags": ["nonfiction"],
+                    "notes": ""
                 }
             ]
         }
