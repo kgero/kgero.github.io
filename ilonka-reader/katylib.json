@@ -2116,6 +2116,21 @@
                     "date_finished": "Wed, 29 Sep 2021",
                     "tags": ["nonfiction"],
                     "notes": ""
+                },
+                {
+                    "title": "IRL",
+                    "author": "Tommy Pico",
+                    "date_added": "Thu, 14 Oct 2021",
+                    "tags": ["poetry"],
+                    "notes": ""
+                },
+                {
+                    "title": "The Undressing",
+                    "author": "Li-Young Lee",
+                    "date_added": "Thu, 14 Oct",
+                    "date_finished": "Tue, 12 Oct",
+                    "tags": ["poetry"],
+                    "notes": ""
                 }
             ]
         }
