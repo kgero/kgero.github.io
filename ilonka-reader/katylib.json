@@ -2128,8 +2128,24 @@
                     "title": "The Undressing",
                     "author": "Li-Young Lee",
                     "date_added": "Thu, 14 Oct",
-                    "date_finished": "Tue, 12 Oct",
+                    "date_finished": "Tue, 12 Oct 2021",
                     "tags": ["poetry"],
+                    "notes": ""
+                },
+                {
+                    "title": "The Sixth Extinction",
+                    "author": "Elizabeth Kolbert",
+                    "date_added": "Wed, 20 Oct 2021",
+                    "date_finished": "Wed, 20 Oct 2021",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "Colorful",
+                    "author": "Eto Mori",
+                    "date_added": "Mon, 25 Oct 2021",
+                    "date_finished": "Sun, 24 Oct 2021",
+                    "tags": ["fiction"],
                     "notes": ""
                 }
             ]
