@@ -2146,6 +2146,37 @@
                     "date_added": "Mon, 25 Oct 2021",
                     "date_finished": "Sun, 24 Oct 2021",
                     "tags": ["fiction"],
+                    "notes": "Read this for the computer science book club. Short book, easy read. Maybe a YA book? Translated from Japanese, so hard to tell. Anyway, I really liked it. About a soul that gets a second chance in a 'homestay' body of a kid (14 year old) who commited suicide but is brought back to life (by god?) and this soul has to figure out his shit. So the book is about the soul realizing all the ways the kid misinterpreted his life. It was a nice conceit and I felt really well done."
+                },
+                {
+                    "title": "How Will You Measure Your Life?",
+                    "author": "Clayton M. Christensen, James Allworth, and Karen Dillon",
+                    "date_added": "Wed, 27 Oct 2021",
+                    "date_finished": "Wed, 27 Oct 2021",
+                    "tags": ["nonfiction"],
+                    "notes": "I really liked the beginning of the book. It was recommended to me by Madison Le at Google, and it's a Harvard Business School professor basically summarizing his business research and applying it to your life choices. The first chapter is about 'hygiene' versus 'motivation' in jobs -- being paid enough is hygiene, but after a certain amount it's not actually a motivator. But the rest was more analogical, and trying to apply business research to raising kids and such. That's fine, I didn't think it was wrong per se, I just got bored and didn't really want to take life advice from an HBS prof trying to pass off his life wisdom.\n\nHe has a bit about taking 'emergent' opportunities versus planning your career. Okay, sure. There was an interesting thing about what 'job' something does. He talks about research on how a store improves their milkshake. So instead of asking customers what they life in a milkshake, they ask what purpose does the milkshake serve. So if one person comes in and is getting a milkshake to drink during their morning commute, that's different than a parent getting their kid a milkshake as a treat. It's less about demographics and preferences than what role it's filling. Then he tries to make this relationship advice, like what role or 'job' are you doing for your partner. Kind of interesting.\n\nBut that's about when I got bored and starting skimming. He has a thing about not 'outsourcing' raising your kids, and that early experiences are really important and later ones mostly just follow from the early ones. Again, sure, but this guy doesn't study children he studies businesses. He has a thing about how your family needs to create a culture -- again, business culture being his actual research. I just felt like he started overstretching his field of expertise. Also, there's all this research on habits and nudging that is actually about this stuff that I've read.\n\nThe epilogue seemed super religious, so I skipped it. At that point I was hardly reading anyway. Still, I got something out of it."
+                },
+                {
+                    "title": "Life on Mars",
+                    "author": "Tracy K. Smith",
+                    "date_added": "Wed, 27 Oct 2021",
+                    "tags": ["poetry"],
+                    "notes": ""
+                },
+                {
+                    "title": "The Art of Raising a Puppy",
+                    "author": "The Monks of New Skete",
+                    "date_added": "Thu, 28 Oct 2021",
+                    "date_finished": "Thu, 28 Oct 2021",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "Dawn",
+                    "author": "Octavia Butler",
+                    "date_added": "Mon, 01 Nov 2021",
+                    "date_finished": "Sun, 31 Oct 2021",
+                    "tags": ["fiction"],
                     "notes": ""
                 }
             ]
