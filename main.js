@@ -126,7 +126,7 @@ var papers_cs = [
     'title': "What Makes Tweetorials Tick: How Experts Communicate Complex Topics on Twitter",
     'author': "Katy Gero, Vivian Liu, Sarah Huang, Jennifer Lee, Tim Requarth, and Lydia Chiltons",
     'source': "CSCW",
-    'year': "2021 (<em>in submission</em>)",
+    'year': "2021",
     'type': 'conference'
   },
   {
