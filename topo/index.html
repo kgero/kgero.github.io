@@ -1,52 +1,76 @@
 <html>
 <head>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Style+Script&display=swap" rel="stylesheet"> 
 
   <script>
     $.ajax({
-      url: "https://api.github.com/repos/kgero/kgero.github.io/contents/topo",
+      url: "https://api.github.com/repos/kgero/kgero.github.io/contents/topo/photos",
       success: function(data){
         console.log('data', data);
-         $(data).find("a:contains(.jpg)").each(function(){
-            // will loop through 
-            var images = $(this).attr("href");
-            console.log('images', images);
-
-            $('<p></p>').html(images).appendTo('a div of your choice')
-
-         });
+        var row = $("<div>").addClass("row");
+        $(data).each(function(index, item){
+          console.log('index', index);
+          if (index % 3 == 0 && index !== 0) {
+            console.log('index', index);
+            $(".photos").append(row);
+            row = $("<div>").addClass("row");
+          }
+          var div = $("<div>").addClass("col-sm-4");
+          var img = $("<img>").addClass("img-fluid").attr({"src":"http://www.katygero.com/" + item.path});
+          div.append(img)
+          row.append(div);
+        });
+        $(".photos").append(row);
       }
     });
-      // (async () => {
-      //   const response = await fetch('https://api.github.com/repos/kgero/kgero.github.io/contents/topo');
-      //   const data = await response.json();
-      //   console.log(data);
-      //   // let htmlString = '<p>export const photos = [<br>';
-      //   // for (let file of data) {
-      //   //   if (file.name !== "index.html"){
-      //   //     htmlString += `{"src": "http://www.katygero.com/topo/${file.name}",<br>"width":1,<br>"height":1},<br>`;
-      //   //   }
-          
-      //   // }
-      //   // htmlString += '];';
-      //   // document.getElementsByTagName('body')[0].innerHTML = htmlString;
-      // })()
     </script>
+    <style>
+      .top-header {
+        border-bottom: 1px solid #cccccc;
+      }
+      .main-div {
+        background-color: #fafafa;
+      }
+      .insta {
+        font-family: 'Style Script', cursive;
+        font-size: 1.7em;
+        margin-top: .2em;
+        margin-bottom: .2em;
+      }
+      .username {
+        font-size: 1.2em;
+      }
+    </style>
 </head>
 <body>
   <section class="section">
-    <div class="columns">
-      <div class="row">
-        <div class="col-sm-4">
-          <img src="http://www.katygero.com/topo/IMG_9872.png" class="img-thumbnail" alt="...">
+    <div class="row top-header">
+      <div class='col-md-2'></div>
+      <div class="col-md-8">
+        <p class="insta">Topogram</p>
+      </div>
+    </div>
+
+    <div class="row main-div">
+      <div class='col-md-2'></div>
+      <div class="col-md-8 main">
+        <div class="row mt-3 mb-3">
+          <div class="col-sm-4">
+            <img class="img-thumbnail rounded-circle" src="http://www.katygero.com/topo/photos/IMG_0213.jpg">
+          </div>
+          <div class="col-sm-8 d-flex align-items-center">
+            <p class='username'>topo_graphical</p>
+          </div>
+          
         </div>
-        <div class="col-sm-4">
-          <img src="http://www.katygero.com/topo/IMG_9872.png" class="img-thumbnail" alt="...">
-        </div>
-        <div class="col-sm-4">
-          <img src="http://www.katygero.com/topo/IMG_9872.png" class="img-thumbnail" alt="...">
-        </div>
+        <hr>
+        <div class="row photos"></div>
       </div>
     </div>
   </section>
