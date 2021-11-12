@@ -13,13 +13,13 @@
       url: "https://api.github.com/repos/kgero/kgero.github.io/contents/topo/photos",
       success: function(data){
         console.log('data', data);
-        var row = $("<div>").addClass("row");
+        var row = $("<div>").addClass("row mb-4");
         $(data).each(function(index, item){
           console.log('index', index);
           if (index % 3 == 0 && index !== 0) {
             console.log('index', index);
             $(".photos").append(row);
-            row = $("<div>").addClass("row");
+            row = $("<div>").addClass("row mb-4");
           }
           var div = $("<div>").addClass("col-sm-4");
           var img = $("<img>").addClass("img-fluid").attr({"src":"http://www.katygero.com/" + item.path});
@@ -62,7 +62,7 @@
       <div class="col-md-8 main">
         <div class="row mt-3 mb-3">
           <div class="col-sm-4">
-            <img class="img-thumbnail rounded-circle" src="http://www.katygero.com/topo/photos/IMG_0213.jpg">
+            <img class="img-thumbnail rounded-circle" src="http://www.katygero.com/topo/photos/IMG_0213.png">
           </div>
           <div class="col-sm-8 d-flex align-items-center">
             <p class='username'>topo_graphical</p>
