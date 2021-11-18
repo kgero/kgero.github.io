@@ -2186,6 +2186,22 @@
                     "date_finished": "Tue, 09 Nov 2021",
                     "tags": ["poetry"],
                     "notes": ""
+                },
+                {
+                    "title": "Personal Science",
+                    "author": "Lillian-Yvonne Bertram",
+                    "date_added": "Wed, 17 Nov 2021",
+                    "date_finished": "Tue, 16 Nov 2021",
+                    "tags": ["poetry"],
+                    "notes": ""
+                },
+                {
+                    "title": "Love in the Big City",
+                    "author": "Sang Young Park",
+                    "date_added": "Wed, 17 Nov 2021",
+                    "date_finished": "Wed, 17 Nov 2021",
+                    "tags": ["fiction"],
+                    "notes": "Translated by Anton Hur.\n\n"
                 }
             ]
         }
