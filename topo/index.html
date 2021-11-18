@@ -17,8 +17,9 @@
       url: "https://api.github.com/repos/kgero/kgero.github.io/contents/topo/photos",
       success: function(data){
         console.log('data', data);
+        $('#img-count').text(data.length);
         var row = $("<div>").addClass("row mb-4");
-        $(data).each(function(index, item){
+        $(data.reverse()).each(function(index, item){
           console.log('index', index);
           if (index % 3 == 0 && index !== 0) {
             console.log('index', index);
@@ -82,13 +83,13 @@
         </div>
         <div class="row">
           <div class="col-sm-4">
-            XX posts
+            <span id='img-count'></span> posts
           </div>
           <div class="col-sm-4">
-            XX followers
+            ?? followers
           </div>
           <div class="col-sm-4">
-            XX following
+            2 following
           </div>
         </div>
         <div class="row">
