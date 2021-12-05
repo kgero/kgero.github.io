@@ -124,10 +124,21 @@ var meche = [
 var papers_cs = [
   {
     'title': "What Makes Tweetorials Tick: How Experts Communicate Complex Topics on Twitter",
-    'author': "Katy Gero, Vivian Liu, Sarah Huang, Jennifer Lee, Tim Requarth, and Lydia Chiltons",
+    'author': "Katy Gero, Vivian Liu, Sarah Huang, Jennifer Lee, and Lydia Chilton",
     'source': "CSCW",
     'year': "2021",
+    'pdf': 'papers/2021_WhatMakesTweetorialsTick.pdf',
+    'project page': 'http://language-play.com/tech-tweets/',
+    'data': 'https://github.com/kgero/what-makes-tweetorials-tick/',
     'type': 'conference'
+  },
+  {
+    'title': "Lightweight Decoding Strategies for Increasing Specificity",
+    'author': "Katy  Gero, Chris Kedzie, Savvas Petridis, and Lydia Chilton",
+    'source': "arXiv",
+    'year': "2021",
+    'pdf': 'papers/2021_LightweightDecoding.pdf',
+    'type': 'preprint'
   },
   {
     'title': 'How Novelists Use Generative Language Models: An Exploratory User Study',

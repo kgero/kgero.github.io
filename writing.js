@@ -1,5 +1,21 @@
 var poems = [
 	{
+		'title': 'Shuffled Still Life',
+		'publication': 'Catapult',
+		'month': 'Nov',
+		'date': '2021',
+		'link': 'https://catapult.co/community/stories/shuffled-still-life-katy-gero-poem/',
+		'description': ''
+	},
+	{
+		'title': 'The Architect',
+		'publication': 'Pigeonholes',
+		'month': 'Aug',
+		'date': '2021',
+		'link': 'http://pidgeonholes.com/2021/07/the-architect/',
+		'description': ''
+	},
+	{
 		'title': 'WHALEFALL',
 		'publication': 'taper',
 		'month': 'Oct',

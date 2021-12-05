@@ -2213,9 +2213,18 @@
                 },
                 {
                     "title": "The Story of a Shipwrecked Sailer",
+                    "author": "Gabriel Garcia Marquez",
                     "date_added": "Mon, 29 Nov 2021",
                     "date_finished": "Sun, 28 Nov 2021",
                     "tags": ["nonfiction"],
+                    "notes": ""
+                }
+                ,
+                {
+                    "title": "the black maria",
+                    "author": "Aracelis Girmay",
+                    "date_added": "Sat, 04 Dec 2021",
+                    "tags": ["poetry"],
                     "notes": ""
                 }
             ]
