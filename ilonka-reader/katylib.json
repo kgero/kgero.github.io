@@ -2218,12 +2218,18 @@
                     "date_finished": "Sun, 28 Nov 2021",
                     "tags": ["nonfiction"],
                     "notes": ""
-                }
-                ,
+                },
                 {
                     "title": "the black maria",
                     "author": "Aracelis Girmay",
                     "date_added": "Sat, 04 Dec 2021",
+                    "tags": ["poetry"],
+                    "notes": ""
+                },
+                {
+                    "title": "Wade in the Water",
+                    "author": "Tracy K. Smith",
+                    "date_added": "Sun, 12 Dec 2021",
                     "tags": ["poetry"],
                     "notes": ""
                 }
