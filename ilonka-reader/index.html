@@ -9,9 +9,10 @@
 
   // from https://www.geekstrick.com/load-json-file-locally-using-pure-javascript/
   function loadJSON(callback) {   
+    var fle = 'https://raw.githubusercontent.com/kgero/kgero.github.io/master/ilonka-reader/katylib.json';
     var xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json");
-    xobj.open('GET', 'katylib.json', true); // Replace 'appDataServices' with the path to your file
+    xobj.open('GET', fle, true); // Replace 'appDataServices' with the path to your file
     xobj.onreadystatechange = function () {
       if (xobj.readyState == 4 && xobj.status == "200") {
         // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
@@ -32,24 +33,31 @@
       var tags_set = new Set();
 
       for (var i=books.length-1; i>=0; i--) {
-        console.log('added', books[i].title);
+        // console.log('added', books[i].title);
         
         var date = document.createElement("div");
         date.className = "date_added";
         date.appendChild(document.createTextNode(books[i].date_added));
-        var title = document.createElement("h2");
+
+        var topline = document.createElement("div");
+
+        var title = document.createElement("span");
         title.appendChild(document.createTextNode(books[i].title));
-        var author = document.createElement("h3");
+        title.classList.add("title")
+        topline.appendChild(title);
+
+        var author = document.createElement("span");
         author.appendChild(document.createTextNode(books[i].author));
-        var tags = document.createElement("div");
-        tags.className = "tags";
+        author.classList.add("author");
+        topline.appendChild(author);
+
         classes = "";
         for (var j=0; j < books[i].tags.length; j++) {
           tags_set.add(books[i].tags[j]);
-          var t = document.createElement("div");
+          var t = document.createElement("span");
           t.className = "tag";
           t.appendChild(document.createTextNode(books[i].tags[j]));
-          tags.appendChild(t);
+          topline.appendChild(t);
           classes = classes + " " + books[i].tags[j];
         }
         var notes = document.createElement("div");
@@ -65,9 +73,7 @@
         var div = document.createElement("div");
         div.className = "book " + classes;
         div.appendChild(date);
-        div.appendChild(title);
-        div.appendChild(author);
-        div.appendChild(tags);
+        div.appendChild(topline);
         div.appendChild(notes);
 
         libdiv = document.getElementById("library");
@@ -142,53 +148,55 @@
 </script>
 
 <style>
-  p {
+  div {
     font-size: 12pt;
+    font-family: Tahoma;
   }
   div#library {
     margin: 25px auto;
     max-width: 800px;
   }
-  div.date_added {
-    font-size: .75em;
-    color: grey;
-    padding: 5px;
-    margin-top: 20px;
-  }
-  div.tags {
-    display: flex;
-  }
-  div.tag {
-    padding: 1px 5px 1px 5px;
-    border: 1px solid grey;
-    border-radius: 5px;
-    font-size: .75em
-  }
-  div.notes {
-    padding: 5px;
-  }
   div#actions {
+    margin: 25px auto;
+    max-width: 800px;
     display: flex;
     position: -webkit-sticky;
     position: sticky;
     top: 0;
     background-color: #fff;
   }
+  div.tags {
+    display: flex;
+  }
+  div.notes {
+    font-size: .9em;
+  }
   div.category {
     padding: 1px 5px 1px 5px;
-    border: 1px solid grey;
-    border-radius: 5px;
     font-size: .75em;
     margin: 3px;
+    color: darkgrey;
+    cursor:  pointer;
   }
-  h2 {
-    font-size: 1.5em;
+  div.date_added {
+    font-size: .75em;
+    color: silver;
+    padding: 5px 5px 5px 0px;
+    margin-top: 10px;
+  }
+  span.title {
+    font-size: 1.2em;
     margin: 0px;
   }
-  h3 {
-    font-size: 1em;
+  span.author {
+    font-size: .75em;
     font-style: italic;
-    margin-top: 0px;
+    margin-left: 0.5em;
+  }
+  span.tag {
+    padding: 1px 0px 1px 5px;
+    font-size: .75em;
+    color: darkgrey;
   }
 </style>
 
