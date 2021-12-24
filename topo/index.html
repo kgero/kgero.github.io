@@ -14,6 +14,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Style+Script&display=swap" rel="stylesheet"> 
 
   <script>
+
+    function getRandomInt(max) {
+      return Math.floor(Math.random() * max);
+    }
+
+    $('document').ready(function(){
+      console.log('adding',getRandomInt(1000).toString());
+      $('#numfollowers').text(getRandomInt(1000).toString());
+    });
+    
+
+
     $.ajax({
       url: "https://api.github.com/repos/kgero/kgero.github.io/contents/topo/photos",
       success: function(data){
@@ -23,7 +35,6 @@
         $(data.reverse()).each(function(index, item){
           console.log('index', index);
           if (index % 3 == 0 && index !== 0) {
-            console.log('index', index);
             $(".photos").append(row);
             row = $("<div>").addClass("row mb-1 mb-md-4");
           }
@@ -72,7 +83,7 @@
   <div class="container">
     <div class="row pt-3 pb-3">
       <div class="col-sm-4 col-12">
-        <img class="img-fluid profile-pic rounded-circle mx-auto d-block" src="http://www.katygero.com/topo/photos/IMG_0716.jpg">
+        <img class="img-fluid profile-pic rounded-circle mx-auto d-block" src="http://www.katygero.com/topo/photos/IMG_-716.jpg">
       </div>
       <div class="col-sm-5 col-12">
         <div class="row">
@@ -83,11 +94,11 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-4">
+          <div class="col-3">
             <span id='img-count'></span> posts
           </div>
-          <div class="col-4">
-            ?? followers
+          <div class="col-5">
+            <span id='numfollowers'></span> followers
           </div>
           <div class="col-4">
             2 following
