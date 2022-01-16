@@ -1,0 +1,114 @@
+a {
+  text-decoration: none;
+}
+
+.cspapertitle {
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?d1gfx6');
+  src:  url('fonts/icomoon.eot?d1gfx6#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?d1gfx6') format('truetype'),
+    url('fonts/icomoon.woff?d1gfx6') format('woff'),
+    url('fonts/icomoon.svg?d1gfx6#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: w;
+  font-size: 5em;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-jellyfish:before {
+  content: "\e900";
+}
+
+.expand {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 12px;
+    cursor: pointer;
+}
+.expandable {
+    display: none;
+}
+
+.mark {
+  color: #0011d1;
+}
+
+img {
+  border: 1px solid grey;
+  /*border-radius: 5px;*/
+}
+
+.myname {
+  text-decoration: underline;
+}
+
+.papertitle {
+  font-style: italic;
+}
+
+.imagemodal img {
+  max-height: 75%;
+  /*height: 75%;*/
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.imageclick {
+  cursor: pointer;
+}
+
+.modal-content p {
+  color: grey;
+}
+
+.modal-content a {
+  color: lightgrey;
+}
+
+.date {
+  color: grey;
+}
+
+.wtitle {
+  /*font-style: italic;*/
+  /*font-size: 18px;*/
+  color: #0011d1;
+}
+
+.wdescrip {
+  color: grey;
+  white-space: pre;
+}
+
+.publication {
+  color: grey;
+}
+
+p, li {
+  font-size: 15px;
+}
+
+.tagged {
+  padding-left: 0.5em !important;
+  padding-right: 0.5em !important;
+  height: 1.5em !important;
+}

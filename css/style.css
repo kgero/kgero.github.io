@@ -1,0 +1,76 @@
+.trail { /* className for the trail elements */
+    position: absolute;
+    height: 6px; width: 6px;
+    border-radius: 3px;
+    background: purple;
+  }
+
+a {
+  text-decoration: underline;
+  color: black;
+}
+
+
+@font-face {
+  font-family: 'handwriting';
+  src:  url('../fonts/Handwriting1-Regular.ttf') format('truetype'),
+        url('../fonts/Handwriting1-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+.img-div {
+  margin-bottom: 1rem;
+}
+
+p, li {
+  font-size: .9rem;
+  font-weight: 300;
+}
+
+.p-word {
+  font-family: handwriting;
+  font-weight: 400;
+}
+
+h2 {
+  font-family: handwriting;
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: purple;
+  margin-top: 2rem;
+}
+
+img {
+  opacity: .8;
+  filter: grayscale(100%);
+  border:  none;
+  padding: .25rem !important;
+}
+img:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+}
+
+img.writing-img {
+  max-width: 125px;
+}
+
+img.arttech-img {
+  max-height: 150px;
+  width: auto;
+  height: auto;
+}
+
+img.meche-img {
+  max-width: 150px;
+}
+
+img.visual-img {
+  max-height: 150px;
+  width: auto;
+  height: auto;
+}
+
