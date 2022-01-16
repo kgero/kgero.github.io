@@ -316,14 +316,14 @@ $(document).ready( function() {
   // add art and tech images
   $.each(arttech, function(i, val) {
     // make thumbnails
-    var imgimg = $("<img>").attr('src', val['src']).addClass('arttech-img float-start');
+    var imgimg = $("<img>").attr('src', val['src']).addClass('arttech-img img-fluid float-start');
     $('.arttech').append(imgimg);
   });
 
   // add painting images
   $.each(paintings, function(i, val) {
     // make thumbnails
-    var imgimg = $("<img>").attr('src', val['src']).addClass('img-fluid visual-img float-start');
+    var imgimg = $("<img>").attr('src', val['src']).addClass('visual-img img-fluid float-start');
     $('.paintings').append(imgimg);
   });
 
