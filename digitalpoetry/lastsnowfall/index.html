@@ -66,7 +66,7 @@
         { animation: {'fill-opacity': .8}, dur: droptime/3},
         { animation: {y: (ydrop/2) + ystart}, dur: droptime/2 },
         { animation: {y: ydrop + ystart}, dur: droptime/2 },
-        { animation: {y: ydrop + ystart + 20}, dur: droptime*5 }
+        { animation: {y: ydrop + ystart + getRandomInt(10,20)}, dur: droptime*5 }
       ];
       return frames;
     }
