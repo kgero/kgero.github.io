@@ -7,7 +7,10 @@
 
 a {
   text-decoration: underline;
-  color: black;
+  color: purple;
+}
+a:hover {
+  color: darkmagenta;
 }
 
 
@@ -18,7 +21,6 @@ a {
   font-weight: normal;
   font-style: normal;
 }
-
 
 
 .img-div {
@@ -45,7 +47,7 @@ h2 {
 
 img {
   opacity: .8;
-  filter: grayscale(100%);
+  /*filter: grayscale(100%);*/
   border:  none;
   padding: .25rem !important;
 }
