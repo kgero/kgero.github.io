@@ -18,6 +18,13 @@
     function getRandomInt(min,max) {
       return Math.floor(Math.random() * (max-min)) + min;
     }
+    const epigraph = [
+      "When  I think of the floor of the deep sea, the single, overwhelming fact that possesses my imagination",
+      "is the accumulation of sediments. I see the study, unremitting, downward drift of materials from above,",
+      "flake upon flake, layer upon layer--a drift that has continued for hundreds of millions of years, that will go on ",
+      "as long as there are seas and continents. -Rachel Carson"];
+
+
     const lines = [
       "language falls atop the bones of old words",
       "language falls atop the bones of my old words",
@@ -42,8 +49,33 @@
       "language falls close to you and me and you",
       "land gauges fall close to you and me and you",
       "land falls atop the bones of old words",
-      "plankton falls atop the bones of old worlds"
-
+      "plankton falls atop the bones of old worlds",
+      "i miss you",
+      "i miss you falling atop me",
+      "i miss your words",
+      "i miss the bones of your words",
+      "i miss the tiny organisms that settled in our story",
+      "miss the bones of our story",
+      "miss our language",
+      "miss our language atop the bones of old",
+      "your language bears the map of your ears",
+      "your language bears the map of your elders",
+      "hello elders",
+      "hello ears",
+      "hello future landing atop my language",
+      "hello future poems landing atop my language",
+      "hello future compressing the now",
+      "hello compression",
+      "hello bones of old",
+      "hello worlds of old",
+      "hello words of old",
+      "hello old words",
+      "hello bones of old words",
+      "hello from atop the bones of old words",
+      "hello falls atop the bones of old words",
+      "landfall atop the bones of old words",
+      "land falls atop the bones of old words",
+      "home falls atop the bones of old words"
     ];
     const yheight = 300;
     const ydrop = 200;
@@ -51,8 +83,7 @@
     const droptime = 6000;
     const lineheight = 6;
     var s = Snap(800, yheight);
-    // var s = Snap("#svg");
-    console.log('s', s);
+    
 
     var lines_obj = {};
     var i = 0;
@@ -66,7 +97,7 @@
         { animation: {'fill-opacity': .8}, dur: droptime/3},
         { animation: {y: (ydrop/2) + ystart}, dur: droptime/2 },
         { animation: {y: ydrop + ystart}, dur: droptime/2 },
-        { animation: {y: ydrop + ystart + getRandomInt(10,20)}, dur: droptime*5 }
+        { animation: {y: ydrop + ystart + getRandomInt(10,70)}, dur: droptime*5 }
       ];
       return frames;
     }
@@ -77,7 +108,7 @@
       element.animate(frames[idx].animation, frames[idx].dur, nextFrame.bind(null, element, frames, idx+1));
     }
 
-    dropLine();
+    
 
     function dropLine() {
       fr = getFrames();
@@ -87,8 +118,14 @@
       c++; i++; if (i >= lines.length) { i = 0; }
     }
 
-    function fadeOut(text) {
-      
+    var epigroup = s.g()
+    for (var j=0; j<=epigraph.length; j++) {
+      epi = s.text(20,50+(j*15), epigraph[j]);
+      epigroup.add(epi);
     }
+    
+    epigroup.animate({'fill-opacity': 0}, 10000, dropLine);
+    // dropLine();
+
   </script>
 </body>
