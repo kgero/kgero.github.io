@@ -25,7 +25,7 @@
     const epigraph = [
       "When  I think of the floor of the deep sea, the single, overwhelming fact that possesses my imagination",
       "is the accumulation of sediments. I see the study, unremitting, downward drift of materials from above,",
-      "flake upon flake, layer upon layer--a drift that has continued for hundreds of millions of years, that will go on ",
+      "flake upon flake, layer upon layer—a drift that has continued for hundreds of millions of years, that will go on ",
       "as long as there are seas and continents. -Rachel Carson"];
 
 
@@ -84,12 +84,12 @@
       "land falls atop the bones of old words",
       "home falls atop the bones of old words"
     ];
-    const yheight = 300;
-    const ydrop = 200;
+    const yheight = 600;
+    const ydrop = 500;
     const ystart = 50;
     const droptime = yheight*20;
     const lineheight = 6;
-    const epifadetime = 200;//20000;
+    const epifadetime = 20000;
     var s = Snap(800, yheight);
     
 
@@ -107,9 +107,9 @@
       xwidth = getRandomInt(20,400);
       var ymin = Math.max(50-c, 10);
       var frames = [
-        { animation: {'fill-opacity': .8}, dur: droptime/3},
-        { animation: {y: (ydrop/2) + ystart}, dur: droptime/2 },
-        { animation: {y: ydrop + ystart}, dur: droptime/2 },
+        { animation: {'fill-opacity': .8}, dur: droptime/5},
+        { animation: {y: (ydrop/6) + ystart}, dur: droptime/6 },
+        { animation: {y: ydrop + ystart}, dur: 5*droptime/6 },
         { animation: {y: ydrop + ystart + getRandomInt(ymin,55)}, dur: droptime*5 }
       ];
       return frames;
