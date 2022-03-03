@@ -149,7 +149,8 @@ var papers_cs = [
     'pdf': 'papers/2021_WhatMakesTweetorialsTick.pdf',
     'project page': 'http://language-play.com/tech-tweets/',
     'data': 'https://github.com/kgero/what-makes-tweetorials-tick/',
-    'type': 'conference'
+    'type': 'conference',
+    'bibtex': 'research/bibtex/tweetorials.txt'
   },
   {
     'title': "Poetry Machines: Eliciting Designs for Interactive Writing Tools from Poets",
@@ -157,7 +158,8 @@ var papers_cs = [
     'source': "Creativity and Cognition",
     'year': "2021",
     'pdf': 'papers/2021_PoetryMachines.pdf',
-    'type': 'poster'
+    'type': 'poster',
+    'bibtex': 'research/bibtex/poetrymachines.txt'
   },
   {
     'title': "Lightweight Decoding Strategies for Increasing Specificity",
@@ -182,7 +184,8 @@ var papers_cs = [
     'year': "2020 <span class='tag tagged is-info'>⭐ Best Paper Award ⭐</span>",
     'pdf': "papers/2020_MentalModelsofAIAgents.pdf",
     'project page': 'research/mental-models-passcode/index.html',
-    'type': 'conference'
+    'type': 'conference',
+    'bibtex': 'research/bibtex/mentalmodels.txt'
   },
   {
     'title': "Low-Level Linguistic Controls for Style Transfer and Content Preservation",
@@ -201,7 +204,8 @@ var papers_cs = [
     'pdf': 'papers/2019_Metaphoria.pdf',
     'project page': 'research/metaphoria/index.html',
     'demo': 'http://language-play.com/metaphoria',
-    'type': 'conference'
+    'type': 'conference',
+    'bibtex': 'research/bibtex/metaphoria.txt'
   },
   {
     'title': "How a Stylistic, Machine-Generated Thesaurus Impacts a Writer's Process",
@@ -210,7 +214,8 @@ var papers_cs = [
     'year': "2019",
     'pdf': 'papers/2019_StylisticThesaurus.pdf',
     'demo': 'http://language-play.com/thesaurusx',
-    'type': 'poster'
+    'type': 'poster',
+    'bibtex': 'research/bibtex/stylethesaurus.txt'
   },
   {
     'title': 'Challenges in Finding Metaphorical Connections',

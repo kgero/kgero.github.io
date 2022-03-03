@@ -1,0 +1,17 @@
+@inproceedings{10.1145/3450741.3466813,
+author = {Booten, Kyle and Gero, Katy Ilonka},
+title = {Poetry Machines: Eliciting Designs for Interactive Writing Tools from Poets},
+year = {2021},
+isbn = {9781450383769},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3450741.3466813},
+doi = {10.1145/3450741.3466813},
+abstract = { Improvements in natural language processing and generation have made possible new and powerful creativity support tools for creative writers. However, it remains unclear how professional writers themselves might want to integrate technology into their existing writing practices. In this work we ran an elicitation study, asking 14 professional poets to consider how they would make use of computation in the context of a custom, interactive writing interface or “Poetry Machine.” We found that the poets desired a wide range of functions, from presenting auditory responses to deleting random words. We also found that many poets did not simply report what their ideal interface would do but rather contextualized their designs by describing why they are artistically meaningful, sometimes with respect to specific literary influences and traditions. We present an initial analysis of the elicitation study and observe some differences between the Poetry Machine designs and existing creativity support tools. This study lays the groundwork for a second phase where we will build a selection of the machines and study how the poets use them over time.},
+booktitle = {Creativity and Cognition},
+articleno = {51},
+numpages = {5},
+keywords = {creativity support tools, interactive writing tools, poetry, natural language processing, creative writing},
+location = {Virtual Event, Italy},
+series = {C&amp;C '21}
+}

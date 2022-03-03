@@ -1,0 +1,17 @@
+@inproceedings{10.1145/3325480.3326573,
+author = {Gero, Katy Ilonka and Chilton, Lydia B.},
+title = {How a Stylistic, Machine-Generated Thesaurus Impacts a Writer's Process},
+year = {2019},
+isbn = {9781450359177},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3325480.3326573},
+doi = {10.1145/3325480.3326573},
+abstract = {Writers regularly use a thesaurus to help them write well; the thesaurus is one of the few widespread writing support tools and many writers find it integral to their writing practice. A normal thesaurus is hand-crafted and structured around strict synonymy for a given word sense. However, writers rarely look for a perfectly synonymous word -- instead they have additional ideas or constraints, such as words that are less cliche, more specific, or less gendered. Poets describe their usage as searching for words that "hold more interesting connotations." We present a machine learning approach to thesaurus generation, using word embeddings, that leverages stylistically distinct corpora -- such as naturalist writing, novels by a particular author, or writing from a technical discipline. We show examples of how stylistic thesauruses differ from each other and from a regular thesaurus, as well as preliminary responses from two writers who are given multiple stylistic thesauruses. Writers describe these thesauruses as reflective of style, unique from each other, and more exploratory and associative than a regular thesaurus. They also describe an increased attention to connotation. We outline plans for quantitative evaluation of stylistic thesauruses, and user studies to understand their impact on specific tasks.},
+booktitle = {Proceedings of the 2019 on Creativity and Cognition},
+pages = {597–603},
+numpages = {7},
+keywords = {creativity support tools, natural language processing, writing support, human-computer interaction},
+location = {San Diego, CA, USA},
+series = {C&amp;C '19}
+}

@@ -1,0 +1,13 @@
+@inbook{10.1145/3313831.3376316,
+author = {Gero, Katy Ilonka and Ashktorab, Zahra and Dugan, Casey and Pan, Qian and Johnson, James and Geyer, Werner and Ruiz, Maria and Miller, Sarah and Millen, David R. and Campbell, Murray and Kumaravel, Sadhana and Zhang, Wei},
+title = {Mental Models of AI Agents in a Cooperative Game Setting},
+year = {2020},
+isbn = {9781450367080},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3313831.3376316},
+abstract = {As more and more forms of AI become prevalent, it becomes increasingly important to understand how people develop mental models of these systems. In this work we study people's mental models of AI in a cooperative word guessing game. We run think-aloud studies in which people play the game with an AI agent; through thematic analysis we identify features of the mental models developed by participants. In a large-scale study we have participants play the game with the AI agent online and use a post-game survey to probe their mental model. We find that those who win more often have better estimates of the AI agent's abilities. We present three components for modeling AI systems, propose that understanding the underlying technology is insufficient for developing appropriate conceptual models (analysis of behavior is also necessary), and suggest future work for studying the revision of mental models over time.},
+booktitle = {Proceedings of the 2020 CHI Conference on Human Factors in Computing Systems},
+pages = {1–12},
+numpages = {12}
+}
