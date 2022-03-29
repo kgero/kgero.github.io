@@ -1,5 +1,29 @@
 var poems = [
 	{
+		'title': 'Whalefall (excerpt)',
+		'publication': 'Stirring Lit',
+		'month': 'Jan',
+		'date': '2022',
+		'link': 'https://www.stirringlit.com/vol-24-ed-1-p-whalefall-by-katy-gero',
+		'description': ''
+	},
+	{
+		'title': 'Ode to Marelle',
+		'publication': 'flux anthology',
+		'month': 'Feb',
+		'date': '2022',
+		'link': 'https://fifthwheelpress.com/flux-backend/ode-to-marelle-katy-ilonka-gero',
+		'description': ''
+	},
+	{
+		'title': 'Private Dead',
+		'publication': 'flux anthology',
+		'month': 'Feb',
+		'date': '2022',
+		'link': 'https://fifthwheelpress.com/flux-backend/ode-to-marelle-katy-ilonka-gero-5xjda',
+		'description': ''
+	},
+	{
 		'title': 'Shuffled Still Life',
 		'publication': 'Catapult',
 		'month': 'Nov',

@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>TITLE (Taper #5)</title>
+
+<!-- WHALEFALL,” Copyright (C) 2020 AUTHOR
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved. This file is offered as-is,
+without any warranty.
+
+This is from Taper #5: Pent Up, Fall 2020:
+
+https://taper.badquart.to/5/whalefall.html
+
+When whales die and sink, the whale carcasses, or whale falls, provide a sudden, concentrated food source and a bonanza for organisms in the deep sea. Different stages in the decomposition of a whale carcass support a succession of marine biological communities.​ 
+- National Ocean Service
+
+Sea, my oblivious afterworld, 
+grant us entry
+— Aracelis Girmay
+
+-->
+
+	<style>
+	body { margin:0 ; overflow:hidden }
+	a { color:#eee ; text-decoration:none }
+	header { margin:0 ; padding:0 ; background-color:#444 ; color:#bbb ;
+		position:relative ; z-index:1000 }
+	header > h1 { margin:0 ; font-size:12px ; font-family:sans-serif ;
+		border-bottom:1px #999 solid ; padding:5px 10px ; line-height:17px }
+	</style>
+</head>
+<body>
+<header id=nav>
+	<h1>
+		<a href="index.html">Taper #5 :
+		#####</a> : Fall 2020 <br>
+		<a href="template.html">"TITLE"</a> by
+		<a href="about.html#AUTHOR">AUTHOR</a> :
+		<a href="prev.html">&lt;&lt;</a> &mdash;
+		<a href="next.html">&gt;&gt;</a> :
+		<a onclick="fullscreenEvt(true);"> Full screen </a>
+	</h1>
+	<script>
+	function fullscreenListeners(f)
+	{
+		f("mozfullscreenchange",fullscreenEvt);
+		f("MSFullscreenChange",fullscreenEvt);
+		f("fullscreenchange",fullscreenEvt);
+		f("webkitfullscreenchange",fullscreenEvt);
+	}
+	function fullscreenEvt(incomingReq)
+	{
+		fullscreenListeners(document.removeEventListener);
+		if(incomingReq===true||document.mozFullScreen||document.fullscreenElement||
+		document.webkitIsFullScreen||document.msFullscreenElement) {
+			var fsElt;
+			if(window.c instanceof HTMLCanvasElement) fsElt = window.c;
+			else fsElt = document.documentElement;
+			if (fsElt.requestFullscreen) fsElt.requestFullscreen();
+			else if (fsElt.msRequestFullscreen) fsElt.msRequestFullscreen();
+			else if (fsElt.mozRequestFullScreen) fsElt.mozRequestFullScreen();
+			else if (fsElt.webkitRequestFullScreen) fsElt.webkitRequestFullScreen();
+			nav.style.display = "none";
+		}
+		else nav.style.display = "block";
+		if (typeof l==="function") setTimeout(l,200);
+		fullscreenListeners(document.addEventListener);
+	}
+	</script>
+</header> <!-- The poem that follows, up to </body>, is at most 2kb -->
+
+<style>
+	body {background-image: linear-gradient(#000099, black);overflow:visible;}
+    @keyframes bt {
+        0% {opacity: 0;}
+        50% {opacity: 1;}
+        100% {opacity: 0;}
+    }
+    div#p { font-size: 14pt; padding: 40px; width: 80%;}
+    div#a{
+	position: absolute;
+	top: 70%;
+	left: 90%;
+	}
+	#a span{
+	display: block;
+	width: 30px;
+	height: 30px;
+	border-bottom: 3px solid #999;
+	border-right: 3px solid #999;
+	transform: rotate(45deg);
+	animation: animate 6s infinite;
+	}
+	#a span:nth-child(2){
+	animation-delay: -0.4s;
+	}
+	#a span:nth-child(3){
+	animation-delay: -0.8s;
+	}
+	@keyframes animate {
+	0%{
+	    opacity: 0;
+	    transform: rotate(45deg) translate(-20px,-20px);
+	}
+	50%{
+	    opacity: 1;
+	}
+	100%{
+	    opacity: 0;
+	    transform: rotate(45deg) translate(20px,20px);
+	}
+	}
+</style>
+
+<!-- All poem code goes here, and must be less than or equal to 2048 bytes -->
+<!-- arrow animation from https://codepen.io/raf187/pen/BvgGRQ -->
+<div id='a'>
+	<span></span>
+	<span></span>
+	<span></span>
+</div>
+<div id='p'></div>
+
+
+<script>
+	words = ['flickering','in and out','of frame','faceless','blue','abyssal','chiton','catacombs','snails','hadal','combs','cusk','amphipods','grenadier','brittle','star','cerulean','zombie','indigo','bristle','sulfur','sapphire','bacteria','cobalt','limpets','bone mass','hydrogen','lipids','toxicity','mussels', 'sulfate','resistant','resilient','alive','alive','alive','alive','alive','alive','alive','i grew by the sea','sand in all my crevices','caught hermit crabs & threw them off the dock','collected seashells & traded them for candy','learned to recognize','the poisonous beasts','which included tide itself','and the rocks that slapped it','and still','not once','n o t','o n c e','did i ever know','','a whale.'];
+	
+	function rgh() {
+	  // var v = (Math.random()*(256)|0).toString(16);//bitwise OR. Gives value in the range 0-255 which is then converted to base 16 (hex).
+	  var i = ((Math.random()*100)+100|0);
+	  // console.log(i);
+	  var v = i.toString(16);
+	  // var v = (200).toString(16);
+	  return "#" + v + v + v;
+	}
+
+	div = document.getElementById('p');
+
+	for (var i = 0; i <= words.length - 1; i++) {
+		
+		var p = Math.ceil(Math.random()*5)*2 + (Math.floor(i/20)); // period
+		var d = Math.floor(Math.random()*5); // delay
+		div.innerHTML += "<font style='animation: bt " + p.toString() + "s infinite; animation-delay: -" + d.toString() + "s;' color='" + rgh() + "'>" + words[i] + "</font>";
+		var scale = Math.min(i*5, 30);
+		var k = Math.floor(Math.random() * scale);
+		// console.log(k);
+		var b = Math.floor(Math.random()*i);
+		var br = Array(b+3).join('<br>');
+		div.innerHTML += br;
+		for (var j = 0; j <= k; j++ ) {
+			div.innerHTML += '&emsp;';
+		}
+	}
+</script>
+
+
+
+</body>
+</html>
