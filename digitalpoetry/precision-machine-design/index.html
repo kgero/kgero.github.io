@@ -45,11 +45,11 @@ https://taper.badquar.to/8/title_of_your_work.html
 	p {
 		position:  absolute;
 		top:  400px;
-		left: 600px;
+		left: 50vw;
 	}
 </style>
 <script>
-	poem = ["I have always dated people who serve me well in disaster.", 
+	poem = ["• I have always dated people who serve me well in disaster.", 
 		"People who understand generators, solar cells, flintandsteel and radios.",
 		"My labmate says there is no such thing as a natural disaster.",
 		"Disaster being a human endeavor, the sweeping hurricane just an event.",
@@ -63,12 +63,15 @@ https://taper.badquar.to/8/title_of_your_work.html
 		x = 600;
 		div.innerHTML += "<p style='width:"+x+"px; transform-origin: -50px 0px; transform: rotate("+t+"deg);'>" + poem[i] + "</p>";
 	}
-	
+	y_prev = 0;
+	t_change = 0;
 	onmousemove = function(e){
 		console.log("mouse location:", e.clientX, e.clientY);
 		div.innerHTML = "";
+		if (e.clientY > y_prev) {t_change += e.clientY - y_prev;}
+		y_prev = e.clientY;
 		for (var i = 0; i <= poem.length - 1; i++) {
-			t = i * (360/8) - e.clientY;
+			t = i * (360/8) - t_change;
 			x = Math.max(0, e.clientX - 600);
 			div.innerHTML += "<p style='width:"+x+"px; transform-origin: -50px 0px; transform: rotate("+t+"deg);'>" + poem[i] + "</p>";
 		}
