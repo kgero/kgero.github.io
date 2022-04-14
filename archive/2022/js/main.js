@@ -142,17 +142,6 @@ var writing_tools = [
 
 var papers_cs = [
   {
-    'title': "Sparks: Inspiration for Science Writing using Language Models",
-    'author': "Katy Gero, Vivian Liu, and Lydia Chilton",
-    'source': "DIS",
-    'year': "2022 (forthcoming)",
-    // 'pdf': 'papers/2021_WhatMakesTweetorialsTick.pdf',
-    // 'project page': 'http://language-play.com/tech-tweets/',
-    // 'data': 'https://github.com/kgero/what-makes-tweetorials-tick/',
-    'type': 'conference',
-    // 'bibtex': 'research/bibtex/tweetorials.txt'
-  },
-  {
     'title': "What Makes Tweetorials Tick: How Experts Communicate Complex Topics on Twitter",
     'author': "Katy Gero, Vivian Liu, Sarah Huang, Jennifer Lee, and Lydia Chilton",
     'source': "CSCW",
@@ -236,8 +225,7 @@ var papers_cs = [
     'pdf': 'papers/2018_ChallengesinFinding.pdf',
     'data': 'https://github.com/kgero/metaphorical-connections',
     'slides': 'papers/metaphorical-connections-presentation.pdf',
-    'type': 'workshop',
-    'hide': true
+    'type': 'workshop'
   },
   {
     'title': 'Transfer Learning for Style-Specific Text Generation',
@@ -247,8 +235,7 @@ var papers_cs = [
     'pdf': 'papers/2018_TransferLearningforStyle.pdf',
     'code': 'https://github.com/kgero/style-gen',
     'poster': 'papers/2018_TransferLearningforStylePoster.pdf',
-    'type': 'poster',
-    'hide': true
+    'type': 'poster'
   }];
 
 var papers_other = [
@@ -281,28 +268,12 @@ var papers_other = [
     'slides': 'papers/aps_presentation_reduced.pdf'
   }]
 
-function flip() {
-    $('.card').toggleClass('flipped');
-}
 $(document).ready( function() {
-  $('.cs').hide();
-  $('.writing').hide();
-
-  $('#writing').click( function() {
-    $('.cs').hide();
-    $('.writing').show();
-  });
-  $('#cs').click( function() {
-    $('.cs').show();
-    $('.writing').hide();
-  });
-
-
 
   // add papers
   $.each(papers_cs, function(i, val) {
     if ('hide' in val) { return true; }
-    var tag = $("<p class='background is-small'>");
+    var tag = $("<p class='is-small'>");
     tag.append(val['author'] + '. <span class="cspapertitle">"' + val['title'] + '."</span> in ');
     tag.append(val['source'] + " " + val['year'] + '.');
     for(key in val) {
@@ -319,18 +290,18 @@ $(document).ready( function() {
     }
     
   });
-  // $.each(papers_other, function(i, val) {
-  //   var tag = $("<p class='is-small'>");
-  //   tag.append(val['author'] + '. <span class="cspapertitle">"' + val['title'] + '."</span> in ');
-  //   tag.append(val['source'] + " " + val['year'] + '.');
-  //   if (val.hasOwnProperty('pdf')) {
-  //     tag.append(" [<a target='_blank' href='" + val['pdf'] + "'>pdf</a>]")
-  //   }
-  //   if (val.hasOwnProperty('slides')) {
-  //     tag.append(" [<a target='_blank' href='" + val['slides'] + "'>slides</a>]")
-  //   }
-  //   $('.papers_other').append(tag);
-  // });
+  $.each(papers_other, function(i, val) {
+    var tag = $("<p class='is-small'>");
+    tag.append(val['author'] + '. <span class="cspapertitle">"' + val['title'] + '."</span> in ');
+    tag.append(val['source'] + " " + val['year'] + '.');
+    if (val.hasOwnProperty('pdf')) {
+      tag.append(" [<a target='_blank' href='" + val['pdf'] + "'>pdf</a>]")
+    }
+    if (val.hasOwnProperty('slides')) {
+      tag.append(" [<a target='_blank' href='" + val['slides'] + "'>slides</a>]")
+    }
+    $('.papers_other').append(tag);
+  });
 
   // add writing support tools
   $.each(writing_tools, function(i, val) {
@@ -340,39 +311,33 @@ $(document).ready( function() {
     $('.writing-tools').append(item);
   })
 
-  // // add writing images
-  // $.each(books, function(i, val) {
-  //   // make thumbnails
-  //   var imgimg = $("<img>").attr('src', val['src']).addClass('misc img-fluid float-start');
-  //   $('.books').append(imgimg);
-  // });
+  // add writing images
+  $.each(books, function(i, val) {
+    // make thumbnails
+    var imgimg = $("<img>").attr('src', val['src']).addClass('writing-img img-fluid float-start');
+    $('.books').append(imgimg);
+  });
 
-  // // add art and tech images
-  // $.each(arttech, function(i, val) {
-  //   // make thumbnails
-  //   var imgimg = $("<img>").attr('src', val['src']).addClass('misc img-fluid float-start');
-  //   $('.misc').append(imgimg);
-  // });
+  // add art and tech images
+  $.each(arttech, function(i, val) {
+    // make thumbnails
+    var imgimg = $("<img>").attr('src', val['src']).addClass('arttech-img img-fluid float-start');
+    $('.arttech').append(imgimg);
+  });
 
-  // // add painting images
-  // $.each(paintings, function(i, val) {
-  //   // make thumbnails
-  //   var imgimg = $("<img>").attr('src', val['src']).addClass('misc img-fluid float-start');
-  //   $('.misc').append(imgimg);
-  // });
+  // add painting images
+  $.each(paintings, function(i, val) {
+    // make thumbnails
+    var imgimg = $("<img>").attr('src', val['src']).addClass('visual-img img-fluid float-start');
+    $('.paintings').append(imgimg);
+  });
 
-  // // add meche images
-  // $.each(meche, function(i, val) {
-  //   // make thumbnails
-  //   var imgimg = $("<img>").attr('src', val['src']).addClass('img-fluid misc float-start');
-  //   $('.misc').append(imgimg);
-  // });
-
-  // $.each(books, function(i, val) {
-  //   // make thumbnails
-  //   var imgimg = $("<img>").attr('src', val['src']).addClass('img-fluid misc float-start');
-  //   $('.misc').append(imgimg);
-  // });
+  // add meche images
+  $.each(meche, function(i, val) {
+    // make thumbnails
+    var imgimg = $("<img>").attr('src', val['src']).addClass('img-fluid meche-img float-start');
+    $('.meche').append(imgimg);
+  });
 
   $('.modal').removeClass('is-active');
 

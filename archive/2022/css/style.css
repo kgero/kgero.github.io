@@ -1,20 +1,15 @@
 
 a {
   text-decoration: underline;
-  color: #005f73;
+  color: purple;
 }
 a:hover {
-  color: #005f73;
+  color: darkmagenta;
 }
-
-.bi {
-  margin-right: 10px;
-}
-
 
 @font-face {
   font-family: 'handwriting';
-  src:  url('../fonts/Handwriting2-Regular.ttf') format('truetype'),
+  src:  url('../fonts/Handwriting1-Regular.ttf') format('truetype'),
         url('../fonts/Handwriting1-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
@@ -27,20 +22,7 @@ a:hover {
 
 p, li {
   font-size: .9rem;
-  font-weight: 200;
-}
-
-.cspapertitle {
-  font-weight: 200;
-}
-
-p.background {
-  font-weight: 100;
-}
-
-li {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  font-weight: 300;
 }
 
 .p-word {
@@ -48,26 +30,12 @@ li {
   font-weight: 400;
 }
 
-h1 {
+h2 {
   font-family: handwriting;
   font-size: 2.75rem;
   font-weight: 500;
-  color: #005f73;
+  color: purple;
   margin-top: 2rem;
-}
-
-h2 {
-  font-family: handwriting;
-  font-size: 2rem;
-  font-weight: 500;
-  color: #000;
-  margin-top: 2rem;
-}
-
-h6 {
-  color: #005f73;
-  font-size: 1em;
-  font-weight: 200;
 }
 
 img {
@@ -79,13 +47,6 @@ img {
 img:hover {
   opacity: 1;
   filter: grayscale(0%);
-}
-
-img.misc {
-  max-height: 150px;
-  
-  width: auto;
-  height: auto;
 }
 
 img.writing-img {

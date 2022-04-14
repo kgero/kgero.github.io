@@ -8,11 +8,19 @@ var poems = [
 		'description': ''
 	},
 	{
-		'title': ['Ode to Marelle', 'Private Dead'],
+		'title': 'Ode to Marelle',
 		'publication': 'flux anthology',
 		'month': 'Feb',
 		'date': '2022',
-		'link': ['https://fifthwheelpress.com/flux-backend/ode-to-marelle-katy-ilonka-gero','https://fifthwheelpress.com/flux-backend/ode-to-marelle-katy-ilonka-gero-5xjda'],
+		'link': 'https://fifthwheelpress.com/flux-backend/ode-to-marelle-katy-ilonka-gero',
+		'description': ''
+	},
+	{
+		'title': 'Private Dead',
+		'publication': 'flux anthology',
+		'month': 'Feb',
+		'date': '2022',
+		'link': 'https://fifthwheelpress.com/flux-backend/ode-to-marelle-katy-ilonka-gero-5xjda',
 		'description': ''
 	},
 	{
@@ -69,8 +77,7 @@ var poems = [
 		'month': 'Feb',
 		'date': '2018',
 		'link': 'https://www.robocup-press.com/hence-tirade.html',
-		'description': '',
-		'archive': true
+		'description': ''
 	},
 	{
 		'title': 'Window',
@@ -94,8 +101,7 @@ var poems = [
 		'month': 'Sept',
 		'date': '2015',
 		'link': 'img/poems/whispers.jpg',
-		'description': '',
-		'archive': true
+		'description': ''
 	}
 ]
 
@@ -165,22 +171,16 @@ var essays = [
 
 $(document).ready( function() {
 	$.each(poems, function(i, val) {
-		if (val.archive) {return;}
 		var item = $('<li>');
 		var title = $("<span class='wtitle'>")
-		if (Array.isArray(val.title)) {
-			title.append("<a target='_blank' href='" + val.link[0] + "'>" + val.title[0] + "</a>");
-			for (var i=1; i<val.title.length; i++) {
-				title.append(", <a target='_blank' href='" + val.link[i] + "'>" + val.title[i]);
-			}
+		if (val['link'] != '') {
+			title.append("<a target='_blank' href='" + val['link'] + "'>" + val['title']);
 		} else {
-			if (val.link != '') {
-			title.append("<a target='_blank' href='" + val.link + "'>" + val.title);
-			} else { title.append(val.title); }
+			title.append(val['title']);
 		}
 		item.append(title);
-		item.append(" <span class='background publication'>" + val['publication']);
-		item.append("; <span class='background date'>" + val['date']);
+		item.append(" <span class='publication'>" + val['publication']);
+		item.append("; <span class='date'>" + val['date']);
 		$('.poems').append(item);
 	})
 
@@ -193,8 +193,8 @@ $(document).ready( function() {
 			title.append(val['title']);
 		}
 		item.append(title);
-		item.append(" <span class='background publication'>" + val['publication'] + "</span>");
-		item.append("; <span class='background date'>" + val['date'] + "</span>");
+		item.append(" <span class='publication'>" + val['publication'] + "</span>");
+		item.append("; <span class='date'>" + val['date'] + "</span>");
 		$('.essays').append(item);
 	})
 })
