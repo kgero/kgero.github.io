@@ -302,7 +302,7 @@ $(document).ready( function() {
   // add papers
   $.each(papers_cs, function(i, val) {
     if ('hide' in val) { return true; }
-    var tag = $("<p class='background is-small'>");
+    var tag = $("<p class='papers is-small'>");
     tag.append(val['author'] + '. <span class="cspapertitle">"' + val['title'] + '."</span> in ');
     tag.append(val['source'] + " " + val['year'] + '.');
     for(key in val) {
