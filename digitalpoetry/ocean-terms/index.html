@@ -1,0 +1,91 @@
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+
+  <title>Terminology</title>
+
+    <script src="https://unpkg.com/telescopic-text/lib/index.js"></script>
+   <link href="https://unpkg.com/telescopic-text/lib/index.css" rel="stylesheet">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90044110-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-90044110-1');
+  </script>
+
+
+</head>
+<body>
+
+<div id="telescopicPoem"></div>
+<script>
+  const telescopicContent = createTelescopicTextFromBulletedList(`- ocean (n)
+   - the four to seven largest pieces of my heart
+
+*
+
+- sea (n)
+   - a. 
+      - marginal love, that of love divided, or partially bounded by subconscious ridges
+   - b.	
+      - division of affection, delineated by standards of romance, currents, or specific inherited ideas of partnership
+   - c.	
+      - feeling of love, for example, a river running over a rock, where you are the rock, and you are also the river
+
+*
+
+- tributary (n)
+   - i find a small attraction that flows into a larger one
+
+*
+
+- bay (n)
+   - roughly, my entry to marriage
+
+*
+
+- fjord (n)
+   - i wade through water pooling in a cavern
+   - ...
+      - my socks slowly soaking through
+      - ...
+         - i do not feel cold
+         *
+         - §
+            - a bight (n) is a permanent collision
+            *
+            - °
+               - a sound (n) is a bite-mark fading
+               *
+               - »
+                  - i think weddings are little bits of rain and sea and culture
+                  *
+                  - i push my head under a waterfall and the pressure of the water pummeling my crown and ears and skull makes me feel intensely alive and also scared but i stay because i have no real fear this water cannot really hurt me i want to believe this life cannot really hurt me that my decisions are —
+                  *
+                  - ⎈
+                     - largest loves by length of time:
+                        - mother, father, siblings, words/books, creation/making, sleep, beach, math, showering, pants, walking alone in a city, Lan, Nina, Angeline, lentils, cloud formations, turbulence (in water), Rachel, Caitlin, chocolate, poetry, Sara, Rodrigo, moon, paper cranes, altered states, Silas, Oscar, cute houses, flannel, swimming, co-operative living, Marelle, tigers, coral reefs, nail polish, broccoli, this poem, and now, of course, though shortly, you
+                        *
+                        - ⁘  
+                           - ⁙  
+                              - ⁚
+                                 -  ⁛ 
+                                    - ⁜
+                                       - i get muddied
+                                       - .
+                                          - i get clean
+                                          - .
+                                             - in this tradition
+                                             - .
+                                                - rising out from the muck`, {separator: '<br/>', textMode: 'html'});
+  const container = document.getElementById("telescopicPoem");
+  container.appendChild(telescopicContent);
+</script>
+</body>
+</html>

@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Title (Taper #8)</title>
+	<title>Precision Machine Design (Taper #8)</title>
 
 <!-- “Title,” Copyright (C) 2022 Author
 
@@ -15,11 +15,12 @@ This is from Taper #8: 8-Bit Nostalgia, Spring 2022:
 
 https://taper.badquar.to/8/title_of_your_work.html
 
-... your creative statement here ...
+This poem takes its title from the textbook 
+'Precision Machine Design' by Alexander H. Slocum.
 
 -->
 
-	<style>
+<style>
 	body { margin:0 ; overflow:hidden }
 	a { color:#eee ; text-decoration:none }
 	header { margin:0 ; padding:0 ; background-color:#444 ; color:#bbb ;
@@ -33,46 +34,73 @@ https://taper.badquar.to/8/title_of_your_work.html
 	<h1>
 		<a href="index.html">Taper #8 :
 		8-Bit Nostalgia</a> : Spring 2022 <br>
-		<a href="title_of_your_work.html">"Title"</a> by
+		<a href="wrench.html">"Precision Machine Design"</a> by
 		<a href="about.html#authorlastname">Author</a> :
 		<a href="prev.html">&lt;&lt;</a> &mdash;
 		<a href="next.html">&gt;&gt;</a>
 	</h1>
 </header> <!-- All poem code goes here, and must be less than or equal to 2048 bytes (not including closing </body> and </html> tags below)-->
 
-<div id="main"></div>
 <style>
 	p {
 		position:  absolute;
 		top:  400px;
 		left: 50vw;
 	}
+	div#instructions {
+		position: absolute;
+		padding-right: 3px;
+		padding-left: 3px;
+		border: 1px solid black;
+		top: 50px;
+		left: 5px;
+		font-size: 1em;
+	}
 </style>
+
+<div id="main"></div>
+<div id="instructions">Click and drag down anywhere to rotate poem.</div>
+
 <script>
 	poem = ["• I have always dated people who serve me well in disaster.", 
 		"People who understand generators, solar cells, flintandsteel and radios.",
 		"My labmate says there is no such thing as a natural disaster.",
-		"Disaster being a human endeavor, the sweeping hurricane just an event.",
+		"Disaster being a human endeavor, a sweeping hurricane just an event.",
 		"In a labyrinth I find a room that shrinks and shrinks and I am so afraid I make a disaster out of the small space.",
 		"Replace labyrinth with lover. Replace lover with life.",
 		"We don’t need space, we need promise. (I have always dated people who serve me well.)",
-		"Our disaster being nothing you can solve with a wrench."];
+		"Our disaster is nothing you can solve with a wrench."];
 	div = document.getElementById('main');
 	for (var i = 0; i <= poem.length - 1; i++) {
 		t = i * (360/8);
 		x = 600;
 		div.innerHTML += "<p style='width:"+x+"px; transform-origin: -50px 0px; transform: rotate("+t+"deg);'>" + poem[i] + "</p>";
 	}
-	y_prev = 0;
+	y_prev = null;
 	t_change = 0;
+
+	var primaryMouseButtonDown = false;
+	function setPrimaryButtonState(e) {
+	  var flags = e.buttons !== undefined ? e.buttons : e.which;
+	  primaryMouseButtonDown = (flags & 1) === 1;
+	}
+	document.addEventListener("mousedown", setPrimaryButtonState);
+	document.addEventListener("mousemove", setPrimaryButtonState);
+	document.addEventListener("mouseup", setPrimaryButtonState);
+
 	onmousemove = function(e){
 		console.log("mouse location:", e.clientX, e.clientY);
 		div.innerHTML = "";
-		if (e.clientY > y_prev) {t_change += e.clientY - y_prev;}
-		y_prev = e.clientY;
+		if (primaryMouseButtonDown) {
+			console.log('mousedown');
+			if (y_prev === null) { y_prev = e.clientY; }
+			else if (e.clientY > y_prev) {t_change += e.clientY - y_prev;}
+			y_prev = e.clientY;
+		}
 		for (var i = 0; i <= poem.length - 1; i++) {
 			t = i * (360/8) - t_change;
-			x = Math.max(0, e.clientX - 600);
+			x = Math.max(100, e.clientX - 600);
+			console.log(e.clientX - 600);
 			div.innerHTML += "<p style='width:"+x+"px; transform-origin: -50px 0px; transform: rotate("+t+"deg);'>" + poem[i] + "</p>";
 		}
 	}

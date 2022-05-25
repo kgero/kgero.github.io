@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Precision Machine Design (Taper #8)</title>
+
+<!-- Precision Machine Design,” Copyright (C) 2022 Katy Ilonka Gero
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright 
+notice and this notice are preserved. This file is offered as-is,
+without any warranty.
+
+This is from Taper #8: 8-Bit Nostalgia, Spring 2022:
+
+https://taper.badquar.to/8/precision_machine_design.html
+
+This poem takes its title from the textbook 
+'Precision Machine Design' by Alexander H. Slocum.
+The piece deals with 8 as the infinity symbol (∞)
+and suggests an infinite reading of a poem that has
+a starting line but perhaps no ending line. In many
+ways the poem is about climate change, and our
+inability to solve it through technological means
+alone, but it also speaks to the intricacies of
+human relationships. Infinity can instill a felling
+of claustrophobia, and in this poem there is only
+one direction forward. There is no back.
+
+-->
+
+<style>
+	body { margin:0 ; overflow:hidden }
+	a { color:#eee ; text-decoration:none }
+	header { margin:0 ; padding:0 ; background-color:#444 ; color:#bbb ;
+		position:relative ; z-index:1000 }
+	header > h1 { margin:0 ; font-size:12px ; font-family:sans-serif ;
+		border-bottom:1px #999 solid ; padding:5px 10px ; line-height:17px }
+</style>
+</head>
+<body>
+<header id=nav>
+	<h1>
+		<a href="index.html">Taper #8 :
+		8-Bit Nostalgia</a> : Spring 2022 <br>
+		<a href="wrench.html">"Precision Machine Design"</a> by
+		<a href="about.html#authorlastname">Katy Ilonka Gero</a> :
+		<a href="prev.html">&lt;&lt;</a> &mdash;
+		<a href="next.html">&gt;&gt;</a>
+	</h1>
+</header> <!-- All poem code goes here, and must be less than or equal to 2048 bytes (not including closing </body> and </html> tags below)-->
+
+<style>
+	p {
+		position:  absolute;
+		top:  400px;
+		left: 50vw;
+	}
+	div#instructions {
+		position: absolute;
+		padding-right: 3px;
+		padding-left: 3px;
+		border: 1px solid black;
+		top: 50px;
+		left: 5px;
+		font-size: 1em;
+	}
+</style>
+
+<div id="main"></div>
+<div id="instructions">Click and drag down anywhere to rotate poem.</div>
+
+<script>
+poem=["➤ I have always dated people who serve me well in disaster.","People who understand generators, solar cells, flint-and-steel and radios.","My labmate says there is no such thing as a natural disaster.","Disaster being a human endeavor, a sweeping hurricane just an event.","In a labyrinth I find a room that shrinks and shrinks and I am so afraid I make a disaster out of the small space.","Replace labyrinth with lover. Replace lover with life.","We don’t need space, we need promise. (I have always dated people who serve me well.)","Our disaster is nothing you can solve with a wrench."],div=document.getElementById("main");for(var i=0;i<=poem.length-1;i++)t=45*i,x=600,div.innerHTML+="<p style='width:"+x+"px; transform-origin: -50px 0px; transform: rotate("+t+"deg);'>"+poem[i]+"</p>";y_prev=null,t_change=0;var primaryMouseButtonDown=!1;function setPrimaryButtonState(e){var t=void 0!==e.buttons?e.buttons:e.which;primaryMouseButtonDown=1==(1&t)}document.addEventListener("mousedown",setPrimaryButtonState),document.addEventListener("mousemove",setPrimaryButtonState),document.addEventListener("mouseup",setPrimaryButtonState),onmousemove=function(e){console.log("mouse location:",e.clientX,e.clientY),div.innerHTML="",primaryMouseButtonDown&&(console.log("mousedown"),null===y_prev?y_prev=e.clientY:e.clientY>y_prev&&(t_change+=e.clientY-y_prev),y_prev=e.clientY);for(var n=0;n<=poem.length-1;n++)t=45*n-t_change,x=Math.max(100,e.clientX-600),console.log(e.clientX-600),div.innerHTML+="<p style='width:"+x+"px; transform-origin: -50px 0px; transform: rotate("+t+"deg);'>"+poem[n]+"</p>"};
+</script>
+
+
+
+</body>
+</html>
