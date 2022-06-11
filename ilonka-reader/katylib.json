@@ -2532,7 +2532,36 @@
                     "date_finished": "Sun, 01 May 2022",
                     "tags": ["nonfiction"],
                     "notes": ""
-                }
+                },
+                {
+                    "title": "Human Dark with Sugar",
+                    "author": "Brenda Shaughnessy",
+                    "date_added": "Thu, 26 May 2022",
+                    "tags": ["poetry"],
+                    "notes": ""
+                },
+                {
+                    "title": "Customs",
+                    "author": "Solmaz Sharif",
+                    "date_added": "Thu, 26 May 2022",
+                    "tags": ["poetry"],
+                    "notes": ""
+                },
+                {
+                    "title": "White Decimal",
+                    "author": "Jean Daive",
+                    "date_added": "Thu, 26 May 2022",
+                    "tags": ["poetry"],
+                    "notes": ""
+                },
+                {
+                    "title": "Teeth",
+                    "author": "Aracelis Girmay",
+                    "date_added": "Thu, 26 May 2022",
+                    "date_finished": "Thu, 26 May 2022",
+                    "tags": ["poetry"],
+                    "notes": ""
+                },
             ]
         }
     ]

@@ -1,13 +1,9 @@
 a {
   text-decoration: underline;
-  color: #005f73;
+  color: #5D3FD3;
 }
 a:hover {
-  color: #005f73;
-}
-
-.bi {
-  margin-right: 10px;
+  color: #5D3FD3;
 }
 
 
@@ -25,21 +21,28 @@ a:hover {
 }
 
 p, li {
-  font-size: .9rem;
-  font-weight: 200;
+  font-size: 1rem;
 }
 
 .cspapertitle {
-  font-weight: 300;
+  font-weight: 400;
 }
 
 p.papers {
-  font-weight: 100;
+  font-weight: 200;
+}
+
+p.name {
+  color: #5D3FD3;
 }
 
 li {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.tabbed {
+  margin-left: 20px;
 }
 
 .p-word {
@@ -55,8 +58,8 @@ h1 {
 }
 
 h2 {
-  font-family: handwriting;
-  font-size: 2.2rem;
+  /*font-family: handwriting;*/
+  font-size: 1.3rem;
   font-weight: 500;
   color: #000;
   margin-top: 2rem;
@@ -106,3 +109,64 @@ img.visual-img {
   height: auto;
 }
 
+div.card {
+  /*background: #5D3FD3;*/
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 50px 50px 50px 50px;
+  align-content: center;
+  font-size: .5em;
+  /*max-width: 200px;*/
+}
+div.card:hover {
+  cursor: pointer;
+  color: #5D3FD3;
+}
+.mid {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2em;
+}
+.right {
+  position: absolute;
+  right: 0px;
+  font-size: 2em;
+}
+.bottom {
+  position: absolute;
+  bottom: 0px;
+  font-size: 2em;
+}
+.left {
+  position: absolute;
+  left: 0px;
+  font-size: 2em;
+}
+.top {
+  position: absolute;
+  top: 0px;
+  font-size: 2em;
+}
+
+:root {--factor: .5turn; }
+.spin1::before{
+  content: "↠";
+  /*content: "∘";*/
+}
+.spin1 {
+  font-size: 1.5em;
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 60px);
+  transform-origin: 60px 0px;
+  /*transform: rotate(.5turn);*/
+  transform: rotate(var(--factor));
+}
+
+svg.bi {
+  width: 1em;
+  margin-left: .25em;
+  padding-bottom: .25em;
+}

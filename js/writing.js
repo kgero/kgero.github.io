@@ -1,5 +1,21 @@
 var poems = [
 	{
+		'title': 'Precision Machine Design',
+		'publication': 'taper',
+		'month': 'Jun',
+		'date': '2022',
+		'link': 'https://taper.badquar.to/8/precision_machine_design.html',
+		'description': ''
+	},
+	{
+		'title': 'Accumulation',
+		'publication': 'The HTML Review',
+		'month': 'Apr',
+		'date': '2022',
+		'link': 'https://thehtml.review/01/accumulation.html',
+		'description': ''
+	},
+	{
 		'title': 'Whalefall (excerpt)',
 		'publication': 'Stirring Lit',
 		'month': 'Jan',

@@ -142,14 +142,34 @@ var writing_tools = [
 
 var papers_cs = [
   {
+    'title': "How do we audit generative algorithms?",
+    'author': "Katy Gero",
+    'source': "GenAI Workshop at CHI",
+    'year': "2022",
+    'pdf': 'papers/2022_AuditingGenerativeAlgorithms.pdf',
+    'type': 'workshop',
+    // 'bibtex': 'research/bibtex/tweetorials.txt'
+  },
+  {
     'title': "Sparks: Inspiration for Science Writing using Language Models",
     'author': "Katy Gero, Vivian Liu, and Lydia Chilton",
     'source': "DIS",
-    'year': "2022 (forthcoming)",
-    // 'pdf': 'papers/2021_WhatMakesTweetorialsTick.pdf',
-    // 'project page': 'http://language-play.com/tech-tweets/',
-    // 'data': 'https://github.com/kgero/what-makes-tweetorials-tick/',
+    'year': "2022",
+    'pdf': 'papers/2022_Sparks.pdf',
+    'extended abstract': 'papers/2022_Sparks_extendedabstract.pdf',
+    'poster': 'papers/2022_Sparks_poster.pdf',
     'type': 'conference',
+    // 'bibtex': 'research/bibtex/tweetorials.txt'
+  },
+  {
+    'title': "A Design Space for Writing Support Tools Using a Cognitive Process Model of Writing",
+    'author': "Katy Gero, Alex Calderwood, Charlotte Li, and Lydia Chilton",
+    'source': "In2Writing Workshop at ACL",
+    'year': "2022",
+    'pdf': 'papers/2022_DesignSpaceForWritingSupport.pdf',
+    // 'extended abstract': 'papers/2022_Sparks_extendedabstract.pdf',
+    // 'poster': 'papers/2022_Sparks_poster.pdf',
+    'type': 'workshop',
     // 'bibtex': 'research/bibtex/tweetorials.txt'
   },
   {
@@ -170,7 +190,8 @@ var papers_cs = [
     'year': "2021",
     'pdf': 'papers/2021_PoetryMachines.pdf',
     'type': 'poster',
-    'bibtex': 'research/bibtex/poetrymachines.txt'
+    'bibtex': 'research/bibtex/poetrymachines.txt',
+    'hide': true
   },
   {
     'title': "Lightweight Decoding Strategies for Increasing Specificity",
@@ -178,7 +199,8 @@ var papers_cs = [
     'source': "arXiv",
     'year': "2021",
     'pdf': 'papers/2021_LightweightDecoding.pdf',
-    'type': 'preprint'
+    'type': 'preprint',
+    'hide': true
   },
   {
     'title': 'How Novelists Use Generative Language Models: An Exploratory User Study',
@@ -192,7 +214,7 @@ var papers_cs = [
     'title': "Mental Models of AI Agents in a Cooperative Game Setting",
     'author': "Katy Gero, Zahra Ashktorab, Casey Dugan, Qian Pan, James Johnson, Werner Geyer, Maria Ruiz, Sarah Miller, David R. Millen, Murray Campbell, Sadhana Kumaravel, and Wei Zhang",
     'source': "CHI",
-    'year': "2020 <span class='tag tagged is-info'>⭐ Best Paper Award ⭐</span>",
+    'year': "2020 <span class='tag tagged is-info'>▚▚▚ Best Paper Award ▞▞▞</span>",
     'pdf': "papers/2020_MentalModelsofAIAgents.pdf",
     'project page': 'research/mental-models-passcode/index.html',
     'type': 'conference',
@@ -205,7 +227,8 @@ var papers_cs = [
     'year': "2019",
     'pdf': 'papers/2019_StyleTransfer.pdf',
     'code': 'https://github.com/kedz/styleeq',
-    'type': 'conference'
+    'type': 'conference',
+    'hide': true
   },
   {
     'title': 'Metaphoria: An Algorithmic Companion for Metaphor Creation',
@@ -281,29 +304,23 @@ var papers_other = [
     'slides': 'papers/aps_presentation_reduced.pdf'
   }]
 
-function flip() {
-    $('.card').toggleClass('flipped');
-}
+const muchtext = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-body-text" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M0 .5A.5.5 0 0 1 .5 0h4a.5.5 0 0 1 0 1h-4A.5.5 0 0 1 0 .5Zm0 2A.5.5 0 0 1 .5 2h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5Zm9 0a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5Zm-9 2A.5.5 0 0 1 .5 4h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5Zm5 0a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5Zm7 0a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5Zm-12 2A.5.5 0 0 1 .5 6h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5Zm8 0a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5Zm-8 2A.5.5 0 0 1 .5 8h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5Zm7 0a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5Zm-7 2a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 0 1h-8a.5.5 0 0 1-.5-.5Zm0 2a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5Zm0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Z"/></svg>'
+const card = '<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-card-text" viewBox="0 0 16 16"><path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/><path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/></svg>'
+const file = '<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-file-text" viewBox="0 0 16 16"><path d="M5 4a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1H5z"/><path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"/></svg>'
+const filefill = '<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-file-text-fill" viewBox="0 0 16 16"><path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm0 2h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1z"/></svg>'
+
 $(document).ready( function() {
-  $('.cs').hide();
-  $('.writing').hide();
-
-  $('#writing').click( function() {
-    $('.cs').hide();
-    $('.writing').show();
-  });
-  $('#cs').click( function() {
-    $('.cs').show();
-    $('.writing').hide();
-  });
-
-
 
   // add papers
   $.each(papers_cs, function(i, val) {
     if ('hide' in val) { return true; }
+    if (val['type'] === 'conference') {
+      var icon = filefill;
+    } else {
+      var icon = '';
+    }
     var tag = $("<p class='papers is-small'>");
-    tag.append(val['author'] + '. <span class="cspapertitle">"' + val['title'] + '."</span> in ');
+    tag.append('<span class="cspapertitle">' + icon + val['title'] + '</span><br>' + val['author'] + '<br>');
     tag.append(val['source'] + " " + val['year'] + '.');
     for(key in val) {
       if (key !== 'title' && key !== 'author' && key !== 'source' && key !== 'year' && key != 'type') {
@@ -311,12 +328,8 @@ $(document).ready( function() {
         console.log(key, val[key]);
       }
     };
-
-    if (val['type'] === 'conference') {
-      $('.papers_cs').append(tag);
-    } else {
-      $('.papers_cs_other').append(tag);
-    }
+    $('.papers_cs').append(tag);
+    
     
   });
   // $.each(papers_other, function(i, val) {
