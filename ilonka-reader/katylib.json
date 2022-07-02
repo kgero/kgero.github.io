@@ -2562,6 +2562,43 @@
                     "tags": ["poetry"],
                     "notes": ""
                 },
+                {
+                    "title": "Viper Rum",
+                    "author": "Mary Karr",
+                    "date_added": "Thu, 16 Jun 2022",
+                    "tags": ["poetry"],
+                    "notes": ""
+                },
+                {
+                    "title": "In a Lonely Place",
+                    "author": "Dorothy Hughes",
+                    "date_added": "Sun, 12 Jun 2022",
+                    "date_finished": "Tue, 07 Jun 2022",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "A Lost Land",
+                    "author": "Eavan Boland",
+                    "date_added": "Sun, 12 Jun 2022",
+                    "date_finished": "Wed, 08 Jun 2022",
+                    "tags": ["poetry"],
+                    "notes": ""
+                },
+                {
+                    "title": "Another Brooklyn",
+                    "author": "Jacqueline Woodson",
+                    "date_added": "Thu, 16 Jun 2022",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Stoner",
+                    "author": "John Willims",
+                    "date_added": "Sat, 02 Jul 2022",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
             ]
         }
     ]
