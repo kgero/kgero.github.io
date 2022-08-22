@@ -2599,6 +2599,48 @@
                     "tags": ["novel"],
                     "notes": ""
                 },
+                {
+                    "title": "Fun Home",
+                    "author": "Alison Bechdel",
+                    "date_added": "Sat, 16 Jul 2022",
+                    "tags": ["graphic novel", "memoir"],
+                    "notes": ""
+                },
+                {
+                    "title": "Atlas of AI",
+                    "author": "Kate Crawford",
+                    "date_added": "Sat, 31 Jul 2022",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "Nevada",
+                    "author": "Imogen Binnie",
+                    "date_added": "Mon, 01 Aug 2022",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Beach Read",
+                    "author": "Emily Henry",
+                    "date_added": "Wed, 10 Aug 2022",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Confessions of a Shopaholic",
+                    "author": "Sophie Kinsella",
+                    "date_added": "Tue, 16 Aug 2022",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Algorithms of Oppression",
+                    "author": "Safiya Umoja Noble",
+                    "date_added": "Sun, 21 Aug 2022",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
             ]
         }
     ]
