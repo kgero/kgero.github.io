@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--
+      This is the page head - it contains info the browser uses to display the page
+      You won't see what's in the head in the page
+      Scroll down to the body element for the page content
+    -->
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
+
+    <!-- 
+      This is an HTML comment
+      You can write text in a comment and the content won't be visible in the page
+    -->
+
+    <title>English Text Datasets Commonly Used to Train Large Languagae Models</title>
+
+    <!-- Meta tags for SEO and social sharing -->
+    <link rel="canonical" href="https://glitch-hello-website.glitch.me/" />
+    <meta
+      name="description"
+      content="A simple website, built with Glitch. Remix it to get your own."
+    />
+    <meta name="robots" content="index,follow" />
+    <meta property="og:title" content="Hello World!" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://glitch-hello-website.glitch.me/" />
+    <meta
+      property="og:description"
+      content="A simple website, built with Glitch. Remix it to get your own."
+    />
+    <meta
+      property="og:image"
+      content="https://cdn.glitch.com/605e2a51-d45f-4d87-a285-9410ad350515%2Fhello-website-social.png?v=1616712748147"
+    />
+    <meta name="twitter:card" content="summary" />
+
+    <!-- Import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- Import the webpage's javascript file -->
+    <script src="/script.js" defer></script>
+    <script src="/bibtexParse.js" defer></script>
+    
+    <!-- Import Bootstrap files -->
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+    
+    <!-- Import JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+  </head>
+  <body>
+    <!--
+      This is the body of the page
+      Look at the elements and see how they appear in the rendered page on the right
+      Each element is defined using tags, with < and > indicating where each one opens and closes
+      There are elements for sections of the page, images, text, and more
+      The elements include attributes referenced in the CSS for the page style
+    -->
+
+    <!-- The wrapper and content divs set margins and positioning -->
+    <div class="container" style="max-width:1100px">
+      <div class="content" role="main">
+        <!-- This is the start of content for our page -->
+        <h1 class="mt-5 mb-5">What's Inside your Language Model?</h1>
+        <p class='lead mb-5'>
+          As more and more people attend to the problems of large language models --- bias, hate speech, and their ilk --- I wanted to investigate how much is known about the data that these models are trained on. The table below is an attempt to find the source of some large text datasets, and any documentation that has been done in the aftermath of their release.
+        </p>
+        <table class="table" id="datasets" style="table-layout:fixed;"></table>
+        <p>
+          This table lists some key information and documentation for large textual datasets in English. Note that some of these datasets may have been recreated when used in a new language model rather than used as an exact replica of the original released version.</p>
+<!--         <p>
+          My interest in these datasets is that their size prevents significant human oversight. This means they tend to employ automatic filtering methods, which are tricky to implement successfully at such a scale and often have unexpected side effects. They are often introduced with little inspection of their contents, may not be released to the research community, and may have insufficient documentation to accurately recreate.
+        </p> -->
+        <p>
+          Disclaimer: This table does not represent a complete list of datasets or their documentation or usage. Rather it has been compiled to the best of my knowledge and reflects my own interests and judgements. e.g. I don't include <button class="citation" citekey="the_pile"></button>, which is a combination of many other datasets. Instead, I include some of the largest datasets that make up The Pile. I also don't cross-check every large language model coming out to see what it uses. Finally, the size of the dataset can be a function of metadata included, if and how it's compressed, etc. I report size as reported in external documentation.
+        </p>
+
+        <p>
+          Please contact me (katy at columbia dot edu) if you would like to make a correction or addition. Additionally, I'm also eager to talk about this topic and set up collaborations. You can find more information about my work <a href="http://www.katygero.com/" target="_blank">here</a>. 
+        </p>
+        <h2>
+          Why care about these datasets?
+        </h2>
+        <p>
+          As the size of these datasets increase, so do other problems, like difficulty in maintaining or even measuring quality, and the increased occurrence of hate speech, personally identifiable information, duplicates, and licensed material. These problems are well documented in papers like <button class="citation" citekey="stochastic_parrots"></button>, <button class="citation" citekey="documenting_large_webtext"></button>, and <button class="citation" citekey="addressing_doc_debt"></button>. Also we should deeply care about all datasets, as they are what makes the machine learning world spin. Any introduction to machine learning or data science starts with encouraging you to look at actual data. If you are an NLP researcher, when was the last time you looked at the actual text a large language model was trained on?
+        </p>
+        <p>
+          Recently I've been reading Algorithms of Oppression by Safiya Umoja Noble, and she documents problems with Google's search engine results. Her classic and motivating example is Googling 'black girls' and finding primarily pornography. I believe the problems in these large text datasets are directly related to the problems Noble and many others pointed out and advocated against, since many of these datasets are essentially queries on the web. I've replicated some of Noble's queries but instead of a search engine I search the Colossal Cleaned Crawled Corpus. You can see some of the same problems occuring:
+        </p>
+        
+        <img src="https://cdn.glitch.global/dfdc89e4-18c9-4442-af4d-47296e86e97e/c4%20-%20black%20girls.png?v=1656338586216" class="img-thumbnail mb-3">
+        
+        <h2>
+          How well documented are these datasets?
+        </h2>
+        <p>
+          Not well. Part of my intention with this website is to document my attempt at tracing the origins of many of the text datasets used to train large language models. This work has been tricky, and often the source of a dataset provides only a few sentences describing its creation. For instance, here is the entirety of the documentation for the Pile-CC, a 227GB dataset that contributes 18% of the training data for GPT-J:
+        </p>
+        
+        <img src="https://cdn.glitch.global/dfdc89e4-18c9-4442-af4d-47296e86e97e/pile-cc%20documentation.png?v=1656697356826" class="img-thumbnail mb-3" style="max-width: 300px !important;">
+        
+        <p>
+          This is exceptionally thin documentation. Although the paper that introduces this dataset says "We make publicly available the code used in its [the dataset] construction." I have yet to actually find this code, despite following the relevant links. I don't mean to pick on The Pile; these problems occur in many datasets, and at least The Pile is available for researchers to investigate, unlike the majority of datasets used to train GPT-2 and GPT-3.
+        </p>
+        
+        <p>
+          Even when additional documentation is available, it can be hard to find. For example, <button class="citation" citekey="realtoxicityprompts"></button> contains informative analysis of the OpenWebText dataset, yet it's hard to imagine how to discover this analysis as the paper focuses its contribution on a metric for measuring toxicity in language model generation. How did I discover it? I was reading the paper for other reasons.
+        </p>
+        
+        <h2>
+          How do people filter these datasets?
+        </h2>
+        <p>
+          I'm interested in filtering methods as filtering seems to be the way people are dealing with really really big text datasets. This is different from curation. Curation is more purposeful, and may be considered more of an process: you collect what you want and add it to your dataset. I encourage interested readers to look at <button class="citation" citekey="lessons_from_the_archive"></button>  to better understand curation as a practice. Filtering is the opposite: start with as much as possible, and remove the problematic parts. (Curation might be a better idea! But for now I'm interested in the filtering that's being done, even if I disagree with the approach as a whole.)
+        </p>
+        <p>
+          I am particularly interested in the filtering of hate speech, abuse, and profanity. This filtering is typically done by using a classifier to predict if a sentence is hateful/abusive/profane, and removing sentences that score high on this classifier. It's been demonstrated that this ends up removing already-marginalized voices (see <button class="citation" citekey="documenting_large_webtext"></button> for an example), as these classifiers have their own problems and are often released with the intention of aiding human moderators, rather than automating any process. Additionally, even if such a filter were to work as intended (I'm personally not convinced the goal of automatically detecting offensive language is possible given the contextual nature of offense, e.g. see <button class="citation" citekey="whose_words_hurt"></button>) it's unclear if such filtering actually works as intended.
+        </p>
+        <p>
+          One paper that begins to investigate this is Challenges in Detoxifying LMs, but much more research is needed to understand the effects. 
+        </p>
+        
+        <p>
+          
+        </p>
+        
+      </div>
+    </div>
+  </body>
+</html>
