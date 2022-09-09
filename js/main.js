@@ -148,6 +148,7 @@ var papers_cs = [
     'year': "2022",
     'pdf': 'papers/2022_AuditingGenerativeAlgorithms.pdf',
     'type': 'workshop',
+    'category': 'llm'
     // 'bibtex': 'research/bibtex/tweetorials.txt'
   },
   {
@@ -159,6 +160,7 @@ var papers_cs = [
     'extended abstract': 'papers/2022_Sparks_extendedabstract.pdf',
     'poster': 'papers/2022_Sparks_poster.pdf',
     'type': 'conference',
+    'category': 'ai-writer'
     // 'bibtex': 'research/bibtex/tweetorials.txt'
   },
   {
@@ -170,6 +172,7 @@ var papers_cs = [
     // 'extended abstract': 'papers/2022_Sparks_extendedabstract.pdf',
     // 'poster': 'papers/2022_Sparks_poster.pdf',
     'type': 'workshop',
+    'category': 'ai-writer'
     // 'bibtex': 'research/bibtex/tweetorials.txt'
   },
   {
@@ -181,7 +184,8 @@ var papers_cs = [
     'project page': 'http://language-play.com/tech-tweets/',
     'data': 'https://github.com/kgero/what-makes-tweetorials-tick/',
     'type': 'conference',
-    'bibtex': 'research/bibtex/tweetorials.txt'
+    'bibtex': 'research/bibtex/tweetorials.txt',
+    'category': 'ai-writer'
   },
   {
     'title': "Poetry Machines: Eliciting Designs for Interactive Writing Tools from Poets",
@@ -208,17 +212,19 @@ var papers_cs = [
     'source': 'HAI-GEN at IUI',
     'year': '2020',
     'pdf': 'papers/2020_HowNovelistsUseGenerative.pdf',
-    'type': 'workshop'
+    'type': 'workshop',
+    'category': 'ai-writer'
   },
   {
     'title': "Mental Models of AI Agents in a Cooperative Game Setting",
     'author': "Katy Gero, Zahra Ashktorab, Casey Dugan, Qian Pan, James Johnson, Werner Geyer, Maria Ruiz, Sarah Miller, David R. Millen, Murray Campbell, Sadhana Kumaravel, and Wei Zhang",
     'source': "CHI",
-    'year': "2020 <span class='tag tagged is-info'>▚▚▚ Best Paper Award ▞▞▞</span>",
+    'year': "2020 <span class='tag tagged is-info'>⭐⭐⭐ Best Paper Award ⭐⭐⭐</span>",
     'pdf': "papers/2020_MentalModelsofAIAgents.pdf",
     'project page': 'research/mental-models-passcode/index.html',
     'type': 'conference',
-    'bibtex': 'research/bibtex/mentalmodels.txt'
+    'bibtex': 'research/bibtex/mentalmodels.txt',
+    'category': 'ai-writer'
   },
   {
     'title': "Low-Level Linguistic Controls for Style Transfer and Content Preservation",
@@ -239,7 +245,8 @@ var papers_cs = [
     'project page': 'research/metaphoria/index.html',
     'demo': 'http://language-play.com/metaphoria',
     'type': 'conference',
-    'bibtex': 'research/bibtex/metaphoria.txt'
+    'bibtex': 'research/bibtex/metaphoria.txt',
+    'category': 'ai-writer'
   },
   {
     'title': "How a Stylistic, Machine-Generated Thesaurus Impacts a Writer's Process",
@@ -249,7 +256,8 @@ var papers_cs = [
     'pdf': 'papers/2019_StylisticThesaurus.pdf',
     'demo': 'http://language-play.com/thesaurusx',
     'type': 'poster',
-    'bibtex': 'research/bibtex/stylethesaurus.txt'
+    'bibtex': 'research/bibtex/stylethesaurus.txt',
+    'category': 'ai-writer'
   },
   {
     'title': 'Challenges in Finding Metaphorical Connections',
@@ -315,20 +323,26 @@ $(document).ready( function() {
   $.each(papers_cs, function(i, val) {
     if ('hide' in val) { return true; }
     if (val['type'] === 'conference') {
-      var icon = filefill;
+      var icon = '';
     } else {
       var icon = '';
     }
     var tag = $("<p class='papers is-small'>");
-    tag.append('<span class="cspapertitle">' + icon + val['title'] + '</span><br>' + val['author'] + '<br>');
-    tag.append(val['source'] + " " + val['year'] + '.');
+    tag.append('<span class="cspapertitle">' + val['title'] + '</span><br>' + val['author'] + '<br>');
+    tag.append(icon + val['source'] + " " + val['year'] + '.');
     for(key in val) {
-      if (key !== 'title' && key !== 'author' && key !== 'source' && key !== 'year' && key != 'type') {
+      if (key !== 'title' && key !== 'author' && key !== 'source' && key !== 'year' && key != 'type' && key != 'category') {
         tag.append(" [<a target='_blank' href='" + val[key] + "'>"+key+"</a>]");
         console.log(key, val[key]);
       }
     };
-    $('.papers_cs').append(tag);
+    if (val['category'] == 'ai-writer') {
+      $('.papers_cs_aiwriter').append(tag);
+    }
+    if (val['category'] == 'llm') {
+      $('.papers_cs_llm').append(tag);
+    }
+    
     
     
   });

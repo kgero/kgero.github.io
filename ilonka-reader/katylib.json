@@ -2640,6 +2640,66 @@
                     "date_added": "Sun, 21 Aug 2022",
                     "tags": ["nonfiction"],
                     "notes": ""
+                },
+                {
+                    "title": "The Alignment Problem",
+                    "author": "Brian Christian",
+                    "date_added": "Wed, 31 Aug 2022",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "The Lover",
+                    "author": "Marguerite Duras",
+                    "date_added": "Wed, 31 Aug 2022",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Why Have Kids?",
+                    "author": "Jessica Valenti",
+                    "date_added": "Wed, 31 Aug 2022",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "Three Wishes",
+                    "author": "Liane Moriarty",
+                    "date_added": "Wed, 31 Aug 2022",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Too Loud a Solitude",
+                    "author": "Bohumil Hrabal",
+                    "date_added": "Wed, 31 Aug 2022",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Klara and the Sun",
+                    "author": "Kazuo Ishiguro",
+                    "date_added": "Fri, 02 Sep 2022",
+                    "date_finished": "Fri, 02 Sep 2022",
+                    "tags": ["novel"],
+                    "notes": ""
+                }
+                ,
+                {
+                    "title": "Glitch Feminism",
+                    "author": "Legacy Russell",
+                    "date_added": "Mon, 05 Sep 2022",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                }
+                ,
+                {
+                    "title": "Revenge of the Scapegoat",
+                    "author": "Caren Beilin",
+                    "date_added": "Mon, 05 Sep 2022",
+                    "date_finished": "Sat, 03 Sep 2022",
+                    "tags": ["novel"],
+                    "notes": ""
                 }
             ]
         }

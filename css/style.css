@@ -30,6 +30,7 @@ p, li {
 
 p.papers {
   font-weight: 200;
+  font-size: 1em;
 }
 
 p.name {
@@ -52,7 +53,7 @@ li {
 
 h1 {
   font-family: handwriting;
-  font-size: 2.9rem;
+  font-size: 3rem;
   font-weight: 500;
   margin-top: 2rem;
 }
