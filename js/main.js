@@ -141,6 +141,16 @@ var writing_tools = [
 ]
 
 var papers_cs = [
+{
+    'title': "Social Dynamics of AI Support in Creative Writing",
+    'author': "Katy Gero, Tao Long, and Lydia Chilton",
+    'source': "under submission",
+    'year': "",
+    // 'pdf': 'papers/2022_Sparks.pdf',
+    'type': 'conference',
+    'category': 'ai-writer'
+    // 'bibtex': 'research/bibtex/tweetorials.txt'
+  },
   {
     'title': "How do we audit generative algorithms?",
     'author': "Katy Gero",
@@ -185,7 +195,8 @@ var papers_cs = [
     'data': 'https://github.com/kgero/what-makes-tweetorials-tick/',
     'type': 'conference',
     'bibtex': 'research/bibtex/tweetorials.txt',
-    'category': 'ai-writer'
+    'category': 'ai-writer',
+    'hide': true
   },
   {
     'title': "Poetry Machines: Eliciting Designs for Interactive Writing Tools from Poets",

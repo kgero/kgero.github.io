@@ -22,15 +22,15 @@ a:hover {
 
 p, li {
   font-size: 1rem;
+  font-weight: 200;
 }
 
 .cspapertitle {
-  font-weight: 400;
+  font-style: italic;
 }
 
 p.papers {
   font-weight: 200;
-  font-size: 1em;
 }
 
 p.name {
@@ -54,7 +54,7 @@ li {
 h1 {
   font-family: handwriting;
   font-size: 3rem;
-  font-weight: 500;
+  /*font-weight: 500;*/
   margin-top: 2rem;
 }
 
@@ -66,104 +66,19 @@ h2 {
   margin-top: 2rem;
 }
 
+h3 {
+  /*font-style: italic;*/
+  font-size: 1em;
+}
+
 h6 {
   font-family: handwriting;
   font-size: 1.8em;
   font-weight: 200;
 }
 
-img {
-  opacity: .8;
-  /*filter: grayscale(100%);*/
-  border:  none;
-  padding: .25rem !important;
-}
-img:hover {
-  opacity: 1;
-  filter: grayscale(0%);
-}
-
-img.misc {
-  max-height: 150px;
-  
-  width: auto;
-  height: auto;
-}
-
-img.writing-img {
-  max-width: 125px;
-}
-
-img.arttech-img {
-  max-height: 150px;
-  width: auto;
-  height: auto;
-}
-
-img.meche-img {
-  max-width: 150px;
-}
-
-img.visual-img {
-  max-height: 150px;
-  width: auto;
-  height: auto;
-}
-
-div.card {
-  /*background: #5D3FD3;*/
-  border: 1px solid black;
-  border-radius: 10px;
-  padding: 50px 50px 50px 50px;
-  align-content: center;
-  font-size: .5em;
-  /*max-width: 200px;*/
-}
-div.card:hover {
-  cursor: pointer;
-  color: #5D3FD3;
-}
-.mid {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 2em;
-}
-.right {
-  position: absolute;
-  right: 0px;
-  font-size: 2em;
-}
-.bottom {
-  position: absolute;
-  bottom: 0px;
-  font-size: 2em;
-}
-.left {
-  position: absolute;
-  left: 0px;
-  font-size: 2em;
-}
-.top {
-  position: absolute;
-  top: 0px;
-  font-size: 2em;
-}
-
-:root {--factor: .5turn; }
-.spin1::before{
-  content: "↠";
-  /*content: "∘";*/
-}
-.spin1 {
-  font-size: 1.5em;
-  position: absolute;
-  top: 50%;
-  left: calc(50% - 60px);
-  transform-origin: 60px 0px;
-  /*transform: rotate(.5turn);*/
-  transform: rotate(var(--factor));
+.icon {
+  font-size: 1.2em;
 }
 
 svg.bi {
