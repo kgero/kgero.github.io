@@ -141,7 +141,17 @@ var writing_tools = [
 ]
 
 var papers_cs = [
-{
+  {
+    'title': "Sensemaking Interfaces for Human Evaluation of Language Model Outputs",
+    'author': "Katy Gero, Jonathan Kummerfeld, and Elena Glassman",
+    'source': "HEGM Workshop at NeurIPS",
+    'year': "2022",
+    'pdf': 'papers/2022_Sensemaking.pdf',
+    'type': 'workshop',
+    'category': 'llm'
+    // 'bibtex': 'research/bibtex/tweetorials.txt'
+  },
+  {
     'title': "Social Dynamics of AI Support in Creative Writing",
     'author': "Katy Gero, Tao Long, and Lydia Chilton",
     'source': "under submission",

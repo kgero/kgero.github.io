@@ -117,6 +117,15 @@ var poems = [
 
 var essays = [
 	{
+		'fulltitle': 'AI Reveals the Most Human Parts of Writing',
+		'title': 'AI Reveals the Most Human Parts of Writing', 
+		'publication': 'Wired',
+		'month': 'Dec',
+		'date': '2022',
+		'link': 'https://www.wired.com/story/artificial-intelligence-writing-art/',
+		'description': 'computers could expose the true future of writing'
+	},
+	{
 		'fulltitle': 'An Introduction to Feedback',
 		'title': 'An Introduction to Feedback', 
 		'publication': 'CultureHub',
