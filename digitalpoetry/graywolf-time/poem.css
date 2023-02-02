@@ -1,0 +1,110 @@
+div#textentry {
+}
+
+
+div#textanimation {
+}
+
+
+.poem {
+  font-family: 'Times New Roman';
+/*        white-space: pre;*/
+  padding: 10px;
+  line-height: 1;
+  margin: 1px;
+  outline: none;
+  border: 1px solid black;
+  width: 500px;
+  height: 500px;
+}
+
+
+div.container {
+  position: relative;
+}
+div.top {
+  margin-left:auto;
+  margin-right:auto;
+  width: 600px;
+}
+div.child {
+  position: absolute;
+  top: 0;
+  margin-left:auto;
+  margin-right:auto;
+  left: 0; /*NEW*/
+  right: 0; /*NEW*/
+  width: 600px;
+  background-color: white;
+}
+
+textarea {
+  
+}
+
+/* for slider */
+.slider {
+  -webkit-appearance: slider-vertical;  /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 15px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 15px; /* Set a specific slider handle width */
+  height: 15px; /* Slider handle height */
+  background: black; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+  outline: none;
+}
+
+.slider::-moz-range-thumb {
+  width: 15px; /* Set a specific slider handle width */
+  height: 15px; /* Slider handle height */
+  background: black; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+  outline: none;
+}
+
+/* speed selection slider stuff */
+datalist {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  writing-mode: vertical-lr;
+  width: 200px;
+}
+
+option {
+  padding: 0;
+}
+
+input[type="range"] {
+  width: 200px;
+  margin: 0;
+}
+
+
+/* text animation stuff */
+.gone {
+  opacity: 0;
+}
+
+@keyframes fadeAway {
+  0% {opacity: 1;}
+  50% {opacity: .5;}
+  100% {opacity: 0;}
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  50% {opacity: .5;}
+  100% {opacity: 1;}
+}

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <title>Time</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="clock.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- <script src="https://cdn.rawgit.com/marcj/css-element-queries/master/src/ElementQueries.js"></script> -->
+    <script src="https://cdn.rawgit.com/marcj/css-element-queries/master/src/ResizeSensor.js"></script>
+    <link rel="stylesheet" href="clock.css">
+
+    <script type="text/javascript" src="poem.js"></script>
+    <link rel="stylesheet" href="poem.css">
+
+
+    <script>
+      $(document).ready(function () {
+        setUpFace();
+        computeTimePositions($h, $m, $s);
+        $("section").on("resize", setSize).trigger("resize");
+        $("section").resizable({handles: 'e'});    
+
+        if (!window.requestAnimationFrame) {
+          console.log("animate?");
+          window.requestAnimationFrame = window.mozRequestAnimationFrame ||
+            window.webkitRequestAnimationFrame ||
+            window.msRequestAnimationFrame ||
+            window.oRequestAnimationFrame ||
+            function (cb) { setTimeout(cb, 1000/60); };
+        }
+      });
+    </script>
+
+  </head>
+  <body>
+
+    <div class='top'>
+      <div>
+      <section>
+        <div id="clock">
+          <div id="hour"></div>
+          <div id="minute"></div>
+          <div id="second"></div>
+          <div id="center"></div>
+        </div>
+      </section>
+    </div>
+      <div>
+      <p>The poem comes to you in a dream, on the bus, while staring at the wall. It emerges, becomes familiar. The words become your own. That turn of phrase, that perfect image. Seared into your mind. Then, you're not paying attention, you're looking elsewhere---it leaves. You forget a word or two, a line, the volta, what was it? The poem recedes. You don't recognize it anymore. 
+      </p>
+      <p>Try to see your poem like a glacier does. Or see it on the timescale of a beam of light. The only important thing is to see it anew.</p>
+    </div>
+    </div>
+  <div class='container'>
+      
+
+    
+
+    <div class='child' id='textanimation'>
+      <p><u>Time will pass over your poem:</u></p>
+      <div class="poem" id="output"></div>
+      <button id='playorpause' onClick="playpause()">pause</button>
+      <button onClick="back()">back</button>
+    </div>
+
+    <div class='child' id='textentry'>
+      <p><u>Enter your poem here (or pick one from below):</u></p>
+      <textarea class="poem" id="raw">Two roads diverged in a yellow wood,
+And sorry I could not travel both
+And be one traveler, long I stood
+And looked down one as far as I could
+To where it bent in the undergrowth;
+
+Then took the other, as just as fair,
+And having perhaps the better claim,
+Because it was grassy and wanted wear;
+Though as for that the passing there
+Had worn them really about the same,
+
+And both that morning equally lay
+In leaves no step had trodden black.
+Oh, I kept the first for another day!
+Yet knowing how way leads on to way,
+I doubted if I should ever come back.
+
+I shall be telling this with a sigh
+Somewhere ages and ages hence:
+Two roads diverged in a wood, and I—
+I took the one less traveled by,
+And that has made all the difference.</textarea><br>
+
+      <label for="speed">Choose a speed:</label><br />
+      <input type="range" class="" id="speed" name="speed" list="values" min="1" max="100" />
+
+      <datalist id="values">
+        <option value="1" label="laserlike"></option>
+        <option value="12" label="sudden"></option>
+        <option value="25" label="rapid"></option>
+        <option value="37" label="brisk"></option>
+        <option value="50" label="prompt"></option>
+        <option value="62" label="deliberate"></option>
+        <option value="75" label="relaxed"></option>
+        <option value="87" label="gradual"></option>
+        <option value="100" label="glacial"></option>
+      </datalist>
+
+      <button onClick="change('forget')">forget</button>
+      <button onClick="change('emerge')">emerge</button>
+    </div>
+
+  </div>
+
+  </body>
+</html>
