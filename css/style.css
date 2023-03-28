@@ -26,7 +26,11 @@ p, li {
 }
 
 .cspapertitle {
-  font-style: italic;
+  color: #5D3FD3;
+}
+
+.paperlinks {
+  font-size: .8em;
 }
 
 p.papers {

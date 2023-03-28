@@ -154,9 +154,9 @@ var papers_cs = [
   {
     'title': "Social Dynamics of AI Support in Creative Writing",
     'author': "Katy Gero, Tao Long, and Lydia Chilton",
-    'source': "under submission",
-    'year': "",
-    // 'pdf': 'papers/2022_Sparks.pdf',
+    'source': "CHI",
+    'year': "2023",
+    'pdf': 'papers/2023_SocialDynamics.pdf',
     'type': 'conference',
     'category': 'ai-writer'
     // 'bibtex': 'research/bibtex/tweetorials.txt'
@@ -349,14 +349,18 @@ $(document).ready( function() {
       var icon = '';
     }
     var tag = $("<p class='papers is-small'>");
-    tag.append('<span class="cspapertitle">' + val['title'] + '</span><br>' + val['author'] + '<br>');
-    tag.append(icon + val['source'] + " " + val['year'] + '.');
+    tag.append('<span class="cspapertitle">' + val['title'] + '</span>');
+    var links = $('<span class="paperlinks">');
     for(key in val) {
       if (key !== 'title' && key !== 'author' && key !== 'source' && key !== 'year' && key != 'type' && key != 'category') {
-        tag.append(" [<a target='_blank' href='" + val[key] + "'>"+key+"</a>]");
+        links.append(" [<a target='_blank' href='" + val[key] + "'>"+key+"</a>]");
         console.log(key, val[key]);
       }
     };
+    tag.append(links);
+    tag.append('<br>' + val['author'] + '<br>');
+    tag.append(icon + val['source'] + " " + val['year'] + '.');
+    
     if (val['category'] == 'ai-writer') {
       $('.papers_cs_aiwriter').append(tag);
     }
