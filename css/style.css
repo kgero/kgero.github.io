@@ -26,7 +26,9 @@ p, li {
 }
 
 .cspapertitle {
-  color: #5D3FD3;
+  color: black;
+  font-size: 1em;
+  font-weight: 400;
 }
 
 .paperlinks {
@@ -35,6 +37,8 @@ p, li {
 
 p.papers {
   font-weight: 200;
+  color: grey;
+  font-size: .9em;
 }
 
 p.name {

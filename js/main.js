@@ -142,6 +142,16 @@ var writing_tools = [
 
 var papers_cs = [
   {
+    'title': "The Incentive Gap in Data Work in the Era of Large Models",
+    'author': "Katy Gero, Payel Das, Pierre Dognin, Inkit Padhi, Prasanna Sattigero, and Kush Varshney",
+    'source': "Nature Machine Intelligence",
+    'year': "2023",
+    'pdf': 'papers/2023_IncentiveGap.pdf',
+    'type': 'workshop',
+    'category': 'llm'
+    // 'bibtex': 'research/bibtex/tweetorials.txt'
+  },
+  {
     'title': "Sensemaking Interfaces for Human Evaluation of Language Model Outputs",
     'author': "Katy Gero, Jonathan Kummerfeld, and Elena Glassman",
     'source': "HEGM Workshop at NeurIPS",
@@ -162,7 +172,7 @@ var papers_cs = [
     // 'bibtex': 'research/bibtex/tweetorials.txt'
   },
   {
-    'title': "How do we audit generative algorithms?",
+    'title': "How Do We Audit Generative Algorithms?",
     'author': "Katy Gero",
     'source': "GenAI Workshop at CHI",
     'year': "2022",

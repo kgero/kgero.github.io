@@ -1,5 +1,13 @@
 var poems = [
 	{
+		'title': 'Blank Page with Machine',
+		'publication': 'The HTML Review',
+		'month': 'Apr',
+		'date': '2023',
+		'link': 'https://thehtml.review/02/blank-page-with-machine.html',
+		'description': ''
+	},
+	{
 		'title': 'Precision Machine Design',
 		'publication': 'taper',
 		'month': 'Jun',
