@@ -168,7 +168,8 @@ var papers_cs = [
     'year': "2023",
     'pdf': 'papers/2023_SocialDynamics.pdf',
     'type': 'conference',
-    'category': 'ai-writer'
+    'category': 'ai-writer',
+    'presentation video': 'https://www.youtube.com/watch?v=Rx5N7sv3a68'
     // 'bibtex': 'research/bibtex/tweetorials.txt'
   },
   {
@@ -190,7 +191,8 @@ var papers_cs = [
     'extended abstract': 'papers/2022_Sparks_extendedabstract.pdf',
     'poster': 'papers/2022_Sparks_poster.pdf',
     'type': 'conference',
-    'category': 'ai-writer'
+    'category': 'ai-writer',
+    'presentation video': 'https://www.youtube.com/watch?v=u3e-ZPiV19w'
     // 'bibtex': 'research/bibtex/tweetorials.txt'
   },
   {
@@ -202,7 +204,8 @@ var papers_cs = [
     // 'extended abstract': 'papers/2022_Sparks_extendedabstract.pdf',
     // 'poster': 'papers/2022_Sparks_poster.pdf',
     'type': 'workshop',
-    'category': 'ai-writer'
+    'category': 'ai-writer',
+    'presentation video': 'https://youtu.be/-q9jBE9HdGI'
     // 'bibtex': 'research/bibtex/tweetorials.txt'
   },
   {
@@ -255,7 +258,8 @@ var papers_cs = [
     'project page': 'research/mental-models-passcode/index.html',
     'type': 'conference',
     'bibtex': 'research/bibtex/mentalmodels.txt',
-    'category': 'ai-writer'
+    'category': 'ai-writer',
+    'presentation video': 'https://www.youtube.com/watch?v=GvxrxBlCpEM&t=4s'
   },
   {
     'title': "Low-Level Linguistic Controls for Style Transfer and Content Preservation",
