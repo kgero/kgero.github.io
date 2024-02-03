@@ -2886,13 +2886,301 @@
                     "author": "Arthur I. Miller",
                     "date_added": "Tue, 14 Feb 2023",
                     "tags": ["nonfiction"],
-                    "notes": ""             
+                    "notes": "Read this as a 'competing title' for the book proposal I'm working on (based on my PhD work). I found the first section really frustrating; he seems to randomly define creativity (apparently he's a creativity researcher?) with a bunch of attributes and then gives anecdotes of famously 'creative' people to back it up. But all the creative people are dead white guys. The only contemporary people he talks about are tech CEOs, as if Mark Zuckerberg and Jeff Bezos are the creative geniuses of our generation. He mentions maybe Emily Dickinson? And some 'husband-and-wife' teams. Anyway, so I thought that part was shit. But it was a short part at the start. Most of the book reads like a summary of talking to a bunch of different people in AI art, which is pretty interesting and he did talk to a lot of people across a lot of different mediums and genres. He always ends a chapter with whether that person thinks computers can be creative or not. Then the last section is some research on consciousness and why he thinks computers will soon become conscious and truly be creative like people. He had this whole thing about thinking it's good for computers to be creative, even more creative than people, but I didn't quite understand why he was so excited about the singularlity. Anyway, worth reading, but not really my cup of tea."             
                 },
                 {
                     "title": "A Kinder Sea",
                     "author": "Felicity Plunkett",
                     "date_added": "Tue, 14 Feb 2023",
                     "tags": ["poetry"],
+                    "notes": "Bought this in Sydney, at Abbey's Bookstore near the QVB. I just wanted to buy some Australian poetry book, and this one caught my eye given the whole ocean thing, but also I liked some of the poems I read. And the book was fine, a lot about the sea but not strictly. She talks about how 'a kinder sea' is from a phrase commonly attributed to Emily Dickinson but actually she never said it, someone else did. I ddin't love love it, but I did think it was nice."
+                },
+                {
+                    "title": "Gender Queer",
+                    "author": "Maia Kobabe",
+                    "date_added": "Mon, 20 Feb 2023",
+                    "date_finished": "Sat, 18 Feb 2023",
+                    "tags": ["memoir", "graphic novel"],
+                    "notes": "Picked this up for the library on a whim. Quick read, but I really enjoyed it; memoir about discovering gender queerness and also asexuality and I thought just did a cool job of exploring how unique and individual everyone's path to / around gender and sexuality is."
+                },
+                {
+                    "title": "Sea and Fog",
+                    "author": "Etel Adnan",
+                    "date_added": "Mon, 20 Feb 2023",
+                    "date_finished": "Sun, 19 Feb 2023",
+                    "tags": ["poetry"],
+                    "notes": "Loved this. Bought this at the Guggenheim, second time I saw it there, after I didn't see a used copy anywhere else. Meditative prose poems about, well, sea and fog, but eventually gets into more modern times referants. Hard to describe. Made me think a bit of Agua Viva in its plotlessness but also how it captivated me and its beauty."
+                },
+                {
+                    "title": "Getting it Published: A Guide for Scholars and Anyone Else Serious About Serious Books",
+                    "author": "William Germano",
+                    "date_added": "Sat, 11 Mar 2023",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "Midnight's Children",
+                    "author": "Salmon Rushdie",
+                    "date_finished": "Mon, 27 Mar 2023",
+                    "date_added": "Mon, 17 Apr 2023",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "The Haunting of Hill House",
+                    "author": "Shirley Jackson",
+                    "date_finished": "Sat, 22 Apr 2023",
+                    "date_added": "Fri, 05 May 2023",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "My Life",
+                    "author": "Lyn Hejinian",
+                    "date_added": "Fri, 05 May 2023",
+                    "tags": ["poetry", "memoir"],
+                    "notes": ""
+                },
+                {
+                    "title": "Erosion: Essays of Undoing",
+                    "author": "Terry Tempest Williams",
+                    "date_finished": "Wed, 03 May 2023",
+                    "date_added": "Fri, 05 May 2023",
+                    "tags": ["nonfiction", "essays"],
+                    "notes": ""
+                },
+                {
+                    "title": "Everything I Never Told You",
+                    "author": "Celeste Ng",
+                    "date_added": "Sun, 28 May 2023",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Earthlings",
+                    "author": "Sayaka Murata",
+                    "date_finished": "Wed, 17 May 2023",
+                    "date_added": "Sun, 28 May 2023",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "The Vegetarian",
+                    "author": "Han Kang",
+                    "date_finished": "Fri, 19 May 2023",
+                    "date_added": "Sun, 28 May 2023",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Free Food for Millionaires",
+                    "author": "Min Jin Lee",
+                    "date_finished": "Sun, 28 May 2023",
+                    "date_added": "Sun, 28 May 2023",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "The Beauty of the Husband",
+                    "author": "Anne Carson",
+                    "date_finished": "Wed, 31 May 2023",
+                    "date_added": "Fri, 02 Jun 2023",
+                    "tags": ["poetry"],
+                    "notes": ""
+                },
+                {
+                    "title": "No Archive Will Restore You",
+                    "author": "Julietta Singh",
+                    "date_finished": "Fri, 02 Jun 2023",
+                    "date_added": "Fri, 02 Jun 2023",
+                    "tags": ["poetry"],
+                    "notes": ""
+                },
+                {
+                    "title": "Say Nothing",
+                    "author": "Patrick Radden Keefe",
+                    "date_finished": "Sun, 18 Jun 2023",
+                    "date_added": "Wed, 21 Jun 2023",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "Hard Damage",
+                    "author": "Aria Aber",
+                    "date_added": "Sun, 09 Jul 2023",
+                    "tags": ["poetry"],
+                    "notes": ""
+                },
+                {
+                    "title": "Do You Remember Being Born?",
+                    "author": "Sean Michaels",
+                    "date_added": "Sat, 12 Aug 2023",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Interior Chinatown",
+                    "author": "Charles Yu",
+                    "date_added": "Sat, 12 Aug 2023",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Breasts and Eggs",
+                    "author": "Mieko Kawakami",
+                    "date_added": "Sat, 12 Aug 2023",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Expecting Better",
+                    "author": "Emily Oster",
+                    "date_added": "Sat, 12 Aug 2023",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "Time is a Mother",
+                    "author": "Ocean Vuong",
+                    "date_added": "Sat, 12 Aug 2023",
+                    "date_finished": "Sat, 12 Aug 2023",
+                    "tags": ["poetry"],
+                    "notes": ""
+                },
+                {
+                    "title": "Prey",
+                    "author": "Michael Crichton",
+                    "date_added": "Sat, 23 Sep 2023",
+                    "date_finished": "Sat, 15 Sep 2023",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Like a Mother",
+                    "author": "Angela Garbes",
+                    "date_added": "Sat, 23 Sep 2023",
+                    "date_finished": "Wed, 20 Sep 2023",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "Infinite Jest",
+                    "author": "David Foster Wallace",
+                    "date_added": "Sat, 23 Sep 2023",
+                    "date_finished": "Thu, 21 Sep 2023",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Dura",
+                    "author": "Myung Mi Kim",
+                    "date_added": "Thu, 28 Sep 2023",
+                    "date_finished": "Thu, 28 Sep 2023",
+                    "tags": ["poetry"],
+                    "notes": ""
+                },
+                {
+                    "title": "Human Wishes",
+                    "author": "Robert Hass",
+                    "date_added": "Sun, 01 Oct 2023",
+                    "date_finished": "Sun, 01 Oct 2023",
+                    "tags": ["poetry"],
+                    "notes": ""
+                },
+                {
+                    "title": "Unexpected Vanilla",
+                    "author": "Lee Hyemi",
+                    "date_added": "Mon, 09 Oct 2023",
+                    "tags": ["poetry"],
+                    "notes": "Translated by Soje"
+                },
+                {
+                    "title": "The Hearing Trumpet",
+                    "author": "Leonora Carrington",
+                    "date_added": "Sat, 21 Oct 2023",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Autobiography of Death",
+                    "author": "Kim Hyesoon",
+                    "date_finished": "Sat, 21 Oct 2023",
+                    "date_added": "Sat, 21 Oct 2023",
+                    "tags": ["poetry"],
+                    "notes": "Translated by Don Mee Choi"
+                },
+                {
+                    "title": "The Nature Book",
+                    "author": "Tom Committa",
+                    "date_finished": "Sat, 21 Oct 2023",
+                    "date_added": "Sat, 21 Oct 2023",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Why Did No One Tell Me This?",
+                    "author": "Natalia Hailes and Ash Spivak",
+                    "date_finished": "Sat, 21 Oct 2023",
+                    "date_added": "Sat, 21 Oct 2023",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "Under the Jaguar Sun",
+                    "author": "Italo Calvino",
+                    "date_finished": "Mon, 23 Oct 2023",
+                    "date_added": "Mon, 23 Oct 2023",
+                    "tags": ["short stories"],
+                    "notes": ""
+                },
+                {
+                    "title": "The White Book",
+                    "author": "Han Kang",
+                    "date_finished": "Sat, 28 Oct 2023",
+                    "date_added": "Sat, 28 Oct 2023",
+                    "tags": ["poetry"],
+                    "notes": ""
+                },
+                {
+                    "title": "The Birth Partner",
+                    "author": "Penny Simpkin",  
+                    "date_added": "Sun, 26 Nov 2023",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "Open Throat",
+                    "author": "Henry Hoke",  
+                    "date_added": "Sun, 26 Nov 2023",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Tomorrow, and Tomorrow, and Tomorrow",
+                    "author": "Gabrielle Zevin",  
+                    "date_added": "Sat, 03 Feb 2024",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "The Word for World is Forest",
+                    "author": "Ursula K. LeGuin",  
+                    "date_added": "Sat, 03 Feb 2024",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "The Candy House",
+                    "author": "Jennifer Egan",  
+                    "date_added": "Sat, 03 Feb 2024",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "A Children's Bible",
+                    "author": "Lydia Millet",  
+                    "date_added": "Sat, 03 Feb 2024",
+                    "tags": ["novel"],
                     "notes": ""
                 }
             ]
