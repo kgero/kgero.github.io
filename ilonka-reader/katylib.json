@@ -3182,6 +3182,219 @@
                     "date_added": "Sat, 03 Feb 2024",
                     "tags": ["novel"],
                     "notes": ""
+                },
+                {
+                    "title": "Cribsheet",
+                    "author": "Emily Oster",
+                    "date_added": "Sat, 03 Feb 2024",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "Monsters",
+                    "author": "Clare Dederer",
+                    "date_added": "Fri, 09 Feb 2024",
+                    "date_finished": "Fri, 09 Feb 2024",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "How to Be Authentic",
+                    "author": "Skye Cleary",
+                    "date_added": "Wed, 14 Feb 2024",
+                    "date_finished": "Tue, 13 Feb 2024",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "Good Dog, Happy Baby",
+                    "author": "Michael Wombacher",
+                    "date_added": "Sat, 17 Feb 2024",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "You Too Can Have A Body Like Mine",
+                    "author": "Alexandra Kleeman",
+                    "date_added": "Sun, 25 Feb 2024",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Artificial",
+                    "author": "Amy Kurzweil",
+                    "date_added": "Sun, 25 Feb 2024",
+                    "tags": ["nonfiction", "memoir", "graphic novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "The Argonauts",
+                    "author": "Maggie Nelson",
+                    "date_added": "Fri, 05 Apr 2024",
+                    "tags": ["nonfiction", "memoir", "poetry"],
+                    "notes": ""
+                },
+                {
+                    "title": "Crying in H Mart",
+                    "author": "Michelle Zauner",
+                    "date_added": "Fri, 05 Apr 2024",
+                    "tags": ["nonfiction", "memoir"],
+                    "notes": ""
+                },
+                {
+                    "title": "Precious Little Sleep",
+                    "author": "Alexis Dubrief",
+                    "date_added": "Fri, 05 Apr 2024",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "Eat the Mouth that Feeds You",
+                    "author": "Carribean Fragoza",
+                    "date_added": "Fri, 05 Apr 2024",
+                    "tags": ["short stories"],
+                    "notes": ""
+                },
+                {
+                    "title": "How Not to Die",
+                    "author": "Michael Greger",
+                    "date_added": "Wed, 15 May 2024",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "Erasure",
+                    "author": "Percival Everett",
+                    "date_added": "Wed, 15 May 2024",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Motherhood",
+                    "author": "Sheila Heti",
+                    "date_added": "Wed, 15 May 2024",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Giovanni's Room",
+                    "author": "James Baldwin",
+                    "date_added": "Sun, 19 May 2024",
+                    "date_finished": "Sat, 18 May 2024",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Chokepoint Capitalism",
+                    "author": "Rebecca Giblin and Cory Doctorow",
+                    "date_added": "Sat, 24 Aug 2024",
+                    "tags": ["nonfiction", "audiobook"],
+                    "notes": ""
+                },
+                {
+                    "title": "Fever Dream",
+                    "author": "Samanta Schweblin",
+                    "date_added": "Sat, 24 Aug 2024",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "On Talking Terms with Dogs",
+                    "author": "Turid Rugaas",
+                    "date_added": "Sat, 24 Aug 2024",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "To Kill a Mockingbird",
+                    "author": "Harper Lee",
+                    "date_added": "Sat, 24 Aug 2024",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Truly Madly Guilty",
+                    "author": "Liane Moriarty",
+                    "date_added": "Sat, 24 Aug 2024",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Whale Fall",
+                    "author": "Elizabeth O'Connor",
+                    "date_added": "Sat, 24 Aug 2024",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "The Employees",
+                    "author": "Olga Ravn",
+                    "date_added": "Sat, 24 Aug 2024",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "The Guest Lecture",
+                    "author": "Martin Riker",
+                    "date_added": "Sat, 24 Aug 2024",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Immune",
+                    "author": "Philipp Dettmer",
+                    "date_added": "Sat, 24 Aug 2024",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "Montessori: A Modern Approach",
+                    "author": "Paula Polk Lillard",
+                    "date_added": "Sat, 24 Aug 2024",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "The Montessori Baby",
+                    "author": "Simone Davies and Junnifa Uzodike",
+                    "date_added": "Sat, 24 Aug 2024",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "Native Son",
+                    "author": "Richard Wright",
+                    "date_added": "Sat, 24 Aug 2024",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Love and Logic Magic for Early Childhood",
+                    "author": "Jim Fay",
+                    "date_added": "Sat, 24 Aug 2024",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "Raising Mentally Strong Kids",
+                    "author": "Daniel Amen and Charles Fay",
+                    "date_added": "Sat, 24 Aug 2024",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "Baby-Led Weaning",
+                    "author": "Gill Rapley",
+                    "date_added": "Sat, 24 Aug 2024",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "The Sirens of Titan",
+                    "author": "Kurt Vonnegut",
+                    "date_added": "Sat, 24 Aug 2024",
+                    "tags": ["novel"],
+                    "notes": ""
                 }
             ]
         }
