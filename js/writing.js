@@ -1,5 +1,13 @@
 var poems = [
 	{
+		'title': 'dis/appear',
+		'publication': 'Graywolf Lab (with Maxwell Neely-Cohen)',
+		'month': 'Sep',
+		'date': '2023',
+		'link': 'https://graywolf-lab-dis-appear.glitch.me/',
+		'description': ''
+	},
+	{
 		'title': 'Blank Page with Machine',
 		'publication': 'The HTML Review',
 		'month': 'Apr',

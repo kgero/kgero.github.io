@@ -142,6 +142,16 @@ var writing_tools = [
 
 var papers_cs = [
   {
+    'title': "Supporting Sensemaking of Large Language Model Outputs at Scale",
+    'author': "Katy Gero, Chelse Swoopes, Ziwei Gu, Jonathan Kummerfeld, and Elena Glassman",
+    'source': "CHI",
+    'year': "2024",
+    'pdf': 'papers/2024_SupportingSensemaking.pdf',
+    'type': 'conference',
+    'category': 'llm'
+    // 'bibtex': 'research/bibtex/tweetorials.txt'
+  },
+  {
     'title': "The Incentive Gap in Data Work in the Era of Large Models",
     'author': "Katy Gero, Payel Das, Pierre Dognin, Inkit Padhi, Prasanna Sattigero, and Kush Varshney",
     'source': "Nature Machine Intelligence",
@@ -158,7 +168,8 @@ var papers_cs = [
     'year': "2022",
     'pdf': 'papers/2022_Sensemaking.pdf',
     'type': 'workshop',
-    'category': 'llm'
+    'category': 'llm',
+    'hide': true
     // 'bibtex': 'research/bibtex/tweetorials.txt'
   },
   {
@@ -179,7 +190,8 @@ var papers_cs = [
     'year': "2022",
     'pdf': 'papers/2022_AuditingGenerativeAlgorithms.pdf',
     'type': 'workshop',
-    'category': 'llm'
+    'category': 'llm',
+    'hide': true
     // 'bibtex': 'research/bibtex/tweetorials.txt'
   },
   {
@@ -205,7 +217,8 @@ var papers_cs = [
     // 'poster': 'papers/2022_Sparks_poster.pdf',
     'type': 'workshop',
     'category': 'ai-writer',
-    'presentation video': 'https://youtu.be/-q9jBE9HdGI'
+    'presentation video': 'https://youtu.be/-q9jBE9HdGI',
+    'hide': true
     // 'bibtex': 'research/bibtex/tweetorials.txt'
   },
   {
@@ -376,10 +389,10 @@ $(document).ready( function() {
     tag.append(icon + val['source'] + " " + val['year'] + '.');
     
     if (val['category'] == 'ai-writer') {
-      $('.papers_cs_aiwriter').append(tag);
+      $('.papers_cs').append(tag);
     }
     if (val['category'] == 'llm') {
-      $('.papers_cs_llm').append(tag);
+      $('.papers_cs').append(tag);
     }
     
     
