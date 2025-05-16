@@ -3509,6 +3509,13 @@
                     "notes": "Read for class 'when novels were new.'."
                 },
                 {
+                    "title": "Moll Flanders",
+                    "author": "Daniel DeFoe",
+                    "date_added": "Fri, 16 May 2025",
+                    "tags": ["novel"],
+                    "notes": "Read for class 'when novels were new.'."
+                },
+                {
                     "title": "Four Thousand Weeks",
                     "author": "Oliver Burkeman",
                     "date_added": "Fri, 16 May 2025",
@@ -3553,6 +3560,27 @@
                 {
                     "title": "Mild Vertigo",
                     "author": "Meiko Kanai",
+                    "date_added": "Fri, 16 May 2025",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Annihilation",
+                    "author": "Jeff VanderMeer",
+                    "date_added": "Fri, 16 May 2025",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Authority",
+                    "author": "Jeff VanderMeer",
+                    "date_added": "Fri, 16 May 2025",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Acceptance",
+                    "author": "Jeff VanderMeer",
                     "date_added": "Fri, 16 May 2025",
                     "tags": ["novel"],
                     "notes": ""
