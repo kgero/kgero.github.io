@@ -1,5 +1,13 @@
 var poems = [
 	{
+		'title': 'Every Sonnet Must Rot (Death, Be Not Proud)',
+		'publication': 'taper',
+		'month': 'Jun',
+		'date': '2025',
+		'link': 'https://taper.badquar.to/14/every_sonnet_must_rot.html',
+		'description': ''
+	},
+	{
 		'title': 'dis/appear',
 		'publication': 'Graywolf Lab (with Maxwell Neely-Cohen)',
 		'month': 'Sep',

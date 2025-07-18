@@ -142,10 +142,30 @@ var writing_tools = [
 
 var papers_cs = [
   {
+    'title': "Creative Writers' Attitudes on Writing as Training Data for Large Language Models",
+    'author': "Katy Gero, Meera Desai, Carly Schnitzler, Nayun Eom, Jack Cushman, and Elena Glassman",
+    'source': "CHI",
+    'year': "2025 - <span class='tag tagged is-info'>🏆Best Paper Award</span>",
+    'pdf': 'papers/2025_CreativeWritersAttitudes.pdf',
+    'type': 'conference',
+    'category': 'llm'
+    // 'bibtex': 'research/bibtex/tweetorials.txt'
+  },
+  {
+    'title': "A Design Space for Intelligent and Interactive Writing Assistants",
+    'author': "Mina Lee, Katy Gero, John Joon Young Chung, and many many more...",
+    'source': "CHI",
+    'year': "2024",
+    'pdf': 'https://dl.acm.org/doi/pdf/10.1145/3613904.3642697',
+    'type': 'conference',
+    'category': 'llm'
+    // 'bibtex': 'research/bibtex/tweetorials.txt'
+  },
+  {
     'title': "Supporting Sensemaking of Large Language Model Outputs at Scale",
     'author': "Katy Gero, Chelse Swoopes, Ziwei Gu, Jonathan Kummerfeld, and Elena Glassman",
     'source': "CHI",
-    'year': "2024",
+    'year': "2024 - <span class='tag tagged is-info'>🏆Honorable Mention Award</span>",
     'pdf': 'papers/2024_SupportingSensemaking.pdf',
     'type': 'conference',
     'category': 'llm'
@@ -266,7 +286,7 @@ var papers_cs = [
     'title': "Mental Models of AI Agents in a Cooperative Game Setting",
     'author': "Katy Gero, Zahra Ashktorab, Casey Dugan, Qian Pan, James Johnson, Werner Geyer, Maria Ruiz, Sarah Miller, David R. Millen, Murray Campbell, Sadhana Kumaravel, and Wei Zhang",
     'source': "CHI",
-    'year': "2020 <span class='tag tagged is-info'>⭐⭐⭐ Best Paper Award ⭐⭐⭐</span>",
+    'year': "2020 - <span class='tag tagged is-info'>🏆Best Paper Award</span>",
     'pdf': "papers/2020_MentalModelsofAIAgents.pdf",
     'project page': 'research/mental-models-passcode/index.html',
     'type': 'conference',
