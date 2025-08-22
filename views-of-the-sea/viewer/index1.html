@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>36 Views of the Sea</title>
+    <style>
+        .container {
+            margin: 100px;
+        }
+        .child {
+            float: left;
+            width: 500px;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="child" id="poem">
+        </div>
+    </div>
+    <script>
+const sourcePoem = `The sea is to be seen. See the sea. Wait. Do not hurry. Do not 
+run to her. Wait, she says. Or I say. See the sea. Look at her using 
+your eyes. Open them, those eyes that will close one day when 
+you won't be standing. You will be flat, like her, but she will be 
+alive. Therefore look at her while you can. Let your eyes tire and 
+burn. Let them suffer. Keep them open like one does at midday. 
+Don't worry. Other eyes within will take over and go on seeing 
+her. They will not search for forms nor seek divine presence. 
+They will rather continue to see water which stirs and shouts, 
+becomes ice in the North, vapor in the tropics.`;
+
+const poem1 = `Consider the Pacific. Half an orb: eminent &
+monstrous body of blue skirted w/ old coasts,
+oak tree & Pangea hewn w/ cracked veins: 
+roots of ghost & steel. 
+
+In this dystopia, the seabed goes silent. Deathly
+dark hue, unwritten horror everywhere.
+Whale skeleton rots, heir who toils alone 
+in a trove of oily metal, iron adhesions within.
+
+O, I've killed my hope, lost my coral statue. 
+Only eerie ache between eye, ear, & gut. 
+
+Then, I renew my fury, 
+cheery w/ wit & youth & honey, 
+keen to enter the whirl, yap utopia & shine out. 
+
+Elsewhere, herons wait in the rushes, 
+noiseless & noble eye, 
+resolute hunters tethered to the abyss.`;
+
+const poem2 = `Consider the Pacific. Half an orb: eminent &
+monstrous body of blue skirted w/ old coasts,
+oak tree & Pangea hewn w/ cracked veins: 
+root of ghost & steel. 
+
+In this dystopia, the seabed goes silent. Deathly
+dark hue, unwritten outlet, hilly horror or worry yore. 
+Eerie eve: whale skeleton, souse heir who sits alone 
+in a trove of oily metal, iron adhesions within.
+
+O, I've killed my hope, my coral statue, 
+an ashen appetite & ache between eye, gut, oy.
+
+Then, I renew my fury, 
+cheery w/ wit & youth & honey, 
+keen to enter the whirl. 
+
+Elsewhere, herons wait in the rushes, 
+noiseless & noble, 
+resolute hunters tethered to the abyss.`;
+
+const poem3 = `Consider the Pacific. Half an orb: eminent &
+monstrous body of blue skirted w/ old coasts,
+Pangea hewn w/ cracked veins of ghosts & steel. 
+
+In this dystopia, the seabed goes silent. Deathly
+dark, unwritten outlet, hilly horror or worry yore. 
+Eerie: whale skeleton, heir sits alone in a trove of benevolent metal.
+
+
+
+I've killed my hope, sunk my coral statues, 
+honored an ashen appetite that aches in 
+eye, gut, artery. Then, I renew my fury, cheery 
+w/ wit & youth, keen to enter the whirl. 
+
+Elsewhere, herons wait in the rushes, 
+noiseless & noble, 
+resolute hunters tethered to the abyss.`;
+
+const poem4 = `Consider the Pacific. Half an orb: eminent &
+monstrous body of blue skirted w/ old coasts,
+Pangea hewn w/ cracked veins of ghosts & steel. 
+
+In this dystopia, the seabed goes silent. Deathly
+dark & ____. Whale
+skeleton sits alone in a trove of benevolent metal.
+
+
+
+
+I've killed my hope, sunk my coral statues, 
+heeded an ashen appetite that aches in 
+eye, gut, artery. Then, I renew my fury, 
+cheery w/ wit & youth. Elsewhere, .`;
+
+const poem5 = `Consider the Pacific. Half an orb: eminent &
+monstrous body of blue skirted w/ old coasts,
+Pangea hewn w/ cracked veins of ghosts & steel. 
+
+In this dystopia, the seabed goes silent. Deathly
+dark & a sense or desire to sentinel. Whale
+skeleton sits alone in a trove of benevolent metal.
+
+          buoy                              north                  owe
+                     uoy           north                              we
+      buoy                                             north            e
+                 
+                you                          north                      
+
+
+
+Shorelines who snarl, hot w/ &,   
+writer soiree, literature in the noir. 
+
+I've killed my hope, sunk my coral statues, ashen appetite
+that aches in eye, gut, artery. Then, I renew my fury,
+cheery w/ wit & youth. Elsewhere, eels hurry to shelter.`;
+
+const poem6 = `Consider the Pacific. Half an orb: eminent &
+monstrous body of blue skirted w/ old coasts,
+Pangea hewn w/ cracked veins of ghosts & steel. 
+
+In this dystopia, the seabed goes silent. Deathly
+dark & a sense or desire to sentinel. Whale
+skeleton sits alone in a trove of benevolent metal.
+
+          buoy
+                     uoy
+      buoy 
+
+                you
+
+Shorelines who snarl, hot w/ weeds, 
+
+literature in the noir. 
+
+I've killed my hope, sunk my coral statues, ashen appetite
+that aches in eye, gut, artery. Then, I renew my fury,
+cheery w/ wit & youth. Elsewhere, eels hurry to shelter.`;
+
+
+        let letterMap = {};
+
+        function isLetter(str) {
+          return str.length === 1 && str.match(/[a-z]/i);
+        }
+
+        /**
+         * Takes a string and adds it to the provided div with each character
+         * in its own span with its own id. If first time, add letters to letterMap
+         * as keys; else add as values.
+         *
+         * @param {string} theStr - string literal.
+         * @param {div} theDiv - div object.
+         * @param {int} poemId - id for poem (for lettermapping).
+         * @returns {int} max letterId.
+         */
+        function string_to_spans(theStr, theDiv, poemId) {
+            theStr = theStr.toLowerCase();
+            let letterId = 0;
+            for (let char of theStr) {
+                const newSpan = document.createElement('span');
+                // first map the letter
+                if (isLetter(char)) {
+                    if (poemId === "startPoem") {
+                        letterMap[letterId] = { 
+                            "letter": char,
+                            "dropped": false 
+                        }
+                        newSpan.id = `source-${letterId++}`;
+                    } else {
+                        for (const key in letterMap) {
+                            let val = letterMap[key];
+                            if (val['letter'] === char && !val.hasOwnProperty(poemId)) {
+                                val[poemId] = letterId;
+                                val["assembled"] = false;
+                                break;
+                            }
+                        }
+                        newSpan.id = `source-${letterId++}`;
+                    }
+                    
+                }
+                // then add the span
+                if (char === " ") {
+                    newSpan.textContent = '\u00A0';
+                } else if (char === "\n") {
+                    const br = document.createElement('br');
+                    theDiv.appendChild(br);
+                    continue;
+                } else {
+                    newSpan.textContent = char;
+                }
+                
+                theDiv.appendChild(newSpan);
+            }
+            return letterId;
+        }
+
+        function make_clones(theDiv) {
+            const spans = theDiv.querySelectorAll('span');
+            spans.forEach(original => {
+                const letterId = original.id.split("-")[1];
+                const clone = original.cloneNode(true);
+                const rect = original.getBoundingClientRect();
+
+                clone.id = `clone-${letterId}`
+
+                document.body.appendChild(clone);
+                clone.style.position = 'absolute';
+                clone.style.top = `${rect.top + window.scrollY}px`;
+                clone.style.left = `${rect.left + window.scrollX}px`;
+                clone.style.width = `${rect.width}px`;
+                clone.style.height = `${rect.height}px`;
+                if (letterMap.hasOwnProperty(parseInt(letterId))) {
+                    letterMap[parseInt(letterId)]["boundingRect"] = clone.getBoundingClientRect();
+                }
+            });
+            return;
+        }
+
+        function drop_letter(thisLetter) {
+            // console.log(`animating ${thisLetter} (${letterMap[thisLetter].letter})...`)
+            const clone = document.getElementById(`clone-${thisLetter}`);
+            // const target = document.getElementById(`source-${letterMap[thisLetter].mapId}`);
+
+            // const targetRect = target.getBoundingClientRect();
+            // const cloneRect = clone.getBoundingClientRect()
+            const cloneRect = letterMap[thisLetter].boundingRect;
+
+            const deltaX = (Math.random()*100) - (Math.random()*100);
+            const deltaY = 600 - (cloneRect.top + window.scrollY) + (Math.random()*50) - (Math.random()*50);
+
+            clone.style.transition = 'transform 2s ease-in-out';
+            clone.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+        }
+
+        function drop_poem(delay) {
+            const lettersToDrop = Object.entries(letterMap)
+                .filter(([id, data]) => data.dropped === false)
+                .map(([id]) => Number(id));
+
+            if (lettersToDrop.length <= 0) {
+                return;
+            }
+
+            const selectedLetter = lettersToDrop[Math.floor(Math.random() * lettersToDrop.length)];
+            letterMap[selectedLetter].dropped = true;
+            drop_letter(selectedLetter)
+            setTimeout(drop_poem, delay, delay*.9);
+        }
+
+        function place_letter(thisLetter, poemId) {
+            const clone = document.getElementById(`clone-${thisLetter}`);
+            const target = document.getElementById(`source-${letterMap[thisLetter][poemId]}`);
+
+            const targetRect = target.getBoundingClientRect();
+            const cloneRect = letterMap[thisLetter].boundingRect;
+
+            const deltaX = (targetRect.left + window.scrollX) - (cloneRect.left + window.scrollX);
+            const deltaY = (targetRect.top + window.scrollY) - (cloneRect.top + window.scrollY);
+
+            clone.style.transition = 'transform 2s ease-in-out';
+            clone.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+        }
+
+        function assemble_poem(delay, poemId) {
+            const lettersToAssemble = Object.entries(letterMap)
+                .filter(([id, data]) => data.assembled === false)
+                .map(([id]) => Number(id));
+
+            if (lettersToAssemble.length <= 0) {
+                return;
+            }
+
+            const selectedLetter = lettersToAssemble[Math.floor(Math.random() * lettersToAssemble.length)];
+            letterMap[selectedLetter].assembled = true;
+            letterMap[selectedLetter].dropped = false;
+            place_letter(selectedLetter, poemId)
+            setTimeout(assemble_poem, delay, delay*.9, poemId);
+        }
+
+        var randomKey = function (obj) {
+            let keys = Object.keys(obj);
+            let index = Math.floor(randn_bm() * keys.length);
+            // index = Math.floor(Math.random() * keys.length);
+            return keys[index];
+        };
+
+        function rand_gauss_letter(mean, spread) {
+            return Math.floor((randn_bm() * spread) + mean - (spread/2));
+        }
+
+        // https://stackoverflow.com/questions/25582882/javascript-math-random-normal-distribution-gaussian-bell-curve
+        function randn_bm() {
+          let u = 0, v = 0;
+          while(u === 0) u = Math.random(); //Converting [0,1) to (0,1)
+          while(v === 0) v = Math.random();
+          let num = Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v );
+          num = num / 10.0 + 0.5; // Translate to 0 -> 1
+          if (num > 1 || num < 0) return randn_bm() // resample between 0 and 1
+          return num
+        }
+
+        function run_assembly(poem, poemDiv) {
+            console.log("running assembly...");
+            poemDiv.innerHTML = "";
+            string_to_spans(poem, poemDiv, "poem2");
+            assemble_poem(300, "poem2");
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const poemDiv = document.getElementById('poem');
+
+            string_to_spans(sourcePoem, poemDiv, "startPoem");
+
+            make_clones(poemDiv);
+            console.log("dropping poem...");
+            drop_poem(100);
+
+            setTimeout(run_assembly, 5000, poem6, poemDiv);
+            // animate_letter(3);
+            // run_animations(1);
+            // run_animation(lenA);
+        });
+    </script>
+</body>
+</html>

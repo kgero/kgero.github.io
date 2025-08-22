@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>36 Views of the Sea</title>
+    <style>
+        :root {
+            --deep-blue: #103F5F;
+            --medium-blue: #2676A1;
+            --light-blue: #BFD7E3;
+            --pale-blue: #E6F2F8;
+            --sand-color: #EFE6D9;
+            --staging-gray: #f0f0f0;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 1rem;
+            background-color: var(--pale-blue);
+            color: var(--deep-blue);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            max-width: 100%;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+        
+        main {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .container {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .panel {
+            padding: 1rem;
+            border-radius: 3px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            background-color: white;
+            box-sizing: border-box;
+        }
+        
+        .left-panel {
+            width: 30%;
+            position: relative;
+            background-color: var(--light-blue);
+        }
+        
+        .right-panel {
+            width: calc(70% - 2rem);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .textbox-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .main-textbox-container {
+            width: 70%;
+        }
+        
+        .staging-textbox-container {
+            width: 30%;
+        }
+        
+        h2 {
+            margin-top: 0;
+            font-weight: 300;
+            letter-spacing: 1px;
+            color: var(--deep-blue);
+            border-bottom: 1px solid var(--medium-blue);
+            padding-bottom: 0.5rem;
+        }
+        
+        #baseText {
+            line-height: 1.6;
+            color: var(--deep-blue);
+        }
+        
+        .textarea-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.7rem;
+            color: var(--medium-blue);
+        }
+        
+        textarea {
+            width: 100%;
+            min-height: 180px;
+            padding: 1rem;
+            border: 1px solid var(--light-blue);
+            border-radius: 3px;
+            resize: vertical;
+            box-sizing: border-box;
+            font-family: inherit;
+            color: var(--deep-blue);
+            transition: border-color 0.3s;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: var(--medium-blue);
+            box-shadow: 0 0 0 2px rgba(38, 118, 161, 0.2);
+        }
+        
+        #userTextarea {
+            background-color: white;
+        }
+        
+        #stagingTextarea {
+            background-color: var(--staging-gray);
+        }
+        
+        .letter-box {
+            padding: 1.5rem;
+            background-color: var(--sand-color);
+            border-radius: 3px;
+            font-size: 1.1rem;
+            min-height: 30px;
+            word-wrap: break-word;
+            letter-spacing: 0.1rem;
+            line-height: 1.8;
+        }
+        
+        .letter-box-container {
+            position: relative;
+        }
+        
+        .letter-box-container:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--deep-blue), var(--medium-blue), var(--light-blue));
+            border-radius: 3px 3px 0 0;
+        }
+        
+        h3 {
+            font-weight: 400;
+            color: var(--medium-blue);
+            font-size: 1em;
+        }
+        
+        .flash {
+            animation: flash-red 0.3s;
+        }
+        
+        @keyframes flash-red {
+            0%, 100% { background-color: white; }
+            50% { background-color: #FFEDED; }
+        }
+        
+        @media (max-width: 1024px) {
+            .textbox-container {
+                flex-direction: column;
+            }
+            
+            .main-textbox-container,
+            .staging-textbox-container {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .panel, .left-panel, .right-panel {
+                width: 100%;
+            }
+            
+            .left-panel {
+                margin-bottom: 0;
+            }
+        }
+
+        .suggestion-box-container {
+            position: relative;
+        }
+
+        .suggestion-box {
+            padding: 1.5rem;
+            background-color: white;
+            border-radius: 3px;
+            font-size: 1rem;
+            min-height: 30px;
+            line-height: 1.8;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            word-wrap: break-word;
+        }
+
+        .suggestion-box-container:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--light-blue), var(--medium-blue), var(--deep-blue));
+            border-radius: 3px 3px 0 0;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <div class="panel left-panel">
+                <!-- <h2>The Sea</h2> -->
+                <p id="baseText">The sea is to be seen. See the sea. Wait. Do not hurry. Do not run to her. Wait, she says. Or I say. See the sea. Look at her using your eyes. Open them, those eyes that will close one day when you won't be standing. You will be flat, like her, but she will be alive. Therefore look at her while you can. Let your eyes tire and burn. Let them suffer. Keep them open like one does at midday. Don't worry. Other eyes within will take over and go on seeing her. They will not search for forms nor seek divine presence. They will rather continue to see water which stirs and shouts, becomes ice in the North, vapor in the tropics.</p>
+            </div>
+            
+            <div class="panel right-panel">
+                <!-- <h2>A View of the Sea</h2> -->
+                <div class="textbox-container">
+                    <div class="main-textbox-container">
+                        <label for="userTextarea" class="textarea-label">Restricted Text (uses available letters)</label>
+                        <textarea id="userTextarea" placeholder="Begin your sea view..."></textarea>
+                    </div>
+                    <div class="staging-textbox-container">
+                        <label for="stagingTextarea" class="textarea-label">Staging Area (no restrictions)</label>
+                        <textarea id="stagingTextarea" placeholder="Notes, drafts..."></textarea>
+                    </div>
+                </div>
+                
+                <h3>Available Letters</h3>
+                <div class="letter-box-container">
+                    <div id="letterBox" class="letter-box"></div>
+                </div>
+                
+                <h3>Suggested Words</h3>
+                <label for="posFilter">Filter by Part of Speech:</label>
+                <select id="posFilter">
+                  <option value="all">All</option>
+                  <option value="noun">Noun</option>
+                  <option value="verb">Verb</option>
+                  <option value="stop">Stop Word</option>
+                  <option value="other">Other</option>
+                </select>
+                <div class="suggestion-box-container">
+                    <div id="suggestionBox" class="suggestion-box"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const baseText = document.getElementById('baseText');
+            const userTextarea = document.getElementById('userTextarea');
+            const letterBox = document.getElementById('letterBox');
+            const suggestionBox = document.getElementById('suggestionBox');
+            
+            let baseLetterCounts = {};
+            let userLetterCounts = {};
+            let wordsDictionary = null;
+            
+            // Fetch the words dictionary
+            // const dictionaryUrl = 'https://raw.githubusercontent.com/EvanLosh/dictionary-scraper/refs/heads/main/every-word-in-the-dictionary.txt';
+            const wiki_top_words = 'https://gist.githubusercontent.com/h3xx/1976236/raw/bbabb412261386673eff521dddbe1dc815373b1d/wiki-100k.txt';
+
+            const stop_word_url = "https://cdn.jsdelivr.net/gh/kgero/kgero.github.io@master/views-of-the-sea/spacy_function_words_with_post.json";
+            const wordnet_word_url = "https://cdn.jsdelivr.net/gh/kgero/kgero.github.io@master/views-of-the-sea/wordnet_words_with_pos.json";
+
+            let functionWordList = null;
+
+            function get_wordnet_plus_stopwords() {
+                Promise.all([
+                  fetch(wordnet_word_url).then(res => res.json()),
+                  // fetch(stop_word_url).then(res => res.json()).then(data => {
+                  //     functionWords = data;
+                  //   })
+                  fetch(stop_word_url).then(res => res.json())
+                ])
+                .then(([wordnetWords, functionWords]) => {
+                  // Save function words
+                  functionWordList = functionWords;
+
+                  // Merge into one dictionary
+                  wordsDictionary = { ...wordnetWords };
+
+                  for (const [word, posList] of Object.entries(functionWords)) {
+                    if (word in wordsDictionary) {
+                      const merged = new Set([...wordsDictionary[word], ...posList]);
+                      wordsDictionary[word] = Array.from(merged).sort();
+                    } else {
+                      wordsDictionary[word] = posList;
+                    }
+                  }
+
+                  console.log("Dictionary loaded with", Object.keys(wordsDictionary).length, "words");
+                  initializeLetterCounts();  // Continue with your app logic
+                })
+                .catch(error => {
+                  console.error("Error loading word dictionaries:", error);
+                  document.getElementById("suggestionBox").textContent = "Could not load dictionary.";
+                });
+            }
+
+            function get_wiki100k_words() {
+                fetch(dictionaryUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Network response was not ok: ${response.status}`);
+                    }
+                    return response.text(); // Get as text instead of JSON
+                })
+                .then(data => {
+                    // wordsDictionary = data;
+                    // updateSuggestions();
+
+                    // Convert the line-by-line format to our dictionary format
+                    // Filter out words with uppercase letters, non-alpha characters, or spaces
+                    const words = data.split('\n')
+                        .filter(word => {
+                            const trimmed = word.trim();
+                            // Keep only words that:
+                            // 1. Have at least one character
+                            // 2. Contain only lowercase letters (no uppercase)
+                            // 3. Don't contain spaces or non-alphabetic characters
+                            return trimmed.length > 0 && 
+                                   trimmed === trimmed.toLowerCase() &&
+                                   /^[a-z]+$/.test(trimmed);
+                        })
+                        .slice(0, 30000); // Limit to first 50000 valid words;
+                    
+                    wordsDictionary = {};
+                    
+                    // Add each word to our dictionary
+                    words.forEach(word => {
+                        wordsDictionary[word] = 1;
+                    });
+                    
+                    console.log('Dictionary loaded with', Object.keys(wordsDictionary).length, 'words');
+                    updateSuggestions();
+                })
+                .catch(error => {
+                    console.error('Error loading words dictionary:', error);
+                    suggestionBox.textContent = 'Could not load words dictionary.';
+                });
+            }
+
+            get_wordnet_plus_stopwords();
+
+            function isStopWord(word) {
+              return functionWordList && functionWordList[word] !== undefined;
+            }
+            
+            // Initialize the letter box
+            function initializeLetterCounts() {
+                baseLetterCounts = {};
+                const baseContent = baseText.textContent.toLowerCase();
+                
+                for (let char of baseContent) {
+                    // Skip spaces and punctuation
+                    if (char !== ' ' && /[a-z]/.test(char)) {
+                        baseLetterCounts[char] = (baseLetterCounts[char] || 0) + 1;
+                    }
+                }
+                
+                updateLetterBox();
+            }
+            
+            // Function to find possible words from available letters
+            function findPossibleWords(letters) {
+                if (!wordsDictionary) return [];
+                
+                // Count frequency of each letter
+                const letterFreq = {};
+                for (const letter of letters) {
+                    letterFreq[letter] = (letterFreq[letter] || 0) + 1;
+                }
+                
+                const possibleWords = [];
+                
+                // Check each word in dictionary
+                for (const word in wordsDictionary) {
+                    // Skip words shorter than 3 letters
+                    if (word.length < 3) continue;
+                    
+                    // Check if word can be formed
+                    const wordFreq = {};
+                    let canForm = true;
+                    
+                    for (const char of word) {
+                        wordFreq[char] = (wordFreq[char] || 0) + 1;
+                        
+                        // If letter frequency exceeds available letters
+                        if (!letterFreq[char] || wordFreq[char] > letterFreq[char]) {
+                            canForm = false;
+                            break;
+                        }
+                    }
+                    
+                    if (canForm) {
+                        possibleWords.push(word);
+                    }
+                }
+                
+                // Sort alphabetically
+                return possibleWords.sort();
+            }
+            
+            // Update the suggestions box
+            function updateSuggestions() {
+                const availableLetters = letterBox.textContent;
+
+                // Only show suggestions when 15 or fewer unique letters are left
+                const uniqueLetters = [...new Set(availableLetters)].length;
+                if (uniqueLetters > 15) {
+                    suggestionBox.textContent = 'Use more letters to see word suggestions (15 or fewer unique letters needed).';
+                    return;
+                }
+                
+                const filter = document.getElementById('posFilter')?.value || 'all';
+                const possibleWords = findPossibleWords(availableLetters);
+
+                const filteredWords = possibleWords.filter(w => {
+                const posTags = wordsDictionary[w];
+                if (!posTags) return false;
+
+                switch (filter) {
+                  case 'noun':
+                    return posTags.includes('noun');
+                  case 'verb':
+                    return posTags.includes('verb');
+                  case 'stop':
+                    return isStopWord(w);
+                  case 'other':
+                    return !posTags.includes('noun') &&
+                           !posTags.includes('verb') &&
+                           !isStopWord(w);
+                  default:
+                    return true;
+                }
+              });
+                
+                if (filteredWords.length === 0) {
+                    suggestionBox.textContent = 'No words can be formed with the remaining letters.';
+                } else {
+                    // suggestionBox.textContent = possibleWords.join(' ');
+                    suggestionBox.innerHTML = filteredWords
+                      .map(w => `<span pos="${wordsDictionary[w]}">${w}</span>`)
+                      .join(' ');
+
+                }
+            }
+            
+            // Update the available letters in the letter box
+            function updateLetterBox() {
+                userLetterCounts = {};
+                const userContent = userTextarea.value.toLowerCase();
+                
+                for (let char of userContent) {
+                    if (char !== ' ' && /[a-z]/.test(char)) {
+                        userLetterCounts[char] = (userLetterCounts[char] || 0) + 1;
+                    }
+                }
+                
+                let availableLetters = '';
+                for (let char in baseLetterCounts) {
+                    const userCount = userLetterCounts[char] || 0;
+                    const availableCount = baseLetterCounts[char] - userCount;
+                    
+                    // Add the letter to the available letters string multiple times based on count
+                    if (availableCount > 0) {
+                        availableLetters += char.repeat(availableCount);
+                    }
+                }
+                
+                // Sort the letters alphabetically
+                availableLetters = [...availableLetters].sort().join('');
+                letterBox.textContent = availableLetters;
+                
+                // Update word suggestions
+                updateSuggestions();
+            }
+            
+            // Handle user input
+            userTextarea.addEventListener('input', function(e) {
+                const newChar = e.data;
+                const cursorPosition = this.selectionStart;
+                
+                // If a character was added (not deletion)
+                if (newChar && newChar.length === 1 && newChar !== ' ') {
+                    const lowerChar = newChar.toLowerCase();
+                    
+                    // Skip validation for non-alphabetic characters
+                    if (!/[a-z]/.test(lowerChar)) {
+                        updateLetterBox();
+                        return;
+                    }
+                    
+                    const currentCount = (userLetterCounts[lowerChar] || 0) + 1;
+                    
+                    // Check if the new character exceeds what's available in base text
+                    if (!baseLetterCounts[lowerChar] || currentCount > baseLetterCounts[lowerChar]) {
+                        // Flash red
+                        userTextarea.classList.add('flash');
+                        setTimeout(() => userTextarea.classList.remove('flash'), 300);
+                        
+                        // Remove the character
+                        const newValue = this.value.slice(0, cursorPosition - 1) + this.value.slice(cursorPosition);
+                        this.value = newValue;
+                        
+                        // Reset cursor position
+                        this.selectionStart = cursorPosition - 1;
+                        this.selectionEnd = cursorPosition - 1;
+                        
+                        return;
+                    }
+                }
+                
+                updateLetterBox();
+            });
+            
+            // Initialize
+            initializeLetterCounts();
+
+            document.getElementById('posFilter').addEventListener('change', updateSuggestions);
+        });
+    </script>
+</body>
+</html>

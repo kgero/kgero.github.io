@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>36 Views of the Sea</title>
+    <style>
+        .container {
+            margin: 20px;
+        }
+        .child {
+            float: left;
+            width: 500px;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="child" id="poemA">
+        </div>
+        <div class="child" id="poemB">
+        </div>
+    </div>
+    <script>
+        const poemA = `The sea is to be seen. See the sea. Wait. Do not hurry. Do not 
+run to her. Wait, she says. Or I say. See the sea. Look at her using 
+your eyes. Open them, those eyes that will close one day when 
+you won't be standing. You will be flat, like her, but she will be 
+alive. Therefore look at her while you can. Let your eyes tire and 
+burn. Let them suffer. Keep them open like one does at midday. 
+Don't worry. Other eyes within will take over and go on seeing 
+her. They will not search for forms nor seek divine presence. 
+They will rather continue to see water which stirs and shouts, 
+becomes ice in the North, vapor in the tropics.`;
+        const poemB = `My water breaks first, splash on the bed
+as we watch a documentary, about the sea, 
+obviously, pains come soon after, storms 
+that seethe & tie, told it only gets worse, 
+how, I wonder, hoarsely,
+curse the hurt that holds me, eye in hell-horror 
+I look at a point, eye wide 'n' level,
+I'll warn you, they cut him out, but first I suffer, 
+here, loosely, keenly, sly, yes,
+I wonder what point is this, stuck in the in between, 
+he has to go, I know, yes, we write not of labor, 
+not enough, no one is ready, I needed a reason, 
+helplessly, I the deserter, I on knee, I without nerve,
+s
+  e
+     e
+       e
+          e
+             k
+                i
+                  n
+                     g
+then, 
+he's here, 
+ever the crier,
+lyre, 
+anchor,
+ocean deep.`;
+
+        let letterMap = {};
+        let letterId = 0;
+        let lenA, lenAB;
+
+        let wind_iters = 100;
+        let gust_timeout = 5000;
+        let gust_letter_shift = 20;
+        let gust_spread = 100;
+
+        function isLetter(str) {
+          return str.length === 1 && str.match(/[a-z]/i);
+        }
+
+        function string_to_spans(theStr, theDiv, isPoemA) {
+            for (let char of theStr) {
+                const newSpan = document.createElement('span');
+                // first map the letter
+                if (isLetter(char)) {
+                    letterId++;
+                    newSpan.id = `source-${letterId}`;
+                    char = char.toLowerCase();
+                    if (isPoemA) {
+                        letterMap[letterId] = {
+                            "letter": char,
+                            "mapped": false,
+                            "moved": false,
+                        }
+                    } else {
+                        for (const key in letterMap) {
+                            let val = letterMap[key];
+                            if (val['letter'] === char & !val['mapped']) {
+                                val['mapId'] = letterId;
+                                val['mapped'] = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+                // then add the span
+                if (char === " ") {
+                    newSpan.textContent = '\u00A0';
+                } else if (char === "\n") {
+                    const br = document.createElement('br');
+                    theDiv.appendChild(br);
+                } else {
+                    newSpan.textContent = char;
+                }
+                
+                theDiv.appendChild(newSpan);
+            }
+            return letterId;
+        }
+
+        // for a mapped letterId (i.e. letterId of poemB)
+        // return the key letterId (i.e. the letterId of poemA)
+        function get_inverse_letter(thisLetter) {
+            for (const key in letterMap) {
+                if (letterMap[key]['mapId'] == thisLetter) {
+                    return key
+                }
+            }
+            console.warn(`letterId ${thisLetter} not found in mapIds.`);
+            return "null";
+        }
+
+        function make_clones(theDiv) {
+            const spans = theDiv.querySelectorAll('span');
+            spans.forEach(original => {
+                const letterId = original.id.split("-")[1];
+                const clone = original.cloneNode(true);
+                const rect = original.getBoundingClientRect();
+
+                clone.id = `clone-${letterId}`
+
+                document.body.appendChild(clone);
+                clone.style.position = 'absolute';
+                clone.style.top = `${rect.top + window.scrollY}px`;
+                clone.style.left = `${rect.left + window.scrollX}px`;
+                clone.style.width = `${rect.width}px`;
+                clone.style.height = `${rect.height}px`;
+            });
+        }
+
+        function animate_letter(thisLetter) {
+            // console.log(`animating ${thisLetter} (${letterMap[thisLetter].letter})...`)
+            const clone = document.getElementById(`clone-${thisLetter}`);
+            const target = document.getElementById(`source-${letterMap[thisLetter].mapId}`);
+
+            const targetRect = target.getBoundingClientRect();
+            const cloneRect = clone.getBoundingClientRect()
+
+            const deltaX = (targetRect.left + window.scrollX) - (cloneRect.left + window.scrollX);
+            const deltaY = (targetRect.top + window.scrollY) - (cloneRect.top + window.scrollY);
+
+            clone.style.transition = 'transform 2s ease-in-out';
+            clone.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+        }
+
+        // animate just max_iterations number of letters
+        // centerLetter should be from poemB
+        function run_wind_blow(centerLetter, iteration, max_iterations) {
+            if (iteration > max_iterations) {
+                return;
+            }
+            iteration++;
+            
+            const selectedLetter = Math.max(lenA+1, rand_gauss_letter(centerLetter, gust_spread)); // from poemB
+
+            if (selectedLetter > lenAB) {
+                console.log("ending run_wind_blow")
+                return;
+            }
+
+            const inverseLetter = get_inverse_letter(selectedLetter); // from poemA
+
+            if (letterMap.hasOwnProperty(inverseLetter)) {
+                if (!letterMap[inverseLetter].moved) {
+                    letterMap[inverseLetter].moved = true;
+                    animate_letter(inverseLetter);
+                }
+            } else {
+                console.warn(`${inverseLetter} not a valid letter id.`)
+            }
+            // const nextLetter = ++letterId;
+            setTimeout(run_wind_blow, 10, centerLetter, iteration, max_iterations);
+        }
+
+        // thisLetter should be a letter in poemB
+        function run_animation(thisLetter) {
+            if (thisLetter > lenAB) {
+                console.log("ending animation");
+                return;
+            } else {
+                console.log(`running gust centered on ${thisLetter}`)
+            }
+            run_wind_blow(thisLetter, 0, wind_iters);
+            setTimeout(run_animation, gust_timeout, thisLetter+gust_letter_shift);
+        }
+
+        // animate letters continuously
+        // function run_all_letters(letterId) {
+        //     if (letterMap.hasOwnProperty(letterId)) {
+        //         if (!letterMap[letterId].moved) {
+        //             letterMap[letterId].moved = true;
+        //             animate_letter(letterId);
+        //         }
+        //     } else {
+        //         console.warn(`${nextLetter} not a valid letter id.`)
+        //     }
+        //     const nextLetter = randomKey(letterMap);
+        //     setTimeout(run_animations, 10, nextLetter);
+        // }
+
+        var randomKey = function (obj) {
+            let keys = Object.keys(obj);
+            let index = Math.floor(randn_bm() * keys.length);
+            // index = Math.floor(Math.random() * keys.length);
+            return keys[index];
+        };
+
+        function rand_gauss_letter(mean, spread) {
+            return Math.floor((randn_bm() * spread) + mean - (spread/2));
+        }
+
+        // https://stackoverflow.com/questions/25582882/javascript-math-random-normal-distribution-gaussian-bell-curve
+        function randn_bm() {
+          let u = 0, v = 0;
+          while(u === 0) u = Math.random(); //Converting [0,1) to (0,1)
+          while(v === 0) v = Math.random();
+          let num = Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v );
+          num = num / 10.0 + 0.5; // Translate to 0 -> 1
+          if (num > 1 || num < 0) return randn_bm() // resample between 0 and 1
+          return num
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const poemaDiv = document.getElementById('poemA');
+            const poembDiv = document.getElementById('poemB');
+
+            lenA = string_to_spans(poemA, poemaDiv, true);
+            lenAB = string_to_spans(poemB, poembDiv, false);
+
+            console.log(letterMap);
+            make_clones(poemaDiv);
+            // animate_letter(3);
+            // run_animations(1);
+            run_animation(lenA);
+        });
+    </script>
+</body>
+</html>

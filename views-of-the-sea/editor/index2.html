@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>36 Views of the Sea</title>
+    <style>
+        :root {
+            --deep-blue: #103F5F;
+            --medium-blue: #2676A1;
+            --light-blue: #BFD7E3;
+            --pale-blue: #E6F2F8;
+            --sand-color: #EFE6D9;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 2rem;
+            background-color: var(--pale-blue);
+            color: var(--deep-blue);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            max-width: 100%;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+        
+        main {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .container {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .panel {
+            padding: 2rem;
+            border-radius: 3px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            background-color: white;
+            box-sizing: border-box;
+        }
+        
+        .left-panel {
+            width: 30%;
+            position: relative;
+            background-color: var(--light-blue);
+        }
+        
+        .right-panel {
+            width: calc(70% - 2rem);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        h2 {
+            margin-top: 0;
+            font-weight: 300;
+            letter-spacing: 1px;
+            color: var(--deep-blue);
+            border-bottom: 1px solid var(--medium-blue);
+            padding-bottom: 0.5rem;
+        }
+        
+        #baseText {
+            line-height: 1.6;
+            color: var(--deep-blue);
+        }
+        
+        #userTextarea {
+            width: 100%;
+            min-height: 180px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--light-blue);
+            border-radius: 3px;
+            resize: vertical;
+            box-sizing: border-box;
+            font-family: inherit;
+            color: var(--deep-blue);
+            background-color: white;
+            transition: border-color 0.3s;
+        }
+        
+        #userTextarea:focus {
+            outline: none;
+            border-color: var(--medium-blue);
+            box-shadow: 0 0 0 2px rgba(38, 118, 161, 0.2);
+        }
+        
+        .letter-box {
+            padding: 1.5rem;
+            background-color: var(--sand-color);
+            border-radius: 3px;
+            font-size: 1.1rem;
+            min-height: 30px;
+            word-wrap: break-word;
+            letter-spacing: 0.1rem;
+            line-height: 1.8;
+        }
+        
+        .letter-box-container {
+            position: relative;
+        }
+        
+        .letter-box-container:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--deep-blue), var(--medium-blue), var(--light-blue));
+            border-radius: 3px 3px 0 0;
+        }
+        
+        h3 {
+            font-weight: 400;
+            color: var(--medium-blue);
+        }
+        
+        .flash {
+            animation: flash-red 0.3s;
+        }
+        
+        @keyframes flash-red {
+            0%, 100% { background-color: white; }
+            50% { background-color: #FFEDED; }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .panel, .left-panel, .right-panel {
+                width: 100%;
+            }
+            
+            .left-panel {
+                margin-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <div class="panel left-panel">
+                <h2>Original Text</h2>
+                <p id="baseText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+            
+            <div class="panel right-panel">
+                <h2>Your Composition</h2>
+                <textarea id="userTextarea" placeholder="Begin your sea view..."></textarea>
+                
+                <h3>Available Letters</h3>
+                <div class="letter-box-container">
+                    <div id="letterBox" class="letter-box"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const baseText = document.getElementById('baseText');
+            const userTextarea = document.getElementById('userTextarea');
+            const letterBox = document.getElementById('letterBox');
+            
+            let baseLetterCounts = {};
+            let userLetterCounts = {};
+            
+            // Initialize the letter box
+            function initializeLetterCounts() {
+                baseLetterCounts = {};
+                const baseContent = baseText.textContent.toLowerCase();
+                
+                for (let char of baseContent) {
+                    // Skip spaces
+                    if (char !== ' ') {
+                        baseLetterCounts[char] = (baseLetterCounts[char] || 0) + 1;
+                    }
+                }
+                
+                updateLetterBox();
+            }
+            
+            // Update the available letters in the letter box
+            function updateLetterBox() {
+                userLetterCounts = {};
+                const userContent = userTextarea.value.toLowerCase();
+                
+                for (let char of userContent) {
+                    if (char !== ' ') {
+                        userLetterCounts[char] = (userLetterCounts[char] || 0) + 1;
+                    }
+                }
+                
+                let availableLetters = '';
+                for (let char in baseLetterCounts) {
+                    const userCount = userLetterCounts[char] || 0;
+                    const availableCount = baseLetterCounts[char] - userCount;
+                    
+                    // Add the letter to the available letters string multiple times based on count
+                    if (availableCount > 0) {
+                        availableLetters += char.repeat(availableCount);
+                    }
+                }
+                
+                // Sort the letters alphabetically
+                availableLetters = [...availableLetters].sort().join('');
+                letterBox.textContent = availableLetters;
+            }
+            
+            // Handle user input
+            userTextarea.addEventListener('input', function(e) {
+                const newChar = e.data;
+                const cursorPosition = this.selectionStart;
+                
+                // If a character was added (not deletion)
+                if (newChar && newChar.length === 1 && newChar !== ' ') {
+                    const lowerChar = newChar.toLowerCase();
+                    const currentCount = (userLetterCounts[lowerChar] || 0) + 1;
+                    
+                    // Check if the new character exceeds what's available in base text
+                    if (!baseLetterCounts[lowerChar] || currentCount > baseLetterCounts[lowerChar]) {
+                        // Flash red
+                        userTextarea.classList.add('flash');
+                        setTimeout(() => userTextarea.classList.remove('flash'), 300);
+                        
+                        // Remove the character
+                        const newValue = this.value.slice(0, cursorPosition - 1) + this.value.slice(cursorPosition);
+                        this.value = newValue;
+                        
+                        // Reset cursor position
+                        this.selectionStart = cursorPosition - 1;
+                        this.selectionEnd = cursorPosition - 1;
+                        
+                        return;
+                    }
+                }
+                
+                updateLetterBox();
+            });
+            
+            // Initialize
+            initializeLetterCounts();
+        });
+    </script>
+</body>
+</html>
