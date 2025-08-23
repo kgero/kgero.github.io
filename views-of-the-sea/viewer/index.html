@@ -32,7 +32,8 @@ her. They will not search for forms nor seek divine presence.
 They will rather continue to see water which stirs and shouts, 
 becomes ice in the North, vapor in the tropics.`;
 
-const poem1 = `Consider the Pacific. Half an orb: eminent &
+const poemList = {
+    "poem1": `Consider the Pacific. Half an orb: eminent &
 monstrous body of blue skirted w/ old coasts,
 oak tree & Pangea hewn w/ cracked veins: 
 roots of ghost & steel. 
@@ -51,9 +52,8 @@ keen to enter the whirl, yap utopia & shine out.
 
 Elsewhere, herons wait in the rushes, 
 noiseless & noble eye, 
-resolute hunters tethered to the abyss.`;
-
-const poem2 = `Consider the Pacific. Half an orb: eminent &
+resolute hunters tethered to the abyss.`,
+    "poem2": `Consider the Pacific. Half an orb: eminent &
 monstrous body of blue skirted w/ old coasts,
 oak tree & Pangea hewn w/ cracked veins: 
 root of ghost & steel. 
@@ -72,15 +72,22 @@ keen to enter the whirl.
 
 Elsewhere, herons wait in the rushes, 
 noiseless & noble, 
-resolute hunters tethered to the abyss.`;
-
-const poem3 = `Consider the Pacific. Half an orb: eminent &
+resolute hunters tethered to the abyss.`,
+    "poem3": `Consider the Pacific. Half an orb: eminent &
 monstrous body of blue skirted w/ old coasts,
 Pangea hewn w/ cracked veins of ghosts & steel. 
 
 In this dystopia, the seabed goes silent. Deathly
 dark, unwritten outlet, hilly horror or worry yore. 
 Eerie: whale skeleton, heir sits alone in a trove of benevolent metal.
+
+
+
+
+
+
+
+
 
 
 
@@ -91,9 +98,8 @@ w/ wit & youth, keen to enter the whirl.
 
 Elsewhere, herons wait in the rushes, 
 noiseless & noble, 
-resolute hunters tethered to the abyss.`;
-
-const poem4 = `Consider the Pacific. Half an orb: eminent &
+resolute hunters tethered to the abyss.`,
+    "poem4": `Consider the Pacific. Half an orb: eminent &
 monstrous body of blue skirted w/ old coasts,
 Pangea hewn w/ cracked veins of ghosts & steel. 
 
@@ -104,12 +110,18 @@ skeleton sits alone in a trove of benevolent metal.
 
 
 
+
+
+
+
+
+
+
 I've killed my hope, sunk my coral statues, 
 heeded an ashen appetite that aches in 
 eye, gut, artery. Then, I renew my fury, 
-cheery w/ wit & youth. Elsewhere, .`;
-
-const poem5 = `Consider the Pacific. Half an orb: eminent &
+cheery w/ wit & youth. Elsewhere, .`,
+    "poem5": `Consider the Pacific. Half an orb: eminent &
 monstrous body of blue skirted w/ old coasts,
 Pangea hewn w/ cracked veins of ghosts & steel. 
 
@@ -124,15 +136,13 @@ skeleton sits alone in a trove of benevolent metal.
                 you                          north                      
 
 
-
 Shorelines who snarl, hot w/ &,   
 writer soiree, literature in the noir. 
 
 I've killed my hope, sunk my coral statues, ashen appetite
 that aches in eye, gut, artery. Then, I renew my fury,
-cheery w/ wit & youth. Elsewhere, eels hurry to shelter.`;
-
-const poem6 = `Consider the Pacific. Half an orb: eminent &
+cheery w/ wit & youth. Elsewhere, eels hurry to shelter.`,
+    "poem6": `Consider the Pacific. Half an orb: eminent &
 monstrous body of blue skirted w/ old coasts,
 Pangea hewn w/ cracked veins of ghosts & steel. 
 
@@ -152,13 +162,66 @@ literature in the noir.
 
 I've killed my hope, sunk my coral statues, ashen appetite
 that aches in eye, gut, artery. Then, I renew my fury,
-cheery w/ wit & youth. Elsewhere, eels hurry to shelter.`;
+cheery w/ wit & youth. Elsewhere, eels hurry to shelter.`}
 
 
         let letterMap = {};
 
         function isLetter(str) {
           return str.length === 1 && str.match(/[a-z]/i);
+        }
+
+        /**
+         * For a character at position i, j in the current poem,
+         * map to the optimal character in the letterMap for the prev poem.
+         * 
+         * This means:
+         * 
+         * if there is the same character at the same location
+         * somewhere in the prev poem, map it there.
+         * 
+         *      if there is another character already mapped there,
+         *      map that elsewhere.
+         * 
+         * else, map it anywhere.
+         */
+        function optimal_map(char, letterId, i, j, prevPoemId, currPoemId) {
+            let perfectMatch = false;
+            let firstMatch;
+            for (const key in letterMap) {
+                let val = letterMap[key];
+                if (val.char === char) {
+                    // first unassigned match is going to be the back-up match
+                    if (!val.hasOwnProperty(currPoemId)) {
+                        firstMatch = key;
+                    }
+                    // if perfect match
+                    if (val.hasOwnProperty(prevPoemId) && val[prevPoemId].i === i && val[prevPoemId].j === j) {
+                        perfectMatch = true;
+                        // if already assigned, need to move existing letter
+                        if (val.hasOwnProperty(currPoemId)) {
+                            let moveObj = val[currPoemId];
+                            for (const key2 in letterMap) {
+                                let val2 = letterMap[key2];
+                                if (val2.char === moveObj.char && !val2.hasOwnProperty(currPoemId)) {
+                                    val2[currPoemId] = moveObj;
+                                    val2.toAssemble = true;
+                                    break;
+                                }   
+                            }
+                        }
+                        // then assign this letter
+                        val[currPoemId] = { char, letterId, i, j };
+                        val.toAssemble = true;
+                        break;
+                    }
+                }
+            }
+            // if we didn't find a perfect match, assign to firstMatch
+            if (!perfectMatch) {
+                letterMap[firstMatch][currPoemId] = { char, letterId, i, j };
+                letterMap[firstMatch].toAssemble = true;
+            }
         }
 
         /**
@@ -171,32 +234,29 @@ cheery w/ wit & youth. Elsewhere, eels hurry to shelter.`;
          * @param {int} poemId - id for poem (for lettermapping).
          * @returns {int} max letterId.
          */
-        function string_to_spans(theStr, theDiv, poemId) {
+        function string_to_spans(theStr, theDiv, poemId, prevPoemId) {
             // prob turn iterating over letters into function
             // as i'll use it elsewhere and good to do the same hting everywhere
             theStr = theStr.toLowerCase();
-            let letterId = 0;
+            let letterId = 0; // unique identifier for alpha characters
+            let i=0; // x position (num characters from left)
+            let j=0; // y position (num lines from top)
             for (let char of theStr) {
                 const newSpan = document.createElement('span');
                 // first map the letter
                 if (isLetter(char)) {
                     if (poemId === "startPoem") {
                         letterMap[letterId] = { 
-                            "letter": char,
+                            "char": char,
                             "dropped": false,
                             "toDrop": true,
-                            "toAssemble": false
+                            "toAssemble": false,
+                            poemId: { char, letterId, i, j }
                         }
                         newSpan.id = `source-${letterId++}`;
                     } else {
-                        for (const key in letterMap) {
-                            let val = letterMap[key];
-                            if (val.letter === char && !val.hasOwnProperty(poemId)) {
-                                val[poemId] = letterId;
-                                val.toAssemble = true;
-                                break;
-                            }
-                        }
+                        optimal_map(char, letterId, i, j, prevPoemId, poemId);
+                        i++;
                         newSpan.id = `source-${letterId++}`;
                     }
                     
@@ -207,6 +267,8 @@ cheery w/ wit & youth. Elsewhere, eels hurry to shelter.`;
                 } else if (char === "\n") {
                     const br = document.createElement('br');
                     theDiv.appendChild(br);
+                    j++;
+                    i=0;
                     continue;
                 } else {
                     newSpan.textContent = char;
@@ -251,6 +313,7 @@ cheery w/ wit & youth. Elsewhere, eels hurry to shelter.`;
         }
 
         function drop_poem_promise(initialDelay) {
+            console.log("drop poem");
             return new Promise((resolve) => {
                 function movement_step(delay) {
                     const lettersToDrop = Object.entries(letterMap)
@@ -271,8 +334,19 @@ cheery w/ wit & youth. Elsewhere, eels hurry to shelter.`;
         }
 
         function place_letter(thisLetter, poemId) {
+            const mapping = letterMap[thisLetter][poemId];
+            if (!mapping) {
+                console.warn(`place_letter: No mapping for letter ${thisLetter} in poem ${poemId}.`);
+                return;
+            }
+
             const clone = document.getElementById(`clone-${thisLetter}`);
-            const target = document.getElementById(`source-${letterMap[thisLetter][poemId]}`);
+            const target = document.getElementById(`source-${letterMap[thisLetter][poemId].letterId}`);
+            if (!target) {
+                console.warn(`Target span #source-${mapping.letterId} not found for poem ${poemId}.`);
+                return;
+              }
+
 
             const targetRect = target.getBoundingClientRect();
             const cloneRect = letterMap[thisLetter].originalBoundingRect;
@@ -285,10 +359,11 @@ cheery w/ wit & youth. Elsewhere, eels hurry to shelter.`;
         }
 
         function assemble_poem_promise(initialDelay, poemId) {
+            console.log("assemble poem", poemId);
             return new Promise((resolve) => {
                 function movement_step(delay) {
                     const lettersToAssemble = Object.entries(letterMap)
-                        .filter(([id, data]) => data.toAssemble === true && data.dropped === true)
+                        .filter(([id, data]) => data.toAssemble === true && data.dropped === true && data[poemId])
                         .map(([id]) => Number(id));
                     if (lettersToAssemble.length <= 0) {
                         resolve();
@@ -302,9 +377,6 @@ cheery w/ wit & youth. Elsewhere, eels hurry to shelter.`;
                 }
                 movement_step(initialDelay);
             });
-            
-
-            
         }
 
         var randomKey = function (obj) {
@@ -342,41 +414,21 @@ cheery w/ wit & youth. Elsewhere, eels hurry to shelter.`;
         function set_letters_to_drop(currPoemId, nextPoemId) {
             for (const key in letterMap) {
                 let val = letterMap[key];
-                if (val[currPoemId] !== val[nextPoemId]) {
+                // console.log(val);
+                if (!val.hasOwnProperty(currPoemId)) {
+                    continue;
+                } else if (!val.hasOwnProperty(nextPoemId)) {
+                    val.toDrop = true;
+                }
+                else if (val[currPoemId].i !== val[nextPoemId].i || val[currPoemId].j !== val[nextPoemId].j) {
                     val.toDrop = true;
                 }
             }
-            // let currPoemLower = currPoem.toLowerCase();
-            // let nextPoemLower = nextPoem.toLowerCase();
-
-            // let test_string = "";
-
-            // let letterId = 0;
-            // for (let i=0; i < nextPoem.length; i++) {
-            //     let char = nextPoem[i];
-            //     if (isLetter(char)) {
-            //         if (currPoem[i] !== nextPoem[i]) {
-            //             for (const key in letterMap) {
-            //                 let val = letterMap[key];
-            //                 if ((val.letter === char) && (val.toDrop === false) && (val.dropped === false)) {
-            //                     val.toDrop = true;
-            //                     test_string += "_";
-            //                     break;
-            //                 }
-            //             }
-            //         } else {
-            //             test_string += char;
-            //         }
-            //         letterId++;
-            //     } else {
-            //         test_string += char;
-            //     }
-            // }
-            // console.log(test_string);
         }
 
         function sleep(ms) {
-          return new Promise(resolve => setTimeout(resolve, ms));
+            console.log("sleep for", ms);
+            return new Promise(resolve => setTimeout(resolve, ms));
         }
 
         /**
@@ -421,39 +473,53 @@ cheery w/ wit & youth. Elsewhere, eels hurry to shelter.`;
         document.addEventListener('DOMContentLoaded', async function() {
             const poemDiv = document.getElementById('poem');
 
-            string_to_spans(sourcePoem, poemDiv, "startPoem");
+            string_to_spans(sourcePoem, poemDiv, "startPoem", null);
 
             make_clones(poemDiv);
             
-            console.log("dropping original poem");
             await drop_poem_promise(100);
-            console.log("sleeping 3s");
             await sleep(3000);
             
-            console.log("running poem2 assembly");
             poemDiv.innerHTML = "";
-            string_to_spans(poem6, poemDiv, "poem2");
-            await assemble_poem_promise(300, "poem2");
-            console.log("sleeping 3s");
-            await sleep(5000);
+            string_to_spans(poemList["poem6"], poemDiv, "poem6", "startPoem");
+            await assemble_poem_promise(300, "poem6");
+            await sleep(3000);
             
-            console.log("setting letters to drop");
-            poemDiv.innerHTML = "";
-            string_to_spans(poem5, poemDiv, "poem3");
-            set_letters_to_drop("poem2", "poem3");
-            // debugger;
-            console.log("dropping poem2")
-            await drop_poem_promise(100);
-            console.log("sleeping 5s");
-            await sleep(5000);
+            async function animate_to_next_poem(prevPoemId, nextPoemId) {
+                poemDiv.innerHTML = "";
+                string_to_spans(poemList[nextPoemId], poemDiv, nextPoemId, prevPoemId);
+                set_letters_to_drop(prevPoemId, nextPoemId);
+                await drop_poem_promise(100);
+                await sleep(3000);
+                await assemble_poem_promise(300, nextPoemId);
+                await sleep(3000);
+            }
 
-            console.log("running poem3 assembly");
-            await assemble_poem_promise(300, "poem3");
+            await animate_to_next_poem("poem6", "poem5");
+            await animate_to_next_poem("poem5", "poem4");
+            await animate_to_next_poem("poem4", "poem3");
+            await animate_to_next_poem("poem3", "poem2");
+            await animate_to_next_poem("poem2", "poem1");
 
-            // setTimeout(run_assembly, 5000, poem6, poemDiv);
-            // animate_letter(3);
-            // run_animations(1);
-            // run_animation(lenA);
+            // poemDiv.innerHTML = "";
+            // prevPoemId = nextPoemId;
+            // nextPoemId = "poem5";
+            // string_to_spans(poemList[nextPoemId], poemDiv, nextPoemId);
+            // set_letters_to_drop(prevPoemId, nextPoemId);
+            // // debugger;
+            // await drop_poem_promise(100);
+            // await sleep(3000);
+            // await assemble_poem_promise(300, nextPoemId);
+            // await sleep(3000);
+
+            // poemDiv.innerHTML = "";
+            // prevPoemId = nextPoemId;
+            // nextPoemId = "poem4";
+            // string_to_spans(poemList[nextPoemId], poemDiv, nextPoemId);
+            // set_letters_to_drop(prevPoemId, nextPoemId);
+            // await drop_poem_promise(100);
+            // await sleep(3000);
+            // await assemble_poem_promise(300, nextPoemId);
         });
     </script>
 </body>
