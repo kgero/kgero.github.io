@@ -3619,6 +3619,41 @@
                     "date_added": "Wed, 19 Jun 2025",
                     "tags": ["graphic novel"],
                     "notes": ""
+                },
+                {
+                    "title": "The Vegetarian",
+                    "author": "Becky Barnicoat",
+                    "date_added": "Wed, 19 Jun 2025",
+                    "tags": ["graphic novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Creation Lake",
+                    "author": "Rachel Kushner",
+                    "date_added": "Sat, 06 Sep 2025",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Wired for Story",
+                    "author": "Lisa Cron",
+                    "date_added": "Sat, 06 Sep 2025",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "Change Your Thinking",
+                    "author": "Sarah Edelman",
+                    "date_added": "Sat, 06 Sep 2025",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "My Brilliant Friend",
+                    "author": "Elena Ferrante",
+                    "date_added": "Sat, 06 Sep 2025",
+                    "tags": ["novel"],
+                    "notes": ""
                 }
             ]
         }
