@@ -1,0 +1,347 @@
+{
+  "there": [
+    "pron"
+  ],
+  "or": [
+    "conj"
+  ],
+  "nor": [
+    "conj"
+  ],
+  "you": [
+    "pron"
+  ],
+  "whether": [
+    "conj"
+  ],
+  "and": [
+    "conj"
+  ],
+  "who": [
+    "pron"
+  ],
+  "although": [
+    "conj"
+  ],
+  "itself": [
+    "pron"
+  ],
+  "these": [
+    "pron"
+  ],
+  "between": [
+    "prep"
+  ],
+  "whenever": [
+    "conj"
+  ],
+  "a": [
+    "pron"
+  ],
+  "with": [
+    "prep"
+  ],
+  "through": [
+    "prep"
+  ],
+  "himself": [
+    "pron"
+  ],
+  "them": [
+    "pron"
+  ],
+  "across": [
+    "prep"
+  ],
+  "something": [
+    "pron"
+  ],
+  "among": [
+    "prep"
+  ],
+  "some": [
+    "pron"
+  ],
+  "him": [
+    "pron"
+  ],
+  "toward": [
+    "prep"
+  ],
+  "everything": [
+    "pron"
+  ],
+  "'s": [
+    "particle"
+  ],
+  "while": [
+    "conj"
+  ],
+  "their": [
+    "pron"
+  ],
+  "since": [
+    "conj"
+  ],
+  "anything": [
+    "pron"
+  ],
+  "via": [
+    "prep"
+  ],
+  "before": [
+    "prep"
+  ],
+  "but": [
+    "conj"
+  ],
+  "beyond": [
+    "prep"
+  ],
+  "those": [
+    "pron"
+  ],
+  "n't": [
+    "particle"
+  ],
+  "neither": [
+    "conj"
+  ],
+  "themselves": [
+    "pron"
+  ],
+  "whom": [
+    "pron"
+  ],
+  "we": [
+    "pron"
+  ],
+  "except": [
+    "conj"
+  ],
+  "she": [
+    "pron"
+  ],
+  "he": [
+    "pron"
+  ],
+  "unless": [
+    "conj"
+  ],
+  "that": [
+    "conj"
+  ],
+  "your": [
+    "pron"
+  ],
+  "if": [
+    "conj"
+  ],
+  "yourself": [
+    "pron"
+  ],
+  "as": [
+    "prep"
+  ],
+  "whose": [
+    "det"
+  ],
+  "anyone": [
+    "pron"
+  ],
+  "me": [
+    "pron"
+  ],
+  "it": [
+    "pron"
+  ],
+  "not": [
+    "particle"
+  ],
+  "an": [
+    "pron"
+  ],
+  "ourselves": [
+    "pron"
+  ],
+  "the": [
+    "pron"
+  ],
+  "because": [
+    "conj"
+  ],
+  "both": [
+    "pron"
+  ],
+  "herself": [
+    "pron"
+  ],
+  "for": [
+    "prep"
+  ],
+  "whatever": [
+    "pron"
+  ],
+  "everyone": [
+    "pron"
+  ],
+  "this": [
+    "pron"
+  ],
+  "within": [
+    "prep"
+  ],
+  "into": [
+    "prep"
+  ],
+  "another": [
+    "pron"
+  ],
+  "under": [
+    "prep"
+  ],
+  "what": [
+    "pron"
+  ],
+  "whoever": [
+    "pron"
+  ],
+  "myself": [
+    "pron"
+  ],
+  "per": [
+    "prep"
+  ],
+  "of": [
+    "prep"
+  ],
+  "though": [
+    "conj"
+  ],
+  "someone": [
+    "pron"
+  ],
+  "in": [
+    "prep"
+  ],
+  "all": [
+    "pron"
+  ],
+  "on": [
+    "prep"
+  ],
+  "nobody": [
+    "pron"
+  ],
+  "along": [
+    "prep"
+  ],
+  "they": [
+    "pron"
+  ],
+  "against": [
+    "prep"
+  ],
+  "why": [
+    "conj"
+  ],
+  "its": [
+    "pron"
+  ],
+  "without": [
+    "prep"
+  ],
+  "from": [
+    "prep"
+  ],
+  "below": [
+    "prep"
+  ],
+  "how": [
+    "conj"
+  ],
+  "her": [
+    "pron"
+  ],
+  "whereas": [
+    "conj"
+  ],
+  "each": [
+    "pron"
+  ],
+  "any": [
+    "pron"
+  ],
+  "wherever": [
+    "conj"
+  ],
+  "towards": [
+    "prep"
+  ],
+  "by": [
+    "prep"
+  ],
+  "at": [
+    "prep"
+  ],
+  "every": [
+    "pron"
+  ],
+  "nothing": [
+    "pron"
+  ],
+  "until": [
+    "prep"
+  ],
+  "which": [
+    "pron"
+  ],
+  "upon": [
+    "conj"
+  ],
+  "where": [
+    "conj"
+  ],
+  "than": [
+    "prep"
+  ],
+  "off": [
+    "prep"
+  ],
+  "onto": [
+    "prep"
+  ],
+  "my": [
+    "pron"
+  ],
+  "when": [
+    "conj"
+  ],
+  "during": [
+    "prep"
+  ],
+  "to": [
+    "particle"
+  ],
+  "us": [
+    "pron"
+  ],
+  "i": [
+    "pron"
+  ],
+  "after": [
+    "prep"
+  ],
+  "amongst": [
+    "prep"
+  ],
+  "his": [
+    "pron"
+  ],
+  "whereby": [
+    "conj"
+  ],
+  "our": [
+    "pron"
+  ]
+}
