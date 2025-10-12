@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>36 Views of the Sea</title>
+    <style>
+        .container {
+            margin: 100px;
+        }
+        .child {
+            float: left;
+            width: 500px;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="child" id="poem">
+        </div>
+    </div>
+    <script>
+const sourcePoem = `The sea is to be seen. See the sea. Wait. Do not hurry. Do not 
+run to her. Wait, she says. Or I say. See the sea. Look at her using 
+your eyes. Open them, those eyes that will close one day when 
+you won't be standing. You will be flat, like her, but she will be 
+alive. Therefore look at her while you can. Let your eyes tire and 
+burn. Let them suffer. Keep them open like one does at midday. 
+Don't worry. Other eyes within will take over and go on seeing 
+her. They will not search for forms nor seek divine presence. 
+They will rather continue to see water which stirs and shouts, 
+becomes ice in the North, vapor in the tropics.`;
+
+const poemList = {
+    "source": `The sea is to be seen. See the sea. Wait. Do not hurry. Do not 
+run to her. Wait, she says. Or I say. See the sea. Look at her using 
+your eyes. Open them, those eyes that will close one day when 
+you won't be standing. You will be flat, like her, but she will be 
+alive. Therefore look at her while you can. Let your eyes tire and 
+burn. Let them suffer. Keep them open like one does at midday. 
+Don't worry. Other eyes within will take over and go on seeing 
+her. They will not search for forms nor seek divine presence. 
+They will rather continue to see water which stirs and shouts, 
+becomes ice in the North, vapor in the tropics.`,
+    "poem1": `Consider the Pacific. Half an orb: eminent &
+monstrous body of blue skirted w/ old coasts,
+oak tree & Pangea hewn w/ cracked veins: roots of ghost & steel. 
+
+In this dystopia, the seabed goes silent. Deathly
+dark hue, unwritten horror everywhere.
+Whale skeleton rots, heir who toils alone 
+in a trove of oily metal, iron adhesions within.
+
+O, I've killed my hope, lost my coral statue. 
+Only eerie ache between eye, ear, & gut. 
+
+Then, I renew my fury, 
+cheery w/ wit & youth & honey, 
+keen to enter the whirl, yap utopia & shine out. 
+
+Elsewhere, herons wait in the rushes, 
+noiseless & noble eye, 
+resolute hunters tethered to the abyss.`,
+    "poem2": `Consider the Pacific. Half an orb: eminent &
+monstrous body of blue skirted w/ old coasts,
+oak tree & Pangea hewn w/ cracked veins: root of ghost & steel. 
+
+In this dystopia, the seabed goes silent. Deathly
+dark hue, unwritten outlet, hilly horror or worry yore. 
+Eerie eve: whale skeleton, souse heir who sits alone 
+in a trove of oily metal, iron adhesions within.
+
+O, I've killed my hope, my coral statue, 
+an ashen appetite & ache between eye, gut, oy.
+
+Then, I renew my fury, 
+cheery w/ wit & youth & honey, 
+keen to enter the whirl. 
+
+Elsewhere, herons wait in the rushes, 
+noiseless & noble, 
+resolute hunters tethered to the abyss.`,
+    "poem3": `Consider the Pacific. Half an orb: eminent &
+monstrous body of blue skirted w/ old coasts,
+Pangea hewn w/ cracked veins of ghosts & steel. 
+
+In this dystopia, the seabed goes silent. Deathly
+dark, unwritten outlet, hilly horror or worry yore. 
+Eerie: whale skeleton, heir sits alone in a trove of benevolent metal.
+
+
+
+
+I've killed my hope, sunk my coral statues, 
+honored an ashen appetite that aches in 
+eye, gut, artery. Then, I renew my fury, cheery 
+w/ wit & youth, keen to enter the whirl. 
+
+Elsewhere, herons wait in the rushes, 
+noiseless & noble, 
+resolute hunters tethered to the abyss.`,
+    "poem4": `Consider the Pacific. Half an orb: eminent &
+monstrous body of blue skirted w/ old coasts,
+Pangea hewn w/ cracked veins of ghosts & steel. 
+
+In this dystopia, the seabed goes silent. Deathly
+dark & ____. Whale
+skeleton sits alone in a trove of benevolent metal.
+
+
+
+
+I've killed my hope, sunk my coral statues, 
+heeded an ashen appetite that aches in 
+eye, gut, artery. Then, I renew my fury, 
+cheery w/ wit & youth. Elsewhere, .`,
+    "poem5": `Consider the Pacific. Half an orb: eminent &
+monstrous body of blue skirted w/ old coasts,
+Pangea hewn w/ cracked veins of ghosts & steel. 
+
+In this dystopia, the seabed goes silent. Deathly
+dark & a sense or desire to sentinel. Whale
+skeleton sits alone in a trove of benevolent metal.
+
+          buoy                              north                  owe
+                     uoy           north                              we
+      buoy                                             north            e
+                 
+                you                          north                      
+
+Shorelines who snarl, hot w/ &,   
+writer soiree, literature in the noir. 
+
+I've killed my hope, sunk my coral statues, ashen appetite
+that aches in eye, gut, artery. Then, I renew my fury,
+cheery w/ wit & youth. Elsewhere, eels hurry to shelter.`,
+    "poem6": `Consider the Pacific. Half an orb: eminent &
+monstrous body of blue skirted w/ old coasts,
+Pangea hewn w/ cracked veins of ghosts & steel. 
+
+In this dystopia, the seabed goes silent. Deathly
+dark & a sense or desire to sentinel. Whale
+skeleton sits alone in a trove of benevolent metal.
+
+          buoy
+                     uoy
+      buoy 
+
+                you
+
+Shorelines who snarl, hot w/ weeds, 
+literature in the noir. 
+
+I've killed my hope, sunk my coral statues, ashen appetite
+that aches in eye, gut, artery. Then, I renew my fury,
+cheery w/ wit & youth. Elsewhere, eels hurry to shelter.`}
+
+
+        /**
+         * The first poem sets the initial letterId keys for letterMap.
+         * Subsequent poems get mappeed to the initial letterId keys
+         * via a poemId key.
+         * 
+         * e.g. letterMap[0] references the first letter, "t".
+         * In poem6, there may be a "t" with letterId 12.
+         * If this "t" is mapped to the original first "t", the map looks like:
+         * 
+         * letterMap[0]: { ..., poem6: { "char": "t", "letterId": 12 } }
+         * 
+         * letterMap looks like:
+         * 
+         * {
+         *   letterId: { 
+         *              char, dropped, toDrop, toAssemble, originalBoundingRect,
+         *              poemId: { char, letterId },
+         *              ...
+         *             }
+         * }
+         * 
+         * positionsByPoem looks like:
+         * 
+         * { 
+         *   poemId: {
+         *             letterId: { "rect": boundingRect, "char": char }
+         *             letterId: { ... }
+         *             ... 
+         *           },
+         *   poemId: { ... },
+         *   ...
+         * }
+         */
+
+        /**
+         * Logic to-dos:
+         * - actually listen for end of animation, instead of long sleep timers
+         * - incl punctuation!
+         * - consider assembling letters more like typing (than random placement)
+         * - consider perfect letter placement by showing source (instead of clone) at end of animation
+         */
+
+        let letterMap = {};
+        let positionsByPoem = {};
+        const EPSILON_PX = 2; // allowable pixel offset for keeping letter where it is
+
+        function isLetter(str) {
+          return str.length === 1 && str.match(/[a-z]/i);
+        }
+
+        function perfect_match(map1, map2) {
+            let rect1 = map1.rect;
+            let rect2 = map2.rect;
+            if (
+                Math.abs(rect1.x - rect2.x) < EPSILON_PX && 
+                Math.abs(rect1.y - rect2.y) < EPSILON_PX &&
+                map1.char == map2.char
+                ) {
+                return true;
+            }
+            return false;
+        }
+
+        /**
+         * This will add the letterIds of the curr poem to the letterMap
+         * based on the location of the relevant letters in the prev poem.
+         * 
+         * Basic idea is to first look for a "perfect match" -- is the curr
+         * letter in the same place in the prev poem? If so, map those.
+         * 
+         * If not, assign the curr letter to any letter that is the same char.
+         * 
+         */
+        function map_letters(prevPoemId, currPoemId) {
+            const prevPos = positionsByPoem[prevPoemId] || {};
+            const currPos = positionsByPoem[currPoemId] || {};
+            if (!prevPos || !currPos) {
+                console.warn("Missing positions for pixel mapping.");
+                return;
+            }
+            for (const letterId in currPos) {
+                let currChar = currPos[letterId].char;
+                let perfectMatch = false;
+                let firstMatch;
+                for (const key in letterMap) {
+                    let val = letterMap[key];
+                    // if the chars don't match, move on
+                    if (val.char !== currChar) { continue; }
+                    // any unassigned match can be the back-up match
+                    if (!val.hasOwnProperty(currPoemId)) { firstMatch = key; }
+                    // if this letter isn't mapped in last poem, it can't be perfect
+                    if (!val.hasOwnProperty(prevPoemId)) { continue; }
+                    let pLetterId = val[prevPoemId].letterId;
+                    // if perfect match
+                    if (perfect_match(prevPos[pLetterId], currPos[letterId])) {
+                        perfectMatch = true;
+                        // if already assigned, need to move existing letter
+                        if (val.hasOwnProperty(currPoemId)) {
+                            let moveObj = val[currPoemId];
+                            for (const key2 in letterMap) {
+                                let val2 = letterMap[key2];
+                                if (val2.char === moveObj.char && !val2.hasOwnProperty(currPoemId)) {
+                                    val2[currPoemId] = moveObj;
+                                    val2.toAssemble = true;
+                                    break;
+                                }   
+                            }
+                        }
+                        // then assign this letter
+                        val[currPoemId] = { "char": currChar, letterId };
+                        val.toAssemble = true;
+                        break;
+                    }
+                }
+                // if we didn't find a perfect match, assign to firstMatch
+                if (!perfectMatch) {
+                    letterMap[firstMatch][currPoemId] = { "char": currChar, letterId };
+                    letterMap[firstMatch].toAssemble = true;
+                }
+            }
+        }
+
+        /**
+         * Takes a string and adds it to the provided div with each character
+         * in its own span with its own id. If first time, add letters to letterMap
+         * as keys.
+         *
+         * @param {string} theStr - string literal.
+         * @param {div} theDiv - div object.
+         * @param {int} poemId - id for poem (for lettermapping).
+         * @returns {int} max letterId.
+         */
+        function string_to_spans(theStr, theDiv, poemId) {
+            // prob turn iterating over letters into function
+            // as i'll use it elsewhere and good to do the same thing everywhere
+            theStr = theStr.toLowerCase();
+            let letterId = 0; // unique identifier for alpha characters
+            let i=0; // x position (num characters from left)
+            let j=0; // y position (num lines from top)
+            for (let char of theStr) {
+                const newSpan = document.createElement('span');
+                // first map the letter if it's the startpoem
+                if (isLetter(char)) {
+                    if (poemId === "startPoem") {
+                        letterMap[letterId] = { 
+                            "char": char,
+                            "dropped": false,
+                            "toDrop": true,
+                            "toAssemble": false,
+                            [poemId]: { char, letterId }
+                        }
+                    } 
+                    newSpan.id = `source-${letterId++}`;
+                }
+                // then add the span
+                if (char === " ") {
+                    newSpan.textContent = '\u00A0';
+                } else if (char === "\n") {
+                    const br = document.createElement('br');
+                    theDiv.appendChild(br);
+                    j++;
+                    i=0;
+                    continue;
+                } else {
+                    newSpan.textContent = char;
+                }
+                i++;
+                theDiv.appendChild(newSpan);
+            }
+            return letterId;
+        }
+
+        /**
+         * Go through spans in theDiv and add the bounding rectangle
+         * for each span to positionsByPoem[poemId].
+         */
+        function measure_positions(theDiv, poemId) {
+            const map = {}
+            const spans = theDiv.querySelectorAll('span[id^="source-"]');
+            spans.forEach(span => {
+                const letterId = Number(span.id.split('-')[1]);
+                map[letterId] = {
+                    "rect": span.getBoundingClientRect(),
+                    "char": span.textContent
+                }
+            });
+            positionsByPoem[poemId] = map;
+        }
+
+        function make_clones(theDiv) {
+            const spans = theDiv.querySelectorAll('span');
+            spans.forEach(original => {
+                const letterId = original.id.split("-")[1];
+                const clone = original.cloneNode(true);
+                const rect = original.getBoundingClientRect();
+
+                clone.id = `clone-${letterId}`
+
+                document.body.appendChild(clone);
+                clone.style.position = 'absolute';
+                clone.style.top = `${rect.top + window.scrollY}px`;
+                clone.style.left = `${rect.left + window.scrollX}px`;
+                clone.style.width = `${rect.width}px`;
+                clone.style.height = `${rect.height}px`;
+                if (letterMap.hasOwnProperty(parseInt(letterId))) {
+                    letterMap[parseInt(letterId)]["originalBoundingRect"] = clone.getBoundingClientRect();
+                }
+            });
+            return;
+        }
+
+        function drop_letter(thisLetter) {
+            const clone = document.getElementById(`clone-${thisLetter}`);
+            const cloneRect = letterMap[thisLetter].originalBoundingRect;
+
+            const deltaX = (Math.random()*100) - (Math.random()*100);
+            const deltaY = 600 - (cloneRect.top + window.scrollY) + (Math.random()*50) - (Math.random()*50);
+
+            clone.style.transition = 'transform 2s ease-in-out';
+            clone.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+        }
+
+        function drop_poem_promise(initialDelay) {
+            console.log("drop poem");
+            return new Promise((resolve) => {
+                function movement_step(delay) {
+                    const lettersToDrop = Object.entries(letterMap)
+                        .filter(([id, data]) => data.toDrop === true && data.dropped === false)
+                        .map(([id]) => Number(id));
+                    if (lettersToDrop.length <= 0) {
+                        resolve();
+                        return;
+                    }
+                    const selectedLetter = lettersToDrop[Math.floor(Math.random() * lettersToDrop.length)];
+                    letterMap[selectedLetter].toDrop = false;
+                    letterMap[selectedLetter].dropped = true;
+                    drop_letter(selectedLetter)
+                    setTimeout(() => movement_step(delay*.9, delay));
+                }
+                movement_step(initialDelay);
+            });  
+        }
+
+        function place_letter(thisLetter, poemId) {
+            const mapping = letterMap[thisLetter][poemId];
+            if (!mapping) {
+                console.warn(`place_letter: No mapping for letter ${thisLetter} in poem ${poemId}.`);
+                return;
+            }
+
+            const clone = document.getElementById(`clone-${thisLetter}`);
+            const target = document.getElementById(`source-${letterMap[thisLetter][poemId].letterId}`);
+            if (!target) {
+                console.warn(`Target span #source-${mapping.letterId} not found for poem ${poemId}.`);
+                return;
+              }
+
+            const targetRect = target.getBoundingClientRect();
+            const cloneRect = letterMap[thisLetter].originalBoundingRect;
+
+            const deltaX = (targetRect.left + window.scrollX) - (cloneRect.left + window.scrollX);
+            const deltaY = (targetRect.top + window.scrollY) - (cloneRect.top + window.scrollY);
+
+            clone.style.transition = 'transform 2s ease-in-out';
+            clone.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+        }
+
+        function assemble_poem_promise(initialDelay, poemId) {
+            console.log("assemble poem", poemId);
+            return new Promise((resolve) => {
+                function movement_step(delay) {
+                    const lettersToAssemble = Object.entries(letterMap)
+                        .filter(([id, data]) => data.toAssemble === true && data.dropped === true && data[poemId])
+                        .map(([id]) => Number(id));
+                    if (lettersToAssemble.length <= 0) {
+                        resolve();
+                        return;
+                    }
+                    const selectedLetter = lettersToAssemble[Math.floor(Math.random() * lettersToAssemble.length)];
+                    letterMap[selectedLetter].toAssemble = false;
+                    letterMap[selectedLetter].dropped = false;
+                    place_letter(selectedLetter, poemId)
+                    setTimeout(() => movement_step(delay*.9), delay);
+                }
+                movement_step(initialDelay);
+            });
+        }
+
+        var randomKey = function (obj) {
+            let keys = Object.keys(obj);
+            let index = Math.floor(randn_bm() * keys.length);
+            // index = Math.floor(Math.random() * keys.length);
+            return keys[index];
+        };
+
+        function rand_gauss_letter(mean, spread) {
+            return Math.floor((randn_bm() * spread) + mean - (spread/2));
+        }
+
+        // https://stackoverflow.com/questions/25582882/javascript-math-random-normal-distribution-gaussian-bell-curve
+        function randn_bm() {
+          let u = 0, v = 0;
+          while(u === 0) u = Math.random(); //Converting [0,1) to (0,1)
+          while(v === 0) v = Math.random();
+          let num = Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v );
+          num = num / 10.0 + 0.5; // Translate to 0 -> 1
+          if (num > 1 || num < 0) return randn_bm() // resample between 0 and 1
+          return num
+        }
+
+        function run_assembly_promise(poem, poemDiv, poemId, initialDelay) {
+            poemDiv.innerHTML = "";
+            string_to_spans(poem, poemDiv, poemId);
+            return assemble_poem_promise(initialDelay, poemId);
+        }
+
+        /**
+         * Compares currPoem to nextPoem; letters that are not in the same place
+         * are marked for dropping in the letterMap.
+         */
+        function set_letters_to_drop(currPoemId, nextPoemId) {
+            for (const key in letterMap) {
+                let val = letterMap[key];
+                // console.log(val);
+                if (!val.hasOwnProperty(currPoemId)) { continue; } 
+                if (!val.hasOwnProperty(nextPoemId)) {
+                    val.toDrop = true;
+                    continue;
+                }
+                let currMap = positionsByPoem[currPoemId];
+                let nextMap = positionsByPoem[nextPoemId];
+                let currLetterId = val[currPoemId].letterId;
+                let nextLetterId = val[nextPoemId].letterId;
+                if (!perfect_match(currMap[currLetterId], nextMap[nextLetterId])) {
+                    val.toDrop = true;
+                }
+            }
+        }
+
+        function sleep(ms) {
+            console.log("sleep for", ms);
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        /**
+         * Logic flow:
+         * 
+         * PREP:
+         * First poem is created in div. 
+         * All letters are set dropped=false, toDrop=true, toAssemble=false. 
+         * Clones are made: clones are what will move around. 
+         * Letters in div are used to set location.
+         * 
+         * ANIMATION DROP:
+         * Drop letters with toDrop=true && dropped=false.
+         * (i.e. all letters.) 
+         * Dropped letters are set dropped=true, toDrop=false.
+         * 
+         * PREP:
+         * Next poem is created in div. 
+         * Letters in poem are set toAssemble=true.
+         * 
+         * ANIMATION ASSEMBLE:
+         * All letters with toAssemble=true and dropped=true are assembled.
+         * Therefore just letters in next poem are assembled. 
+         * (i.e. may not be all letters.)
+         * 
+         * PREP:
+         * Next poem is created in div.
+         * Letters not in the same position as last poem are set toDrop=true.
+         * Letters not in the same position as last poem are set toAssemble=true.
+         * Some of these letters may be already dropped!
+         * 
+         * ANIMATION DROP:
+         * Drop letters with toDrop=true && dropped=false.
+         * (i.e. just poem diff letters that are not already dropped.) 
+         * These letters are set toDrop=false, dropped=true.
+         * 
+         * ANIMATION ASSEMBLE:
+         * All letters with toAssemble=true and dropped=true are assembled.
+         * 
+         */
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            const poemDiv = document.getElementById('poem');
+
+            string_to_spans(sourcePoem, poemDiv, "startPoem");
+            measure_positions(poemDiv, "startPoem");
+            make_clones(poemDiv);
+            
+            await drop_poem_promise(100);
+            await sleep(3000);
+            
+            poemDiv.innerHTML = "";
+            string_to_spans(poemList["poem6"], poemDiv, "poem6");
+            measure_positions(poemDiv, "poem6");
+            map_letters("startPoem", "poem6");
+            await assemble_poem_promise(300, "poem6");
+            await sleep(3000);
+            
+            async function animate_to_next_poem(prevPoemId, nextPoemId) {
+                poemDiv.innerHTML = "";
+                string_to_spans(poemList[nextPoemId], poemDiv, nextPoemId);
+                measure_positions(poemDiv, nextPoemId);
+                map_letters(prevPoemId, nextPoemId);
+                set_letters_to_drop(prevPoemId, nextPoemId);
+                await drop_poem_promise(100);
+                await sleep(3000);
+                await assemble_poem_promise(300, nextPoemId);
+                await sleep(3000);
+            }
+
+            await animate_to_next_poem("poem6", "poem5");
+            await animate_to_next_poem("poem5", "poem4");
+            await animate_to_next_poem("poem4", "poem3");
+            await animate_to_next_poem("poem3", "poem2");
+            await animate_to_next_poem("poem2", "poem1");
+        });
+    </script>
+</body>
+</html>
