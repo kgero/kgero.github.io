@@ -51,18 +51,12 @@
             font-family: 'Georgia', serif;
             min-width: 15px;
             opacity: 0.25;
-            cursor: pointer;
-            transition: opacity 0.2s ease;
         }
 
-        .letter-column:hover {
+        .letter-column[data-letter="s"] {
             opacity: 1;
             color: blue;
-        }
-
-        .letter-column.highlighted {
-            opacity: 1;
-            color: blue;
+            /* background-color: #fff; */
         }
 
         .letter-in-column {
@@ -82,11 +76,9 @@
 
         .letter {
             opacity: .8;
-            transition: opacity 0.2s ease, color 0.2s ease;
         }
 
-        .letter.highlighted {
-            opacity: 1;
+        .special-letter {
             color: blue;
         }
 
@@ -111,21 +103,12 @@
         path {
             fill: none;
             stroke-width: 1;
-            transition: stroke 0.2s ease;
-        }
-
-        path.highlighted-line-left {
-            stroke: url(#lineGradient1) !important;
-        }
-
-        path.highlighted-line-right {
-            stroke: url(#lineGradient2) !important;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">36 Views of the Sea: Poems 4 and 5 of the Anagram Series; Hover to Highlight Letters</div>
+        <div class="header">36 Views of the Sea: Poems 4 and 5 of the Anagram Series; "s" Highlighted</div>
         <svg id="connections">
             <defs>
                 <linearGradient id="lineGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -205,7 +188,8 @@ to be in love & be unsure.`;
             let letterIdx = 0;
             return text.split('').map((char) => {
                 if (char.match(/[a-zA-Z]/)) {
-                    const result = `<span class="letter" data-letter-idx="${letterIdx}" data-poem="${poemNum}" data-letter="${char.toLowerCase()}">${char}</span>`;
+                    const letterClass = char.toLowerCase() === 's' ? 'special-letter' : 'letter';
+                    const result = `<span class="${letterClass}" data-letter-idx="${letterIdx}" data-poem="${poemNum}">${char}</span>`;
                     letterIdx++;
                     return result;
                 } else if (char.match(/[^\s]/)) { // punctuation and other non-space characters
@@ -292,9 +276,9 @@ to be in love & be unsure.`;
             return positions;
         }
 
-        // Get letter column positions for a specific letter
-        function getLetterColumnPositions(letter) {
-            const letterElements = document.querySelectorAll(`.letter-in-column[data-letter="${letter}"]`);
+        // Get letter column positions (specifically for 's' letters)
+        function getLetterColumnPositions(letter = 's') {
+            const letterElements = document.querySelectorAll(`[data-letter="${letter}"]`);
             const positions = [];
             
             letterElements.forEach(element => {
@@ -336,9 +320,13 @@ to be in love & be unsure.`;
                         const columnPos = letterColumnPositions[index];
                         const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
                         path.setAttribute('d', `M ${pos1.x} ${pos1.y} L ${columnPos.x-offset} ${columnPos.y}`);
-                        path.setAttribute('stroke', "url(#allLettersGradient1)");
-                        path.setAttribute('data-letter', letter);
-                        path.setAttribute('data-line-type', 'left');
+                        
+                        // Use blue gradient for 's' letters, black gradient for all others
+                        if (letter === 's') {
+                            path.setAttribute('stroke', "url(#lineGradient1)");
+                        } else {
+                            path.setAttribute('stroke', "url(#allLettersGradient1)");
+                        }
                         svg.appendChild(path);
                     }
                 });
@@ -349,66 +337,15 @@ to be in love & be unsure.`;
                         const columnPos = letterColumnPositions[index];
                         const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
                         path.setAttribute('d', `M ${pos2.x} ${pos2.y} L ${columnPos.x+offset} ${columnPos.y}`);
-                        path.setAttribute('stroke', "url(#allLettersGradient2)");
-                        path.setAttribute('data-letter', letter);
-                        path.setAttribute('data-line-type', 'right');
+                        
+                        // Use blue gradient for 's' letters, black gradient for all others
+                        if (letter === 's') {
+                            path.setAttribute('stroke', "url(#lineGradient2)");
+                        } else {
+                            path.setAttribute('stroke', "url(#allLettersGradient2)");
+                        }
                         svg.appendChild(path);
                     }
-                });
-            });
-        }
-
-        // Function to highlight letters based on hover
-        function setupHoverHighlighting() {
-            const letterColumns = document.querySelectorAll('.letter-column');
-            
-            letterColumns.forEach(column => {
-                const letter = column.getAttribute('data-letter');
-                
-                column.addEventListener('mouseenter', () => {
-                    // Highlight the column
-                    column.classList.add('highlighted');
-                    
-                    // Highlight letters in both poems
-                    const lettersInPoems = document.querySelectorAll(`.letter[data-letter="${letter}"]`);
-                    lettersInPoems.forEach(letterEl => {
-                        letterEl.classList.add('highlighted');
-                    });
-                    
-                    // Highlight connecting lines
-                    const leftLines = document.querySelectorAll(`path[data-letter="${letter}"][data-line-type="left"]`);
-                    const rightLines = document.querySelectorAll(`path[data-letter="${letter}"][data-line-type="right"]`);
-                    
-                    leftLines.forEach(line => {
-                        line.classList.add('highlighted-line-left');
-                    });
-                    
-                    rightLines.forEach(line => {
-                        line.classList.add('highlighted-line-right');
-                    });
-                });
-                
-                column.addEventListener('mouseleave', () => {
-                    // Remove highlight from the column
-                    column.classList.remove('highlighted');
-                    
-                    // Remove highlight from letters in both poems
-                    const lettersInPoems = document.querySelectorAll(`.letter[data-letter="${letter}"]`);
-                    lettersInPoems.forEach(letterEl => {
-                        letterEl.classList.remove('highlighted');
-                    });
-                    
-                    // Remove highlight from connecting lines
-                    const leftLines = document.querySelectorAll(`path[data-letter="${letter}"][data-line-type="left"]`);
-                    const rightLines = document.querySelectorAll(`path[data-letter="${letter}"][data-line-type="right"]`);
-                    
-                    leftLines.forEach(line => {
-                        line.classList.remove('highlighted-line-left');
-                    });
-                    
-                    rightLines.forEach(line => {
-                        line.classList.remove('highlighted-line-right');
-                    });
                 });
             });
         }
@@ -416,7 +353,6 @@ to be in love & be unsure.`;
         // Draw connections - each letter in poem1 connects to the letter at the same index in poem2
         document.addEventListener('DOMContentLoaded', async function() {
             generateLetterLines();
-            setupHoverHighlighting();
         });
     </script>
 </body>
