@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Letter Currents</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            font-family: 'Courier New', monospace;
+            background: #fff;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .poems {
+            display: flex;
+            gap: 40px;
+            position: relative;
+            z-index: 2;
+            min-width: max-content;
+        }
+        
+        .poem {
+            width: 370px;
+            font-size: 16px;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            font-family: 'Georgia', serif;
+            flex-shrink: 0;
+        }
+
+        .letter-columns {
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+        }
+
+        .letter-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0px; /* shrink line-height */
+            line-height: .9;
+            font-size: 16px;
+            font-family: 'Georgia', serif;
+            min-width: 15px;
+            opacity: 0.25;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+
+        .letter-column:hover {
+            opacity: 1;
+            color: blue;
+        }
+
+        .letter-column.highlighted {
+            opacity: 1;
+            color: blue;
+        }
+
+        .letter-in-column {
+            opacity: 1;
+            position: relative;
+        }
+
+        .header {
+            font-family: 'Georgia', serif;
+            font-size: 16px;
+            font-variant: small-caps;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+            letter-spacing: 1px;
+        }
+
+        .letter {
+            opacity: .8;
+            transition: opacity 0.2s ease, color 0.2s ease;
+        }
+
+        .letter.highlighted {
+            opacity: 1;
+            color: blue;
+        }
+
+        .punctuation {
+            opacity: .8;
+        }
+        
+        .poem span {
+            position: relative;
+        }
+        
+        svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        path {
+            fill: none;
+            stroke-width: 1;
+            transition: stroke 0.2s ease;
+        }
+
+        path.highlighted-line-left {
+            stroke: url(#lineGradient1) !important;
+        }
+
+        path.highlighted-line-right {
+            stroke: url(#lineGradient2) !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">36 Views of the Sea: Poems 4 and 5 of the Anagram Series; Hover to Highlight Letters</div>
+        <svg id="connections">
+            <defs>
+                <linearGradient id="lineGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:blue;stop-opacity:0.1" />
+                    <stop offset="100%" style="stop-color:blue;stop-opacity:0.75" />
+                </linearGradient>
+                <linearGradient id="lineGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:blue;stop-opacity:0.75" />
+                    <stop offset="100%" style="stop-color:blue;stop-opacity:0.1" />
+                </linearGradient>
+                <linearGradient id="allLettersGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:black;stop-opacity:0.005" />
+                    <stop offset="100%" style="stop-color:black;stop-opacity:0.05" />
+                </linearGradient>
+                <linearGradient id="allLettersGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:black;stop-opacity:0.05" />
+                    <stop offset="100%" style="stop-color:black;stop-opacity:0.005" />
+                </linearGradient>
+            </defs>
+        </svg>
+        <div class="poems">
+            <div class="poem" id="poem1"></div>
+            <div class="letter-columns" id="letterColumns"></div>
+            <div class="poem" id="poem2"></div>
+        </div>
+    </div>
+
+    <script>
+        const poem1Text = `here a view of the sea:
+achy blue, w/ fresh mist knit
+ 
+into your hair like wool. the surfers snip lithe lines,
+taut watercolor cheer. she eyes the pleasantries.
+ 
+i have been deeply depressed
+but start to see her as she is:
+ 
+segmented & all one, at peace
+w/ her ever changing roar.
+ 
+did you ever think you could let your grief
+pass by? did anyone tell you how?
+ 
+no one told me. many years i stood by the sea,
+hollow, slow in her toil, me in my own shit,
+ 
+torn on contradictions in the heart.
+wet & broke, the sea crowns, winks.
+ 
+i thirst for theories to own, retool, tether, whet.
+i feel unseen, but yoke eye to eye, keen low.
+ 
+then,
+         a hush.`;
+
+        const poem2Text = `here she is.
+i returned to her.
+my eyes water, i miss
+another sea. i see her, another consort,
+seeking a different divinity. the tears don't
+cooperate, unhook eye from hue. at midday,
+the sun tires. i kiss the sea w/ tears,
+all one sea, yes? i toss her
+out, want a different lover, a keeper, i tire, chore, all
+this newness, i want a steady gait,
+the tide returning, water howling, who will
+help me here, wry, honor hewn & hollow &
+alone on the brink of sea & sea.
+eyes cloy & dupe, see, see?
+weekly vow to lose blood, concoct w/
+chlorophyl & bryophyte, herd honesty & still
+i unbutton my butte, touch the skyline, oh
+to be in love & be unsure.`;
+
+        // Function to wrap each character in a span with sequential index
+        function wrapCharacters(text, poemNum) {
+            let letterIdx = 0;
+            return text.split('').map((char) => {
+                if (char.match(/[a-zA-Z]/)) {
+                    const result = `<span class="letter" data-letter-idx="${letterIdx}" data-poem="${poemNum}" data-letter="${char.toLowerCase()}">${char}</span>`;
+                    letterIdx++;
+                    return result;
+                } else if (char.match(/[^\s]/)) { // punctuation and other non-space characters
+                    return `<span class="punctuation" data-poem="${poemNum}">${char}</span>`;
+                }
+                return char; // spaces and other whitespace remain unwrapped
+            }).join('');
+        }
+
+        // Analyze letter counts in both poems
+        function analyzeLetterCounts() {
+            const letterCounts = {};
+            
+            for (let char of poem1Text) {
+                const lowerChar = char.toLowerCase();
+                if (lowerChar.match(/[a-z]/)) {
+                    letterCounts[lowerChar] = (letterCounts[lowerChar] || 0) + 1;
+                }
+            }
+            
+            // Sort alphabetically and filter out letters with 0 count
+            const sortedLetters = Object.keys(letterCounts)
+                .filter(letter => letterCounts[letter] > 0)
+                .sort();
+            
+            console.log('Letter counts:', letterCounts);
+            console.log('Sorted letters:', sortedLetters);
+            
+            return { letterCounts, sortedLetters };
+        }
+        
+        const { letterCounts, sortedLetters } = analyzeLetterCounts();
+
+        // Render poems
+        document.getElementById('poem1').innerHTML = wrapCharacters(poem1Text, 1);
+        document.getElementById('poem2').innerHTML = wrapCharacters(poem2Text, 2);
+        
+        // Create all letter columns
+        function createLetterColumns() {
+            const letterColumnsContainer = document.getElementById('letterColumns');
+            
+            sortedLetters.forEach(letter => {
+                const count = letterCounts[letter];
+                
+                // Create column container
+                const column = document.createElement('div');
+                column.className = 'letter-column';
+                column.setAttribute('data-letter', letter);
+                
+                // Add the letters
+                for (let i = 0; i < count; i++) {
+                    const letterElement = document.createElement('span');
+                    letterElement.className = 'letter-in-column';
+                    letterElement.setAttribute('data-letter', letter);
+                    letterElement.setAttribute('data-letter-idx', i);
+                    letterElement.textContent = letter;
+                    column.appendChild(letterElement);
+                }
+                
+                letterColumnsContainer.appendChild(column);
+            });
+        }
+        
+        createLetterColumns();
+
+        // Get letter positions by letter index
+        function getLetterPositions(poemNum) {
+            const letters = document.querySelectorAll(`[data-poem="${poemNum}"]`);
+            const positions = [];
+            
+            letters.forEach(letter => {
+                const rect = letter.getBoundingClientRect();
+                const container = document.querySelector('.container').getBoundingClientRect();
+                const idx = parseInt(letter.getAttribute('data-letter-idx'));
+                
+                positions[idx] = {
+                    x: rect.left + rect.width / 2 - container.left,
+                    y: rect.top + rect.height / 2 - container.top,
+                    char: letter.textContent.toLowerCase(),
+                    mapped: false
+                };
+            });
+            
+            return positions;
+        }
+
+        // Get letter column positions for a specific letter
+        function getLetterColumnPositions(letter) {
+            const letterElements = document.querySelectorAll(`.letter-in-column[data-letter="${letter}"]`);
+            const positions = [];
+            
+            letterElements.forEach(element => {
+                const rect = element.getBoundingClientRect();
+                const container = document.querySelector('.container').getBoundingClientRect();
+                const idx = parseInt(element.getAttribute('data-letter-idx'));
+                
+                if (!isNaN(idx)) {
+                    positions[idx] = {
+                        x: rect.left + rect.width / 2 - container.left,
+                        y: rect.top + rect.height / 2 - container.top,
+                        char: letter,
+                        mapped: false
+                    };
+                }
+            });
+            
+            return positions;
+        }
+
+        function generateLetterLines() {
+            const positions1 = getLetterPositions(1);
+            const positions2 = getLetterPositions(2);
+            const svg = document.getElementById('connections');
+
+            const offset = 5;
+            
+            // Generate lines for all letters
+            sortedLetters.forEach(letter => {
+                const letterColumnPositions = getLetterColumnPositions(letter);
+                
+                // Collect all positions for this letter from both poems
+                const letterPositions1 = positions1.filter(pos => pos && pos.char === letter);
+                const letterPositions2 = positions2.filter(pos => pos && pos.char === letter);
+                
+                // Connect each letter in poem1 to corresponding letter in column
+                letterPositions1.forEach((pos1, index) => {
+                    if (index < letterColumnPositions.length) {
+                        const columnPos = letterColumnPositions[index];
+                        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                        path.setAttribute('d', `M ${pos1.x} ${pos1.y} L ${columnPos.x-offset} ${columnPos.y}`);
+                        path.setAttribute('stroke', "url(#allLettersGradient1)");
+                        path.setAttribute('data-letter', letter);
+                        path.setAttribute('data-line-type', 'left');
+                        svg.appendChild(path);
+                    }
+                });
+                
+                // Connect each letter in poem2 to corresponding letter in column
+                letterPositions2.forEach((pos2, index) => {
+                    if (index < letterColumnPositions.length) {
+                        const columnPos = letterColumnPositions[index];
+                        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                        path.setAttribute('d', `M ${pos2.x} ${pos2.y} L ${columnPos.x+offset} ${columnPos.y}`);
+                        path.setAttribute('stroke', "url(#allLettersGradient2)");
+                        path.setAttribute('data-letter', letter);
+                        path.setAttribute('data-line-type', 'right');
+                        svg.appendChild(path);
+                    }
+                });
+            });
+        }
+
+        // Function to highlight letters based on hover
+        function setupHoverHighlighting() {
+            const letterColumns = document.querySelectorAll('.letter-column');
+            
+            letterColumns.forEach(column => {
+                const letter = column.getAttribute('data-letter');
+                
+                column.addEventListener('mouseenter', () => {
+                    // Highlight the column
+                    column.classList.add('highlighted');
+                    
+                    // Highlight letters in both poems
+                    const lettersInPoems = document.querySelectorAll(`.letter[data-letter="${letter}"]`);
+                    lettersInPoems.forEach(letterEl => {
+                        letterEl.classList.add('highlighted');
+                    });
+                    
+                    // Highlight connecting lines
+                    const leftLines = document.querySelectorAll(`path[data-letter="${letter}"][data-line-type="left"]`);
+                    const rightLines = document.querySelectorAll(`path[data-letter="${letter}"][data-line-type="right"]`);
+                    
+                    leftLines.forEach(line => {
+                        line.classList.add('highlighted-line-left');
+                    });
+                    
+                    rightLines.forEach(line => {
+                        line.classList.add('highlighted-line-right');
+                    });
+                });
+                
+                column.addEventListener('mouseleave', () => {
+                    // Remove highlight from the column
+                    column.classList.remove('highlighted');
+                    
+                    // Remove highlight from letters in both poems
+                    const lettersInPoems = document.querySelectorAll(`.letter[data-letter="${letter}"]`);
+                    lettersInPoems.forEach(letterEl => {
+                        letterEl.classList.remove('highlighted');
+                    });
+                    
+                    // Remove highlight from connecting lines
+                    const leftLines = document.querySelectorAll(`path[data-letter="${letter}"][data-line-type="left"]`);
+                    const rightLines = document.querySelectorAll(`path[data-letter="${letter}"][data-line-type="right"]`);
+                    
+                    leftLines.forEach(line => {
+                        line.classList.remove('highlighted-line-left');
+                    });
+                    
+                    rightLines.forEach(line => {
+                        line.classList.remove('highlighted-line-right');
+                    });
+                });
+            });
+        }
+
+        // Draw connections - each letter in poem1 connects to the letter at the same index in poem2
+        document.addEventListener('DOMContentLoaded', async function() {
+            generateLetterLines();
+            setupHoverHighlighting();
+        });
+    </script>
+</body>
+</html>

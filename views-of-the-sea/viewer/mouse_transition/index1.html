@@ -114,7 +114,6 @@ then,
             spans.forEach((span, indexB) => {
                 const charB = span.textContent;
                 if (!charB.match(/[a-zA-Z]/)) {
-                    mapping.push({ type: 'static', char: charB, indexB });
                     return;
                 }
                 const rect = span.getBoundingClientRect();
@@ -155,7 +154,7 @@ then,
             animContainer.style.width = '100%';
             animContainer.style.height = '100%';
             animContainer.style.pointerEvents = 'none'; // let mouse events pass through
-            animContainer.style.display = 'block'; // visible so animated letters can show
+            animContainer.style.display = 'none'; // hidden initially
             
             document.body.appendChild(animContainer);
             
@@ -182,12 +181,6 @@ then,
                 
                 // Store reference to element in the map
                 item.element = letterEl;
-
-                // Add transition start / end range
-                let sml = getRandomArbitrary(mouseMin, .4);
-                let big = getRandomArbitrary(.6, mouseMax);
-                item.mStart = sml;
-                item.mEnd = big;
             });
             
             return animContainer;
@@ -216,80 +209,41 @@ then,
             }
         }
 
-        function getRandomArbitrary(min, max) {
-            return Math.random() * (max - min) + min;
-        }
-
         function lerp(start, end, t) {
             return start + (end - start) * t;
-        }
-
-        function remapPercent(percent, newMin, newMax) {
-            // Assumes old range is [0,1], clamp to old range first 
-            percent = Math.max(0, Math.min(1, percent));
-            let newNum = ( ( 1 / (newMax - newMin)) * percent ) - (newMin / (newMax - newMin));
-            return Math.max(0, Math.min(1, newNum));
         }
 
         function animate() {
             // Reset the RAF flag so next mousemove can schedule another frame
             rafScheduled = false;
-
+            
+            // Determine visibility state
+            const showPoemA = mousePercent < 0.01;
+            const showPoemB = mousePercent > 0.99;
+            const showAnimated = !showPoemA && !showPoemB;
+            
+            // Toggle visibility of poem divs and animated container
             const leftDiv = document.getElementById('left');
             const rightDiv = document.getElementById('right');
             const animContainer = document.getElementById('animated-letters');
-    
-            // Get all the character spans from both poems (including punctuation)
-            const leftSpans = leftDiv.querySelectorAll('span');
-            const rightSpans = rightDiv.querySelectorAll('span');
+            
+            leftDiv.style.display = showPoemA ? 'block' : 'none';
+            rightDiv.style.display = showPoemB ? 'block' : 'none';
+            animContainer.style.display = showAnimated ? 'block' : 'none';
             
             // Update position of each animated letter
-            char_map.forEach(item => {
-                // Get the corresponding spans
-                const leftSpan = leftSpans[item.indexA];
-                const rightSpan = rightSpans[item.indexB];
-
-                // Deal with punctuation
-                if (item.type !== 'letter') {
-                    if (leftSpan) {
-                        if (mousePercent < mouseMin) { leftSpan.style.visibility = 'visible'; }
-                        else { leftSpan.style.visibility = 'hidden'; }
-                    }
-                    if (rightSpan) {
-                        if (mousePercent < mouseMax) { rightSpan.style.visibility = 'hidden'; }
-                        else { rightSpan.style.visibility = 'visible';}
-                    } 
-                    return;
-                }
-
-                // Deal with letters
-                if (mousePercent < item.mStart) {
-                    // Show left span, hide animated and right span
-                    leftSpan.style.visibility = 'visible';
-                    item.element.style.visibility = 'hidden';
-                    rightSpan.style.visibility = 'hidden';
-                }
-                else if (mousePercent > item.mEnd) {
-                    // Show right span, hide animated and left span
-                    leftSpan.style.visibility = 'hidden';
-                    item.element.style.visibility = 'hidden';
-                    rightSpan.style.visibility = 'visible';
-                } else {
-                    // Hide both static spans, show animated letter
-                    leftSpan.style.visibility = 'hidden';
-                    rightSpan.style.visibility = 'hidden';
-                    item.element.style.visibility = 'visible';
-                
-                    const remappedPercent = remapPercent(mousePercent, item.mStart, item.mEnd);
+            if (showAnimated) {
+                char_map.forEach(item => {
+                    if (item.type !== 'letter') return;
                     
                     // Interpolate between A and B positions
-                    const x = lerp(item.Ax, item.Bx, remappedPercent);
-                    const y = lerp(item.Ay, item.By, remappedPercent);
+                    const x = lerp(item.Ax, item.Bx, mousePercent);
+                    const y = lerp(item.Ay, item.By, mousePercent);
                     
                     // Update transform
                     item.element.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-                }
-            });
+                });
+            }
         }
 
         let mousePercent = 0;
@@ -297,8 +251,6 @@ then,
         let lastLogTime = 0;
         let char_map;
         const mouseLog = false;
-        const mouseMax = .9;
-        const mouseMin = .1;
 
         document.addEventListener('DOMContentLoaded', async function() {
             render_poem(poemA, document.getElementById('left'));
