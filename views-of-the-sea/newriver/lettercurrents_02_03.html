@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>36 Views of the Sea</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .headerdiv {
+            left:100px;
+            position: absolute;
+        }
+        .header {
+            font-family: 'Georgia', serif;
+            font-size: 16px;
+            font-variant: small-caps;
+            margin-top: 30px;
+            margin-bottom: 10px;
+            color: #333;
+            letter-spacing: 1px;
+        }
+        .subheader {
+            font-family: 'Georgia', serif;
+            font-size: 12px;
+            margin-bottom: 30px;
+            color: grey;
+            letter-spacing: 1px;
+        }
+        .poemdiv {
+            padding: 100px 100px;
+            width: 500px;
+            white-space: pre-wrap;
+        }
+        #left {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+        }
+        
+        #right {
+            position: fixed;
+            left: 600px;
+            top: 0;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div class="headerdiv">
+        <div class="header">36 Views of the Sea (poems 2 and 3)</div>
+        <div class="subheader">move cursor left/right for poem shifting</div>
+    </div>
+    <div class="poemdiv" id="left"></div>
+    <div class="poemdiv" id="right"></div>
+    <script>
+        const poemA = `consider the pacific. half an orb: eminent &
+monstrous body of blue skirted w/ old coasts,
+oak tree & pangea hewn w/ cracked veins: 
+roots of ghost & steel. 
+
+in this dystopia, the seabed goes silent. deathly
+dark hue, unwritten horror everywhere.
+whale skeleton rots, heir who toils alone 
+in a trove of oily metal, iron adhesions within.
+
+o, i've killed my hope, lost my coral statue. 
+only eerie ache between eye, ear, & gut. 
+
+then, i renew my fury, 
+cheery w/ wit & youth & honey, 
+keen to enter the whirl, yap utopia & shine out. 
+
+elsewhere, herons wait in the rushes, 
+noiseless & noble eye, 
+resolute hunters tethered to the abyss.
+`;
+        const poemB = `love like plowing into the sea: first, 
+ice at the knees, then the chill 
+at the crotch, chest, pits, 
+i swallow sweet air, wink 
+at osprey & tern, sense 
+krill on the toes, see 
+wrasse & searobin, 
+sow a drowsy route, yes, 
+it is an era before i can bear 
+to dunk my head & wrestle 
+the obscure beast of the sea 
+w/ her wry & humming rain 
+cuts left then right into me 
+noisy & pushy auteur
+esteemed yet lying hive
+here you obey a rude hue
+                                           oh slow dip 
+in inky deep, where i
+who lost touch with the land
+& found no other
+no, 
+there is no serene lover, no 
+severe yoke, i only learned 
+to be loose of the steady & holy 
+earth,
+          i only learned to roam.`;
+
+         function buildLetterMapping() {
+            const mapping = [];
+
+            let div = document.getElementById('left');
+            let spans = div.querySelectorAll('span');
+
+            let letterIndexA = 0;
+            
+            spans.forEach((span, indexA) => {
+                const charA = span.textContent;
+                // Skip non-letters in A
+                if (!charA.match(/[a-zA-Z]/)) {
+                    mapping.push({ type: 'static', char: charA, indexA });
+                    return;
+                }
+                const rect = span.getBoundingClientRect();
+                mapping.push({
+                    type: 'letter', 
+                    char: charA, 
+                    indexA, 
+                    letterIndexA: letterIndexA++,
+                    mapped: false,
+                    Ax: rect.left,
+                    Ay: rect.top
+                });
+            });
+
+            div = document.getElementById('right');
+            spans = div.querySelectorAll('span');
+
+            let letterIndexB = 0;
+            
+            spans.forEach((span, indexB) => {
+                const charB = span.textContent;
+                if (!charB.match(/[a-zA-Z]/)) {
+                    mapping.push({ type: 'static', char: charB, indexB });
+                    return;
+                }
+                const rect = span.getBoundingClientRect();
+                for (const el of mapping) {
+                    if (el.char === charB && !el.mapped) {
+                        el.mapped = true;
+                        el.indexB = indexB;
+                        el.letterIndexB = letterIndexB++;
+                        el.Bx = rect.left;
+                        el.By = rect.top;
+                        break;
+                    }
+                }
+            });
+            return mapping;
+        }
+        
+        function render_poem(poem, div) {
+            poem.split('').forEach((char, i) => {
+                if (char === '\n') {
+                    div.appendChild(document.createElement('br'));
+                } else {
+                    const span = document.createElement('span');
+                    span.textContent = char;
+                    span.className = char.match(/[a-zA-Z]/) ? 'letter' : 'static';
+                    div.appendChild(span);
+                }
+            });
+        }
+
+        function createAnimatedLetters(char_map) {
+
+            // Create container for animated letters
+            const animContainer = document.createElement('div');
+            animContainer.id = 'animated-letters';
+            animContainer.style.position = 'fixed';
+            animContainer.style.top = '0';
+            animContainer.style.left = '0';
+            animContainer.style.width = '100%';
+            animContainer.style.height = '100%';
+            animContainer.style.pointerEvents = 'none'; // let mouse events pass through
+            animContainer.style.display = 'block'; // visible so animated letters can show
+            
+
+            document.body.appendChild(animContainer);
+
+            
+            // Get container position to adjust coordinates
+            const containerRect = animContainer.getBoundingClientRect();
+            
+            // Create animated element for each letter
+            char_map.forEach(item => {
+                if (item.type !== 'letter') return; // skip static characters
+                
+                // Create the span element
+                const letterEl = document.createElement('span');
+                letterEl.textContent = item.char;
+                letterEl.className = 'animated-letter';
+                letterEl.style.position = 'absolute';
+                letterEl.style.willChange = 'transform';
+                letterEl.style.backfaceVisibility = 'hidden';
+                
+                // Position at initial location (poem A position)
+                letterEl.style.transform = `translate3d(${item.Ax}px, ${item.Ay}px, 0)`;
+                
+                // Add to container
+                animContainer.appendChild(letterEl);
+                
+                // Store reference to element in the map
+                item.element = letterEl;
+
+                // Add transition start / end range
+                let sml = getRandomArbitrary(mouseMin, .4);
+                let big = getRandomArbitrary(.6, mouseMax);
+                item.mStart = sml;
+                item.mEnd = big;
+            });
+            
+            return animContainer;
+        }
+
+        function onMouseMove(e) {
+            document.getElementById('left').style.visibility = 'visible';
+            document.getElementById('right').style.visibility = 'visible';
+            document.getElementById('animated-letters').style.visibility = 'visible';
+
+            // Calculate mouse position as percentage of window width (0 to 1)
+            mousePercent = e.clientX / window.innerWidth;
+            
+            // Clamp to 0-1 range
+            mousePercent = Math.max(0, Math.min(1, mousePercent));
+
+            // Log occasionally (every 200ms)
+            if (mouseLog) {
+                const now = Date.now();
+                if (now - lastLogTime > 200) {
+                    console.log('mousePercent:', mousePercent.toFixed(3));
+                    lastLogTime = now;
+                }
+            }
+            
+            // Schedule animation frame if not already scheduled
+            if (!rafScheduled) {
+                rafScheduled = true;
+                requestAnimationFrame(animate);
+            }
+        }
+
+        function getRandomArbitrary(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        function lerp(start, end, t) {
+            return start + (end - start) * t;
+        }
+
+        function remapPercent(percent, newMin, newMax) {
+            // Assumes old range is [0,1], clamp to old range first 
+            percent = Math.max(0, Math.min(1, percent));
+            let newNum = ( ( 1 / (newMax - newMin)) * percent ) - (newMin / (newMax - newMin));
+            return Math.max(0, Math.min(1, newNum));
+        }
+
+        function animate() {
+            // Reset the RAF flag so next mousemove can schedule another frame
+            rafScheduled = false;
+
+            const leftDiv = document.getElementById('left');
+            const rightDiv = document.getElementById('right');
+            const animContainer = document.getElementById('animated-letters');
+    
+            // Get all the character spans from both poems (including punctuation)
+            const leftSpans = leftDiv.querySelectorAll('span');
+            const rightSpans = rightDiv.querySelectorAll('span');
+            
+            // Update position of each animated letter
+            char_map.forEach(item => {
+                // Get the corresponding spans
+                const leftSpan = leftSpans[item.indexA];
+                const rightSpan = rightSpans[item.indexB];
+
+                // Deal with punctuation
+                if (item.type !== 'letter') {
+                    if (leftSpan) {
+                        if (mousePercent < mouseMin) { leftSpan.style.visibility = 'visible'; }
+                        else { leftSpan.style.visibility = 'hidden'; }
+                    }
+                    if (rightSpan) {
+                        if (mousePercent < mouseMax) { rightSpan.style.visibility = 'hidden'; }
+                        else { rightSpan.style.visibility = 'visible';}
+                    } 
+                    return;
+                }
+
+                // Deal with letters
+                if (mousePercent < item.mStart) {
+                    // Show left span, hide animated and right span
+                    leftSpan.style.visibility = 'visible';
+                    item.element.style.visibility = 'hidden';
+                    rightSpan.style.visibility = 'hidden';
+                }
+                else if (mousePercent > item.mEnd) {
+                    // Show right span, hide animated and left span
+                    leftSpan.style.visibility = 'hidden';
+                    item.element.style.visibility = 'hidden';
+                    rightSpan.style.visibility = 'visible';
+                } else {
+                    // Hide both static spans, show animated letter
+                    leftSpan.style.visibility = 'hidden';
+                    rightSpan.style.visibility = 'hidden';
+                    item.element.style.visibility = 'visible';
+                
+                    const remappedPercent = remapPercent(mousePercent, item.mStart, item.mEnd);
+                    
+                    // Interpolate between A and B positions
+                    const x = lerp(item.Ax, item.Bx, remappedPercent);
+                    const y = lerp(item.Ay, item.By, remappedPercent);
+                    
+                    // Update transform
+                    item.element.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+                }
+            });
+        }
+
+        let mousePercent = 0;
+        let rafScheduled = false;
+        let lastLogTime = 0;
+        let char_map;
+        const mouseLog = false;
+        const mouseMax = .9;
+        const mouseMin = .1;
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            render_poem(poemA, document.getElementById('left'));
+            render_poem(poemB, document.getElementById('right'));
+
+            char_map = buildLetterMapping();
+            const animContainer = createAnimatedLetters(char_map);
+            console.log(char_map);
+            // animate();
+
+            document.getElementById('left').style.visibility = 'hidden';
+            document.getElementById('right').style.visibility = 'hidden';
+            document.getElementById('animated-letters').style.visibility = 'hidden';
+
+            document.addEventListener('mousemove', onMouseMove);   
+         });
+    </script>
+</body>
+</html>
+
