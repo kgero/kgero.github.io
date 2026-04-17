@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Title (Taper #14)</title>
+
+<!-- “Title” Copyright (C) 2024 Author
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright 
+notice and this notice are preserved. This file is offered as-is,
+without any warranty.
+
+This is from Taper #14: Sonnets, Spring 2025:
+
+https://taper.badquar.to/14/title_of_your_work.html
+
+... your creative statement here ...
+
+*** BEGIN TEMPLATE INSTRUCTIONS ***
+* All poem code goes between the closing header and closing body tags
+below, and must not exceed 2KB (2048 bytes).
+* Without removing any template punctuation, insert your author name,
+poem title, and poem filename throughout the template, making sure your
+text, capitalization, and punctuation is consistent across the file.
+* Insert your creative statement above, wrapped to 72 characters, and 
+using typographical quotes “” and apostrophes ‘’.
+* Do not modify the template in any other way.
+*** END TEMPLATE INSTRUCTIONS ***
+
+-->
+
+<style>
+	body { margin:0 ; overflow:hidden }
+	a { color:#eee ; text-decoration:none }
+	header { margin:0 ; padding:0 ; background-color:#444 ; color:#bbb ;
+		position:relative ; z-index:1000 }
+	header > h1 { margin:0 ; font-size:12px ; font-family:sans-serif ;
+		border-bottom:1px #999 solid ; padding:5px 10px ; line-height:17px }
+</style>
+</head>
+<body>
+<header id="nav">
+	<h1>
+		<a href="prev.html">&lt;&lt;</a> &nbsp; 
+		<a href="index.html">Taper #14 :
+		TBA</a> : Spring 2025 &nbsp; 
+		<a href="next.html">&gt;&gt;</a><br>
+		<a href="title_of_your_work.html">“Title”</a> by
+		<a href="about.html#authorlastname">Author</a>
+	</h1>
+</header>
+<!-- All poem code goes here, and must be less than or equal to 2048 bytes (not including closing </body> and </html> tags below)-->
+<style>
+	#main {
+		padding: 100px 100px;
+	}
+	.highlight {
+            animation: highlight 2s ease-in-out forwards;
+        }
+        @keyframes highlight {
+            0% { color: red; }
+            100% { color: black; }
+        }
+    </style>
+<script>
+const rules = {
+        "a": ["o"],
+        "b": ["l","h", "d", "o", "c"],
+        "c": ["i"],
+        "d": ["o", "c", "b"],
+        "e": ["c"],
+        "f": ["i", "l"],
+        "g": ["o", "y"],
+        "h": ["n", "l", "r"],
+        "i": ["."],
+        "j": ["i"],
+        "k": ["l", "r"],
+        "l": ["i"],
+        "m": ["n"],
+        "n": ["i", "r"],
+        "o": ["c"],
+        "p": ["o", "q"],
+        "q": ["o", "p"],
+        "r": ["i"],
+        "s": ["."],
+        "t": ["l"],
+        "u": ["."],
+        "v": ["."],
+        "w": ["v"],
+        "x": ["."],
+        "y": ["u", "g"],
+        "z": ["."],
+        ",": ["."],
+        ";": [","],
+        "'": ["."],
+        "?": ["."],
+        ".": [],
+        " ": []
+      }
+
+      const start = `death, be not proud, though some have called thee _
+mighty and dreadful, for thou art not so; _
+for those whom thou think'st thou dost overthrow _
+die not, poor death, nor yet canst thou kill me. _
+from rest and sleep, which but thy pictures be, _ 
+much pleasure; then from thee much more must flow, _
+and soonest our best men with thee do go, _
+rest of their bones, and soul's delivery. _
+thou art slave to fate, chance, kings, and desperate men, _
+and dost with poison, war, and sickness dwell, _
+and poppy or charms can make us sleep as well _
+and better than thy stroke; why swell'st thou then? _
+one short sleep past, we wake eternally _
+and death shall be no more; death, thou shalt die.`
+
+window.onload=()=>{
+  // Grab container & prep
+  const div=document.getElementById("main"),
+        chars=start.split(''),        // characters
+        excl=[63,215,414,477,639];   // excluded indexes
+  let speed=3000, // speed
+      dataIndex=0;    // dataIndex
+
+  // Build DOM
+  for(let i=0;i<chars.length;i++){
+    let c=chars[i];
+    if(c==="_"){
+      div.appendChild(document.createElement("br"));
+    } else {
+      let e=document.createElement("span");
+      e.textContent=c;
+      div.appendChild(e);
+      // if not a space, possibly assign data-index, and set width
+      if(c!==" "){
+        if(!excl.includes(i)) e.dataset.index=dataIndex++;
+        e.style.display="inline-block";
+        e.style.width=e.getBoundingClientRect().width+"px";
+      }
+    }
+  }
+
+  // Replace one character randomly
+  function changeChar(){
+    let r=Math.floor(Math.random()*dataIndex),
+        e=div.querySelector('span[data-index="'+r+'"]'),
+        oldChar=e.textContent,
+        R=rules[oldChar];
+    if(R && R.length){
+      let n=R[Math.floor(Math.random()*R.length)];
+      e.classList.add("highlight");
+      e.textContent=n;
+      setTimeout(()=>e.classList.remove("highlight"),2000);
+    }
+    scheduleNext();
+  }
+
+  // Schedule next replacement
+  function scheduleNext(){
+    let t=1+Math.floor(Math.random()*speed);
+    speed=Math.max(3,speed*0.95);
+  	console.log('scheduling...',t);
+    setTimeout(changeChar,t);
+  }
+
+  scheduleNext(); // start
+};
+
+</script>
+
+  <div id='main'></div>
+
+
+
+</body>
+</html>

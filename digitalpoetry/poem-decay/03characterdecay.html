@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <title>Decay II: Every Letter is I</title>
+
+    <style>
+      body {
+            font-family: Arial, sans-serif;
+            font-size: 1em;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        #content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            text-align: center;
+        }
+        .highlight {
+            animation: highlight 5s ease-in-out forwards;
+        }
+        @keyframes highlight {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 0; }
+        }
+        .fade-in { 
+            animation: fadeIn 5s ease-out;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1;}
+        }
+
+        .char-container {
+          position: relative;
+          display: inline-block; /* or inline-flex */
+        }
+        .char-old,
+        .char-new {
+          position: absolute;
+          top: 0;
+          left: 0;
+          /* You might want to do line-height, etc. if alignment is off. */
+          transition: opacity 150s ease; /* adjust timing as needed */
+        }
+
+        /* Start with the new char invisible */
+        .char-new {
+/*          opacity: 0;*/
+        }
+
+        /* We'll toggle classes that fade out the old or fade in the new */
+        .fade-out {
+          opacity: 0;
+        }
+        .fade-in {
+          opacity: 1;
+        }
+
+    </style>
+    <script>
+
+      const rules = {
+        "a": [],
+        "b": ["l","h"],
+        "c": [],
+        "d": ["o", "c"],
+        "e": ["c"],
+        "f": ["i"],
+        "g": ["o"],
+        "h": ["n", "l"],
+        "i": ["."],
+        "j": ["i"],
+        "k": ["l"],
+        "l": ["i"],
+        "m": ["n"],
+        "n": ["i", "r"],
+        "o": ["c"],
+        "p": ["o"],
+        "q": ["o"],
+        "r": ["i"],
+        "s": [],
+        "t": ["l"],
+        "u": [],
+        "v": [],
+        "w": ["v"],
+        "x": [],
+        "y": [],
+        "z": [],
+        ",": ["."],
+        ";": [","],
+        "'": [";"],
+        ".": [],
+        " ": []
+      }
+
+      const start = `death, be not proud, though some have called thee _
+mighty and dreadful, for thou art not so; _
+for those whom thou think'st thou dost overthrow _
+die not, poor Death, nor yet canst thou kill me. _
+from rest and sleep, which but thy pictures be, _ 
+much pleasure; then from thee much more must flow, _
+and soonest our best men with thee do go, _
+rest of their bones, and soul's delivery. _
+thou art slave to fate, chance, kings, and desperate men, _
+and dost with poison, war, and sickness dwell, _
+and poppy or charms can make us sleep as well _
+and better than thy stroke; why swell'st thou then? _
+one short sleep past, we wake eternally _
+and death shall be no more; death, thou shalt die.`
+    
+    window.onload = function() {
+      div = document.getElementById('main');
+
+      const startChars = start.split('');
+
+
+      let dataIndex = 0; 
+      startChars.forEach(char => {
+        if (char === "_") {
+          div.appendChild(document.createElement('br'));
+        } else if (char === " ") {
+          const span = document.createElement('span');
+          span.textContent = char;
+          div.appendChild(span);
+        } else {
+          const span = document.createElement('span');
+          span.classList.add('char-container');
+          const span_old = document.createElement('span');
+          span_old.textContent = char; 
+          span_old.classList.add('char-old');
+          span.appendChild(span_old);
+          
+          span_old.setAttribute('data-index', dataIndex++);
+          div.appendChild(span);
+          const setwidth = span_old.getBoundingClientRect().width;
+          span.style.width = setwidth + "px"; 
+
+        }
+      });
+
+
+      function changeChar() {
+        let randIndex = Math.floor(Math.random() * dataIndex);
+        const span_old = div.querySelector(`span[data-index="${randIndex}"]`);
+        let oldChar = span_old.innerHTML;
+        console.log(oldChar);
+        if (rules[oldChar] && rules[oldChar].length) {
+          let newChar = rules[oldChar][Math.floor(Math.random() * rules[oldChar].length)];
+          const span_new = document.createElement('span');
+          span_new.textContent = newChar;
+          span_new.classList.add('char-new');
+          let span = span_old.parentElement;
+          span.append(span_new);
+          span_old.classList.add('fade-out');
+          // span.classList.add('highlight'); 
+          // span.classList.add('half');
+          // setTimeout(() => {
+          //   span.classList.add('fade-in');       // add fade-in animation
+          //   span.classList.remove('highlight');  // remove highlight color
+          //   span.textContent = newChar;    // set new word
+          // }, 5000); // Wait for the highlight effect to finish (should match css timing)
+        }
+
+        scheduleNext();
+      }
+
+      // setInterval(changeWord, 2000);
+
+      function getRandomDelay(minMs, maxMs) {
+        return Math.floor(Math.random() * (maxMs - minMs + 1)) + minMs;
+      }
+
+      function scheduleNext() {
+        const delay = getRandomDelay(10, 100); // e.g. between 1s and 10s
+        console.log('delay is', delay);
+        setTimeout(changeChar, delay);
+      }
+
+      // scheduleNext();
+      setTimeout(changeChar, 1000);
+
+    };
+
+    </script>
+
+  </head>
+  <body>
+
+  <div id='main'>
+
+  </div>
+
+  </body>
+</html>

@@ -215,6 +215,46 @@
             background: linear-gradient(90deg, var(--light-blue), var(--medium-blue), var(--deep-blue));
             border-radius: 3px 3px 0 0;
         }
+
+        .controls-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .controls-row label {
+            margin-right: 0.25rem;
+        }
+
+        .controls-row select,
+        .controls-row input[type="text"] {
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            border: 1px solid var(--light-blue);
+            font-size: 0.9rem;
+        }
+
+        .controls-row input[type="text"]:focus,
+        .controls-row select:focus {
+            outline: none;
+            border-color: var(--medium-blue);
+            box-shadow: 0 0 0 2px rgba(38, 118, 161, 0.2);
+        }
+
+        #sortQueryInput {
+            min-width: 140px;
+        }
+
+        .sort-control,
+        .pos-filter-control {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+        }
     </style>
 </head>
 <body>
@@ -244,14 +284,28 @@
                 </div>
                 
                 <h3>Suggested Words</h3>
-                <label for="posFilter">Filter by Part of Speech:</label>
-                <select id="posFilter">
-                  <option value="all">All</option>
-                  <option value="noun">Noun</option>
-                  <option value="verb">Verb</option>
-                  <option value="stop">Stop Word</option>
-                  <option value="other">Other</option>
-                </select>
+                <div class="controls-row">
+                    <div class="sort-control">
+                        <label for="sortMode">Sort by:</label>
+                        <select id="sortMode">
+                            <option value="alphabetical">Alphabetical</option>
+                            <option value="letters">Contains letters…</option>
+                            <option value="embedding">Distance to word…</option>
+                            <option value="nextWord">Likely next word…</option>
+                        </select>
+                        <input type="text" id="sortQueryInput" placeholder="Letters like 'eh'..." style="display:none;">
+                    </div>
+                    <div class="pos-filter-control">
+                        <label for="posFilter">Filter by part of speech:</label>
+                        <select id="posFilter">
+                          <option value="all">All</option>
+                          <option value="noun">Noun</option>
+                          <option value="verb">Verb</option>
+                          <option value="stop">Stop Word</option>
+                          <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
                 <div class="suggestion-box-container">
                     <div id="suggestionBox" class="suggestion-box"></div>
                 </div>
@@ -265,10 +319,35 @@
             const userTextarea = document.getElementById('userTextarea');
             const letterBox = document.getElementById('letterBox');
             const suggestionBox = document.getElementById('suggestionBox');
+            const posFilterSelect = document.getElementById('posFilter');
+            const sortModeSelect = document.getElementById('sortMode');
+            const sortQueryInput = document.getElementById('sortQueryInput');
+            
+            const SORT_MODES = {
+              ALPHABETICAL: 'alphabetical',
+              LETTERS: 'letters',
+              EMBEDDING: 'embedding',
+              NEXT_WORD: 'nextWord'
+            };
             
             let baseLetterCounts = {};
             let userLetterCounts = {};
             let wordsDictionary = null;
+            let functionWordList = null;
+            let currentSortMode = SORT_MODES.ALPHABETICAL;
+            let sortDebounceId = null;
+            const SORT_DEBOUNCE_MS = 200;
+            
+            const EMBEDDINGS_BASE = "https://raw.githubusercontent.com/kgero/kgero.github.io/master/views-of-the-sea/words";
+            const embeddings_index_url = EMBEDDINGS_BASE + "/word_embeddings_glove100_index.json";
+            const embeddings_bin_url = EMBEDDINGS_BASE + "/word_embeddings_glove100_f32.bin";
+            
+            let embeddingBuffer = null;
+            let embeddingIndex = null;
+            let embeddingDim = null;
+            let embeddingsLoaded = false;
+            let embeddingsLoading = false;
+            let embeddingsLoadError = false;
             
             // Fetch the words dictionary
             // const dictionaryUrl = 'https://raw.githubusercontent.com/EvanLosh/dictionary-scraper/refs/heads/main/every-word-in-the-dictionary.txt';
@@ -277,7 +356,46 @@
             const stop_word_url = "https://cdn.jsdelivr.net/gh/kgero/kgero.github.io@master/views-of-the-sea/words/spacy_function_words_with_post.json";
             const wordnet_word_url = "https://cdn.jsdelivr.net/gh/kgero/kgero.github.io@master/views-of-the-sea/words/wordnet_words_with_pos.json";
 
-            let functionWordList = null;
+            function updateSortQueryVisibility() {
+                if (!sortModeSelect || !sortQueryInput) return;
+                const mode = sortModeSelect.value || SORT_MODES.ALPHABETICAL;
+                currentSortMode = mode;
+                if (mode === SORT_MODES.ALPHABETICAL) {
+                    sortQueryInput.style.display = 'none';
+                } else {
+                    sortQueryInput.style.display = 'inline-block';
+                    if (mode === SORT_MODES.LETTERS) sortQueryInput.placeholder = "Letters like 'eh'...";
+                    else if (mode === SORT_MODES.EMBEDDING) sortQueryInput.placeholder = "Word like 'goes'...";
+                    else if (mode === SORT_MODES.NEXT_WORD) sortQueryInput.placeholder = "Word before next word...";
+                }
+            }
+            
+            function debounceUpdateSuggestionsForSortQuery() {
+                if (sortDebounceId) clearTimeout(sortDebounceId);
+                sortDebounceId = setTimeout(updateSuggestions, SORT_DEBOUNCE_MS);
+            }
+            
+            function loadEmbeddingsIfNeeded() {
+                if (embeddingsLoaded || embeddingsLoading || embeddingsLoadError) return Promise.resolve();
+                embeddingsLoading = true;
+                return Promise.all([
+                    fetch(embeddings_index_url).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+                    fetch(embeddings_bin_url).then(r => { if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); })
+                ])
+                .then(([index, buffer]) => {
+                    if (!index || !index.words || index.dim == null) throw new Error("Malformed embeddings index");
+                    embeddingIndex = index;
+                    embeddingDim = index.dim;
+                    embeddingBuffer = new Float32Array(buffer);
+                    embeddingsLoaded = true;
+                    console.log("Embeddings loaded:", Object.keys(index.words).length, "words, dim", embeddingDim);
+                })
+                .catch(err => {
+                    console.error("Error loading embeddings:", err);
+                    embeddingsLoadError = true;
+                })
+                .finally(() => { embeddingsLoading = false; });
+            }
 
             function get_wordnet_plus_stopwords() {
                 Promise.all([
@@ -411,53 +529,106 @@
                         possibleWords.push(word);
                     }
                 }
-                
-                // Sort alphabetically
-                return possibleWords.sort();
+                return possibleWords;
+            }
+            
+            function sortAlphabetical(words) {
+                return [...words].sort();
+            }
+            
+            function sortByLettersScore(words, queryLetters) {
+                if (!words || words.length === 0) return [];
+                const normalizedQuery = (queryLetters || '').toLowerCase().replace(/[^a-z]/g, '');
+                if (!normalizedQuery.length) return sortAlphabetical(words);
+                const querySet = new Set(normalizedQuery);
+                const scored = words.map(word => {
+                    let score = 0;
+                    for (const ch of word) if (querySet.has(ch)) score += 1;
+                    return { word, score };
+                });
+                scored.sort((a, b) => b.score - a.score || (a.word < b.word ? -1 : a.word > b.word ? 1 : 0));
+                return scored.map(i => i.word);
+            }
+            
+            function sortByEmbeddingDistance(words, queryWord) {
+                if (!words || words.length === 0) return [];
+                if (!embeddingBuffer || !embeddingIndex || !embeddingsLoaded || embeddingsLoadError)
+                    return sortAlphabetical(words);
+                const normalizedQuery = (queryWord || '').toLowerCase().replace(/[^a-z]/g, '');
+                if (!normalizedQuery.length) return sortAlphabetical(words);
+                const queryIdx = embeddingIndex.words[normalizedQuery];
+                if (queryIdx == null) return sortAlphabetical(words);
+                const dim = embeddingDim;
+                const queryBase = queryIdx * dim;
+                const scored = words.map(word => {
+                    const idx = embeddingIndex.words[word];
+                    if (idx == null) return { word, score: -Infinity };
+                    let dot = 0;
+                    const base = idx * dim;
+                    for (let i = 0; i < dim; i++) dot += embeddingBuffer[queryBase + i] * embeddingBuffer[base + i];
+                    return { word, score: dot };
+                });
+                scored.sort((a, b) => b.score - a.score || (a.word < b.word ? -1 : a.word > b.word ? 1 : 0));
+                return scored.map(i => i.word);
+            }
+            
+            function sortByNextWordLikelihood(words, queryWord) {
+                return sortAlphabetical(words);
+            }
+            
+            function sortWords(words, availableLetters) {
+                const mode = currentSortMode;
+                const rawQuery = sortQueryInput ? sortQueryInput.value.trim() : '';
+                const hasQuery = rawQuery.length > 0;
+                if (mode === SORT_MODES.LETTERS) return hasQuery ? sortByLettersScore(words, rawQuery) : sortAlphabetical(words);
+                if (mode === SORT_MODES.EMBEDDING) return hasQuery ? sortByEmbeddingDistance(words, rawQuery) : sortAlphabetical(words);
+                if (mode === SORT_MODES.NEXT_WORD) return hasQuery ? sortByNextWordLikelihood(words, rawQuery) : sortAlphabetical(words);
+                return sortAlphabetical(words);
             }
             
             // Update the suggestions box
             function updateSuggestions() {
                 const availableLetters = letterBox.textContent;
-
-                // Only show suggestions when 15 or fewer unique letters are left
                 const uniqueLetters = [...new Set(availableLetters)].length;
                 if (uniqueLetters > 15) {
                     suggestionBox.textContent = 'Use more letters to see word suggestions (15 or fewer unique letters needed).';
                     return;
                 }
-                
-                const filter = document.getElementById('posFilter')?.value || 'all';
-                const possibleWords = findPossibleWords(availableLetters);
-
-                const filteredWords = possibleWords.filter(w => {
-                const posTags = wordsDictionary[w];
-                if (!posTags) return false;
-
-                switch (filter) {
-                  case 'noun':
-                    return posTags.includes('noun');
-                  case 'verb':
-                    return posTags.includes('verb');
-                  case 'stop':
-                    return isStopWord(w);
-                  case 'other':
-                    return !posTags.includes('noun') &&
-                           !posTags.includes('verb') &&
-                           !isStopWord(w);
-                  default:
-                    return true;
+                if (!wordsDictionary) {
+                    suggestionBox.textContent = 'Loading dictionary...';
+                    return;
                 }
-              });
-                
+                const mode = currentSortMode;
+                const rawQuery = sortQueryInput ? sortQueryInput.value.trim() : '';
+                const needsEmbeddings = (mode === SORT_MODES.EMBEDDING && rawQuery.length > 0);
+                if (needsEmbeddings && !embeddingsLoaded && !embeddingsLoadError) {
+                    suggestionBox.textContent = 'Loading embeddings for similarity sort...';
+                    loadEmbeddingsIfNeeded().then(() => {
+                        if (embeddingsLoaded && !embeddingsLoadError) updateSuggestions();
+                        else if (embeddingsLoadError) suggestionBox.textContent = 'Could not load embeddings; falling back to alphabetical.';
+                    });
+                    return;
+                }
+                const filter = posFilterSelect ? posFilterSelect.value : 'all';
+                const possibleWords = findPossibleWords(availableLetters);
+                const filteredWords = possibleWords.filter(w => {
+                    const posTags = wordsDictionary[w];
+                    if (!posTags) return false;
+                    switch (filter) {
+                      case 'noun': return posTags.includes('noun');
+                      case 'verb': return posTags.includes('verb');
+                      case 'stop': return isStopWord(w);
+                      case 'other': return !posTags.includes('noun') && !posTags.includes('verb') && !isStopWord(w);
+                      default: return true;
+                    }
+                });
                 if (filteredWords.length === 0) {
                     suggestionBox.textContent = 'No words can be formed with the remaining letters.';
                 } else {
-                    // suggestionBox.textContent = possibleWords.join(' ');
-                    suggestionBox.innerHTML = filteredWords
-                      .map(w => `<span pos="${wordsDictionary[w]}">${w}</span>`)
-                      .join(' ');
-
+                    const sortedWords = sortWords(filteredWords, availableLetters);
+                    suggestionBox.innerHTML = sortedWords
+                        .map(w => `<span pos="${wordsDictionary[w]}">${w}</span>`)
+                        .join(' ');
                 }
             }
             
@@ -531,8 +702,18 @@
             
             // Initialize
             initializeLetterCounts();
-
-            document.getElementById('posFilter').addEventListener('change', updateSuggestions);
+            updateSortQueryVisibility();
+            if (posFilterSelect) posFilterSelect.addEventListener('change', updateSuggestions);
+            if (sortModeSelect) {
+                sortModeSelect.addEventListener('change', function() {
+                    currentSortMode = sortModeSelect.value || SORT_MODES.ALPHABETICAL;
+                    updateSortQueryVisibility();
+                    updateSuggestions();
+                });
+            }
+            if (sortQueryInput) {
+                sortQueryInput.addEventListener('input', debounceUpdateSuggestionsForSortQuery);
+            }
         });
     </script>
 </body>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <title>Decay I: Every Sonnet is a Love Sonnet</title>
+
+    <style>
+      body {
+            font-family: Arial, sans-serif;
+            font-size: 1em;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        #content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            text-align: center;
+        }
+        .highlight {
+            animation: highlight 20s ease-in-out forwards;
+        }
+        @keyframes highlight {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 0; }
+        }
+        .fade-in {
+            color: red;
+            animation: fadeIn 20s ease-out;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1;}
+        }
+    </style>
+    <script>
+
+//       const start = `Every day the sun rose the same way: <br> 
+// atop the water and bending into us. <br> 
+// We swam out beyond the ocean's white crash, <br> 
+// where it yawned and turned sand to turmoil. <br> 
+// We saw the world shafted by light. <br> 
+// But I couldn't stay. I was outside my life. <br> 
+// Every day we swam until we didn’t, <br> 
+// and in the city I can barely smell it, <br> 
+// my hair becomes smooth again, I stop finding <br> 
+// sand in my bed. My anxiety comes <br> 
+// in shallow waves, still weakened. <br> 
+// I learn about plankton falling like snow <br> 
+// to build up the ocean floor. I remember <br> 
+// my gills. The ocean becomes a place <br> 
+// and I do my own haunting.`
+
+      const start = `Death, be not proud, though some have called thee <br> 
+Mighty and dreadful, for thou art not so; <br> 
+For those whom thou think'st thou dost overthrow <br> 
+Die not, poor Death, nor yet canst thou kill me. <br> 
+From rest and sleep, which but thy pictures be, <br> 
+Much pleasure; then from thee much more must flow, <br> 
+And soonest our best men with thee do go, <br> 
+Rest of their bones, and soul's delivery. <br> 
+Thou art slave to fate, chance, kings, and desperate men, <br> 
+And dost with poison, war, and sickness dwell, <br> 
+And poppy or charms can make us sleep as well <br> 
+And better than thy stroke; why swell'st thou then? <br> 
+One short sleep past, we wake eternally <br> 
+And death shall be no more; Death, thou shalt die.`
+
+//     const end = `Every sparrow and stork flew the same way: <br> 
+// atop the draft and drifting into doves. <br> 
+// We soared out beyond the tern's white plumage, <br> 
+// where it pitched and yawed swan to starling. <br> 
+// Waterfowl saw the woodpecker wafted by wind. <br> 
+// But gadwalls couldn't glide. A warbler outside its cage. <br> 
+// Every cardinal had careened until it didn’t, <br> 
+// and in the flock cockatoos can barely smell it, <br> 
+// falcon feathers become smooth again, finches stop finding <br> 
+// quills in their nest. Albatross anxiety comes <br> 
+// in shallow winds, still weakened. <br> 
+// Larks learn about loons falling like lapwings <br> 
+// to flit up to forest canopy. Ravens remember <br> 
+// their wings. The partridge becomes a place <br> 
+// and hummingbirds do their own haunting. `
+
+      const end = `Love, be not loved, though some have loved thee <br> 
+Lovely and loveably, for thou art not love; <br> 
+For those whom thou lovéd thou dost overlove <br> 
+Love not, poor Love, nor yet canst thou love me. <br> 
+From love struck love, which but thy lovers be, <br> 
+Much lovesick; then from thee much more must love, <br> 
+And soonest our lovely men with thee do love, <br> 
+Love of their love, and love's lovery. <br> 
+Thou art love to loves, lover, lovey, and lovely men, <br> 
+And dost with loving, loveth, and loveliness dwell, <br> 
+And lovers or loves can make us love as well <br> 
+And better than thy love; why love'st thou then? <br> 
+One beloved love past, we love eternally <br> 
+And loveless shall be no more; Love, thou shalt love.`
+
+    
+    window.onload = function() {
+      div = document.getElementById('main');
+
+      const startWords = start.split(' ');
+      const endWords = end.split(' ');
+
+      startWords.forEach((word, i) => {
+        if (word === "<br>") {
+          div.appendChild(document.createElement('br'));
+        } else {
+          const span = document.createElement('span');
+          span.textContent = word + ' '; 
+          span.setAttribute('data-index', i);
+          div.appendChild(span);
+        }
+        
+      });
+
+      const indices = [];
+      for (let i=0; i<startWords.length; i++) {
+        if (startWords[i] !== endWords[i]) {
+          indices.push(i);
+        }
+      }
+
+      function changeWord() {
+        let randPosition = Math.floor(Math.random() * indices.length);
+        let randIndex = indices.splice(randPosition, 1);
+        let oldWord = startWords[randIndex];
+        let newWord = endWords[randIndex];
+
+        const span = div.querySelector(`span[data-index="${randIndex}"]`);
+        span.classList.add('highlight'); 
+
+        // Wait for the red highlight to finish, then replace with the new word
+        setTimeout(() => {
+          span.classList.add('fade-in');       // add fade-in animation
+          span.classList.remove('highlight');  // remove highlight color
+          span.textContent = newWord + ' ';    // set new word
+        }, 20000); // Wait for the highlight effect to finish (should match css timing)
+
+
+        if (indices.length > 0) {
+          scheduleNext();
+        }
+      }
+
+      // setInterval(changeWord, 2000);
+
+      function getRandomDelay(minMs, maxMs) {
+        return Math.floor(Math.random() * (maxMs - minMs + 1)) + minMs;
+      }
+
+      function scheduleNext() {
+        const delay = getRandomDelay(1000, 8000); // e.g. between 1s and 10s
+        console.log('delay is', delay);
+        setTimeout(changeWord, delay);
+      }
+
+      // scheduleNext();
+      setTimeout(changeWord, 1000);
+
+    };
+
+    </script>
+
+  </head>
+  <body>
+
+  <div id='main'>
+
+  </div>
+
+  </body>
+</html>

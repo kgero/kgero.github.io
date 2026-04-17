@@ -1,4 +1,5 @@
 .DS_Store
 /img-originals
 /ignore
-/views-of-the-sea/editor/word_lists
+/views-of-the-sea/words/glove.6B.50d.txt
+/views-of-the-sea/words/glove.wikigiga2024.100d.txt

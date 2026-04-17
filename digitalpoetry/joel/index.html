@@ -1,0 +1,61 @@
+<html>
+<head>
+    <style>
+      @keyframes bt {
+        0% {background-color: white;}
+        100% {background-color: black;}
+      }
+      .forget {
+        animation: bt 5s infinite;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+      }
+    </style>
+    <script>
+
+      const birdWords = ["hawk", "sparrow", "jay", "eagle", "parrot", "owl", "finch", "fly", "soar",  "glide", "flit", "flutter", "drift", "flap"];
+
+      function disappear() {
+        // wrap every word in a span with a unique id
+        var text = document.getElementById('text').innerText;
+        var lines = text.split('\n');
+        var count = 0;
+        var newtext = '';
+        for(var i = 0; i < lines.length ; i++){
+          var words = lines[i].split(' ');
+          for(var j=0, sizej = words.length; j<sizej; j++){
+            count++;
+            newtext += ' <span id="' + count + '">' + words[j] + '</span>';
+          }
+          newtext += '<br>';
+        }
+        document.getElementById('text').innerHTML = newtext;
+
+        // a function that picks a random word and adds a special class
+        // that will make that word disapper
+        function disappearWord(){
+          var rand = Math.floor((Math.random() * count) + 1);
+          var span = document.getElementById(rand);
+          var birdWord = birdWords[Math.floor((Math.random() * birdWords.length))];
+          var originalWord = span.innerHTML;
+          span.innerHTML = birdWord;
+          console.log(originalWord, birdWord);
+        }
+
+        var forgetter = setInterval(disappearWord, 1000);
+      }
+    </script>
+
+  </head>
+  <body>
+    <div id='main'>
+        <div id='text'>
+          Place your source text here.<br>
+          It could be your own poem,<br>
+          Or some other words you like,<br>
+          Or want to play with.
+        </div>
+        <button onClick="disappear()">disappear</button>
+    </div>
+  </body>
+</html>

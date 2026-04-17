@@ -142,6 +142,36 @@ var writing_tools = [
 
 var papers_cs = [
   {
+    'title': "Design Friction as a Path to Cognitive Engagement in Chat-Based LLM Interfaces",
+    'author': "Helen Chen and Katy Gero",
+    'source': "(under review)",
+    'year': "",
+    // 'pdf': 'papers/2026_FromPlanningToRevision.pdf',
+    'type': 'conference',
+    'category': 'llm'
+    // 'bibtex': 'research/bibtex/tweetorials.txt'
+  },
+  {
+    'title': "Seed Bank, Co-op, Stoop Swap: Metaphors for Governing Language Model Data for Creative Writing",
+    'author': "Alicia Guo, Carly Schnitzler, and Katy Gero",
+    'source': "C&C",
+    'year': "2026 (to appear)",
+    // 'pdf': 'papers/2026_FromPlanningToRevision.pdf',
+    'type': 'conference',
+    'category': 'llm'
+    // 'bibtex': 'research/bibtex/tweetorials.txt'
+  },
+  {
+    'title': "From Planning to Revision: How AI Writing Support at Different Stages Alters Ownership",
+    'author': "Katy Gero, Tao Long, Carly Schnitzler, and Paramveer Dhillon",
+    'source': "DIS",
+    'year': "2026 (to appear)",
+    'pdf': 'papers/2026_FromPlanningToRevision.pdf',
+    'type': 'conference',
+    'category': 'llm'
+    // 'bibtex': 'research/bibtex/tweetorials.txt'
+  },
+  {
     'title': "Creative Writers' Attitudes on Writing as Training Data for Large Language Models",
     'author': "Katy Gero, Meera Desai, Carly Schnitzler, Nayun Eom, Jack Cushman, and Elena Glassman",
     'source': "CHI",
@@ -167,6 +197,7 @@ var papers_cs = [
     'source': "CHI",
     'year': "2024 - <span class='tag tagged is-info'>🏆Honorable Mention Award</span>",
     'pdf': 'papers/2024_SupportingSensemaking.pdf',
+    'presentation video': 'https://www.youtube.com/watch?v=IuSOH13G6W8',
     'type': 'conference',
     'category': 'llm'
     // 'bibtex': 'research/bibtex/tweetorials.txt'
@@ -178,7 +209,8 @@ var papers_cs = [
     'year': "2023",
     'pdf': 'papers/2023_IncentiveGap.pdf',
     'type': 'workshop',
-    'category': 'llm'
+    'category': 'llm',
+    'hide': true,
     // 'bibtex': 'research/bibtex/tweetorials.txt'
   },
   {
@@ -280,7 +312,8 @@ var papers_cs = [
     'year': '2020',
     'pdf': 'papers/2020_HowNovelistsUseGenerative.pdf',
     'type': 'workshop',
-    'category': 'ai-writer'
+    'category': 'ai-writer',
+    'hide': true
   },
   {
     'title': "Mental Models of AI Agents in a Cooperative Game Setting",
@@ -325,7 +358,8 @@ var papers_cs = [
     'demo': 'http://language-play.com/thesaurusx',
     'type': 'poster',
     'bibtex': 'research/bibtex/stylethesaurus.txt',
-    'category': 'ai-writer'
+    'category': 'ai-writer',
+    'hide': true
   },
   {
     'title': 'Challenges in Finding Metaphorical Connections',
@@ -406,7 +440,7 @@ $(document).ready( function() {
     };
     tag.append(links);
     tag.append('<br>' + val['author'] + '<br>');
-    tag.append(icon + val['source'] + " " + val['year'] + '.');
+    tag.append(icon + val['source'] + " " + val['year']);
     
     if (val['category'] == 'ai-writer') {
       $('.papers_cs').append(tag);

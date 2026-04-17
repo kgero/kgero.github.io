@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <title>Every Sonnet is Rotting</title>
+
+    <style>
+      body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        #content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            text-align: center;
+        }
+        .highlight {
+            animation: highlight 2s ease-in-out forwards;
+        }
+        @keyframes highlight {
+            0% { color: red; }
+            100% { color: black; }
+        }
+
+    </style>
+    <script>
+
+      const rules = {
+        "a": ["o"],
+        "b": ["l","h", "d", "o", "c"],
+        "c": ["i"],
+        "d": ["o", "c", "b"],
+        "e": ["c"],
+        "f": ["i", "l"],
+        "g": ["o", "y"],
+        "h": ["n", "l", "r"],
+        "i": ["."],
+        "j": ["i"],
+        "k": ["l", "r"],
+        "l": ["i"],
+        "m": ["n"],
+        "n": ["i", "r"],
+        "o": ["c"],
+        "p": ["o", "q"],
+        "q": ["o", "p"],
+        "r": ["i"],
+        "s": ["."],
+        "t": ["l"],
+        "u": ["."],
+        "v": ["."],
+        "w": ["v"],
+        "x": ["."],
+        "y": ["u", "g"],
+        "z": ["."],
+        ",": ["."],
+        ";": [","],
+        "'": ["."],
+        "?": ["."],
+        ".": [],
+        " ": []
+      }
+
+      const start = `death, be not proud, though some have called thee _
+mighty and dreadful, for thou art not so; _
+for those whom thou think'st thou dost overthrow _
+die not, poor death, nor yet canst thou kill me. _
+from rest and sleep, which but thy pictures be, _ 
+much pleasure; then from thee much more must flow, _
+and soonest our best men with thee do go, _
+rest of their bones, and soul's delivery. _
+thou art slave to fate, chance, kings, and desperate men, _
+and dost with poison, war, and sickness dwell, _
+and poppy or charms can make us sleep as well _
+and better than thy stroke; why swell'st thou then? _
+one short sleep past, we wake eternally _
+and death shall be no more; death, thou shalt die.`
+    
+    window.onload = function() {
+      div = document.getElementById('main');
+
+      let speed = 3000;
+
+      const startChars = start.split('');
+
+      let dataIndex = 0; 
+
+      startChars.forEach((char, i) => {
+        if (char === "_") {
+          div.appendChild(document.createElement('br'));
+        } else if (char === " ") {
+          const span = document.createElement('span');
+          span.textContent = char;
+          div.appendChild(span);
+        } else {
+          const span = document.createElement('span');
+          span.textContent = char; 
+          // span.setAttribute('data-index', dataIndex++);
+          if (![63,215,414,477,639].includes(i)) {
+            span.setAttribute('data-index', dataIndex++);
+          }
+          // if (i !== 700) {
+          //   span.setAttribute('data-index', dataIndex++);
+          // }
+          div.appendChild(span);
+          span.style.display = "inline-block";
+          const setwidth = span.getBoundingClientRect().width;
+          span.style.width = setwidth + "px"; 
+        }
+      });
+
+      function changeChar() {
+        let randIndex = Math.floor(Math.random() * dataIndex);
+        const span = div.querySelector(`span[data-index="${randIndex}"]`);
+        let oldChar = span.innerHTML;
+        if (rules[oldChar] && rules[oldChar].length) {
+          let newChar = rules[oldChar][Math.floor(Math.random() * rules[oldChar].length)];
+          span.classList.add('highlight'); 
+          span.textContent = newChar; 
+          setTimeout(() => {
+            span.classList.remove('highlight');  // remove highlight color
+          }, 2000); // Wait for the highlight effect to finish (should match css timing)
+        }
+
+        scheduleNext();
+      }
+
+      function getRandomDelay(minMs, maxMs) {
+        return Math.floor(Math.random() * (maxMs - minMs + 1)) + minMs;
+      }
+
+      function scheduleNext() {
+        const delay = getRandomDelay(1, speed); // e.g. between 1s and 10s
+        speed = Math.max(3, speed*.95);
+        // console.log('delay', delay, 'speed', speed);
+        setTimeout(changeChar, delay);
+      }
+
+      scheduleNext();
+    };
+
+    </script>
+
+  </head>
+  <body>
+
+  <div id='main'>
+
+  </div>
+
+  </body>
+</html>

@@ -1,4 +1,31 @@
+/*
+	{
+		'title': '36 Views of the Sea (poem 5)',
+		'publication': 'Vagabond City Lit',
+		'month': 'May',
+		'date': '2026 (to appear)',
+		'link': '',
+		'description': ''
+	},
+	{
+		'title': '36 Views of the Sea, letter highlights (poems 4 and 6)',
+		'publication': 'New River Journal',
+		'month': 'May',
+		'date': '2026 (to appear)',
+		'link': 'http://www.katygero.com/views-of-the-sea/newriver/',
+		'description': ''
+	},
+*/
+
 var poems = [
+	{
+		'title': 'Tell me about the eucalyptus tree.',
+		'publication': 'Michigan Quarterly Review',
+		'month': 'Sep',
+		'date': '2025',
+		'link': 'files/MQR-FA25-Gero-Tellmeabout.pdf',
+		'description': ''
+	},
 	{
 		'title': 'Every Sonnet Must Rot (Death, Be Not Proud)',
 		'publication': 'taper',
@@ -140,6 +167,23 @@ var poems = [
 ]
 
 var essays = [
+	{
+		'title': 'Novel Audiences', 
+		'publication': 'First Encounters with AI: Writers on Writing (University of Michigan Press)',
+		'month': 'Nov',
+		'date': '2026',
+		'link': 'https://press.umich.edu/Books/F/First-Encounters-with-AI2',
+		'description': ''
+	},
+	{
+		'fulltitle': 'Making a Literary Future with Artificial Intelligence',
+		'title': 'Making a Literary Future with Artificial Intelligence', 
+		'publication': 'LA Review of Books',
+		'month': 'Feb',
+		'date': '2026',
+		'link': 'https://lareviewofbooks.org/article/artificial-intelligence-literary-future-chatgpt-large-language-model/',
+		'description': ''
+	},
 	{
 		'fulltitle': 'AI Reveals the Most Human Parts of Writing',
 		'title': 'AI Reveals the Most Human Parts of Writing', 
