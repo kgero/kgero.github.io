@@ -3789,6 +3789,53 @@
                     "date_finished": "Sat, 11 Apr 2026",
                     "tags": ["poetry"],
                     "notes": ""
+                },
+                {
+                    "title": "Heaven",
+                    "author": "Mieko Kawakami",
+                    "date_added": "Sat, 02 May 2026",
+                    "date_finished": "Sat, 02 May 2026",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "People with No Charisma",
+                    "author": "Jente Posthuma",
+                    "date_added": "Fri, 08 May 2026",
+                    "date_finished": "Fri, 08 May 2026",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Sisters in Yellow",
+                    "author": "Mieko Kawakami",
+                    "date_added": "Mon, 25 May 2026",
+                    "date_finished": "Mon, 25 May 2026",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Dopamine Kids",
+                    "author": "Michaeleen Doucleff",
+                    "date_added": "Wed, 27 May 2026",
+                    "date_finished": "Tue, 26 May 2026",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "X^n",
+                    "author": "Carol Jenkins",
+                    "date_added": "Thu, 28 May 2026",
+                    "date_finished": "Thu, 28 May 2026",
+                    "tags": ["poetry"],
+                    "notes": ""
+                },
+                {
+                    "title": "Shifting the Silence",
+                    "author": "Etel Adnan",
+                    "date_added": "Sat, 06 Jun 2026",
+                    "tags": ["poetry"],
+                    "notes": ""
                 }
             ]
         }
