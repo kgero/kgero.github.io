@@ -126,12 +126,12 @@ var writing_tools = [
   {
     'title': 'Metaphoria',
     'description': 'generates metaphorical connections between any two nouns.',
-    'link': 'http://language-play.com/metaphoria'
+    'link': 'http://apps.writefutureslab.com/metaphoria/'
   },
   {
     'title': 'Stylistic Thesaurus',
     'description': 'generates different synonyms based on a variety of stylistic texts.',
-    'link': 'http://language-play.com/thesaurusx'
+    'link': 'http://apps.writefutureslab.com/stylethesaurus/'
   },
   {
     'title': 'Poetry Experiments',
@@ -156,7 +156,7 @@ var papers_cs = [
     'author': "Alicia Guo, Carly Schnitzler, and Katy Gero",
     'source': "C&C",
     'year': "2026 (to appear)",
-    // 'pdf': 'papers/2026_FromPlanningToRevision.pdf',
+    'pdf': 'https://arxiv.org/abs/2605.12888',
     'type': 'conference',
     'category': 'llm'
     // 'bibtex': 'research/bibtex/tweetorials.txt'
@@ -188,7 +188,8 @@ var papers_cs = [
     'year': "2024",
     'pdf': 'https://dl.acm.org/doi/pdf/10.1145/3613904.3642697',
     'type': 'conference',
-    'category': 'llm'
+    'category': 'llm',
+    'hide': true
     // 'bibtex': 'research/bibtex/tweetorials.txt'
   },
   {
@@ -256,7 +257,8 @@ var papers_cs = [
     'poster': 'papers/2022_Sparks_poster.pdf',
     'type': 'conference',
     'category': 'ai-writer',
-    'presentation video': 'https://www.youtube.com/watch?v=u3e-ZPiV19w'
+    'presentation video': 'https://www.youtube.com/watch?v=u3e-ZPiV19w',
+    'hide': true
     // 'bibtex': 'research/bibtex/tweetorials.txt'
   },
   {

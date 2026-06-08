@@ -1,29 +1,18 @@
-/*
+var poems = [
 	{
-		'title': '36 Views of the Sea (poem 5)',
-		'publication': 'Vagabond City Lit',
+		'title': '36 Views of the Sea (poems 4 and 6)',
+		'publication': 'The New River Journal',
 		'month': 'May',
-		'date': '2026 (to appear)',
-		'link': '',
-		'description': ''
-	},
-	{
-		'title': '36 Views of the Sea, letter highlights (poems 4 and 6)',
-		'publication': 'New River Journal',
-		'month': 'May',
-		'date': '2026 (to appear)',
+		'date': '2026',
 		'link': 'http://www.katygero.com/views-of-the-sea/newriver/',
 		'description': ''
 	},
-*/
-
-var poems = [
 	{
-		'title': 'Tell me about the eucalyptus tree.',
+		'title': 'Tell Me About the Eucalyptus Tree',
 		'publication': 'Michigan Quarterly Review',
-		'month': 'Sep',
+		'month': '',
 		'date': '2025',
-		'link': 'files/MQR-FA25-Gero-Tellmeabout.pdf',
+		'link': 'https://www.katygero.com/files/MQR-FA25-Gero-Tellmeabout.pdf',
 		'description': ''
 	},
 	{
