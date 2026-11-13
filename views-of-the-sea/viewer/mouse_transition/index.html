@@ -322,6 +322,122 @@ but i don't know how when the ocean is so crooked
 no hero, i have never lost a sister, but the sea says, 
 
     "i won't recall who i was."`,
+    `before you begin, i should say that
+i am doing better. the shudders have slowed,
+cheeks & nose & eyes dry, serene mind
+in the sun. i always wanted everything,
+the petals & the pollen, the sea & the shore,
+& now i feel at peace with this piecemeal life.
+have you ever felt at peace? i think the sea
+is cooler now, fish like aunt or brother,
+they try to bless my feet, carry my secret: 
+i no longer want you like i did. & i am ok.
+elsewhere letters (thine short, lyric prose) cower 
+below the bones. i root & sense, 
+the truth a runner now,
+wet oath, neurons in honor.
+do you see that loss is ok? none in error. 
+now, what would you like to say?`,
+
+// 11
+`the toddler yells 
+as loud as he can 
+for as long as he can. 
+
+    "eeeeeee" 
+
+i cover my ears, but also laugh
+at this yell that billows the chest 
+& the tyke says, 
+
+    "no no no"  
+
+this sound is for me, to rewire me, 
+break me into pieces, say that he is here,
+kinglike, & reborn an osprey, or tern, or blowhole?
+
+    "eeeeeee"
+
+the roar continues, no retreat here
+where the keytone 
+of primordial soup drones. 
+
+nervous, i heed the brownout, 
+the torrent, the hour, 
+the icy sky
+
+& yet it is funny,
+the intensity & power 
+with a holy bulk, 
+
+a dewy hypnosis
+that mews 
+the ancient wail of soul. 
+
+we live in the sound's eye, 
+we crave its flood, 
+we wield its drowning.`,
+
+// 12
+`the sea waits for me: buoy beat. i swim 
+
+far less than envisioned. the sea is not bothered. 
+
+i learn, life is lost in its many minutes, which i pull up 
+
+as holy cards from a poorly shuffled deck. 
+
+on one, work. on another, sleep. the sea lives 
+
+in its tides, which turn & turn, like a hokey hero.
+
+i do too: work, sleep, work, sleep. does worry count? 
+
+about the minutes, how they stack. eery eyes 
+
+eye eternity. then: the baby yells, bellwether call, 
+
+the honeyed aureole, attune to another tide. 
+
+i, reverent & gooey. (why?)
+
+he, elsewhere, growing oneness. (eon.)
+
+yet i hover, those cards waiting
+
+
+
+& the sea does not care whether or not i return.`,
+
+// 13
+`ways to become the ocean:
+
+- deter the continent
+- belie the wren
+- levy the here & now
+- eye the hawk & rue
+
+ways to hear the sounds of the sea:
+
+- haiku
+- rhyme
+- cry
+- return
+
+i sit on the rim of old soil my predecessors never knew:
+
+- eerie hue
+- rusty & wry
+- neither
+- nor
+
+today i peered out to the harbor (wow, buoy & shine) & did not 
+imagine people on any of the boats. le guin never sailed a boat, 
+unlike the polynesians who knew how to listen to the sea. did 
+le guin also listen, from afar, to its echos? a witchery, with soul 
+& lily. like i listen to echos of stolen land? everywhere, the pressure. 
+
+& the shore beats restlessly against rock.`
         ].map((poem) => poem.replace(/^\n/, '').replace(/\n$/, '').toLowerCase());
 
         // Layout: poems in horizontal columns. Scroll pans the canvas AND drives morph.
@@ -391,9 +507,20 @@ no hero, i have never lost a sister, but the sea says,
             });
         }
 
+        // Content-space coords: X increases along the scroll track, independent of scrollLeft.
+        function contentPointFromSpan(span, hscrollRect, scrollLeft) {
+            const rect = span.getBoundingClientRect();
+            return {
+                x: rect.left - hscrollRect.left + scrollLeft,
+                y: rect.top - hscrollRect.top
+            };
+        }
+
         function buildPairLetterMapping(fromIndex, toIndex) {
             const fromSpans = poemSpans[fromIndex];
             const toSpans = poemSpans[toIndex];
+            const hscrollRect = hscroll.getBoundingClientRect();
+            const scrollLeft = hscroll.scrollLeft;
 
             const letters = [];
             const queues = new Map();
@@ -403,12 +530,15 @@ no hero, i have never lost a sister, but the sea says,
                 const ch = span.textContent;
                 if (!isLetterChar(ch)) return;
 
+                const pos = contentPointFromSpan(span, hscrollRect, scrollLeft);
                 const itemIndex = letters.length;
                 letters.push({
                     type: 'letter',
                     char: ch,
                     indexA,
                     letterIndexA: letterIndexA++,
+                    Ax: pos.x,
+                    Ay: pos.y,
                     mapped: false
                 });
 
@@ -430,8 +560,11 @@ no hero, i have never lost a sister, but the sea says,
                 const item = letters[queue[ptr]];
                 ptrByChar.set(ch, ptr + 1);
 
+                const pos = contentPointFromSpan(span, hscrollRect, scrollLeft);
                 item.indexB = indexB;
                 item.letterIndexB = ptr;
+                item.Bx = pos.x;
+                item.By = pos.y;
                 item.mapped = true;
             });
 
@@ -523,8 +656,13 @@ no hero, i have never lost a sister, but the sea says,
 
             if (nextZone !== 'morph') return;
 
-            // Live viewport positions: as the canvas scrolls, poem spans move,
-            // so letters travel left/right with the scroll and settle into the next poem.
+            // Cached content-space positions + one scrollLeft read per frame.
+            // viewportX = contentX - scrollLeft + hscrollLeft (no per-letter layout reads).
+            const hscrollRect = hscroll.getBoundingClientRect();
+            const scrollLeft = hscroll.scrollLeft;
+            const originX = hscrollRect.left - scrollLeft;
+            const originY = hscrollRect.top;
+
             activePair.forEach((item) => {
                 const fromSpan = poemSpans[activeFromIndex][item.indexA];
                 const toSpan = poemSpans[activeToIndex][item.indexB];
@@ -544,10 +682,8 @@ no hero, i have never lost a sister, but the sea says,
                     toSpan.style.visibility = 'hidden';
                     item.element.style.visibility = 'visible';
 
-                    const fromRect = fromSpan.getBoundingClientRect();
-                    const toRect = toSpan.getBoundingClientRect();
-                    const x = lerp(fromRect.left, toRect.left, remappedT);
-                    const y = lerp(fromRect.top, toRect.top, remappedT);
+                    const x = lerp(item.Ax, item.Bx, remappedT) + originX;
+                    const y = lerp(item.Ay, item.By, remappedT) + originY;
                     item.element.style.transform = `translate3d(${x}px, ${y}px, 0)`;
                 }
             });
