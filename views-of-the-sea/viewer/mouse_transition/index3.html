@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        /* Horizontal "track" that we scroll to reveal more poems. */
+        #hscroll {
+            height: 100vh;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scrollbar-gutter: stable both-edges;
+        }
+
+        #canvas {
+            position: relative;
+            height: 100vh;
+        }
+
+        .poemdiv {
+            position: absolute;
+            top: 0;
+            padding: 20px;
+            width: 500px;
+            box-sizing: border-box;
+            height: 100vh;
+        }
+
+        #animated-letters {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .animated-letter {
+            position: absolute;
+            will-change: transform;
+            backface-visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id="hscroll">
+        <div id="canvas"></div>
+    </div>
+    <div id="animated-letters"></div>
+    <script>
+        const poemA = `silas says there was bioluminescence,
+that the waves activated the light,
+
+green in the inky sea. yesterday 
+the baby pointed to the clock & cried. 
+
+i agree that the fall of empire is an unruly sound,
+that there is no discernible shoreline. to teeter, 
+
+to yoke & unyoke, to knot into one neon eye.
+he says "boat" & "water" tersely. noun, noun, noun.
+
+his favorite words: flowery memories that veer, 
+wheel, & lop. there, political trouble. here, i wait
+
+for more words, one more, two. in the dusky sea,
+green where we hope blue. tideturn where we hope 
+
+decision. i sell no defense. worry lurks; 
+he yowls, toothy. silas says shhh, shh.`;
+        const poemB = `here a view of the sea:
+achy blue, w/ fresh mist knit
+
+into your hair like wool. the surfers snip lithe lines,
+taut watercolor cheer. she eyes the pleasantries. 
+
+i have been deeply depressed
+but start to see her as she is:
+
+segmented & all one, at peace
+w/ her ever changing roar.
+
+did you ever think you could let your grief
+pass by? did anyone tell you how?
+
+no one told me. many years i stood by the sea, 
+hollow, slow in her toil, me in my own shit,
+
+torn on contradictions in the heart.
+wet & broke, the sea crowns, winks. 
+
+i thirst for theories to own, retool, tether, whet.
+i feel unseen, but yoke eye to eye, keen low. 
+
+then, 
+         a hush.`;
+
+         const poemC = `a sweet video of the baby walking towards the sea
+birds preen: gull, plover, & tern
+complicated storyline between eye & soul
+dreams of hush (whose?)
+electronics that worry when in water
+faultlessly i call his name
+guilt as a state of motherhood
+hilarity or else horror
+i thank the sea; i heart it
+keen to tether & yoke to creation 
+lessen the need to win & achieve
+monotony: see see see
+neither need nor rite 
+okey okey, i eulogise freedom
+potty rush: bath the helot
+rewrite the one unholy wish to sink in
+surfers pass us, dewy & sheen with noon
+toddler escape, eye on the baby
+unruly
+               vein
+                        which is
+                                        your own`;
+
+        const poems = [poemA, poemB, poemC];
+
+        // Layout: fixed horizontal "columns" that we scroll through.
+        const POEM_WIDTH = 500; // must match .poemdiv width
+        const POEM_GAP = 400;
+        const COLUMN_WIDTH = POEM_WIDTH + POEM_GAP;
+
+        // Mouse morph: outside this band, poems are fully readable.
+        const morphMin = 0.2;
+        const morphMax = 0.8;
+
+        const isLetterChar = (ch) => /[a-zA-Z]/.test(ch);
+
+        let poemDivs = [];
+        let poemSpans = []; // spans per poem: [poemIndex] => HTMLElement[]
+        let pairMappings = []; // mappings for poem i -> i+1
+        let activeFromIndex = 0;
+        let activeToIndex = 1;
+        let activeZone = null; // 'from' | 'morph' | 'to'
+        let activePair = [];
+        let mouseClientX = window.innerWidth / 2;
+        let rafScheduled = false;
+
+        const hscroll = document.getElementById('hscroll');
+        const canvas = document.getElementById('canvas');
+        const animContainer = document.getElementById('animated-letters');
+
+        function render_poem(poem, div) {
+            poem.split('').forEach((char, i) => {
+                if (char === '\n') {
+                    div.appendChild(document.createElement('br'));
+                } else {
+                    const span = document.createElement('span');
+                    span.textContent = char;
+                    span.className = char.match(/[a-zA-Z]/) ? 'letter' : 'static';
+                    div.appendChild(span);
+                }
+            });
+        }
+
+        function getRandomArbitrary(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        function lerp(start, end, t) {
+            return start + (end - start) * t;
+        }
+
+        function remapPercent(percent, newMin, newMax) {
+            // Map percent in [newMin,newMax] to [0,1]
+            const denom = (newMax - newMin);
+            if (!Number.isFinite(denom) || denom === 0) return 0;
+            const t = (percent - newMin) / denom;
+            return Math.max(0, Math.min(1, t));
+        }
+
+        function hideAllSpansForPoem(poemIndex) {
+            poemSpans[poemIndex].forEach((span) => {
+                span.style.visibility = 'hidden';
+            });
+        }
+
+        function showAllSpansForPoem(poemIndex) {
+            poemSpans[poemIndex].forEach((span) => {
+                span.style.visibility = 'visible';
+            });
+        }
+
+        function buildPairLetterMapping(fromIndex, toIndex) {
+            const fromDiv = poemDivs[fromIndex];
+            const toDiv = poemDivs[toIndex];
+            const fromSpans = poemSpans[fromIndex];
+            const toSpans = poemSpans[toIndex];
+
+            const letters = [];
+            const queues = new Map(); // char -> [letters[] indices]
+
+            let letterIndexA = 0;
+            fromSpans.forEach((span, indexA) => {
+                const ch = span.textContent;
+                if (!isLetterChar(ch)) return;
+
+                const itemIndex = letters.length;
+                letters.push({
+                    type: 'letter',
+                    char: ch,
+                    indexA,
+                    letterIndexA: letterIndexA++,
+                    mapped: false
+                });
+
+                if (!queues.has(ch)) queues.set(ch, []);
+                queues.get(ch).push(itemIndex);
+            });
+
+            const ptrByChar = new Map();
+            toSpans.forEach((span, indexB) => {
+                const ch = span.textContent;
+                if (!isLetterChar(ch)) return;
+
+                const queue = queues.get(ch);
+                if (!queue || queue.length === 0) return;
+
+                const ptr = ptrByChar.get(ch) ?? 0;
+                if (ptr >= queue.length) return;
+
+                const item = letters[queue[ptr]];
+                ptrByChar.set(ch, ptr + 1);
+
+                item.indexB = indexB;
+                item.letterIndexB = ptr;
+                item.mapped = true;
+            });
+
+            // Only animate letters that exist in both poems.
+            const matched = letters.filter((item) => item.indexB != null);
+
+            matched.forEach((item) => {
+                const letterEl = document.createElement('span');
+                letterEl.textContent = item.char;
+                letterEl.className = 'animated-letter';
+                letterEl.style.visibility = 'hidden';
+                animContainer.appendChild(letterEl);
+
+                item.element = letterEl;
+
+                item.mStart = getRandomArbitrary(morphMin, 0.4);
+                item.mEnd = getRandomArbitrary(0.6, morphMax);
+            });
+
+            return matched;
+        }
+
+        function getCanvasWidth() {
+            // Each poem "stop" is one COLUMN_WIDTH of scroll. The last stop needs
+            // enough trailing space to bring the final poem into the viewport.
+            const scrollExtent = (poems.length - 1) * COLUMN_WIDTH + hscroll.clientWidth;
+            const contentExtent = (poems.length - 1) * COLUMN_WIDTH + POEM_WIDTH;
+            return Math.max(scrollExtent, contentExtent);
+        }
+
+        // Mouse X in canvas/content coordinates (scroll + viewport position).
+        function getCanvasMouseX() {
+            const hscrollRect = hscroll.getBoundingClientRect();
+            return hscroll.scrollLeft + (mouseClientX - hscrollRect.left);
+        }
+
+        // Pair + morph progress from canvas X. Swap for server-provided X later.
+        function getProgressFromCanvasX() {
+            const maxGlobalT = poems.length - 1;
+            const globalT = Math.max(0, Math.min(maxGlobalT, getCanvasMouseX() / COLUMN_WIDTH));
+            const fromIndex = Math.min(Math.floor(globalT), poems.length - 2);
+            const toIndex = fromIndex + 1;
+            const morphProgress = Math.max(0, Math.min(1, globalT - fromIndex));
+            return { fromIndex, toIndex, morphProgress };
+        }
+
+        function scheduleAnimate() {
+            if (rafScheduled) return;
+            rafScheduled = true;
+            requestAnimationFrame(animate);
+        }
+
+        function onMouseMove(e) {
+            mouseClientX = e.clientX;
+            scheduleAnimate();
+        }
+
+        function onScroll() {
+            scheduleAnimate();
+        }
+
+        function animate() {
+            rafScheduled = false;
+
+            const { fromIndex, toIndex, morphProgress } = getProgressFromCanvasX();
+
+            const nextZone = morphProgress < morphMin ? 'from' : (morphProgress > morphMax ? 'to' : 'morph');
+            const pairChanged = fromIndex !== activeFromIndex || toIndex !== activeToIndex;
+
+            if (pairChanged) {
+                // Hide previous pair spans and any animated letters for that pair.
+                hideAllSpansForPoem(activeFromIndex);
+                hideAllSpansForPoem(activeToIndex);
+                activePair.forEach((item) => item.element.style.visibility = 'hidden');
+
+                activeFromIndex = fromIndex;
+                activeToIndex = toIndex;
+                activePair = pairMappings[activeFromIndex] || [];
+                activeZone = null; // force zone handling below
+            }
+
+            if (nextZone !== activeZone) {
+                if (nextZone === 'from') {
+                    showAllSpansForPoem(activeFromIndex);
+                    hideAllSpansForPoem(activeToIndex);
+                    activePair.forEach((item) => item.element.style.visibility = 'hidden');
+                } else if (nextZone === 'to') {
+                    showAllSpansForPoem(activeToIndex);
+                    hideAllSpansForPoem(activeFromIndex);
+                    activePair.forEach((item) => item.element.style.visibility = 'hidden');
+                } else {
+                    // Morph zone: start with both poems hidden; per-letter logic will re-show some.
+                    hideAllSpansForPoem(activeFromIndex);
+                    hideAllSpansForPoem(activeToIndex);
+                    activePair.forEach((item) => item.element.style.visibility = 'hidden');
+                }
+                activeZone = nextZone;
+            }
+
+            if (nextZone !== 'morph') return;
+
+            // Update positions for active pair's animated letters.
+            activePair.forEach((item) => {
+                const fromSpan = poemSpans[activeFromIndex][item.indexA];
+                const toSpan = poemSpans[activeToIndex][item.indexB];
+
+                if (morphProgress < item.mStart) {
+                    fromSpan.style.visibility = 'visible';
+                    toSpan.style.visibility = 'hidden';
+                    item.element.style.visibility = 'hidden';
+                } else if (morphProgress > item.mEnd) {
+                    fromSpan.style.visibility = 'hidden';
+                    toSpan.style.visibility = 'visible';
+                    item.element.style.visibility = 'hidden';
+                } else {
+                    const remappedT = remapPercent(morphProgress, item.mStart, item.mEnd);
+
+                    fromSpan.style.visibility = 'hidden';
+                    toSpan.style.visibility = 'hidden';
+                    item.element.style.visibility = 'visible';
+
+                    const fromRect = fromSpan.getBoundingClientRect();
+                    const toRect = toSpan.getBoundingClientRect();
+                    const x = lerp(fromRect.left, toRect.left, remappedT);
+                    const y = lerp(fromRect.top, toRect.top, remappedT);
+                    item.element.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+                }
+            });
+        }
+
+        function rebuild() {
+            // Clear old content.
+            canvas.querySelectorAll('.poemdiv').forEach((el) => el.remove());
+            animContainer.innerHTML = '';
+
+            poemDivs = [];
+            poemSpans = [];
+            pairMappings = [];
+
+            // Size the canvas so we can scroll to every poem's readable position.
+            canvas.style.width = `${getCanvasWidth()}px`;
+
+            poems.forEach((poem, i) => {
+                const div = document.createElement('div');
+                div.className = 'poemdiv';
+                div.id = `poem-${i}`;
+                div.style.left = `${i * COLUMN_WIDTH}px`;
+                canvas.appendChild(div);
+
+                render_poem(poem, div);
+                poemDivs.push(div);
+
+                const spans = Array.from(div.querySelectorAll('span'));
+                poemSpans.push(spans);
+                // Start hidden; we'll show the active poem on first animate().
+                spans.forEach((span) => (span.style.visibility = 'hidden'));
+            });
+
+            // Precompute pair mappings and animated letter elements.
+            for (let i = 0; i < poems.length - 1; i++) {
+                pairMappings[i] = buildPairLetterMapping(i, i + 1);
+            }
+
+            // Initialize visible state.
+            activeFromIndex = 0;
+            activeToIndex = 1;
+            activePair = pairMappings[0] || [];
+            activeZone = null;
+
+            // Force initial render state.
+            // We want poem0 readable at scrollLeft=0.
+            showAllSpansForPoem(activeFromIndex);
+            hideAllSpansForPoem(activeToIndex);
+            activePair.forEach((item) => item.element.style.visibility = 'hidden');
+        }
+
+        let resizeTimer = null;
+        window.addEventListener('resize', () => {
+            if (resizeTimer) clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                rebuild();
+                animate();
+            }, 150);
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            rebuild();
+            animate();
+            hscroll.addEventListener('scroll', onScroll, { passive: true });
+            document.addEventListener('mousemove', onMouseMove);
+        });
+    </script>
+</body>
+</html>
+
