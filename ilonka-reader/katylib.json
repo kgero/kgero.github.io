@@ -3836,6 +3836,107 @@
                     "date_added": "Sat, 06 Jun 2026",
                     "tags": ["poetry"],
                     "notes": ""
+                },
+                {
+                    "title": "The Rot",
+                    "author": "Evelyn Araluen",
+                    "date_added": "Fri, 12 Jun 2026",
+                    "tags": ["poetry"],
+                    "notes": ""
+                },
+                {
+                    "title": "The Psychology of Money",
+                    "author": "Morgan Housel",
+                    "date_added": "Sat, 12 Jun 2026",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "Rock Flight",
+                    "author": "Hasib Hourani",
+                    "date_added": "Sun, 21 Jun 2026",
+                    "date_finished": "Sun, 21 Jun 2026",
+                    "tags": ["poetry"],
+                    "notes": ""
+                },
+                {
+                    "title": "A Swim in a Pond in the Rain",
+                    "author": "George Saunders",
+                    "date_added": "Wed, 19 Aug 2026",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "Culpability",
+                    "author": "Bruce Holsinger",
+                    "date_added": "Wed, 19 Aug 2026",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Regretting Motherhood",
+                    "author": "Orna Donath",
+                    "date_added": "Wed, 19 Aug 2026",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "Chemistry",
+                    "author": "Weike Wang",
+                    "date_added": "Wed, 19 Aug 2026",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Give Me Your Hand",
+                    "author": "Megan Abbott",
+                    "date_added": "Wed, 19 Aug 2026",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "We Were Forbidden",
+                    "author": "Jacqueline Harpman",
+                    "date_added": "Fri, 28 Aug 2026",
+                    "date_finished": "Fri, 28 Aug 2026",
+                    "tags": ["short stories"],
+                    "notes": ""
+                },
+                {
+                    "title": "Still Born",
+                    "author": "Guadelupe Nettel",
+                    "date_added": "Thu, 10 Sep 2026",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Pale Fire",
+                    "author": "Vladimir Nabokov",
+                    "date_added": "Fri, 13 Nov 2026",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "The Passion",
+                    "author": "Jeanette Winterson",
+                    "date_added": "Fri, 13 Nov 2026",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Griefdogg",
+                    "author": "Michael Winkler",
+                    "date_added": "Fri, 13 Nov 2026",
+                    "tags": ["novel"],
+                    "notes": ""
+                },
+                {
+                    "title": "Dark Emu",
+                    "author": "Burce Pascoe",
+                    "date_added": "Fri, 13 Nov 2026",
+                    "date_finished": "Thu, 12 Nov 2026",
+                    "tags": ["novel"],
+                    "notes": ""
                 }
             ]
         }
