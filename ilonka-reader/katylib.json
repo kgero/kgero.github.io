@@ -3932,10 +3932,27 @@
                 },
                 {
                     "title": "Dark Emu",
-                    "author": "Burce Pascoe",
+                    "author": "Bruce Pascoe",
                     "date_added": "Fri, 13 Nov 2026",
                     "date_finished": "Thu, 12 Nov 2026",
                     "tags": ["novel"],
+                    "notes": ""
+                }
+                ,
+                {
+                    "title": "The Pleaseure of the Text",
+                    "author": "Roland Barthes",
+                    "date_added": "Sun, 15 Nov 2026",
+                    "date_finished": "Fri, 13 Nov 2026",
+                    "tags": ["nonfiction"],
+                    "notes": ""
+                },
+                {
+                    "title": "Empire of AI",
+                    "author": "Karen Hao",
+                    "date_added": "Sun, 15 Nov 2026",
+                    "date_finished": "Sun, 15 Nov 2026",
+                    "tags": ["nonfiction"],
                     "notes": ""
                 }
             ]
