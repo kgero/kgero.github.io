@@ -1,5 +1,13 @@
 var poems = [
 	{
+		'title': '(36 Views of the Sea, poem 5)',
+		'publication': 'Vagabond City Lit',
+		'month': 'Jul',
+		'date': '2026',
+		'link': 'https://vagabondcitylit.com/2026/07/20/5-by-katy-gero/',
+		'description': ''
+	},
+	{
 		'title': '36 Views of the Sea (poems 4 and 6)',
 		'publication': 'The New River Journal',
 		'month': 'May',
@@ -156,6 +164,15 @@ var poems = [
 ]
 
 var essays = [
+	
+	{
+		'title': 'The Language Meadow', 
+		'publication': 'un Magazine',
+		'month': 'Nov',
+		'date': '2026',
+		'link': 'https://unprojects.org.au/article/the-language-meadow/',
+		'description': ''
+	},
 	{
 		'title': 'Novel Audiences', 
 		'publication': 'First Encounters with AI: Writers on Writing (University of Michigan Press)',

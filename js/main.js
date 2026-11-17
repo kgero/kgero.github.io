@@ -148,14 +148,15 @@ var papers_cs = [
     'year': "",
     // 'pdf': 'papers/2026_FromPlanningToRevision.pdf',
     'type': 'conference',
-    'category': 'llm'
+    'category': 'llm',
+    'hide': true,
     // 'bibtex': 'research/bibtex/tweetorials.txt'
   },
   {
     'title': "Seed Bank, Co-op, Stoop Swap: Metaphors for Governing Language Model Data for Creative Writing",
     'author': "Alicia Guo, Carly Schnitzler, and Katy Gero",
     'source': "C&C",
-    'year': "2026 (to appear)",
+    'year': "2026 - <span class='tag tagged is-info'>🏆 Honorable Mention Award</span>",
     'pdf': 'https://arxiv.org/abs/2605.12888',
     'type': 'conference',
     'category': 'llm'
@@ -165,7 +166,7 @@ var papers_cs = [
     'title': "From Planning to Revision: How AI Writing Support at Different Stages Alters Ownership",
     'author': "Katy Gero, Tao Long, Carly Schnitzler, and Paramveer Dhillon",
     'source': "DIS",
-    'year': "2026 (to appear)",
+    'year': "2026",
     'pdf': 'papers/2026_FromPlanningToRevision.pdf',
     'type': 'conference',
     'category': 'llm'
@@ -175,7 +176,7 @@ var papers_cs = [
     'title': "Creative Writers' Attitudes on Writing as Training Data for Large Language Models",
     'author': "Katy Gero, Meera Desai, Carly Schnitzler, Nayun Eom, Jack Cushman, and Elena Glassman",
     'source': "CHI",
-    'year': "2025 - <span class='tag tagged is-info'>🏆Best Paper Award</span>",
+    'year': "2025 - <span class='tag tagged is-info'>🏆 Best Paper Award</span>",
     'pdf': 'papers/2025_CreativeWritersAttitudes.pdf',
     'type': 'conference',
     'category': 'llm'
@@ -196,7 +197,7 @@ var papers_cs = [
     'title': "Supporting Sensemaking of Large Language Model Outputs at Scale",
     'author': "Katy Gero, Chelse Swoopes, Ziwei Gu, Jonathan Kummerfeld, and Elena Glassman",
     'source': "CHI",
-    'year': "2024 - <span class='tag tagged is-info'>🏆Honorable Mention Award</span>",
+    'year': "2024 - <span class='tag tagged is-info'>🏆 Honorable Mention Award</span>",
     'pdf': 'papers/2024_SupportingSensemaking.pdf',
     'presentation video': 'https://www.youtube.com/watch?v=IuSOH13G6W8',
     'type': 'conference',
@@ -321,7 +322,7 @@ var papers_cs = [
     'title': "Mental Models of AI Agents in a Cooperative Game Setting",
     'author': "Katy Gero, Zahra Ashktorab, Casey Dugan, Qian Pan, James Johnson, Werner Geyer, Maria Ruiz, Sarah Miller, David R. Millen, Murray Campbell, Sadhana Kumaravel, and Wei Zhang",
     'source': "CHI",
-    'year': "2020 - <span class='tag tagged is-info'>🏆Best Paper Award</span>",
+    'year': "2020 - <span class='tag tagged is-info'>🏆 Best Paper Award</span>",
     'pdf': "papers/2020_MentalModelsofAIAgents.pdf",
     'project page': 'research/mental-models-passcode/index.html',
     'type': 'conference',
